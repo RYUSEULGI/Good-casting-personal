@@ -1,51 +1,74 @@
-package shop.ryuseulgi.goodCasting.actor.domain;
+package shop.ryuseulgi.goodCasting.user.actor.domain;
 
-import shop.ryuseulgi.goodCasting.hire.domain.Hire;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import shop.ryuseulgi.goodCasting.common.domain.BaseEntity;
 import shop.ryuseulgi.goodCasting.resume.domain.Resume;
 
 import javax.persistence.*;
 
+import lombok.Getter;
+import shop.ryuseulgi.goodCasting.user.login.domain.UserVO;
+
+@Builder
+@Getter
 @Entity
-@Table(name="actors")
-public class Actor {
+@Table(name = "actors")
+@AllArgsConstructor
+@NoArgsConstructor
+public class Actor extends BaseEntity {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "actor_id")
+    private Long actorId;
 
-    @Id
-    @GeneratedValue
-    @Column(name="actor_id")
-    private long actorId;
-
-    @Column(name="username")
-    private String username;
-
-    @Column(name="password")
-    private String password;
-
-    @Column(name="name")
-    private String name;
-
-    @Column(name="gender")
-    private String gender;
-
-    @Column(name="birthday")
-    private String birthday;
-
-    @Column(name="phone_number")
-    private String phoneNumber;
-
-    @Column(name="height")
-    private long height;
-
-    @Column(name="weight")
-    private long weight;
-
-    @Column(name="agency")
-    private String agency;
-
-    @Column(name="major")
-    private boolean major;
+    @Column private String name;
+    @Column private String gender;
+    @Column private String birthday;
+    @Column private String phone;
+    @Column private String authority;
+    @Column private String height;
+    @Column private String weight;
+    @Column private String agency;
+    @Column private Boolean major;
 
     @ManyToOne
-    @JoinColumn(name = "resume_id")
-    private Resume resume;
-}
+    @JoinColumn(name = "user_id")
+    private UserVO userVO;
 
+    public void changeActorId(Long actorId) {
+        this.actorId = actorId;
+    }
+
+    public void changeName(String name) {
+        this.name = name;
+    }
+
+    public void changeBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public void changePhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void changeHeight(String height) {
+        this.height = height;
+    }
+
+    public void changeWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public void changeAgency(String agency) {
+        this.agency = agency;
+    }
+
+    public void changeMajor(Boolean major) {
+        this.major = major;
+    }
+
+    public void changeUserVO(UserVO userVO) {
+        this.userVO = userVO;
+    }
+}

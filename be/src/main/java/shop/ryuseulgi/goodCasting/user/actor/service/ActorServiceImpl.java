@@ -1,9 +1,34 @@
-package shop.ryuseulgi.goodCasting.actor.service;
+package shop.ryuseulgi.goodCasting.user.actor.service;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import shop.ryuseulgi.goodCasting.actor.domain.Actor;
+import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
+import shop.ryuseulgi.goodCasting.user.actor.repository.ActorRepository;
 
+import java.util.List;
+import java.util.Optional;
+
+@Log
 @Service
-public class ActorServiceImpl{
+@RequiredArgsConstructor
+public class ActorServiceImpl implements ActorService {
+    private final ActorRepository repo;
+    private final ModelMapper modelMapper;
+
+    @Override
+    public List<Actor> findAll() {
+        return null;
+    }
+
+    @Override
+    public Optional<Actor> findById(Long actorId) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Long delete(Actor actor) {
+        return null;
+    }
 }
