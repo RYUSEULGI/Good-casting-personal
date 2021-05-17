@@ -1,9 +1,12 @@
-package shop.ryuseulgi.goodCasting.producer.domain;
+package shop.ryuseulgi.goodCasting.user.producer.domain;
 
-import shop.ryuseulgi.goodCasting.hire.domain.Hire;
+
+import lombok.Getter;
+import shop.ryuseulgi.goodCasting.article.hire.domain.Hire;
 
 import javax.persistence.*;
 
+@Getter
 @Entity
 @Table(name="producers")
 public class Producer {
