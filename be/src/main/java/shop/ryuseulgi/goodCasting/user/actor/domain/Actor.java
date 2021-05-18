@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import shop.ryuseulgi.goodCasting.common.domain.BaseEntity;
-import shop.ryuseulgi.goodCasting.resume.domain.Resume;
 
 import javax.persistence.*;
 
@@ -26,7 +25,6 @@ public class Actor extends BaseEntity {
     @Column private String gender;
     @Column private String birthday;
     @Column private String phone;
-    @Column private String authority;
     @Column private String height;
     @Column private String weight;
     @Column private String agency;

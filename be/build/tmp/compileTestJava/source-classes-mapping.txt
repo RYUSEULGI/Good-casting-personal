@@ -1,0 +1,6 @@
+shop/ryuseulgi/goodCasting/GoodCastingApplicationTests.java
+ shop.ryuseulgi.goodCasting.GoodCastingApplicationTests
+shop/ryuseulgi/goodCasting/article/hire/HireTests.java
+ shop.ryuseulgi.goodCasting.article.hire.HireTests
+shop/ryuseulgi/goodCasting/user/actor/ActorTests.java
+ shop.ryuseulgi.goodCasting.user.actor.ActorTests

@@ -1,10 +1,12 @@
 package shop.ryuseulgi.goodCasting.common.domain;
 
+import lombok.Builder;
 import shop.ryuseulgi.goodCasting.article.hire.domain.Hire;
 import shop.ryuseulgi.goodCasting.article.profile.domain.Profile;
 
 import javax.persistence.*;
 
+@Builder
 @Table(name = "hire_profiles")
 @Entity
 public class HireProfile extends BaseEntity {

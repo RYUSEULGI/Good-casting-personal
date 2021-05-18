@@ -1,12 +1,18 @@
 package shop.ryuseulgi.goodCasting.article.hire.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+@Builder
 @Data
 @Component
+@NoArgsConstructor
+@AllArgsConstructor
 public class HireDTO {
-    private Long hiresId;
+    private Long hireId;
     private String hireTitle;
     private String cast;    //배역
     private String filming; //촬영기간

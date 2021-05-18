@@ -21,6 +21,7 @@ public interface ActorService {
                 .birthday(actorDTO.getBirthday())
                 .major(actorDTO.getMajor())
                 .agency(actorDTO.getAgency())
+                .gender(actorDTO.getGender())
                 .name(actorDTO.getName())
                 .build();
 
@@ -35,6 +36,7 @@ public interface ActorService {
                 .weight(actor.getWeight())
                 .birthday(actor.getBirthday())
                 .major(actor.getMajor())
+                .gender(actor.getGender())
                 .agency(actor.getAgency())
                 .build();
 
