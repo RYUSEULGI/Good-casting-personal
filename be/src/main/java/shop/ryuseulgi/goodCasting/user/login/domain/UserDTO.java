@@ -17,7 +17,7 @@ public class UserDTO {
     private Long userId;
     private String username;
     private String password;
-
+    private Boolean position;
     private List<Role> roles;
 
     private String token;

@@ -34,32 +34,34 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String signup(UserDTO userDTO) {
-
-        UserVO userVO = dto2Entity(userDTO);
-
-        if(!userRepo.existsByUsername(userVO.getUsername())){
-            userVO.changePassword(passwordEncoder.encode(userVO.getPassword()));
-
+        if(!userRepo.existsByUsername(userDTO.getUsername())){
+            userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
             List<Role> actorList = new ArrayList<>();
             List<Role> producerList = new ArrayList<>();
-            Boolean position = userVO.getPosition();
+            Boolean position = userDTO.getPosition();
             Actor actor = new Actor();
             Producer producer = new Producer();
 
             if(position){
                 actorList.add(Role.USER);
-                userVO.changeRoles(actorList);
+                userDTO.setRoles(actorList);
+
+                UserVO userVO = dto2Entity(userDTO);
+
                 userRepo.save(userVO);
                 actor.changeUserVO(userVO);
                 actorRepo.save(actor);
             } else {
                 producerList.add(Role.USER);
-                userVO.changeRoles(producerList);
+                userDTO.setRoles(producerList);
+
+                UserVO userVO = dto2Entity(userDTO);
+
                 userRepo.save(userVO);
                 producer.changeUserVO(userVO);
                 producerRepo.save(producer);
             }
-            return provider.createToken(userVO.getUsername(), userVO.getRoles());
+            return provider.createToken(userDTO.getUsername(), userDTO.getRoles());
         }else{
             throw new SecurityRuntimeException("중복된 username", HttpStatus.UNPROCESSABLE_ENTITY);
         }
