@@ -24,6 +24,7 @@ public class ProducerTest {
         IntStream.rangeClosed(1773, 1833).forEach(i -> {
             UserVO userVO = UserVO.builder()
                     .username("user" + i)
+                    .position(false)
                     .password("1111")
                     .build();
             userRepository.save(userVO);
