@@ -1,23 +1,29 @@
 package shop.ryuseulgi.goodCasting.file.photo.domain;
 
-import lombok.Getter;
+import lombok.*;
 import shop.ryuseulgi.goodCasting.article.profile.domain.Profile;
 import shop.ryuseulgi.goodCasting.common.domain.BaseEntity;
 
 import javax.persistence.*;
 
+@ToString
 @Getter
-@Entity
 @Table(name = "photos")
+@Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Photo extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "photo_id")
     private Long photoId;
 
-    @Column(name = "file_size") private String fileSize;
+    private String uuid;
+
+    private boolean first;
+
     @Column(name = "file_name") private String fileName;
-    @Column(name = "saved_file_name") private String savedFileName;
 
     @ManyToOne
     @JoinColumn(name = "profile_id")

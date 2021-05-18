@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import shop.ryuseulgi.goodCasting.user.login.domain.Role;
+import shop.ryuseulgi.goodCasting.user.login.domain.UserVO;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;

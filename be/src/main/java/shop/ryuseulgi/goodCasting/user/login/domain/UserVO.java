@@ -23,7 +23,15 @@ public class UserVO extends BaseEntity {
     @Column(unique = true, nullable = false) private String username;
     @Size(min = 8, message = "Minimum password length: 8")
     @Column(nullable = false) private String password;
-
+    @Column private Boolean position;
     @ElementCollection(fetch = FetchType.EAGER)
     List<Role> roles;
+
+    public void changePassword(String password) {
+        this.password = password;
+    }
+
+    public void changeRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 }

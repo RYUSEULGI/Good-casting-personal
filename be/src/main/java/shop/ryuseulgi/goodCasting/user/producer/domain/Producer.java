@@ -28,5 +28,8 @@ public class Producer {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserVO userVO;
+
+    public void changeUserVO(UserVO userVO) {
+    }
 }
 
