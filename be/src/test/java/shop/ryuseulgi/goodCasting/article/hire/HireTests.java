@@ -7,6 +7,7 @@ import org.jsoup.select.Elements;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import shop.ryuseulgi.goodCasting.article.hire.domain.Hire;
 import shop.ryuseulgi.goodCasting.article.hire.domain.HireDTO;
 import shop.ryuseulgi.goodCasting.article.hire.repository.HireRepository;
@@ -30,68 +31,67 @@ public class HireTests {
     @Autowired
     private HireService service;
 
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-//    @Test
-//    public List<Hire> hireCrawl() throws IOException {
-//        for (int j = 8; j < 20; j++) {
-//            Document document = connectUrl("https://www.filmmakers.co.kr/performerWanted/page/" + j);
-//            Elements link = document.select("a.block");
-//            //log.info("link" + link);
-//
-//            List<String> list = new ArrayList();
-//            Document innerDoc = null;
-//
-//            for (int i = 0; i < link.size(); i++) {
-//                String a = link.get(i).attr("href");
-//                list.add(a);
-//            }
-//
-//            List<HireDTO> hireList = new ArrayList<>();
-//
-//            for (int i = 0; i < list.size(); i++) {
-//                String value = list.get(i);
-//                innerDoc = connectUrl("https://www.filmmakers.co.kr" + value);
-//                Elements hire_title = innerDoc.select("table.ui>thead>tr>th>h2>a");
-//                Elements title = innerDoc.select("table.celled>tbody>tr:eq(1)>td:eq(1)");
-//                Elements cast = innerDoc.select("table.celled>tbody>tr:eq(3)>td:eq(1)");
-//                Elements filming = innerDoc.select("table.celled>tbody>tr:eq(4)>td:eq(1)");
-//                Elements guarantee = innerDoc.select("table.celled>tbody>tr:eq(5)>td:eq(1)");
-//                Elements personnel = innerDoc.select("table.celled>tbody>tr:eq(6)>td:eq(1)");
-//                Elements deadline = innerDoc.select("table.celled>tbody>tr:eq(10)>td:eq(1)");
-//                Elements contents = innerDoc.select("div.rhymix_content>p");
-//
-//                HireDTO hireDTO = new HireDTO();
-//                boolean deadlineTrue = (deadline.text().contains("-"));
-//
-//                if (deadlineTrue) {
-//
+    @Test
+    public List<Hire> hireCrawl() throws IOException {
+        for (int j = 8; j < 20; j++) {
+            Document document = connectUrl("https://www.filmmakers.co.kr/performerWanted/page/" + j);
+            Elements link = document.select("a.block");
+
+            List<String> list = new ArrayList();
+            Document innerDoc = null;
+
+            for (int i = 0; i < link.size(); i++) {
+                String a = link.get(i).attr("href");
+                list.add(a);
+            }
+
+            List<HireDTO> hireList = new ArrayList<>();
+
+            for (int i = 0; i < list.size(); i++) {
+                String value = list.get(i);
+                innerDoc = connectUrl("https://www.filmmakers.co.kr" + value);
+                Elements hire_title = innerDoc.select("table.ui>thead>tr>th>h2>a");
+                Elements title = innerDoc.select("table.celled>tbody>tr:eq(1)>td:eq(1)");
+                Elements cast = innerDoc.select("table.celled>tbody>tr:eq(3)>td:eq(1)");
+                Elements filming = innerDoc.select("table.celled>tbody>tr:eq(4)>td:eq(1)");
+                Elements guarantee = innerDoc.select("table.celled>tbody>tr:eq(5)>td:eq(1)");
+                Elements personnel = innerDoc.select("table.celled>tbody>tr:eq(6)>td:eq(1)");
+                Elements deadline = innerDoc.select("table.celled>tbody>tr:eq(10)>td:eq(1)");
+                Elements contents = innerDoc.select("div.rhymix_content>p");
+
+                HireDTO hireDTO = new HireDTO();
+                boolean deadlineTrue = (deadline.text().contains("-"));
+
+                if (deadlineTrue) {
+
 //                    Producer producer = Producer.builder()
 //                            .username("producer" + i)
 //                            .password("1111")
 //                            .build();
 //                    producerRepository.save(producer);
-//
-//                    hireDTO.setHireTitle(hire_title.text());
-//                    hireDTO.setHireTitle(hireDTO.getHireTitle());
-//                    hireDTO.setCast(cast.text());
-//                    hireDTO.setFilming(filming.text());
-//                    hireDTO.setGuarantee(guarantee.text());
-//                    hireDTO.setPersonnel(personnel.text());
-//                    hireDTO.setDeadline(deadline.text());
-//                    hireDTO.setContents(contents.text());
-//                    hireList.add(hireDTO);
-//
-//                    Hire hire = service.dto2Entity(hireDTO);
-//
+
+                    hireDTO.setHireTitle(hire_title.text());
+                    hireDTO.setHireTitle(hireDTO.getHireTitle());
+                    hireDTO.setCast(cast.text());
+                    hireDTO.setFilming(filming.text());
+                    hireDTO.setGuarantee(guarantee.text());
+                    hireDTO.setPersonnel(personnel.text());
+                    hireDTO.setDeadline(deadline.text());
+                    hireDTO.setContents(contents.text());
+                    hireList.add(hireDTO);
+
+                    Hire hire = service.dto2Entity(hireDTO);
+
 //                    hire.changeProducer(producer);
-//                    hireRepository.save(hire);
-//                }
-//            }
-//        }
-//        return null;
-//    }
+                    hireRepository.save(hire);
+                }
+            }
+        }
+        return null;
+    }
 
     @Test
     public Document connectUrl(String url) throws IOException {

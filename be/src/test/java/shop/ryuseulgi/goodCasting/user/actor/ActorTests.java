@@ -68,8 +68,8 @@ public class ActorTests {
 
                 UserVO userVO = UserVO.builder()
                         .username("user" + i)
-                        .password("1111")
                         .position(true)
+                        .password(passwordEncoder.encode("1111"))
                         .build();
                 userRepository.save(userVO);
 

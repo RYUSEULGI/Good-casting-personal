@@ -27,20 +27,15 @@ public class ProfileServiceImpl implements ProfileService {
     public Long register(ProfileDTO profileDTO) {
         Profile profile = dto2Entity(profileDTO);
         System.out.println("service - register - profile: " + profile);
-        userRepo.save(profile.getActor().getUserVO());
-
-        actorRepo.save(profile.getActor());
 
         Profile finalProfile = profileRepo.save(profile);
 
         ArrayList<PhotoDTO> photos = profileDTO.getPhotos();
 
         if(photos != null && photos.size() > 0) {
-
             photos.forEach(photoDTO -> {
                 photoDTO.setProfile(finalProfile);
                 Photo photo = dto2EntityPhoto(photoDTO);
-
                 photoRepo.save(photo);
             });
         }

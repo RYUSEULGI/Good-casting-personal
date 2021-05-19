@@ -12,10 +12,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import shop.ryuseulgi.goodCasting.user.login.domain.Role;
 import shop.ryuseulgi.goodCasting.user.login.domain.UserVO;
+import shop.ryuseulgi.goodCasting.user.login.service.UserDetailsServiceImpl;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +35,7 @@ public class SecurityProvider implements AuthenticationProvider {
     @Value("${security.jwt.token.expire-length:3600000}")
     private long validityInMilliseconds = 3600000;
 
-    private final UserDetailsService service;
+    private final UserDetailsServiceImpl service;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -72,8 +72,8 @@ public class SecurityProvider implements AuthenticationProvider {
     }
 
     public Authentication getAuthentication(String token) {
+        System.out.println("getAuthentication : 진입");
         UserDetails userDetails = service.loadUserByUsername(getUsername(token));
-
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 
@@ -84,7 +84,7 @@ public class SecurityProvider implements AuthenticationProvider {
     public String resolveToken(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
 
-        if (bearerToken != null && bearerToken.startsWith("Bearer")) {
+        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
             return bearerToken.substring(7);
         }
 
@@ -92,11 +92,14 @@ public class SecurityProvider implements AuthenticationProvider {
     }
 
     public boolean validateToken(String token) throws Exception {
-
+        System.out.println("validateToken : 진입");
         try {
             Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
+            System.out.println(Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token));
+            System.out.println("true");
             return true;
         } catch (JwtException | IllegalArgumentException e) {
+            System.out.println("false");
             throw new Exception();
         }
     }

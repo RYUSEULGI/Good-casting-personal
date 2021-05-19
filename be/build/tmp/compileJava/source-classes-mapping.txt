@@ -1,54 +1,56 @@
-shop/ryuseulgi/goodCasting/security/aop/SecurityAccessDeniedHandler.java
- shop.ryuseulgi.goodCasting.security.aop.SecurityAccessDeniedHandler
+shop/ryuseulgi/goodCasting/article/profile/service/ProfileServiceImpl.java
+ shop.ryuseulgi.goodCasting.article.profile.service.ProfileServiceImpl
+shop/ryuseulgi/goodCasting/user/login/repository/UserRepository.java
+ shop.ryuseulgi.goodCasting.user.login.repository.UserRepository
 shop/ryuseulgi/goodCasting/article/profile/service/ProfileService.java
  shop.ryuseulgi.goodCasting.article.profile.service.ProfileService
-shop/ryuseulgi/goodCasting/user/actor/repository/ActorRepository.java
- shop.ryuseulgi.goodCasting.user.actor.repository.ActorRepository
-shop/ryuseulgi/goodCasting/article/hire/service/HireServiceImpl.java
- shop.ryuseulgi.goodCasting.article.hire.service.HireServiceImpl
+shop/ryuseulgi/goodCasting/common/domain/HireProfile.java
+ shop.ryuseulgi.goodCasting.common.domain.HireProfile
+ shop.ryuseulgi.goodCasting.common.domain.HireProfile$HireProfileBuilder
 shop/ryuseulgi/goodCasting/security/config/WebConfig.java
  shop.ryuseulgi.goodCasting.security.config.WebConfig
 shop/ryuseulgi/goodCasting/ServletInitializer.java
  shop.ryuseulgi.goodCasting.ServletInitializer
 shop/ryuseulgi/goodCasting/security/aop/SecurityFilter.java
  shop.ryuseulgi.goodCasting.security.aop.SecurityFilter
-shop/ryuseulgi/goodCasting/user/login/service/UserDetailsImpl.java
- shop.ryuseulgi.goodCasting.user.login.service.UserDetailsImpl
-shop/ryuseulgi/goodCasting/article/hire/service/HireService.java
- shop.ryuseulgi.goodCasting.article.hire.service.HireService
+shop/ryuseulgi/goodCasting/user/login/domain/UserDTO.java
+ shop.ryuseulgi.goodCasting.user.login.domain.UserDTO
+ shop.ryuseulgi.goodCasting.user.login.domain.UserDTO$UserDTOBuilder
+shop/ryuseulgi/goodCasting/user/login/controller/UserController.java
+ shop.ryuseulgi.goodCasting.user.login.controller.UserController
 shop/ryuseulgi/goodCasting/config/Config.java
  shop.ryuseulgi.goodCasting.config.Config
 shop/ryuseulgi/goodCasting/article/hire/domain/HireDTO.java
  shop.ryuseulgi.goodCasting.article.hire.domain.HireDTO
  shop.ryuseulgi.goodCasting.article.hire.domain.HireDTO$HireDTOBuilder
-shop/ryuseulgi/goodCasting/article/hire/controller/HireController.java
- shop.ryuseulgi.goodCasting.article.hire.controller.HireController
-shop/ryuseulgi/goodCasting/file/video/service/VideoService.java
- shop.ryuseulgi.goodCasting.file.video.service.VideoService
+shop/ryuseulgi/goodCasting/article/hire/domain/Hire.java
+ shop.ryuseulgi.goodCasting.article.hire.domain.Hire
+ shop.ryuseulgi.goodCasting.article.hire.domain.Hire$HireBuilder
+shop/ryuseulgi/goodCasting/file/photo/domain/PhotoDTO.java
+ shop.ryuseulgi.goodCasting.file.photo.domain.PhotoDTO
+ shop.ryuseulgi.goodCasting.file.photo.domain.PhotoDTO$PhotoDTOBuilder
 shop/ryuseulgi/goodCasting/security/config/SecurityConfig.java
  shop.ryuseulgi.goodCasting.security.config.SecurityConfig
-shop/ryuseulgi/goodCasting/user/actor/domain/Actor.java
- shop.ryuseulgi.goodCasting.user.actor.domain.Actor
- shop.ryuseulgi.goodCasting.user.actor.domain.Actor$ActorBuilder
+shop/ryuseulgi/goodCasting/article/hire/service/HireServiceImpl.java
+ shop.ryuseulgi.goodCasting.article.hire.service.HireServiceImpl
 shop/ryuseulgi/goodCasting/user/producer/service/ProducerServiceImpl.java
  shop.ryuseulgi.goodCasting.user.producer.service.ProducerServiceImpl
 shop/ryuseulgi/goodCasting/security/aop/SecurityAuthenticationEntryPoint.java
  shop.ryuseulgi.goodCasting.security.aop.SecurityAuthenticationEntryPoint
 shop/ryuseulgi/goodCasting/article/profile/repository/ProfileRepository.java
  shop.ryuseulgi.goodCasting.article.profile.repository.ProfileRepository
-shop/ryuseulgi/goodCasting/article/profile/domain/Profile.java
- shop.ryuseulgi.goodCasting.article.profile.domain.Profile
- shop.ryuseulgi.goodCasting.article.profile.domain.Profile$ProfileBuilder
+shop/ryuseulgi/goodCasting/file/video/domain/Video.java
+ shop.ryuseulgi.goodCasting.file.video.domain.Video
 shop/ryuseulgi/goodCasting/mail/exception/MailHandler.java
  shop.ryuseulgi.goodCasting.mail.exception.MailHandler
 shop/ryuseulgi/goodCasting/file/photo/controller/UploadController.java
  shop.ryuseulgi.goodCasting.file.photo.controller.UploadController
-shop/ryuseulgi/goodCasting/user/login/domain/Role.java
- shop.ryuseulgi.goodCasting.user.login.domain.Role
+shop/ryuseulgi/goodCasting/security/domain/SecurityProvider.java
+ shop.ryuseulgi.goodCasting.security.domain.SecurityProvider
 shop/ryuseulgi/goodCasting/mail/domain/MailDTO.java
  shop.ryuseulgi.goodCasting.mail.domain.MailDTO
-shop/ryuseulgi/goodCasting/common/domain/BaseEntity.java
- shop.ryuseulgi.goodCasting.common.domain.BaseEntity
+shop/ryuseulgi/goodCasting/article/hire/controller/HireController.java
+ shop.ryuseulgi.goodCasting.article.hire.controller.HireController
 shop/ryuseulgi/goodCasting/security/exception/SecurityRuntimeException.java
  shop.ryuseulgi.goodCasting.security.exception.SecurityRuntimeException
 shop/ryuseulgi/goodCasting/user/login/domain/UserVO.java
@@ -65,12 +67,10 @@ shop/ryuseulgi/goodCasting/user/actor/service/ActorServiceImpl.java
 shop/ryuseulgi/goodCasting/user/actor/domain/ActorDTO.java
  shop.ryuseulgi.goodCasting.user.actor.domain.ActorDTO
  shop.ryuseulgi.goodCasting.user.actor.domain.ActorDTO$ActorDTOBuilder
-shop/ryuseulgi/goodCasting/file/photo/domain/Photo.java
- shop.ryuseulgi.goodCasting.file.photo.domain.Photo
- shop.ryuseulgi.goodCasting.file.photo.domain.Photo$PhotoBuilder
-shop/ryuseulgi/goodCasting/file/photo/domain/PhotoDTO.java
- shop.ryuseulgi.goodCasting.file.photo.domain.PhotoDTO
- shop.ryuseulgi.goodCasting.file.photo.domain.PhotoDTO$PhotoDTOBuilder
+shop/ryuseulgi/goodCasting/user/login/service/UserServiceImpl.java
+ shop.ryuseulgi.goodCasting.user.login.service.UserServiceImpl
+shop/ryuseulgi/goodCasting/user/login/service/UserService.java
+ shop.ryuseulgi.goodCasting.user.login.service.UserService
 shop/ryuseulgi/goodCasting/GoodCastingApplication.java
  shop.ryuseulgi.goodCasting.GoodCastingApplication
 shop/ryuseulgi/goodCasting/article/profile/domain/ProfileDTO.java
@@ -78,29 +78,28 @@ shop/ryuseulgi/goodCasting/article/profile/domain/ProfileDTO.java
  shop.ryuseulgi.goodCasting.article.profile.domain.ProfileDTO$ProfileDTOBuilder
 shop/ryuseulgi/goodCasting/file/video/service/VideoServiceImpl.java
  shop.ryuseulgi.goodCasting.file.video.service.VideoServiceImpl
-shop/ryuseulgi/goodCasting/article/hire/domain/Hire.java
- shop.ryuseulgi.goodCasting.article.hire.domain.Hire
- shop.ryuseulgi.goodCasting.article.hire.domain.Hire$HireBuilder
+shop/ryuseulgi/goodCasting/user/login/service/UserDetailsImpl.java
+ shop.ryuseulgi.goodCasting.user.login.service.UserDetailsImpl
 shop/ryuseulgi/goodCasting/common/crawl/CrawlRepository.java
  shop.ryuseulgi.goodCasting.common.crawl.CrawlRepository
+shop/ryuseulgi/goodCasting/user/producer/domain/Producer.java
+ shop.ryuseulgi.goodCasting.user.producer.domain.Producer
+ shop.ryuseulgi.goodCasting.user.producer.domain.Producer$ProducerBuilder
 shop/ryuseulgi/goodCasting/file/video/domain/VideoDTO.java
  shop.ryuseulgi.goodCasting.file.video.domain.VideoDTO
 shop/ryuseulgi/goodCasting/user/producer/repository/ProducerRepository.java
  shop.ryuseulgi.goodCasting.user.producer.repository.ProducerRepository
-shop/ryuseulgi/goodCasting/user/producer/domain/Producer.java
- shop.ryuseulgi.goodCasting.user.producer.domain.Producer
- shop.ryuseulgi.goodCasting.user.producer.domain.Producer$ProducerBuilder
 shop/ryuseulgi/goodCasting/mail/service/MailService.java
  shop.ryuseulgi.goodCasting.mail.service.MailService
-shop/ryuseulgi/goodCasting/user/login/service/UserDetailsServiceImpl.java
- shop.ryuseulgi.goodCasting.user.login.service.UserDetailsServiceImpl
+shop/ryuseulgi/goodCasting/file/photo/domain/Photo.java
+ shop.ryuseulgi.goodCasting.file.photo.domain.Photo
+ shop.ryuseulgi.goodCasting.file.photo.domain.Photo$PhotoBuilder
 shop/ryuseulgi/goodCasting/user/producer/controller/ProducerController.java
  shop.ryuseulgi.goodCasting.user.producer.controller.ProducerController
-shop/ryuseulgi/goodCasting/mail/controller/MailController.java
- shop.ryuseulgi.goodCasting.mail.controller.MailController
-shop/ryuseulgi/goodCasting/common/domain/HireProfile.java
- shop.ryuseulgi.goodCasting.common.domain.HireProfile
- shop.ryuseulgi.goodCasting.common.domain.HireProfile$HireProfileBuilder
+shop/ryuseulgi/goodCasting/article/hire/service/HireService.java
+ shop.ryuseulgi.goodCasting.article.hire.service.HireService
+shop/ryuseulgi/goodCasting/user/login/domain/Role.java
+ shop.ryuseulgi.goodCasting.user.login.domain.Role
 shop/ryuseulgi/goodCasting/security/domain/Messenger.java
  shop.ryuseulgi.goodCasting.security.domain.Messenger
  shop.ryuseulgi.goodCasting.security.domain.Messenger$MessengerBuilder
@@ -120,30 +119,31 @@ shop/ryuseulgi/goodCasting/user/producer/service/ProducerService.java
  shop.ryuseulgi.goodCasting.user.producer.service.ProducerService
 shop/ryuseulgi/goodCasting/user/producer/domain/ProducerDTO.java
  shop.ryuseulgi.goodCasting.user.producer.domain.ProducerDTO
-shop/ryuseulgi/goodCasting/file/video/repository/VideoRepository.java
- shop.ryuseulgi.goodCasting.file.video.repository.VideoRepository
+shop/ryuseulgi/goodCasting/article/profile/domain/Profile.java
+ shop.ryuseulgi.goodCasting.article.profile.domain.Profile
+ shop.ryuseulgi.goodCasting.article.profile.domain.Profile$ProfileBuilder
 shop/ryuseulgi/goodCasting/file/photo/service/PhotoServiceImpl.java
  shop.ryuseulgi.goodCasting.file.photo.service.PhotoServiceImpl
 shop/ryuseulgi/goodCasting/user/actor/service/ActorService.java
  shop.ryuseulgi.goodCasting.user.actor.service.ActorService
 shop/ryuseulgi/goodCasting/file/photo/controller/PhotoController.java
  shop.ryuseulgi.goodCasting.file.photo.controller.PhotoController
-shop/ryuseulgi/goodCasting/file/video/domain/Video.java
- shop.ryuseulgi.goodCasting.file.video.domain.Video
-shop/ryuseulgi/goodCasting/security/domain/SecurityProvider.java
- shop.ryuseulgi.goodCasting.security.domain.SecurityProvider
-shop/ryuseulgi/goodCasting/article/profile/service/ProfileServiceImpl.java
- shop.ryuseulgi.goodCasting.article.profile.service.ProfileServiceImpl
-shop/ryuseulgi/goodCasting/user/login/domain/UserDTO.java
- shop.ryuseulgi.goodCasting.user.login.domain.UserDTO
- shop.ryuseulgi.goodCasting.user.login.domain.UserDTO$UserDTOBuilder
-shop/ryuseulgi/goodCasting/user/login/repository/UserRepository.java
- shop.ryuseulgi.goodCasting.user.login.repository.UserRepository
+shop/ryuseulgi/goodCasting/user/login/service/UserDetailsServiceImpl.java
+ shop.ryuseulgi.goodCasting.user.login.service.UserDetailsServiceImpl
+shop/ryuseulgi/goodCasting/mail/controller/MailController.java
+ shop.ryuseulgi.goodCasting.mail.controller.MailController
+shop/ryuseulgi/goodCasting/common/domain/BaseEntity.java
+ shop.ryuseulgi.goodCasting.common.domain.BaseEntity
 shop/ryuseulgi/goodCasting/article/profile/controller/ProfileController.java
  shop.ryuseulgi.goodCasting.article.profile.controller.ProfileController
-shop/ryuseulgi/goodCasting/user/login/controller/UserController.java
- shop.ryuseulgi.goodCasting.user.login.controller.UserController
-shop/ryuseulgi/goodCasting/user/login/service/UserServiceImpl.java
- shop.ryuseulgi.goodCasting.user.login.service.UserServiceImpl
-shop/ryuseulgi/goodCasting/user/login/service/UserService.java
- shop.ryuseulgi.goodCasting.user.login.service.UserService
+shop/ryuseulgi/goodCasting/user/actor/domain/Actor.java
+ shop.ryuseulgi.goodCasting.user.actor.domain.Actor
+ shop.ryuseulgi.goodCasting.user.actor.domain.Actor$ActorBuilder
+shop/ryuseulgi/goodCasting/file/video/service/VideoService.java
+ shop.ryuseulgi.goodCasting.file.video.service.VideoService
+shop/ryuseulgi/goodCasting/user/actor/repository/ActorRepository.java
+ shop.ryuseulgi.goodCasting.user.actor.repository.ActorRepository
+shop/ryuseulgi/goodCasting/file/video/repository/VideoRepository.java
+ shop.ryuseulgi.goodCasting.file.video.repository.VideoRepository
+shop/ryuseulgi/goodCasting/security/aop/SecurityAccessDeniedHandler.java
+ shop.ryuseulgi.goodCasting.security.aop.SecurityAccessDeniedHandler

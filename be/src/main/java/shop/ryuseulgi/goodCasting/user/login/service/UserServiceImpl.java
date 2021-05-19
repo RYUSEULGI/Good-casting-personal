@@ -1,5 +1,6 @@
 package shop.ryuseulgi.goodCasting.user.login.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.http.HttpStatus;
@@ -72,11 +73,16 @@ public class UserServiceImpl implements UserService {
         try{
             UserVO userVO = dto2Entity(userDTO);
 
+            log.info("userVo---------" + userVO.getUserId());
+            log.info("userVo---------" + userVO.getUsername());
+
             String token = (passwordEncoder.matches(userVO.getPassword(), userRepo.findByUsername(userVO.getUsername()).get().getPassword()))
                     ?provider.createToken(userVO.getUsername(), userRepo.findByUsername(userVO.getUsername()).get().getRoles())
                     : "Wrong password";
 
             userDTO.setToken(token);
+
+            log.info("userDto-----------" + userDTO);
             return userDTO;
         }catch(Exception e){
             throw new SecurityRuntimeException("유효하지 않은 아이디 / 비밀번호", HttpStatus.UNPROCESSABLE_ENTITY);

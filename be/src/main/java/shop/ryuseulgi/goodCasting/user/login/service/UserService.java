@@ -13,6 +13,7 @@ public interface UserService {
                 .username(userDTO.getUsername())
                 .password(userDTO.getPassword())
                 .position(userDTO.getPosition())
+                .roles(userDTO.getRoles())
                 .build();
     }
     default UserDTO entity2Dto(UserVO userVO) {
@@ -21,6 +22,7 @@ public interface UserService {
                 .username(userVO.getUsername())
                 .password(userVO.getPassword())
                 .position(userVO.getPosition())
+                .roles(userVO.getRoles())
                 .build();
     }
 }

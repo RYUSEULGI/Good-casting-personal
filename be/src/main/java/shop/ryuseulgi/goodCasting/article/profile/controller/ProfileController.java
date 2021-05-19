@@ -9,7 +9,7 @@ import shop.ryuseulgi.goodCasting.article.profile.service.ProfileServiceImpl;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin("*")
-@RequestMapping("/profile")
+@RequestMapping("/profiles")
 public class ProfileController {
     private final ProfileServiceImpl service;
 
