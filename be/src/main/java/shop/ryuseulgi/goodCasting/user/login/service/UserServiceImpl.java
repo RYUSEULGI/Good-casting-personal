@@ -1,10 +1,8 @@
 package shop.ryuseulgi.goodCasting.user.login.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import shop.ryuseulgi.goodCasting.security.domain.SecurityProvider;
@@ -31,7 +29,6 @@ public class UserServiceImpl implements UserService {
     private final ProducerRepository producerRepo;
     private final PasswordEncoder passwordEncoder;
     private final SecurityProvider provider;
-    private final AuthenticationManager manager;
 
     @Override
     public String signup(UserDTO userDTO) {
@@ -87,5 +84,11 @@ public class UserServiceImpl implements UserService {
         }catch(Exception e){
             throw new SecurityRuntimeException("유효하지 않은 아이디 / 비밀번호", HttpStatus.UNPROCESSABLE_ENTITY);
         }
+    }
+
+    @Override
+    public UserDTO findById(Long id) {
+        UserDTO userDTO = entity2Dto(userRepo.findById(id).get());
+        return userDTO;
     }
 }

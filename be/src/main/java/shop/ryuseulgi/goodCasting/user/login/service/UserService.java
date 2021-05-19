@@ -6,6 +6,7 @@ import shop.ryuseulgi.goodCasting.user.login.domain.UserVO;
 public interface UserService {
     String signup(UserDTO userDTO);
     UserDTO signin(UserDTO userDTO);
+    UserDTO findById(Long id);
 
     default UserVO dto2Entity(UserDTO userDTO) {
         return UserVO.builder()

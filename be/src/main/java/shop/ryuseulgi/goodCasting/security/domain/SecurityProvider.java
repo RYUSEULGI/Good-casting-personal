@@ -74,7 +74,10 @@ public class SecurityProvider implements AuthenticationProvider {
     public Authentication getAuthentication(String token) {
         System.out.println("getAuthentication : 진입");
         UserDetails userDetails = service.loadUserByUsername(getUsername(token));
-        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+        System.out.println("userDetails : " + userDetails);
+        System.out.println("userDetails.getAuth : " + userDetails.getAuthorities());
+        // jwt토큰 서명을 통해 서명이 정상이라면 Authorities 객체 생성
+        return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     }
 
     private String getUsername(String token) {
