@@ -18,6 +18,8 @@ public interface ProfileService {
                 .contents(profileDTO.getContents())
                 .privacy(profileDTO.isPrivacy())
                 .actor(profileDTO.getActor())
+                .resemble(profileDTO.getResemble())
+                .confidence(profileDTO.getConfidence())
                 .build();
         return entity;
     }

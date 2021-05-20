@@ -9,10 +9,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
+import shop.ryuseulgi.goodCasting.user.actor.domain.ActorDTO;
 import shop.ryuseulgi.goodCasting.user.login.domain.UserDTO;
 import shop.ryuseulgi.goodCasting.user.login.domain.UserVO;
 import shop.ryuseulgi.goodCasting.user.login.service.UserServiceImpl;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.Optional;
@@ -43,10 +45,5 @@ public class UserController {
     public ResponseEntity<UserDTO> signin(@RequestBody UserDTO userDTO) {
         System.out.println(userDTO.getUserId());
         return ResponseEntity.ok(service.signin(userDTO));
-    }
-
-    @GetMapping("/info")
-    public ResponseEntity<UserDTO> detail(@RequestBody UserDTO userDTO){
-        return ResponseEntity.ok(service.findById(userDTO.getUserId()));
     }
 }

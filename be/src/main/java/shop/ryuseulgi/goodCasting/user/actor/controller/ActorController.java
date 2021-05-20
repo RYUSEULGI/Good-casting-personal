@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
+import shop.ryuseulgi.goodCasting.user.actor.domain.ActorDTO;
 import shop.ryuseulgi.goodCasting.user.actor.repository.ActorRepository;
 import shop.ryuseulgi.goodCasting.user.actor.service.ActorServiceImpl;
 
@@ -27,9 +28,9 @@ public class ActorController {
         return ResponseEntity.ok(service.findAll());
     }
 
-    @GetMapping("/detail")
-    public ResponseEntity<Optional<Actor>> detail(@RequestBody Actor actor){
-        return ResponseEntity.ok(service.findById(actor.getActorId()));
+    @PostMapping("/info")
+    public ResponseEntity<ActorDTO> moreDetail(@RequestBody ActorDTO actorDTO){
+        return ResponseEntity.ok(service.moreDetail(actorDTO));
     }
 
     @PutMapping("/update")
@@ -38,7 +39,8 @@ public class ActorController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<Long> delete(@RequestBody Actor actor){
-        return ResponseEntity.ok(service.delete(actor));
+    public ResponseEntity<Long> delete(@RequestBody ActorDTO actorDTO){
+        log.info("actorDto : " + actorDTO);
+        return ResponseEntity.ok(service.delete(actorDTO));
     }
 }

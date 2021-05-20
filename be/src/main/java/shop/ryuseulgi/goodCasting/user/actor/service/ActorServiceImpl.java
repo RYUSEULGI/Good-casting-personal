@@ -5,7 +5,9 @@ import lombok.extern.java.Log;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
+import shop.ryuseulgi.goodCasting.user.actor.domain.ActorDTO;
 import shop.ryuseulgi.goodCasting.user.actor.repository.ActorRepository;
+import shop.ryuseulgi.goodCasting.user.login.domain.UserVO;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,11 +17,10 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ActorServiceImpl implements ActorService {
     private final ActorRepository repo;
-    private final ModelMapper modelMapper;
 
     @Override
     public List<Actor> findAll() {
-        return null;
+        return repo.findAll();
     }
 
     @Override
@@ -28,7 +29,22 @@ public class ActorServiceImpl implements ActorService {
     }
 
     @Override
-    public Long delete(Actor actor) {
+    public Long delete(ActorDTO actorDTO) {
+        log.info("delete : 진입");
+        Actor actor = dto2Entity(actorDTO);
+        actor.changeUserVO(null);
+        log.info("actor.userVo : " + actor.getUserVO());
+        repo.delete(actor);
+
+        log.info("actor.getActorId() : " + actor.getActorId());
+        return repo.findById(actor.getActorId()).orElse(null) == null ? 1L : 0L;
+    }
+
+    @Override
+    public ActorDTO moreDetail(ActorDTO actorDTO) {
+        repo.findById(actorDTO.getActorId());
+        Actor actor = dto2Entity(actorDTO);
+        repo.save(actor);
         return null;
     }
 }

@@ -18,6 +18,7 @@ import shop.ryuseulgi.goodCasting.user.producer.repository.ProducerRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Log
 @Service
@@ -91,4 +92,10 @@ public class UserServiceImpl implements UserService {
         UserDTO userDTO = entity2Dto(userRepo.findById(id).get());
         return userDTO;
     }
+
+    @Override
+    public Optional<UserVO> findByUsername(String username) {
+        return userRepo.findByUsername(username);
+    }
+
 }

@@ -3,6 +3,8 @@ package shop.ryuseulgi.goodCasting.user.actor.domain;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import shop.ryuseulgi.goodCasting.common.domain.BaseEntity;
 
 import javax.persistence.*;

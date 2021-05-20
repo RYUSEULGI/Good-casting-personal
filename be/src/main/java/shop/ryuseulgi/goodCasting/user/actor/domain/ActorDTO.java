@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
+import shop.ryuseulgi.goodCasting.user.login.domain.UserVO;
 
 @Data
 @Builder
@@ -21,4 +22,6 @@ public class ActorDTO {
     private String weight;
     private String agency;
     private Boolean major;
+
+    private UserVO userVO;
 }

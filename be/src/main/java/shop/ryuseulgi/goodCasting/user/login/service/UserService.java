@@ -1,12 +1,16 @@
 package shop.ryuseulgi.goodCasting.user.login.service;
 
+import shop.ryuseulgi.goodCasting.user.actor.domain.ActorDTO;
 import shop.ryuseulgi.goodCasting.user.login.domain.UserDTO;
 import shop.ryuseulgi.goodCasting.user.login.domain.UserVO;
+
+import java.util.Optional;
 
 public interface UserService {
     String signup(UserDTO userDTO);
     UserDTO signin(UserDTO userDTO);
     UserDTO findById(Long id);
+    Optional<UserVO> findByUsername(String username);
 
     default UserVO dto2Entity(UserDTO userDTO) {
         return UserVO.builder()

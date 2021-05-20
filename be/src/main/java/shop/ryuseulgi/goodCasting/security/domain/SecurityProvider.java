@@ -89,9 +89,9 @@ public class SecurityProvider implements AuthenticationProvider {
 
         if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
             return bearerToken.substring(7);
+        } else {
+            return "----------No JWT token found in request headers-----------";
         }
-
-        return null;
     }
 
     public boolean validateToken(String token) throws Exception {

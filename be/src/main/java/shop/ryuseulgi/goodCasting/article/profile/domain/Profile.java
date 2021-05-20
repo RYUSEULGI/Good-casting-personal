@@ -1,6 +1,8 @@
 package shop.ryuseulgi.goodCasting.article.profile.domain;
 
 import lombok.Getter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import shop.ryuseulgi.goodCasting.common.domain.BaseEntity;
 import shop.ryuseulgi.goodCasting.common.domain.HireProfile;
 import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
