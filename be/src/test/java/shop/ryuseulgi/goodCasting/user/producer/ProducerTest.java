@@ -25,7 +25,7 @@ public class ProducerTest {
     @Test
     public void insertProducerDummies(){
 
-        IntStream.rangeClosed(1773, 1833).forEach(i -> {
+        IntStream.rangeClosed(2179, 2230).forEach(i -> {
             UserVO userVO = UserVO.builder()
                     .username("user" + i)
                     .position(false)
@@ -37,8 +37,8 @@ public class ProducerTest {
             Producer producer = Producer.builder()
                     .email("producer" + i + "@daum.net")
                     .agency("소속사" + i)
-                    .phone("대표번호" + i)
-                    .position("직급" + i)
+                    .phone("02-" + i)
+                    .position("사원")
                     .userVO(userVO)
                     .build();
             producerRepository.save(producer);

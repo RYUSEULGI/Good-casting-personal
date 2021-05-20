@@ -19,6 +19,7 @@ public interface UserService {
                 .username(userDTO.getUsername())
                 .password(userDTO.getPassword())
                 .position(userDTO.getPosition())
+                .account(userDTO.getAccount())
                 .roles(userDTO.getRoles())
                 .build();
     }
@@ -28,6 +29,7 @@ public interface UserService {
                 .username(userVO.getUsername())
                 .password(userVO.getPassword())
                 .position(userVO.getPosition())
+                .account(userVO.getAccount())
                 .roles(userVO.getRoles())
                 .build();
     }

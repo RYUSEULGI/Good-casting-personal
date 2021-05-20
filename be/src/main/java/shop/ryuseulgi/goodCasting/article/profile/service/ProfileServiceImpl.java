@@ -7,7 +7,14 @@ import shop.ryuseulgi.goodCasting.article.profile.domain.Profile;
 import shop.ryuseulgi.goodCasting.article.profile.domain.ProfileDTO;
 import shop.ryuseulgi.goodCasting.article.profile.repository.ProfileRepository;
 
+import shop.ryuseulgi.goodCasting.file.domain.FileDTO;
+import shop.ryuseulgi.goodCasting.file.domain.FileVO;
+import shop.ryuseulgi.goodCasting.file.repository.FileRepository;
+import shop.ryuseulgi.goodCasting.file.service.FileService;
+import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
+import shop.ryuseulgi.goodCasting.user.actor.domain.ActorDTO;
 import shop.ryuseulgi.goodCasting.user.actor.repository.ActorRepository;
+import shop.ryuseulgi.goodCasting.user.actor.service.ActorService;
 import shop.ryuseulgi.goodCasting.user.login.repository.UserRepository;
 
 import javax.transaction.Transactional;
@@ -20,94 +27,62 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProfileServiceImpl implements ProfileService {
     private final ProfileRepository profileRepo;
-//    private final FileRepository fileRepo;
-    private final ActorRepository actorRepo;
-    private final UserRepository userRepo;
+    private final FileRepository fileRepo;
+    private final FileService fileService;
+    private final ActorService actorService;
 
     @Transactional
     @Override
     public Long register(ProfileDTO profileDTO) {
-//        Profile profile = dto2Entity(profileDTO);
-//        System.out.println("service - register - profile: " + profile);
-//        userRepo.save(profile.getActor().getUserVO());
-//
-//        actorRepo.save(profile.getActor());
-//
-//        Profile finalProfile = profileRepo.save(profile);
-//
-//        ArrayList<FileDTO> files = profileDTO.getFiles();
-//
-//        if(files != null && files.size() > 0) {
-//
-//            files.forEach(fileDTO -> {
-//                fileDTO.setProfile(finalProfile);
-//                FileVO file = dto2EntityFile(fileDTO);
-//
-//                fileRepo.save(file);
-//            });
-//        }
+        Profile profile = dto2Entity(profileDTO);
+        System.out.println("service - register - profile: " + profile);
+
+        Profile finalProfile = profileRepo.save(profile);
+
+        List<FileDTO> files = profileDTO.getFiles();
+
+        if(files != null && files.size() > 0) {
+
+            files.forEach(fileDTO -> {
+                fileDTO.setProfile(finalProfile);
+                FileVO file = fileService.dto2Entity(fileDTO);
+
+                fileRepo.save(file);
+            });
+        }
 
         return null;
     }
 
     @Transactional
     @Override
-    public Profile getProfileWithFileByProfileId(Long profileId) {
-//        ProfileDTO profileDTO = null;
-//
-//        List<Object[]> profileAndFile = profileRepo.getProfileWithFileByProfileId(profileId);
-//
-//        List<FileDTO> fileDTOList = new ArrayList<>();
+    public ProfileDTO readProfile(Long profileId) {
+        System.out.println("getProfileWithFileByProfileId() entry");
 
-//        for (Object[] arr : profileAndFile) {
-//            Profile profile = (Profile) arr[0];
-//            FileVO file = (FileVO) arr[1];
-//            fileDTOList.add(file);
-//
-//            ProfileDTO.builder()
-//                    .profileId(profile.getProfileId())
-//                    .career(profile.getCareer())
-//                    .contents(profile.getContents())
-//                    .files(file)
-//
-//
-//
-//            log.info("profile: " + profile);
-//            log.info("file: " + file);
-//
-//        }
+        List<Object[]> profileAndFileAndActor = profileRepo.getProfileAndFileAndActorByProfileId(2L);
 
-        Object res = profileRepo.getProfileWithActorByProfileId(profileId);
+        Profile profile = (Profile) profileAndFileAndActor.get(0)[0];
+        Actor actor = profile.getActor();
+        System.out.println("actor: " + actor);
 
-        Object[] arr = (Object[]) res;
+        ProfileDTO profileDTO = entity2Dto(profile);
+        System.out.println("profileDTO: " + profileDTO);
 
-        log.info("profile and actor: " + Arrays.toString(arr));
+        ActorDTO actorDTO = actorService.entity2Dto(actor);
+        System.out.println("actorDTO: " + actorDTO);
 
-        Profile profile = (Profile) arr[0];
+        List<FileDTO> fileList = new ArrayList<>();
 
-//        for(Object el : arr) {
-//
-//            Profile profile = (Profile) arr[0];
-//            Actor actor = (Actor) arr[1];
-//
-//            log.info("userId: " + actor.getUserVO().getUsername());
-//
-//            log.info("profile: " + profile);
-//            log.info("actor: " + actor);
-//        }
-        return profile;
+        profileAndFileAndActor.forEach(arr -> {
+            fileList.add(fileService.entity2Dto((FileVO)arr[2]));
+        });
+
+        profileDTO.setActor(actor);
+        profileDTO.setFiles(fileList);
+
+        System.out.println("profile dto: " + profileDTO);
+
+        return profileDTO;
     }
 
-    @Override
-    public ProfileDTO profileDetail(Long profileId) {
-        return null;
-    }
-
-
-    @Override
-    public List<ProfileDTO> profileList() {
-        List<Profile> profileList = profileRepo.findAll();
-
-        return null;
-    }
 }

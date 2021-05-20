@@ -6,8 +6,10 @@ import org.springframework.stereotype.Service;
 import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
 import shop.ryuseulgi.goodCasting.user.actor.domain.ActorDTO;
 import shop.ryuseulgi.goodCasting.user.actor.repository.ActorRepository;
+import shop.ryuseulgi.goodCasting.user.login.domain.UserDTO;
 import shop.ryuseulgi.goodCasting.user.login.domain.UserVO;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +17,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class ActorServiceImpl implements ActorService {
+
     private final ActorRepository repo;
 
     @Override
@@ -24,18 +27,17 @@ public class ActorServiceImpl implements ActorService {
 
     @Override
     public Optional<Actor> findById(Long actorId) {
-        return Optional.empty();
+        return repo.findById(actorId);
     }
 
+    @Transactional
     @Override
     public Long delete(ActorDTO actorDTO) {
-        log.info("delete : 진입");
         Actor actor = dto2Entity(actorDTO);
-        actor.changeUserVO(null);
-        log.info("actor.userVo : " + actor.getUserVO());
+
+        repo.update(actor.getUserVO().getUserId(), false);
         repo.delete(actor);
 
-        log.info("actor.getActorId() : " + actor.getActorId());
         return repo.findById(actor.getActorId()).orElse(null) == null ? 1L : 0L;
     }
 

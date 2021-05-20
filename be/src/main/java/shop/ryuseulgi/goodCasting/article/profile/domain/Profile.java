@@ -1,17 +1,9 @@
 package shop.ryuseulgi.goodCasting.article.profile.domain;
 
-import lombok.Getter;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import lombok.*;
 import shop.ryuseulgi.goodCasting.common.domain.BaseEntity;
 import shop.ryuseulgi.goodCasting.common.domain.HireProfile;
 import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
-
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-
-import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -31,7 +23,7 @@ public class Profile extends BaseEntity {
     private Long profileId;
 
     // column
-    @Column private Boolean privacy;
+    @Column private boolean privacy;
     @Column private String contents;
     @Column private String career;
     @Column private String resemble;

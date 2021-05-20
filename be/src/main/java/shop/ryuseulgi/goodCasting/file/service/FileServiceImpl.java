@@ -74,7 +74,7 @@ public class FileServiceImpl implements FileService {
             log.info("file service - findAll() - profile Class: " + profile.getProfileId());
 //            log.info("file service - findAll() - profile.regdate: " + profile.getRegDate());
 
-            return entity2DtoFile(entity);
+            return entity2Dto(entity);
         }).collect(Collectors.toList());
     }
 }

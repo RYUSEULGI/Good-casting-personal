@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mariadb://192.168.0.199/goodc
+    url: jdbc:mariadb://192.168.0.17/goodc
     driver-class-name: org.mariadb.jdbc.Driver
     username: goodc
     password: Goodc1234
@@ -37,7 +37,7 @@ shop:
   goodcast:
     upload:
       path: /usr/local/goodCasting
-      
+
 UserController:
   signup: Create user and returns ins JWT token
   signin: Authenticaties user and returns ins JWT token

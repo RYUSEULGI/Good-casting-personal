@@ -13,24 +13,25 @@ public interface FileService {
 
     List<FileDTO> findFileListByProfileId(Long profileId);
 
-    default FileDTO entity2DtoFile(FileVO file) {
+    default FileDTO entity2Dto(FileVO entity) {
         return FileDTO.builder()
-                .fileId(file.getFileId())
-                .fileName(file.getFileName())
-                .uuid(file.getUuid())
-                .first(file.isFirst())
+                .fileId(entity.getFileId())
+                .fileName(entity.getFileName())
+                .uuid(entity.getUuid())
+                .first(entity.isFirst())
+                .profile(entity.getProfile())
                 .build();
     }
 
-    default ProfileDTO entity2DtoProfile(Profile profile) {
-        return ProfileDTO.builder()
-                .profileId(profile.getProfileId())
-                .confidence(profile.getConfidence())
-                .contents(profile.getContents())
-                .career(profile.getCareer())
-                .resemble(profile.getResemble())
-                .modDate(profile.getModDate())
-                .regDate(profile.getRegDate())
+    default FileVO dto2Entity(FileDTO dto) {
+        return FileVO.builder()
+                .fileId(dto.getFileId())
+                .fileName(dto.getFileName())
+                .uuid(dto.getUuid())
+                .first(dto.isFirst())
+                .profile(dto.getProfile())
                 .build();
     }
+
+
 }

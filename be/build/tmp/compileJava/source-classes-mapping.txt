@@ -1,5 +1,6 @@
-shop/ryuseulgi/goodCasting/article/profile/service/ProfileServiceImpl.java
- shop.ryuseulgi.goodCasting.article.profile.service.ProfileServiceImpl
+shop/ryuseulgi/goodCasting/user/actor/domain/Actor.java
+ shop.ryuseulgi.goodCasting.user.actor.domain.Actor
+ shop.ryuseulgi.goodCasting.user.actor.domain.Actor$ActorBuilder
 shop/ryuseulgi/goodCasting/user/login/repository/UserRepository.java
  shop.ryuseulgi.goodCasting.user.login.repository.UserRepository
 shop/ryuseulgi/goodCasting/article/profile/service/ProfileService.java
@@ -55,8 +56,8 @@ shop/ryuseulgi/goodCasting/security/exception/ErrorCode.java
  shop.ryuseulgi.goodCasting.security.exception.ErrorCode
 shop/ryuseulgi/goodCasting/article/hire/repository/HireRepository.java
  shop.ryuseulgi.goodCasting.article.hire.repository.HireRepository
-shop/ryuseulgi/goodCasting/user/actor/service/ActorServiceImpl.java
- shop.ryuseulgi.goodCasting.user.actor.service.ActorServiceImpl
+shop/ryuseulgi/goodCasting/user/actor/repository/ActorRepository.java
+ shop.ryuseulgi.goodCasting.user.actor.repository.ActorRepository
 shop/ryuseulgi/goodCasting/user/actor/domain/ActorDTO.java
  shop.ryuseulgi.goodCasting.user.actor.domain.ActorDTO
  shop.ryuseulgi.goodCasting.user.actor.domain.ActorDTO$ActorDTOBuilder
@@ -92,24 +93,25 @@ shop/ryuseulgi/goodCasting/security/domain/Messenger.java
 shop/ryuseulgi/goodCasting/file/domain/FileVO.java
  shop.ryuseulgi.goodCasting.file.domain.FileVO
  shop.ryuseulgi.goodCasting.file.domain.FileVO$FileVOBuilder
-shop/ryuseulgi/goodCasting/file/service/FileService.java
- shop.ryuseulgi.goodCasting.file.service.FileService
+shop/ryuseulgi/goodCasting/user/actor/controller/ActorController.java
+ shop.ryuseulgi.goodCasting.user.actor.controller.ActorController
 shop/ryuseulgi/goodCasting/security/exception/LoginRuntimeException.java
  shop.ryuseulgi.goodCasting.security.exception.LoginRuntimeException
 shop/ryuseulgi/goodCasting/security/aop/SecurityExceptionHandler.java
  shop.ryuseulgi.goodCasting.security.aop.SecurityExceptionHandler
-shop/ryuseulgi/goodCasting/user/actor/controller/ActorController.java
- shop.ryuseulgi.goodCasting.user.actor.controller.ActorController
+shop/ryuseulgi/goodCasting/file/domain/FileDTO.java
+ shop.ryuseulgi.goodCasting.file.domain.FileDTO
+ shop.ryuseulgi.goodCasting.file.domain.FileDTO$FileDTOBuilder
 shop/ryuseulgi/goodCasting/security/domain/SecurityToken.java
  shop.ryuseulgi.goodCasting.security.domain.SecurityToken
-shop/ryuseulgi/goodCasting/file/service/FileServiceImpl.java
- shop.ryuseulgi.goodCasting.file.service.FileServiceImpl
+shop/ryuseulgi/goodCasting/user/actor/service/ActorServiceImpl.java
+ shop.ryuseulgi.goodCasting.user.actor.service.ActorServiceImpl
 shop/ryuseulgi/goodCasting/user/producer/service/ProducerService.java
  shop.ryuseulgi.goodCasting.user.producer.service.ProducerService
 shop/ryuseulgi/goodCasting/user/producer/domain/ProducerDTO.java
  shop.ryuseulgi.goodCasting.user.producer.domain.ProducerDTO
-shop/ryuseulgi/goodCasting/file/controller/FileController.java
- shop.ryuseulgi.goodCasting.file.controller.FileController
+shop/ryuseulgi/goodCasting/security/aop/SecurityAccessDeniedHandler.java
+ shop.ryuseulgi.goodCasting.security.aop.SecurityAccessDeniedHandler
 shop/ryuseulgi/goodCasting/article/profile/domain/Profile.java
  shop.ryuseulgi.goodCasting.article.profile.domain.Profile
  shop.ryuseulgi.goodCasting.article.profile.domain.Profile$ProfileBuilder
@@ -121,15 +123,13 @@ shop/ryuseulgi/goodCasting/mail/controller/MailController.java
  shop.ryuseulgi.goodCasting.mail.controller.MailController
 shop/ryuseulgi/goodCasting/common/domain/BaseEntity.java
  shop.ryuseulgi.goodCasting.common.domain.BaseEntity
-shop/ryuseulgi/goodCasting/file/domain/FileDTO.java
- shop.ryuseulgi.goodCasting.file.domain.FileDTO
- shop.ryuseulgi.goodCasting.file.domain.FileDTO$FileDTOBuilder
+shop/ryuseulgi/goodCasting/file/service/FileServiceImpl.java
+ shop.ryuseulgi.goodCasting.file.service.FileServiceImpl
+shop/ryuseulgi/goodCasting/file/service/FileService.java
+ shop.ryuseulgi.goodCasting.file.service.FileService
+shop/ryuseulgi/goodCasting/article/profile/service/ProfileServiceImpl.java
+ shop.ryuseulgi.goodCasting.article.profile.service.ProfileServiceImpl
+shop/ryuseulgi/goodCasting/file/controller/FileController.java
+ shop.ryuseulgi.goodCasting.file.controller.FileController
 shop/ryuseulgi/goodCasting/article/profile/controller/ProfileController.java
  shop.ryuseulgi.goodCasting.article.profile.controller.ProfileController
-shop/ryuseulgi/goodCasting/user/actor/domain/Actor.java
- shop.ryuseulgi.goodCasting.user.actor.domain.Actor
- shop.ryuseulgi.goodCasting.user.actor.domain.Actor$ActorBuilder
-shop/ryuseulgi/goodCasting/user/actor/repository/ActorRepository.java
- shop.ryuseulgi.goodCasting.user.actor.repository.ActorRepository
-shop/ryuseulgi/goodCasting/security/aop/SecurityAccessDeniedHandler.java
- shop.ryuseulgi.goodCasting.security.aop.SecurityAccessDeniedHandler

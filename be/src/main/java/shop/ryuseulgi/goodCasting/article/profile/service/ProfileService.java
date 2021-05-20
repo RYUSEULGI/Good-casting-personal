@@ -8,38 +8,32 @@ import java.util.List;
 
 public interface ProfileService {
     Long register(ProfileDTO profileDTO);
-    Profile getProfileWithFileByProfileId(Long profileId);
+    ProfileDTO readProfile(Long profileId);
 
-    default Profile dto2Entity(ProfileDTO profileDTO) {
-
-        Profile entity = Profile.builder()
-                .profileId(profileDTO.getProfileId())
-                .career(profileDTO.getCareer())
-                .contents(profileDTO.getContents())
-                .privacy(profileDTO.isPrivacy())
-                .actor(profileDTO.getActor())
-                .resemble(profileDTO.getResemble())
-                .confidence(profileDTO.getConfidence())
+    default Profile dto2Entity(ProfileDTO dto) {
+        return Profile.builder()
+                .profileId(dto.getProfileId())
+                .career(dto.getCareer())
+                .contents(dto.getContents())
+                .privacy(dto.isPrivacy())
+                .resemble(dto.getResemble())
+                .confidence(dto.getConfidence())
+                .actor(dto.getActor())
                 .build();
-        return entity;
     }
 
-    default Actor dto2EntityActor(ActorDTO actorDTO) {
-        Actor actor = Actor.builder()
-                .actorId(actorDTO.getActorId())
-                .height(actorDTO.getHeight())
-                .phone(actorDTO.getPhone())
-                .weight(actorDTO.getWeight())
-                .birthday(actorDTO.getBirthday())
-                .major(actorDTO.getMajor())
-                .agency(actorDTO.getAgency())
+    default ProfileDTO entity2Dto(Profile entity) {
+        return ProfileDTO.builder()
+                .profileId(entity.getProfileId())
+                .career(entity.getCareer())
+                .contents(entity.getContents())
+                .privacy(entity.isPrivacy())
+                .resemble(entity.getResemble())
+                .confidence(entity.getConfidence())
+                .regDate(entity.getRegDate())
+                .modDate(entity.getModDate())
+                .actor(entity.getActor())
                 .build();
-        return actor;
     }
 
-
-
-    ProfileDTO profileDetail(Long profileId);
-
-    List<ProfileDTO> profileList();
 }
