@@ -2,7 +2,6 @@ package shop.ryuseulgi.goodCasting.user.producer.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
-import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import shop.ryuseulgi.goodCasting.user.producer.domain.Producer;
@@ -19,7 +18,6 @@ import java.util.Optional;
 public class ProducerController {
     private final ProducerServiceImpl service;
     private final ProducerRepository repo;
-    private final ModelMapper modelMapper;
 
     @GetMapping("/list")
     public ResponseEntity<List<Producer>> producerList(){

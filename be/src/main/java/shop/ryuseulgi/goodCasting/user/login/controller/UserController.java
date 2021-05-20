@@ -2,22 +2,13 @@ package shop.ryuseulgi.goodCasting.user.login.controller;
 
 import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.java.Log;
-import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
-import shop.ryuseulgi.goodCasting.user.actor.domain.ActorDTO;
 import shop.ryuseulgi.goodCasting.user.login.domain.UserDTO;
 import shop.ryuseulgi.goodCasting.user.login.domain.UserVO;
 import shop.ryuseulgi.goodCasting.user.login.service.UserServiceImpl;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.security.Principal;
-import java.util.Optional;
+import java.util.List;
 
 @Api(tags="users")
 @RestController
@@ -45,5 +36,10 @@ public class UserController {
     public ResponseEntity<UserDTO> signin(@RequestBody UserDTO userDTO) {
         System.out.println(userDTO.getUserId());
         return ResponseEntity.ok(service.signin(userDTO));
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity<List<UserVO>> userList(){
+        return ResponseEntity.ok(service.findAll());
     }
 }

@@ -2,7 +2,6 @@ package shop.ryuseulgi.goodCasting.user.producer.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import shop.ryuseulgi.goodCasting.user.producer.domain.Producer;
 import shop.ryuseulgi.goodCasting.user.producer.repository.ProducerRepository;
@@ -15,7 +14,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ProducerServiceImpl implements ProducerService {
     private final ProducerRepository repo;
-    private final ModelMapper modelMapper;
 
     @Override
     public Optional<Producer> findById(Long id) {

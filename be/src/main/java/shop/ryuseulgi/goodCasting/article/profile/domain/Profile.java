@@ -13,7 +13,11 @@ import java.util.List;
 
 import lombok.*;
 
-@ToString
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@ToString(exclude = {"actor", "hires"})
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -34,10 +38,11 @@ public class Profile extends BaseEntity {
     @Column private String confidence;
 
     // join column
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "actor_id")
     private Actor actor;
 
+    @Builder.Default
     @OneToMany(mappedBy = "profile")
     private List<HireProfile> hires = new ArrayList<>();
 }

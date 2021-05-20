@@ -3,6 +3,7 @@ package shop.ryuseulgi.goodCasting.user.producer;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import shop.ryuseulgi.goodCasting.user.login.domain.UserVO;
 import shop.ryuseulgi.goodCasting.user.login.repository.UserRepository;
 import shop.ryuseulgi.goodCasting.user.producer.domain.Producer;
@@ -18,6 +19,9 @@ public class ProducerTest {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Test
     public void insertProducerDummies(){
 
@@ -25,7 +29,8 @@ public class ProducerTest {
             UserVO userVO = UserVO.builder()
                     .username("user" + i)
                     .position(false)
-                    .password("1111")
+                    .password(passwordEncoder.encode("1111"))
+                    .account(true)
                     .build();
             userRepository.save(userVO);
 

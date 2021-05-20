@@ -88,6 +88,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<UserVO> findAll() {
+        return userRepo.findAll();
+    }
+
+
+    @Override
     public UserDTO findById(Long id) {
         UserDTO userDTO = entity2Dto(userRepo.findById(id).get());
         return userDTO;

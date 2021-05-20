@@ -2,7 +2,6 @@ package shop.ryuseulgi.goodCasting.user.actor.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
 import shop.ryuseulgi.goodCasting.user.actor.domain.ActorDTO;

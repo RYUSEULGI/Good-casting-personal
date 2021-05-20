@@ -70,6 +70,7 @@ public class ActorTests {
                         .username("user" + i)
                         .position(true)
                         .password(passwordEncoder.encode("1111"))
+                        .account(true)
                         .build();
                 userRepository.save(userVO);
 

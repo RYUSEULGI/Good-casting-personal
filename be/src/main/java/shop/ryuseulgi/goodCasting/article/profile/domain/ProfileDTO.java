@@ -6,12 +6,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 import shop.ryuseulgi.goodCasting.article.hire.domain.HireDTO;
-import shop.ryuseulgi.goodCasting.file.photo.domain.PhotoDTO;
-import shop.ryuseulgi.goodCasting.file.video.domain.VideoDTO;
+import shop.ryuseulgi.goodCasting.file.domain.FileDTO;
 import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
 
 import java.util.ArrayList;
 
+import lombok.*;
+import org.springframework.stereotype.Component;
+
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+
+@ToString
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,18 +26,17 @@ import java.util.ArrayList;
 @Component
 public class ProfileDTO {
     // pk
-    private long profileId;
+    private Long profileId;
 
-    // data
     private boolean privacy;
     private String contents;
     private String career;
     private String resemble;
     private String confidence;
-
-    // join object
+    private Timestamp regDate;
+    private Timestamp modDate;
     private Actor actor;
-    private ArrayList<PhotoDTO> photos;
-    private VideoDTO video;
-    private ArrayList<HireDTO> hires;
+
+    private ArrayList<FileDTO> files;
+//    private List<HireProfile> hires;
 }

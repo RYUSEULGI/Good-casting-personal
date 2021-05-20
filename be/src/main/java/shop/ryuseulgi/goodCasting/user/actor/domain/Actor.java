@@ -36,38 +36,6 @@ public class Actor extends BaseEntity {
     @JoinColumn(name = "user_id")
     private UserVO userVO;
 
-    public void changeActorId(Long actorId) {
-        this.actorId = actorId;
-    }
-
-    public void changeName(String name) {
-        this.name = name;
-    }
-
-    public void changeBirthday(String birthday) {
-        this.birthday = birthday;
-    }
-
-    public void changePhone(String phone) {
-        this.phone = phone;
-    }
-
-    public void changeHeight(String height) {
-        this.height = height;
-    }
-
-    public void changeWeight(String weight) {
-        this.weight = weight;
-    }
-
-    public void changeAgency(String agency) {
-        this.agency = agency;
-    }
-
-    public void changeMajor(Boolean major) {
-        this.major = major;
-    }
-
     public void changeUserVO(UserVO userVO) {
         this.userVO = userVO;
     }

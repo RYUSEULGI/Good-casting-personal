@@ -2,13 +2,13 @@ package shop.ryuseulgi.goodCasting.article.profile.service;
 
 import shop.ryuseulgi.goodCasting.article.profile.domain.Profile;
 import shop.ryuseulgi.goodCasting.article.profile.domain.ProfileDTO;
-import shop.ryuseulgi.goodCasting.file.photo.domain.Photo;
-import shop.ryuseulgi.goodCasting.file.photo.domain.PhotoDTO;
 import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
 import shop.ryuseulgi.goodCasting.user.actor.domain.ActorDTO;
+import java.util.List;
 
 public interface ProfileService {
     Long register(ProfileDTO profileDTO);
+    Profile getProfileWithFileByProfileId(Long profileId);
 
     default Profile dto2Entity(ProfileDTO profileDTO) {
 
@@ -37,14 +37,9 @@ public interface ProfileService {
         return actor;
     }
 
-    default Photo dto2EntityPhoto(PhotoDTO photoDTO) {
-        Photo photo = Photo.builder()
-                .photoId(photoDTO.getPhotoId())
-                .fileName(photoDTO.getFileName())
-                .uuid(photoDTO.getUuid())
-                .first(photoDTO.isFirst())
-                .profile(photoDTO.getProfile())
-                .build();
-        return photo;
-    }
+
+
+    ProfileDTO profileDetail(Long profileId);
+
+    List<ProfileDTO> profileList();
 }
