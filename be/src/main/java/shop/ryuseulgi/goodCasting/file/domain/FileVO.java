@@ -16,7 +16,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class FileVO extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "file_id")
     private Long fileId;
 

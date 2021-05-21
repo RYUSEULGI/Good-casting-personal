@@ -5,7 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
-import shop.ryuseulgi.goodCasting.user.login.domain.UserVO;
+import shop.ryuseulgi.goodCasting.user.login.domain.UserDTO;
+
+import java.sql.Timestamp;
+
 
 @Data
 @Builder
@@ -21,7 +24,9 @@ public class ActorDTO {
     private String height;
     private String weight;
     private String agency;
-    private Boolean major;
+    private boolean major;
+    private Timestamp regDate;
+    private Timestamp modDate;
 
-    private UserVO userVO;
+    private UserDTO user;
 }

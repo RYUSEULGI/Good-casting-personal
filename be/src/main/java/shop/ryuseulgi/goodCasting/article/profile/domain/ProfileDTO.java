@@ -4,7 +4,7 @@ import lombok.*;
 import org.springframework.stereotype.Component;
 import shop.ryuseulgi.goodCasting.common.domain.HireProfile;
 import shop.ryuseulgi.goodCasting.file.domain.FileDTO;
-import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
+import shop.ryuseulgi.goodCasting.user.actor.domain.ActorDTO;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.List;
 public class ProfileDTO {
     // pk
     private Long profileId;
-
+    private String title;
     private boolean privacy;
     private String contents;
     private String career;
@@ -27,7 +27,7 @@ public class ProfileDTO {
     private Timestamp regDate;
     private Timestamp modDate;
 
-    private Actor actor;
+    private ActorDTO actor;
 
     private List<FileDTO> files;
     private List<HireProfile> hires;

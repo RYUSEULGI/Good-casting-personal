@@ -30,7 +30,7 @@ public class Actor extends BaseEntity {
     @Column private String height;
     @Column private String weight;
     @Column private String agency;
-    @Column private Boolean major;
+    @Column private boolean major;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

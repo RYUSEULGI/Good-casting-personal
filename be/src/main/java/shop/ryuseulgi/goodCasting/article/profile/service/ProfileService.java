@@ -9,31 +9,59 @@ import java.util.List;
 public interface ProfileService {
     Long register(ProfileDTO profileDTO);
     ProfileDTO readProfile(Long profileId);
+    List<ProfileDTO> readProfileList();
 
-    default Profile dto2Entity(ProfileDTO dto) {
+    default Profile dto2Entity(ProfileDTO profileDTO) {
         return Profile.builder()
-                .profileId(dto.getProfileId())
-                .career(dto.getCareer())
-                .contents(dto.getContents())
-                .privacy(dto.isPrivacy())
-                .resemble(dto.getResemble())
-                .confidence(dto.getConfidence())
-                .actor(dto.getActor())
+                .profileId(profileDTO.getProfileId())
+                .career(profileDTO.getCareer())
+                .contents(profileDTO.getContents())
+                .privacy(profileDTO.isPrivacy())
+                .resemble(profileDTO.getResemble())
+                .confidence(profileDTO.getConfidence())
                 .build();
     }
 
-    default ProfileDTO entity2Dto(Profile entity) {
+    default Profile dto2EntityAll(ProfileDTO profileDTO){
+        return Profile.builder()
+                .profileId(profileDTO.getProfileId())
+                .career(profileDTO.getCareer())
+                .contents(profileDTO.getContents())
+                .privacy(profileDTO.isPrivacy())
+                .resemble(profileDTO.getResemble())
+                .confidence(profileDTO.getConfidence())
+                .actor(Actor.builder()
+                        .actorId(profileDTO.getActor().getActorId())
+                        .build())
+                .build();
+    }
+
+    default ProfileDTO entity2Dto(Profile profile) {
         return ProfileDTO.builder()
-                .profileId(entity.getProfileId())
-                .career(entity.getCareer())
-                .contents(entity.getContents())
-                .privacy(entity.isPrivacy())
-                .resemble(entity.getResemble())
-                .confidence(entity.getConfidence())
-                .regDate(entity.getRegDate())
-                .modDate(entity.getModDate())
-                .actor(entity.getActor())
+                .profileId(profile.getProfileId())
+                .career(profile.getCareer())
+                .contents(profile.getContents())
+                .privacy(profile.isPrivacy())
+                .resemble(profile.getResemble())
+                .confidence(profile.getConfidence())
+                .regDate(profile.getRegDate())
+                .modDate(profile.getModDate())
                 .build();
     }
 
+    default ProfileDTO entity2DtoAll(Profile profile) {
+        return ProfileDTO.builder()
+                .profileId(profile.getProfileId())
+                .career(profile.getCareer())
+                .contents(profile.getContents())
+                .privacy(profile.isPrivacy())
+                .resemble(profile.getResemble())
+                .confidence(profile.getConfidence())
+                .regDate(profile.getRegDate())
+                .modDate(profile.getModDate())
+                .actor(ActorDTO.builder()
+                        .actorId(profile.getActor().getActorId())
+                        .build())
+                .build();
+    }
 }

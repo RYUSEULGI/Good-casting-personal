@@ -12,6 +12,7 @@ import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
 import shop.ryuseulgi.goodCasting.user.actor.domain.ActorDTO;
 import shop.ryuseulgi.goodCasting.user.actor.repository.ActorRepository;
 import shop.ryuseulgi.goodCasting.user.actor.service.ActorService;
+import shop.ryuseulgi.goodCasting.user.login.domain.Role;
 import shop.ryuseulgi.goodCasting.user.login.domain.UserVO;
 import shop.ryuseulgi.goodCasting.user.login.repository.UserRepository;
 
@@ -71,7 +72,10 @@ public class ActorTests {
                         .position(true)
                         .password(passwordEncoder.encode("1111"))
                         .account(true)
+                        .roles(new ArrayList<Role>())
                         .build();
+
+                userVO.addRoles(Role.USER);
                 userRepository.save(userVO);
 
                 actorDTO.setBirthday(yeardel);

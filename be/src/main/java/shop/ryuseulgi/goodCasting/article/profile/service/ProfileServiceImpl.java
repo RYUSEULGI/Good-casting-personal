@@ -15,12 +15,16 @@ import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
 import shop.ryuseulgi.goodCasting.user.actor.domain.ActorDTO;
 import shop.ryuseulgi.goodCasting.user.actor.repository.ActorRepository;
 import shop.ryuseulgi.goodCasting.user.actor.service.ActorService;
+import shop.ryuseulgi.goodCasting.user.login.domain.UserDTO;
+import shop.ryuseulgi.goodCasting.user.login.domain.UserVO;
 import shop.ryuseulgi.goodCasting.user.login.repository.UserRepository;
+import shop.ryuseulgi.goodCasting.user.login.service.UserService;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Log4j2
 @Service
@@ -30,27 +34,27 @@ public class ProfileServiceImpl implements ProfileService {
     private final FileRepository fileRepo;
     private final FileService fileService;
     private final ActorService actorService;
+    private final UserRepository userRepo;
+    private final ActorRepository actorRepo;
+    private final UserService userService;
 
     @Transactional
     @Override
     public Long register(ProfileDTO profileDTO) {
-        Profile profile = dto2Entity(profileDTO);
-        System.out.println("service - register - profile: " + profile);
-
-        Profile finalProfile = profileRepo.save(profile);
+        ProfileDTO finalProfileDto = entity2DtoAll(profileRepo.save(dto2EntityAll(profileDTO)));
 
         List<FileDTO> files = profileDTO.getFiles();
 
         if(files != null && files.size() > 0) {
-
             files.forEach(fileDTO -> {
-                fileDTO.setProfile(finalProfile);
-                FileVO file = fileService.dto2Entity(fileDTO);
+                fileDTO.setProfile(finalProfileDto);
+                System.out.println("----------------------after set final dto-----------------------: " + fileDTO);
+                FileVO file = fileService.dto2EntityAll(fileDTO);
+                System.out.println("----------------------after dto to entity-----------------------: " + file);
 
                 fileRepo.save(file);
             });
         }
-
         return null;
     }
 
@@ -73,16 +77,54 @@ public class ProfileServiceImpl implements ProfileService {
 
         List<FileDTO> fileList = new ArrayList<>();
 
-        profileAndFileAndActor.forEach(arr -> {
-            fileList.add(fileService.entity2Dto((FileVO)arr[2]));
+        profileAndFileAndActor.forEach(objects -> {
+            fileList.add(fileService.entity2Dto((FileVO)objects[2]));
         });
 
-        profileDTO.setActor(actor);
+        profileDTO.setActor(actorDTO);
         profileDTO.setFiles(fileList);
 
         System.out.println("profile dto: " + profileDTO);
 
         return profileDTO;
+    }
+
+    public List<ProfileDTO> readProfileList() {
+
+
+//        for (Object[] re : res) {
+//            System.out.println("loop enter");
+//            System.out.println(Arrays.toString(re));
+//        }
+
+        List<ProfileDTO> profileList = profileRepo.getProfileAndFileAndActorByFirst(true)
+                .stream().map(objects -> {
+                    System.out.println("loop enter");
+                    System.out.println(Arrays.toString(objects));
+
+                    ProfileDTO profileDTO = entity2Dto((Profile) objects[0]);
+                    ActorDTO actorDTO = actorService.entity2Dto((Actor) objects[1]);
+                    FileDTO fileDTO = fileService.entity2Dto((FileVO) objects[2]);
+
+                    List<FileDTO> files = new ArrayList<>();
+                    files.add(fileDTO);
+
+                    profileDTO.setActor(actorDTO);
+                    profileDTO.setFiles(files);
+
+                    System.out.println(profileDTO);
+
+                    return profileDTO;
+                }).collect(Collectors.toList());
+
+        for (ProfileDTO profileDTO : profileList) {
+            System.out.println("----------------------------------------");
+            System.out.println(profileDTO.getTitle());
+            System.out.println(profileDTO.getActor());
+            System.out.println(profileDTO.getFiles());
+        }
+
+        return profileList;
     }
 
 }

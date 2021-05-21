@@ -16,7 +16,7 @@ spring:
   servlet:
     multipart:
       enabled: true
-      location: /usr/local/goodCasting
+      location: \\DESKTOP-F9UL04V\Users\bitcamp\Pictures\Goodcasting files
       max-request-size: 100MB
       max-file-size: 100MB
   security:

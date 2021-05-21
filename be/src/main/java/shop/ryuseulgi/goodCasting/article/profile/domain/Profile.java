@@ -23,6 +23,7 @@ public class Profile extends BaseEntity {
     private Long profileId;
 
     // column
+    @Column private String title;
     @Column private boolean privacy;
     @Column private String contents;
     @Column private String career;
@@ -37,4 +38,5 @@ public class Profile extends BaseEntity {
     @Builder.Default
     @OneToMany(mappedBy = "profile")
     private List<HireProfile> hires = new ArrayList<>();
+
 }
