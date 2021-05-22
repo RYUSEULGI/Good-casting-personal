@@ -31,4 +31,5 @@ public class FileVO extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hire_id")
     private Hire hire;
+
 }

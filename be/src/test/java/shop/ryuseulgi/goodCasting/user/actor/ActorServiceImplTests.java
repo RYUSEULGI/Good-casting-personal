@@ -3,24 +3,20 @@ package shop.ryuseulgi.goodCasting.user.actor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Commit;
 import shop.ryuseulgi.goodCasting.article.profile.domain.Profile;
-import shop.ryuseulgi.goodCasting.article.profile.domain.ProfileDTO;
 import shop.ryuseulgi.goodCasting.article.profile.repository.ProfileRepository;
-import shop.ryuseulgi.goodCasting.file.domain.FileDTO;
+import shop.ryuseulgi.goodCasting.article.profile.service.ProfileService;
 import shop.ryuseulgi.goodCasting.file.domain.FileVO;
 import shop.ryuseulgi.goodCasting.file.repository.FileRepository;
 import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
-import shop.ryuseulgi.goodCasting.user.actor.domain.ActorDTO;
 import shop.ryuseulgi.goodCasting.user.actor.repository.ActorRepository;
 import shop.ryuseulgi.goodCasting.user.actor.service.ActorServiceImpl;
 import shop.ryuseulgi.goodCasting.user.login.domain.UserVO;
 import shop.ryuseulgi.goodCasting.user.login.repository.UserRepository;
 
-import javax.transaction.Transactional;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.IntStream;
 
@@ -40,22 +36,23 @@ public class ActorServiceImplTests {
     private ProfileRepository profileRepository;
 
     @Autowired
+    private ProfileService profileService;
+
+    @Autowired
     private FileRepository fileRepository;
 
     @Test
     public void insertTests() {
         UserVO user = UserVO.builder()
-                .userId(1405L)
-                .username("111")
-                .password("111")
+                .userId(255L)
+                .username("test")
+                .password("test")
                 .account(true)
                 .build();
         userRepository.save(user);
 
-        Actor actor = Actor.builder()
-                .userVO(user)
-                .actorId(1350L)
-                .build();
+        Actor actor = Actor.builder().userVO(user).actorId(252L).build();
+
         actorRepository.save(actor);
 
         Profile profile = Profile.builder()
@@ -78,28 +75,28 @@ public class ActorServiceImplTests {
     @Test
     public void actorDeleteTest() {
 
-        List<Object[]> result = profileRepository.getProfileAndFileAndActorByProfileId(5L);
-        System.out.println("--------------------------------------------------");
+        Actor actor = actorRepository.findById(255L).get();
+        Long actorJoin = actorRepository.getProfileId(actor.getActorId());
+        System.out.println(actorJoin);  // 4
 
-        Profile p = (Profile) result.get(0)[0];
-        System.out.println("-------------------" + p.getClass());
+        Profile profile = profileRepository.findById(actorJoin).get();
 
-        Actor a = p.getActor();
-        System.out.println("aaaaaaaaaaaaaaaaa: " + a);
+        List<FileVO> fileList = fileRepository.findFileListByProfileId(actorJoin);
+        System.out.println(fileList);
 
-        ArrayList<FileDTO> fileList = new ArrayList<>();
+        List<Long> fileId = new ArrayList<>();
 
-        for (Object[] arr : result) {
-            FileVO f = (FileVO) arr[2];
+        fileList.forEach( i -> {
+            fileId.add(i.getFileId());
+        });
+        System.out.println(fileId);
 
-            System.out.println("file: " + arr[2]);
-            System.out.println("---------------------------------");
-            fileRepository.delete(f);
-        }
-
-        profileRepository.delete(p);
-
-//        actorRepository.update(a.getUserVO().getUserId(), false);
-        actorRepository.delete(a);
+        fileId.forEach( id -> {
+            FileVO test = fileRepository.findById(id).get();
+            System.out.println(test);
+            fileRepository.delete(test);
+        });
+        profileRepository.delete(profile);
+        actorRepository.delete(actor);
     }
 }

@@ -22,9 +22,6 @@ public interface ActorRepository extends JpaRepository<Actor, Long> {
     @Query("update UserVO u set u.password = :password where u.id = :user_id")
     void passwordUpdate(@Param("user_id") Long userId, @Param("password") String password);
 
-    @Query("select u from UserVO u where u.username = :username and u.password = :password")
-    UserDTO signin(@Param("username") String username, @Param("password") String password);
-
-    @Query("select a.actor_id, p.profile_id from Actor a left join Profile p on a.actor_id = p.actor_id where a.actor_id = :actor_id")
-    Actor getProfileId (@Param("actor_id") Long actorId);
+    @Query("select p.profileId from Actor a left join Profile p on a.actorId = p.actor.actorId where a.actorId = :actor_id")
+    Long getProfileId (@Param("actor_id") Long actorId);
 }
