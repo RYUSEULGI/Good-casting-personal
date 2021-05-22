@@ -68,22 +68,27 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO signin(UserDTO userDTO) {
-        try{
-            UserVO userVO = dto2Entity(userDTO);
 
-            log.info("userVo---------" + userVO.getUserId());
-            log.info("userVo---------" + userVO.getUsername());
-            
-            String token = (passwordEncoder.matches(userVO.getPassword(), userRepo.findByUsername(userVO.getUsername()).get().getPassword()))
-                    ?provider.createToken(userVO.getUsername(), userRepo.findByUsername(userVO.getUsername()).get().getRoles())
-                    : "Wrong password";
+        if(userRepo.checkAccount(userDTO.getUsername())){
+            try{
+                UserVO userVO = dto2Entity(userDTO);
 
-            userDTO.setToken(token);
+                log.info("userVo---------" + userVO.getUserId());
+                log.info("userVo---------" + userVO.getUsername());
 
-            log.info("userDto-----------" + userDTO);
-            return userDTO;
-        }catch(Exception e){
-            throw new SecurityRuntimeException("유효하지 않은 아이디 / 비밀번호", HttpStatus.UNPROCESSABLE_ENTITY);
+                String token = (passwordEncoder.matches(userVO.getPassword(), userRepo.findByUsername(userVO.getUsername()).get().getPassword()))
+                        ?provider.createToken(userVO.getUsername(), userRepo.findByUsername(userVO.getUsername()).get().getRoles())
+                        : "Wrong password";
+
+                userDTO.setToken(token);
+
+                log.info("userDto-----------" + userDTO);
+                return userDTO;
+            }catch(Exception e){
+                throw new SecurityRuntimeException("유효하지 않은 아이디 / 비밀번호", HttpStatus.UNPROCESSABLE_ENTITY);
+            }
+        } else{
+            throw new SecurityRuntimeException("회원탈퇴한 회원입니다.", HttpStatus.UNPROCESSABLE_ENTITY);
         }
     }
 
