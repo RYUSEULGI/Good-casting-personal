@@ -35,13 +35,6 @@ public interface ActorService {
     }
 
     default Actor dto2EntityAll(ActorDTO actorDTO){
-
-        UserVO userVO = UserVO.builder()
-                .userId(actorDTO.getUser().getUserId())
-                .build();
-
-        System.out.println("userVO : " + userVO);
-
         return Actor.builder()
                 .actorId(actorDTO.getActorId())
                 .height(actorDTO.getHeight())
@@ -52,7 +45,9 @@ public interface ActorService {
                 .agency(actorDTO.getAgency())
                 .gender(actorDTO.getGender())
                 .name(actorDTO.getName())
-                .userVO(userVO)
+                .userVO(UserVO.builder()
+                        .userId(actorDTO.getUser().getUserId())
+                        .build())
                 .build();
     }
 

@@ -4,7 +4,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
+import shop.ryuseulgi.goodCasting.user.actor.domain.ActorDTO;
+import shop.ryuseulgi.goodCasting.user.actor.repository.ActorRepository;
+import shop.ryuseulgi.goodCasting.user.actor.service.ActorServiceImpl;
 import shop.ryuseulgi.goodCasting.user.producer.domain.Producer;
+import shop.ryuseulgi.goodCasting.user.producer.domain.ProducerDTO;
 import shop.ryuseulgi.goodCasting.user.producer.repository.ProducerRepository;
 import shop.ryuseulgi.goodCasting.user.producer.service.ProducerServiceImpl;
 
@@ -17,26 +22,25 @@ import java.util.Optional;
 @RequestMapping("/producers")
 public class ProducerController {
     private final ProducerServiceImpl service;
-    private final ProducerRepository repo;
 
     @GetMapping("/list")
-    public ResponseEntity<List<Producer>> producerList(){
+    public ResponseEntity<List<Producer>> actorList(){
         return ResponseEntity.ok(service.findAll());
     }
 
-    @GetMapping("/detail")
-    public ResponseEntity<Optional<Producer>> detail(@RequestBody Producer producer){
+    @GetMapping("/myPage")
+    public ResponseEntity<Optional<Producer>> myPage(@RequestBody Producer producer){
         return ResponseEntity.ok(service.findById(producer.getProducerId()));
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<Producer> update(@RequestBody Producer producer){
-        return ResponseEntity.ok(repo.save(producer));
+    @PostMapping("/info")
+    public ResponseEntity<ProducerDTO> moreDetail(@RequestBody ProducerDTO producerDTO){
+        return ResponseEntity.ok(service.moreDetail(producerDTO));
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<Long> delete(@RequestBody Producer producer){
-        return ResponseEntity.ok(service.delete(producer));
+    public ResponseEntity<Long> delete(@RequestBody ProducerDTO producerDTO){
+        return ResponseEntity.ok(service.delete(producerDTO));
     }
 
 }
