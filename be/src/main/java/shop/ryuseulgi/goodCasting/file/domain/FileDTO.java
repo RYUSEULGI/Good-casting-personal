@@ -18,6 +18,7 @@ public class FileDTO {
     private String fileName;
     private String uuid;
     private boolean first;
+    private boolean photoType;
     private Timestamp regDate;
     private Timestamp modDate;
 

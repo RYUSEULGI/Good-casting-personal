@@ -11,8 +11,6 @@ import java.util.List;
 public interface FileService {
     void extractVideoThumbnail(File file) throws Exception;
 
-//    List<FileDTO> findFileListByProfileId(Long profileId);
-
     default FileDTO entity2Dto(FileVO fileVO) {
         return FileDTO.builder()
                 .fileId(fileVO.getFileId())

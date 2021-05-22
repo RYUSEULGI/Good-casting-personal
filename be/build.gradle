@@ -48,8 +48,20 @@ dependencies {
 
 	// mail
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+	implementation group: 'org.json', name: 'json', version: '20210307'
 }
 
 test {
 	useJUnitPlatform()
+}
+
+def querydslSrcDir = "$buildDir/generated/querydsl"
+
+sourceSets {
+	main.java.srcDirs querydslSrcDir
+}
+
+configurations {
+	querydsl.extendsFrom compileClasspath
 }
