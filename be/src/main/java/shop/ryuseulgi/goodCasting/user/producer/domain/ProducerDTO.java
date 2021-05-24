@@ -14,6 +14,7 @@ import shop.ryuseulgi.goodCasting.user.login.domain.UserDTO;
 @NoArgsConstructor
 public class ProducerDTO {
     private Long producerId;
+    private String name;
     private String email;
     private String agency;
     private String phone;

@@ -1,13 +1,12 @@
 package shop.ryuseulgi.goodCasting.article.profile.controller;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.java.Log;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import shop.ryuseulgi.goodCasting.article.profile.domain.Profile;
 import shop.ryuseulgi.goodCasting.article.profile.domain.ProfileDTO;
 import shop.ryuseulgi.goodCasting.article.profile.service.ProfileServiceImpl;
+import shop.ryuseulgi.goodCasting.common.domain.PageRequestDTO;
 
 import java.util.List;
 
@@ -32,9 +31,11 @@ public class ProfileController {
         return ResponseEntity.ok(service.readProfile(profileId));
     }
 
-    @GetMapping("/profile-list")
-    public ResponseEntity<List<ProfileDTO>> profileList() {
-        return new ResponseEntity<>(service.readProfileList(), HttpStatus.OK);
+    @GetMapping("/profile-list/{page}")
+    public ResponseEntity<List<ProfileDTO>> profileList(@PathVariable int page) {
+        PageRequestDTO pageRequestDTO = new PageRequestDTO(page);
+
+        return new ResponseEntity<>(service.getProfileList(pageRequestDTO).getDtoList(), HttpStatus.OK);
     }
 
     @PutMapping("/update")
@@ -47,7 +48,7 @@ public class ProfileController {
     @DeleteMapping("/{profileId}")
     public ResponseEntity<Long> delete(@PathVariable Long profileId) {
 
-        service.delete(profileId);
+        service.deleteProfile(profileId);
 
         return new ResponseEntity<>(1L, HttpStatus.OK);
     }

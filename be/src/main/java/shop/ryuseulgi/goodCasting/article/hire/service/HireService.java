@@ -2,6 +2,8 @@ package shop.ryuseulgi.goodCasting.article.hire.service;
 
 import shop.ryuseulgi.goodCasting.article.hire.domain.Hire;
 import shop.ryuseulgi.goodCasting.article.hire.domain.HireDTO;
+import shop.ryuseulgi.goodCasting.common.domain.PageRequestDTO;
+import shop.ryuseulgi.goodCasting.common.domain.PageResultDTO;
 import shop.ryuseulgi.goodCasting.file.domain.FileDTO;
 import shop.ryuseulgi.goodCasting.file.domain.FileVO;
 import shop.ryuseulgi.goodCasting.user.producer.domain.Producer;
@@ -12,41 +14,83 @@ import java.util.Optional;
 
 public interface HireService {
     Long register(HireDTO hireDTO);
+    HireDTO readHire(Long hireId);
+    PageResultDTO<HireDTO, Object[]> getHireList(PageRequestDTO requestDTO);
+    default Hire dto2Entity(HireDTO dto) {
+        return Hire.builder()
+                .hireId(dto.getHireId())
+                .title(dto.getTitle())
+                .project(dto.getProject())
+                .contents(dto.getContents())
+                .cast(dto.getCast())
+                .filming(dto.getFilming())
+                .guarantee(dto.getGuarantee())
+                .personnel(dto.getPersonnel())
+                .deadline(dto.getDeadline())
+                .build();
+    }
 
-    default Hire dto2Entity(HireDTO hireDTO) {
-        Hire entity = Hire.builder()
+    default Hire dto2EntityAll(HireDTO hireDTO){
+        return Hire.builder()
                 .hireId(hireDTO.getHireId())
-                .title(hireDTO.getHireTitle())
+                .title(hireDTO.getTitle())
+                .project(hireDTO.getProject())
                 .contents(hireDTO.getContents())
                 .cast(hireDTO.getCast())
                 .filming(hireDTO.getFilming())
                 .guarantee(hireDTO.getGuarantee())
                 .personnel(hireDTO.getPersonnel())
                 .deadline(hireDTO.getDeadline())
-                .producer(hireDTO.getProducer())
+                .producer(Producer.builder()
+                        .producerId(hireDTO.getProducer().getProducerId())
+                        .build())
                 .build();
-        return entity;
     }
 
-    default Producer dto2EntityProducer(ProducerDTO producerDTO) {
-        Producer producer = Producer.builder()
-                .producerId(producerDTO.getProducerId())
-                .email(producerDTO.getEmail())
-                .agency(producerDTO.getAgency())
-                .phone(producerDTO.getPhone())
-                .position(producerDTO.getPosition())
+    default HireDTO entity2Dto(Hire entity) {
+        return HireDTO.builder()
+                .hireId(entity.getHireId())
+                .title(entity.getTitle())
+                .project(entity.getProject())
+                .contents(entity.getContents())
+                .cast(entity.getCast())
+                .filming(entity.getFilming())
+                .guarantee(entity.getGuarantee())
+                .personnel(entity.getPersonnel())
+                .deadline(entity.getDeadline())
                 .build();
-        return producer;
     }
 
-    default FileVO dto2EntityFile(FileDTO fileDTO) {
-        FileVO file = FileVO.builder()
-                .fileId(fileDTO.getFileId())
-                .fileName(fileDTO.getFileName())
-                .uuid(fileDTO.getUuid())
-                .first(fileDTO.isFirst())
+    default HireDTO entity2DtoAll(Hire hire) {
+        return HireDTO.builder()
+                .hireId(hire.getHireId())
+                .title(hire.getTitle())
+                .project(hire.getProject())
+                .contents(hire.getContents())
+                .cast(hire.getCast())
+                .filming(hire.getFilming())
+                .guarantee(hire.getGuarantee())
+                .personnel(hire.getPersonnel())
+                .deadline(hire.getDeadline())
+                .producer(ProducerDTO.builder()
+                        .producerId(hire.getProducer().getProducerId())
+                        .build())
                 .build();
-        return file;
     }
-
+    default HireDTO entity2DtoFiles(Hire hire,Producer producer, FileVO file) {
+        return HireDTO.builder()
+                .hireId(hire.getHireId())
+                .title(hire.getTitle())
+                .project(hire.getProject())
+                .contents(hire.getContents())
+                .cast(hire.getCast())
+                .filming(hire.getFilming())
+                .guarantee(hire.getGuarantee())
+                .personnel(hire.getPersonnel())
+                .deadline(hire.getDeadline())
+                .fileName(file.getFileName())
+                .fileUuid(file.getUuid())
+                .producerName(producer.getName())
+                .build();
+    }
 }

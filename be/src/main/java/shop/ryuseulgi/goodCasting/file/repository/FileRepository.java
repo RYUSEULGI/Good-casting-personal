@@ -14,6 +14,9 @@ public interface FileRepository extends JpaRepository<FileVO, Long> {
     @Query("select f from FileVO f inner join f.profile p where p.profileId = :profileId")
     List<FileVO> findFileListByProfileId(Long profileId);
 
+    @Query("select f from FileVO f inner join f.hire h where h.hireId = :hireId")
+    List<FileVO> findFileListByHireId(Long hireId);
+
     @Query("select f from FileVO f where f.first = :first")
     List<FileVO> findFileListByFirst(boolean first);
 
@@ -23,4 +26,8 @@ public interface FileRepository extends JpaRepository<FileVO, Long> {
     @Modifying
     @Query("delete from FileVO f where f.profile.profileId = :profileId")
     void deleteByProfileId(Long profileId);
+
+    @Modifying
+    @Query("delete from FileVO f where f.hire.hireId = :hireId")
+    void deleteByHireId(Long hireId);
 }
