@@ -1,44 +1,36 @@
 package shop.ryuseulgi.goodCasting.message.service;
 
 import shop.ryuseulgi.goodCasting.message.domain.Message;
+import shop.ryuseulgi.goodCasting.message.domain.MessageActionType;
 import shop.ryuseulgi.goodCasting.message.domain.MessageDTO;
-import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
-import shop.ryuseulgi.goodCasting.user.actor.domain.ActorDTO;
 import shop.ryuseulgi.goodCasting.user.login.domain.UserDTO;
 import shop.ryuseulgi.goodCasting.user.login.domain.UserVO;
-import shop.ryuseulgi.goodCasting.user.producer.domain.Producer;
-import shop.ryuseulgi.goodCasting.user.producer.domain.ProducerDTO;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface MessageService {
-    List<Message> findAll();
-    Long send(MessageDTO messageDTO);
+    MessageDTO send(MessageDTO messageDTO);
+    List<MessageDTO> findByType(MessageActionType actionType);
 
     default Message dto2Entity(MessageDTO messageDTO){
         return Message.builder()
                 .messageId(messageDTO.getMessageId())
-                .read(messageDTO.isRead())
-                .sender(messageDTO.getSender())
-                .receiver(messageDTO.getReceiver())
-                .regDate(messageDTO.getRegDate())
-                .actionType(messageDTO.getActionType())
+                .readMessage(messageDTO.isReadMessage())
+                .messageActionType(messageDTO.getMessageActionType())
                 .build();
     }
 
     default Message dto2EntityAll(MessageDTO messageDTO){
         return Message.builder()
                 .messageId(messageDTO.getMessageId())
-                .read(messageDTO.isRead())
-                .sender(messageDTO.getSender())
-                .receiver(messageDTO.getReceiver())
-                .regDate(messageDTO.getRegDate())
-                .actionType(messageDTO.getActionType())
-                .actor(Actor.builder()
-                        .actorId(messageDTO.getActor().getActorId())
+                .readMessage(messageDTO.isReadMessage())
+                .messageActionType(messageDTO.getMessageActionType())
+                .sender(UserVO.builder()
+                        .userId(messageDTO.getSender().getUserId())
                         .build())
-                .producer(Producer.builder()
-                        .producerId(messageDTO.getProducer().getProducerId())
+                .receiver(UserVO.builder()
+                        .userId(messageDTO.getReceiver().getUserId())
                         .build())
                 .build();
     }
@@ -46,27 +38,21 @@ public interface MessageService {
     default MessageDTO entity2Dto(Message message){
         return MessageDTO.builder()
                 .messageId(message.getMessageId())
-                .read(message.isRead())
-                .sender(message.getSender())
-                .receiver(message.getReceiver())
-                .regDate(message.getRegDate())
-                .actionType(message.getActionType())
+                .readMessage(message.isReadMessage())
+                .messageActionType(message.getMessageActionType())
                 .build();
     }
 
     default MessageDTO entity2DtoAll(Message message){
         return MessageDTO.builder()
                 .messageId(message.getMessageId())
-                .read(message.isRead())
-                .sender(message.getSender())
-                .receiver(message.getReceiver())
-                .regDate(message.getRegDate())
-                .actionType(message.getActionType())
-                .actor(ActorDTO.builder()
-                        .actorId(message.getActor().getActorId())
+                .readMessage(message.isReadMessage())
+                .messageActionType(message.getMessageActionType())
+                .sender(UserDTO.builder()
+                        .userId(message.getSender().getUserId())
                         .build())
-                .producer(ProducerDTO.builder()
-                        .producerId(message.getProducer().getProducerId())
+                .receiver(UserDTO.builder()
+                        .userId(message.getSender().getUserId())
                         .build())
                 .build();
     }

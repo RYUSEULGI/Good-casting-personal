@@ -26,9 +26,9 @@ public class ActorController {
         return ResponseEntity.ok(service.findAll());
     }
 
-    @GetMapping("/myPage")
-    public ResponseEntity<Optional<Actor>> myPage(@RequestBody Actor actor){
-        return ResponseEntity.ok(service.findById(actor.getActorId()));
+    @GetMapping("/myPage/{id}")
+    public ResponseEntity<Optional<Actor>> myPage(@PathVariable Long id){
+        return ResponseEntity.ok(service.findById(id));
     }
 
     @PostMapping("/info")

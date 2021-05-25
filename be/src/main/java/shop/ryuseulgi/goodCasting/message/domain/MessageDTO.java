@@ -2,8 +2,9 @@ package shop.ryuseulgi.goodCasting.message.domain;
 
 import lombok.*;
 import org.springframework.stereotype.Component;
-import shop.ryuseulgi.goodCasting.user.actor.domain.ActorDTO;
-import shop.ryuseulgi.goodCasting.user.producer.domain.ProducerDTO;
+import shop.ryuseulgi.goodCasting.user.login.domain.UserDTO;
+
+import java.sql.Timestamp;
 
 @ToString
 @Builder
@@ -13,9 +14,10 @@ import shop.ryuseulgi.goodCasting.user.producer.domain.ProducerDTO;
 @Component
 public class MessageDTO {
     private Long messageId;
-    private Long messageKind;
-    private String message;
+    private MessageActionType messageActionType;
+    private Timestamp regDate;
+    private boolean readMessage;
 
-    private ProducerDTO producer;
-    private ActorDTO actor;
+    private UserDTO sender;
+    private UserDTO receiver;
 }

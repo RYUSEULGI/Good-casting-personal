@@ -36,7 +36,7 @@ spring:
 shop:
   goodcast:
     upload:
-      path: /usr/local/goodCasting
+      path: \\DESKTOP-F9UL04V\Users\bitcamp\Pictures\Goodcasting
 
 UserController:
   signup: Create user and returns ins JWT token

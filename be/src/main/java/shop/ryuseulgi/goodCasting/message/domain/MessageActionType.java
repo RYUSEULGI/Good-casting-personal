@@ -1,6 +1,6 @@
 package shop.ryuseulgi.goodCasting.message.domain;
 
-public enum ActionType {
+public enum MessageActionType {
     CONTACT,
     PASS,
     SUBMISSION,

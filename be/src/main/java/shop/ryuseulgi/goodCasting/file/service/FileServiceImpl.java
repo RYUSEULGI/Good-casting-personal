@@ -1,7 +1,6 @@
 package shop.ryuseulgi.goodCasting.file.service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import org.jcodec.api.awt.FrameGrab;
 import org.jcodec.common.DemuxerTrack;
 import org.jcodec.common.NIOUtils;

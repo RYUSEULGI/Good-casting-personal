@@ -1,33 +1,36 @@
 package shop.ryuseulgi.goodCasting.message.domain;
 
 import lombok.*;
-import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
-import shop.ryuseulgi.goodCasting.user.producer.domain.Producer;
+import shop.ryuseulgi.goodCasting.common.domain.BaseEntity;
+import shop.ryuseulgi.goodCasting.user.login.domain.UserVO;
 
 import javax.persistence.*;
 
-@ToString(exclude = {"producer", "actor"})
+@ToString(exclude = {"sender", "receiver"})
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Entity
-@Table(name = "messages")
-public class Message {
+@Table(name="messages")
+public class Message extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "message_id")
     private Long messageId;
 
-    @Column(name = "message_kind") private Long messageKind;
-    @Column private String message;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_sender")
+    private UserVO sender;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "producer_id")
-    private Producer producer;
+    @JoinColumn(name = "user_receiver")
+    private UserVO receiver;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "actor_id")
-    private Actor actor;
+    @Column(name="action_type")
+    private MessageActionType messageActionType;
+
+    @Column(name="read_message")
+    private boolean readMessage;
 }
