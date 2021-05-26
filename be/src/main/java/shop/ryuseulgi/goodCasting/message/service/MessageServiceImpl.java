@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Log
@@ -23,15 +24,25 @@ public class MessageServiceImpl implements MessageService{
     private final MessageRepository messageRepo;
 
     @Transactional
-    public List<MessageDTO> findAllById(Iterable<Long> receiver) {
-        List<Message> messages = messageRepo.findAllById(receiver);
-        List<MessageDTO> messageDTOList = new ArrayList<>();
+    @Override
+    public List<MessageDTO> findAllByReceiverId(Long receiver) {
+        return messageRepo.findAllByReceiverId(receiver).stream().map(message -> {
+            return entity2DtoAll(message);
+        }).collect(Collectors.toList());
+    }
 
-        messages.forEach(message -> {
-            messageDTOList.add(entity2DtoAll(message));
-        });
+    @Override
+    public Optional<MessageDTO> findById(Long messageId){
+        Message message = messageRepo.findById(messageId).get();
+        MessageDTO messageDTO = entity2DtoAll(message);
 
-        return messageDTOList;
+        messageDTO.setReadMessage(true);
+
+        Message msg = dto2EntityAll(messageDTO);
+        messageRepo.save(msg);
+
+        MessageDTO msgDto = entity2DtoAll(msg);
+        return Optional.of(msgDto);
     }
 
     @Override

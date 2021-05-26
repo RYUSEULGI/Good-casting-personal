@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import shop.ryuseulgi.goodCasting.message.domain.Message;
 import shop.ryuseulgi.goodCasting.message.domain.MessageActionType;
+import shop.ryuseulgi.goodCasting.user.login.domain.UserVO;
 
 import java.util.List;
 
@@ -18,6 +19,6 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
     @Query("select m from Message m where m.messageActionType = :messageActionType")
     List<Message> findByActionType(@Param("messageActionType") MessageActionType messageActionType);
 
-    // 프로듀서 -> SUPPORT(지원자들)
-    // 액터 -> PASS(합격), SUBMISSION(지원), READING(열람), CONTACT(프로드서가 컨택연락옴)
+    @Query("select m from Message m where m.receiver.userId = :receiver")
+    List<Message> findAllByReceiverId(@Param("receiver") Long receiverId);
 }

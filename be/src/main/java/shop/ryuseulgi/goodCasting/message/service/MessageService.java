@@ -12,6 +12,8 @@ import java.util.Optional;
 public interface MessageService {
     MessageDTO send(MessageDTO messageDTO);
     List<MessageDTO> findByType(MessageActionType actionType);
+    Optional<MessageDTO> findById(Long messageId);
+    List<MessageDTO> findAllByReceiverId(Long receiver);
 
     default Message dto2Entity(MessageDTO messageDTO){
         return Message.builder()
@@ -28,6 +30,7 @@ public interface MessageService {
                 .messageActionType(messageDTO.getMessageActionType())
                 .sender(UserVO.builder()
                         .userId(messageDTO.getSender().getUserId())
+                        .username(messageDTO.getSender().getUsername())
                         .build())
                 .receiver(UserVO.builder()
                         .userId(messageDTO.getReceiver().getUserId())
@@ -50,9 +53,10 @@ public interface MessageService {
                 .messageActionType(message.getMessageActionType())
                 .sender(UserDTO.builder()
                         .userId(message.getSender().getUserId())
+                        .username(message.getSender().getUsername())
                         .build())
                 .receiver(UserDTO.builder()
-                        .userId(message.getSender().getUserId())
+                        .userId(message.getReceiver().getUserId())
                         .build())
                 .build();
     }

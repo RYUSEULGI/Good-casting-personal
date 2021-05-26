@@ -2,8 +2,6 @@ shop/ryuseulgi/goodCasting/GoodCastingApplicationTests.java
  shop.ryuseulgi.goodCasting.GoodCastingApplicationTests
 shop/ryuseulgi/goodCasting/user/actor/ActorCrawling2.java
  shop.ryuseulgi.goodCasting.user.actor.ActorCrawling2
-shop/ryuseulgi/goodCasting/article/hire/HireTests.java
- shop.ryuseulgi.goodCasting.article.hire.HireTests
 shop/ryuseulgi/goodCasting/user/producer/ProducerTest.java
  shop.ryuseulgi.goodCasting.user.producer.ProducerTest
 shop/ryuseulgi/goodCasting/user/actor/ActorServiceImplTests.java

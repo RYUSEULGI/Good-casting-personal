@@ -1,25 +1,29 @@
 package shop.ryuseulgi.goodCasting.common.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 import shop.ryuseulgi.goodCasting.article.hire.domain.Hire;
 import shop.ryuseulgi.goodCasting.article.profile.domain.Profile;
 
 import javax.persistence.*;
 
 @Builder
-@Table(name = "hire_profiles")
 @Entity
+@Table(name = "hire_profiles")
+@NoArgsConstructor
+@AllArgsConstructor
 public class HireProfile extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "hire_profile_id")
     private long hireProfileId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hire_id")
     private Profile profile;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "profile_id")
     private Hire hire;
 }

@@ -73,8 +73,8 @@ public class HireTests {
 //                            .build();
 //                    producerRepository.save(producer);
 
-                    hireDTO.setHireTitle(hire_title.text());
-                    hireDTO.setHireTitle(hireDTO.getHireTitle());
+//                    hireDTO.setHireTitle(hire_title.text());
+//                    hireDTO.setHireTitle(hireDTO.getHireTitle());
                     hireDTO.setCast(cast.text());
                     hireDTO.setFilming(filming.text());
                     hireDTO.setGuarantee(guarantee.text());
