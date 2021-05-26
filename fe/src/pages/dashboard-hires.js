@@ -9,8 +9,7 @@ const defaultJobs = [
     { value: 'project', label: '프로젝트별' },
     { value: 'deadline', label: '마감순' },
 ];
-
-const DashboardJobs = () => {
+const DashboardHires = () => {
     return (
         <>
             <PageWrapper
@@ -141,6 +140,70 @@ const DashboardJobs = () => {
                                         </tbody>
                                     </table>
                                 </div>
+                                <div className="pt-2">
+                                    <nav aria-label="Page navigation example">
+                                        <ul className="pagination pagination-hover-primary rounded-0 ml-n2">
+                                            <li className="page-item rounded-0 flex-all-center">
+                                                <a
+                                                    href="#"
+                                                    className="page-link rounded-0 border-0 px-3active"
+                                                    aria-label="Previous"
+                                                >
+                                                    <i className="fas fa-chevron-left"></i>
+                                                </a>
+                                            </li>
+                                            <li className="page-item">
+                                                <a
+                                                    href="#"
+                                                    className="page-link border-0 font-size-4 font-weight-semibold px-3"
+                                                >
+                                                    1
+                                                </a>
+                                            </li>
+                                            <li className="page-item">
+                                                <a
+                                                    href="#"
+                                                    className="page-link border-0 font-size-4 font-weight-semibold px-3"
+                                                >
+                                                    2
+                                                </a>
+                                            </li>
+                                            <li className="page-item">
+                                                <a
+                                                    href="#"
+                                                    className="page-link border-0 font-size-4 font-weight-semibold px-3"
+                                                >
+                                                    3
+                                                </a>
+                                            </li>
+                                            <li className="page-item disabled">
+                                                <a
+                                                    href="#"
+                                                    className="page-link border-0 font-size-4 font-weight-semibold px-3"
+                                                >
+                                                    ...
+                                                </a>
+                                            </li>
+                                            <li className="page-item ">
+                                                <a
+                                                    href="#"
+                                                    className="page-link border-0 font-size-4 font-weight-semibold px-3"
+                                                >
+                                                    7
+                                                </a>
+                                            </li>
+                                            <li className="page-item rounded-0 flex-all-center">
+                                                <a
+                                                    href="/#"
+                                                    className="page-link rounded-0 border-0 px-3"
+                                                    aria-label="Next"
+                                                >
+                                                    <i className="fas fa-chevron-right"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -149,4 +212,4 @@ const DashboardJobs = () => {
         </>
     );
 };
-export default DashboardJobs;
+export default DashboardHires;

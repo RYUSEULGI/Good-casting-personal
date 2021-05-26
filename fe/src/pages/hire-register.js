@@ -5,13 +5,34 @@ import PageWrapper from '../components/PageWrapper';
 
 import imgF1 from '../assets/image/l2/png/featured-job-logo-1.png';
 
+import { Select } from '../components/Core';
+
+const defaultTypes = [
+    { value: 'b2b', label: 'B2B' },
+    { value: 'saas', label: 'SAAS' },
+    { value: 'b2b', label: 'b2b' },
+];
+
+const defaultEmployees = [
+    { value: '10-50', label: '10-50' },
+    { value: '50-100', label: '50-100' },
+    { value: '100-500', label: '100-500' },
+    { value: '500-2000', label: '500-2000' },
+];
+
+const defaultLocations = [
+    { value: 'bd', label: 'Bangladesh' },
+    { value: 'sp', label: 'Singapore' },
+    { value: 'tl', label: 'Thailand' },
+    { value: 'de', label: 'Germany' },
+];
+
 const hireRegister = () => {
     return (
         <>
             <PageWrapper headerConfig={{ button: 'profile' }}>
                 <div className="bg-default-2 pt-16 pt-lg-22 pb-lg-27">
                     <div className="container">
-                        {/* <!-- back Button --> */}
                         <div className="row justify-content-center">
                             <div className="col-12 mt-13 dark-mode-texts">
                                 <div className="mb-9">
@@ -27,9 +48,7 @@ const hireRegister = () => {
                                 </div>
                             </div>
                         </div>
-                        {/* <!-- back Button End --> */}
                         <div className="row ">
-                            {/* <!-- Company Profile --> */}
                             <div className="col-12 col-xl-9 col-lg-8">
                                 <div className="bg-white rounded-4 pt-11 shadow-9">
                                     <div className="d-xs-flex align-items-center pl-xs-12 mb-8 text-center text-xs-left">
@@ -54,7 +73,8 @@ const hireRegister = () => {
                                             </h2>
                                             <input
                                                 type="text"
-                                                className="mb-0 text-gray font-size-4"
+                                                className="form-control h-px-48"
+                                                id="namedash"
                                             />
                                         </div>
                                     </div>
@@ -66,75 +86,135 @@ const hireRegister = () => {
                                         <Tab.Content className="pl-12 pt-10 pb-7 pr-12 pr-xxl-24">
                                             <Tab.Pane eventKey="jobs">
                                                 {/* <!-- Middle Body Start --> */}
-                                                <div className="row">
-                                                    <div className="col-12 col-lg-4 col-md-4 col-xs-6">
-                                                        <div className="mb-8">
-                                                            <p className="font-size-4">
-                                                                촬영시기
-                                                            </p>
-                                                            <input
-                                                                type="text"
-                                                                className="font-size-4 font-weight-semibold"
-                                                            />
+                                                <fieldset>
+                                                    <div className="row mb-xl-1 mb-9">
+                                                        <div className="col-lg-6">
+                                                            <div className="form-group">
+                                                                <label
+                                                                    htmlFor="namedash"
+                                                                    className="d-block text-black-2 font-size-4 font-weight-semibold mb-4"
+                                                                >
+                                                                    촬영 날짜
+                                                                </label>
+                                                                <input
+                                                                    type="text"
+                                                                    className="form-control h-px-48"
+                                                                    id="namedash"
+                                                                />
+                                                            </div>
                                                         </div>
-                                                        <div className="mb-8">
-                                                            <p className="font-size-4">
-                                                                급여
-                                                            </p>
+                                                        <div className="col-lg-6">
+                                                            <div className="form-group">
+                                                                <label
+                                                                    htmlFor="namedash"
+                                                                    className="d-block text-black-2 font-size-4 font-weight-semibold mb-4"
+                                                                >
+                                                                    마감날짜
+                                                                </label>
+                                                                <input
+                                                                    type="text"
+                                                                    className="form-control h-px-48"
+                                                                    id="namedash"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-6">
+                                                            <div className="form-group">
+                                                                <label
+                                                                    htmlFor="namedash"
+                                                                    className="d-block text-black-2 font-size-4 font-weight-semibold mb-4"
+                                                                >
+                                                                    작품제목
+                                                                </label>
+                                                                <input
+                                                                    type="text"
+                                                                    className="form-control h-px-48"
+                                                                    id="namedash"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-6">
+                                                            <div className="form-group">
+                                                                <label
+                                                                    htmlFor="select2"
+                                                                    className="d-block text-black-2 font-size-4 font-weight-semibold mb-4"
+                                                                >
+                                                                    모집인원
+                                                                </label>
+                                                                <input
+                                                                    type="text"
+                                                                    className="form-control h-px-48"
+                                                                    id="namedash"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="row mb-8">
+                                                        <div className="col-lg-6 mb-xl-0 mb-7">
+                                                            <div className="form-group position-relative">
+                                                                <label
+                                                                    htmlFor="select3"
+                                                                    className="d-block text-black-2 font-size-4 font-weight-semibold mb-4"
+                                                                >
+                                                                    모집역할
+                                                                </label>
+                                                                <input
+                                                                    type="text"
+                                                                    className="form-control h-px-48"
+                                                                    id="namedash"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-6">
+                                                            <div className="form-group position-relative">
+                                                                <label
+                                                                    htmlFor="address"
+                                                                    className="d-block text-black-2 font-size-4 font-weight-semibold mb-4"
+                                                                >
+                                                                    급여
+                                                                </label>
+                                                                <input
+                                                                    type="text"
+                                                                    className="form-control h-px-48"
+                                                                    id="namedash"
+                                                                />
+                                                                <span className="h-100 w-px-50 pos-abs-tl d-flex align-items-center justify-content-center font-size-6"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="row">
+                                                        <div className="col-md-12">
+                                                            <div className="form-group">
+                                                                <label
+                                                                    htmlFor="aboutTextarea"
+                                                                    className="d-block text-black-2 font-size-4 font-weight-semibold mb-4"
+                                                                >
+                                                                    작품소개
+                                                                </label>
+                                                                <textarea
+                                                                    name="textarea"
+                                                                    id="aboutTextarea"
+                                                                    cols="30"
+                                                                    rows="7"
+                                                                    className="border border-mercury text-gray w-100 pt-4 pl-6"
+                                                                    placeholder="Describe about the company what make it unique"
+                                                                ></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-md-12">
                                                             <input
-                                                                type="text"
-                                                                className="font-size-4 font-weight-semibold"
+                                                                type="button"
+                                                                value="등록하기"
+                                                                className="btn btn-green btn-h-60 text-white min-width-px-210 rounded-5 text-uppercase"
                                                             />
                                                         </div>
                                                     </div>
-                                                    <div className="col-12 col-lg-4 col-md-4 col-xs-6">
-                                                        <div className="mb-8">
-                                                            <p className="font-size-4">
-                                                                모집인원
-                                                            </p>
-                                                            <input
-                                                                type="text"
-                                                                className="font-size-4 font-weight-semibold"
-                                                            />
-                                                        </div>
-                                                        <div className="mb-8">
-                                                            <p className="font-size-4">
-                                                                작품제목
-                                                            </p>
-                                                            <input
-                                                                type="text"
-                                                                className="font-size-4 font-weight-semibold"
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-12 col-lg-4 col-md-4 col-xs-6">
-                                                        <div className="mb-8">
-                                                            <p className="font-size-4">
-                                                                모집역할
-                                                            </p>
-                                                            <input
-                                                                type="text"
-                                                                className="font-size-4 font-weight-semibold"
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="pr-xl-0 pr-xxl-22 pt-5">
-                                                    <h4 className="font-size-6 mb-7">
-                                                        작품 소개
-                                                    </h4>
-                                                    <input
-                                                        type="text"
-                                                        placeholder="작품소개를 입력해주세요"
-                                                        className="font-size-4 mb-8"
-                                                    />
-                                                </div>
+                                                </fieldset>
                                             </Tab.Pane>
                                         </Tab.Content>
                                     </Tab.Container>
                                 </div>
                             </div>
-                            {/* <!-- Company Profile End --> */}
                         </div>
                     </div>
                 </div>

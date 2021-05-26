@@ -38,7 +38,7 @@ const Sidebar = () => {
                         </li>
                         <li className="">
                             <Link
-                                to="/dashboard-jobs"
+                                to="/dashboard-hires"
                                 activeClassName="active"
                                 className="px-10 py-1 my-5 font-size-4 font-weight-semibold flex-y-center"
                             >
