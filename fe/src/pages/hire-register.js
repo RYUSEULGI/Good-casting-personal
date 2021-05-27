@@ -1,31 +1,9 @@
 import React from 'react';
-import { Nav, Tab } from 'react-bootstrap';
+import { Tab } from 'react-bootstrap';
 import { Link } from 'gatsby';
 import PageWrapper from '../components/PageWrapper';
 
 import imgF1 from '../assets/image/l2/png/featured-job-logo-1.png';
-
-import { Select } from '../components/Core';
-
-const defaultTypes = [
-    { value: 'b2b', label: 'B2B' },
-    { value: 'saas', label: 'SAAS' },
-    { value: 'b2b', label: 'b2b' },
-];
-
-const defaultEmployees = [
-    { value: '10-50', label: '10-50' },
-    { value: '50-100', label: '50-100' },
-    { value: '100-500', label: '100-500' },
-    { value: '500-2000', label: '500-2000' },
-];
-
-const defaultLocations = [
-    { value: 'bd', label: 'Bangladesh' },
-    { value: 'sp', label: 'Singapore' },
-    { value: 'tl', label: 'Thailand' },
-    { value: 'de', label: 'Germany' },
-];
 
 const hireRegister = () => {
     return (

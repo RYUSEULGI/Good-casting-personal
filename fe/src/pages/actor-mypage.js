@@ -1,19 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'gatsby';
-import GlobalContext from '../context/GlobalContext';
 import PageWrapper from '../components/PageWrapper';
 import ProfileList from '../components/Profile/ProfileList';
 import ProfileSidebar from '../components/ProfileSidebar';
+import { actorList } from '../state/reducer/actor.reducer';
+import { useDispatch } from 'react-redux';
 
-const defaultCountries = [
-    { value: 'sp', label: 'Singapore' },
-    { value: 'bd', label: 'Bangladesh' },
-    { value: 'usa', label: 'United States of America' },
-    { value: 'uae', label: 'United Arab Emirates' },
-    { value: 'pk', label: 'Pakistan' },
-];
+const userInfo = JSON.parse(localStorage.getItem('USER'));
 
 const ActorMypage = () => {
+    useEffect(() => {
+        console.log(userInfo);
+        dispatch(actorList());
+    }, []);
+
+    const dispatch = useDispatch();
+
     return (
         <>
             <PageWrapper>
@@ -33,11 +35,7 @@ const ActorMypage = () => {
                                         </Link>
                                         <div className="row justify-content-center">
                                             <div className="col-12 col-lg-6">
-                                                {null ? (
-                                                    <ProfileList />
-                                                ) : (
-                                                    <p>프로필을 등록해주세요</p>
-                                                )}
+                                                <ProfileList />
                                             </div>
                                             <div className="col-12 col-lg-6"></div>
                                         </div>

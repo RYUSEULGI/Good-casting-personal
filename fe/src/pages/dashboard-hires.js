@@ -130,7 +130,7 @@ const DashboardHires = () => {
                                                 </td>
                                                 <td className="table-y-middle py-7 min-width-px-100">
                                                     <a
-                                                        href="/#"
+                                                        href="#"
                                                         className="font-size-3 font-weight-bold text-red-2 text-uppercase"
                                                     >
                                                         삭제하기

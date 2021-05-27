@@ -5,14 +5,6 @@ import Sidebar from '../components/Sidebar';
 import ProfileList from '../components/Profile/ProfileList';
 import '../scss/css/fileUpload.css';
 
-const defaultCountries = [
-    { value: 'sp', label: 'Singapore' },
-    { value: 'bd', label: 'Bangladesh' },
-    { value: 'usa', label: 'United States of America' },
-    { value: 'uae', label: 'United Arab Emirates' },
-    { value: 'pk', label: 'Pakistan' },
-];
-
 const SearchGrid = () => {
     return (
         <>

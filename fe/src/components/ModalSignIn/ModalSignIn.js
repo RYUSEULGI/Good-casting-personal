@@ -1,5 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react';
-import { navigate } from 'gatsby';
+import React, { useCallback, useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Modal } from 'react-bootstrap';
 import GlobalContext from '../../context/GlobalContext';
@@ -36,6 +35,7 @@ const ModalSignIn = (props) => {
         dispatch(signin(inputs));
         localStorage.getItem('token');
         gContext.toggleSignInModal();
+        // 새로고침되게 하기(navigate안됨, 라우터못씀, window.location.reload()안됨)
     };
 
     const onChange = useCallback((e) => {

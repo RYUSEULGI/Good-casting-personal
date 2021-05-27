@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
+import { Link } from 'gatsby';
 import { Container, Dropdown } from 'react-bootstrap';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
-import { Link } from 'gatsby';
 
 import { useWindowSize } from '../../hooks/useWindowSize';
 import GlobalContext from '../../context/GlobalContext';
@@ -120,7 +120,51 @@ const Header = () => {
                         <div className="collapse navbar-collapse">
                             <div className="navbar-nav-wrapper">
                                 <ul className="navbar-nav main-menu d-none d-lg-flex">
-                                    {user.loggedIn && userInfo.position
+                                    {!user.loggedIn
+                                        ? menuItems.map(
+                                              (
+                                                  {
+                                                      label,
+                                                      isExternal = false,
+                                                      name,
+                                                      items,
+                                                      ...rest
+                                                  },
+                                                  index
+                                              ) => {
+                                                  return (
+                                                      <React.Fragment
+                                                          key={name + index}
+                                                      >
+                                                          <li
+                                                              className="nav-item"
+                                                              {...rest}
+                                                          >
+                                                              {isExternal ? (
+                                                                  <a
+                                                                      className="nav-link"
+                                                                      href={`${name}`}
+                                                                      target="_blank"
+                                                                      rel="noopener noreferrer"
+                                                                  >
+                                                                      {label}
+                                                                  </a>
+                                                              ) : (
+                                                                  <Link
+                                                                      className="nav-link"
+                                                                      to={`/${name}`}
+                                                                      role="button"
+                                                                      aria-expanded="false"
+                                                                  >
+                                                                      {label}
+                                                                  </Link>
+                                                              )}
+                                                          </li>
+                                                      </React.Fragment>
+                                                  );
+                                              }
+                                          )
+                                        : user.loggedIn && userInfo.position
                                         ? actorMenuItems.map(
                                               (
                                                   {
@@ -300,38 +344,16 @@ const Header = () => {
                             </div>
                         )}
 
-                        {/* {gContext.header.button === 'account' && (
-                            <div className="header-btns header-btn-devider ml-auto pr-2 ml-lg-6 d-none d-xs-flex">
-                                <a
-                                    className="btn btn-transparent text-uppercase font-size-3 heading-default-color focus-reset"
-                                    href="/#"
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        gContext.toggleSignInModal();
-                                    }}
-                                >
-                                    Log In
-                                </a>
-                                <a
-                                    className={`btn btn-${gContext.header.variant} text-uppercase font-size-3`}
-                                    href="/#"
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        gContext.toggleSignUpModal();
-                                    }}
-                                >
-                                    Sign Up
-                                </a>
-                            </div>
-                        )} */}
-
                         {user.loggedIn ? (
                             <div className="header-btns header-btn-devider ml-auto pr-2 ml-lg-6 d-none d-xs-flex">
                                 <a
-                                    className="btn btn-transparent text-uppercase font-size-3 heading-default-color focus-reset"
+                                    className={`btn btn-${gContext.header.variant} text-uppercase font-size-3`}
+                                    href="/"
                                     onClick={() => {
-                                        alert('정말 로그아웃하겠습니까');
+                                        alert('정말 로그아웃 하시겠습니까?');
                                         localStorage.removeItem('USER');
+                                        // 홈으로 이동이 안됨
+                                        // navigate('/');
                                     }}
                                 >
                                     LogOut
