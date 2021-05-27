@@ -19,37 +19,29 @@ public class ProfileController {
 
     @PostMapping("/register")
     public ResponseEntity<Long> register(@RequestBody ProfileDTO profileDTO) {
-        System.out.println("Profile DTO: " + profileDTO);
-
         service.register(profileDTO);
-
         return ResponseEntity.ok(1L);
     }
 
-    @GetMapping("/profile-detail/{profileId}")
+    @GetMapping("/detail/{profileId}")
     public ResponseEntity<ProfileDTO> profileDetail(@PathVariable Long profileId) {
         return ResponseEntity.ok(service.readProfile(profileId));
     }
 
-    @GetMapping("/profile-list/{page}")
-    public ResponseEntity<List<ProfileDTO>> profileList(@PathVariable int page) {
-        PageRequestDTO pageRequestDTO = new PageRequestDTO(page);
-
-        return new ResponseEntity<>(service.getProfileList(pageRequestDTO).getDtoList(), HttpStatus.OK);
+    @GetMapping("/list")
+    public ResponseEntity<List<ProfileDTO>> profileList(@RequestBody PageRequestDTO pageRequest) {
+        return new ResponseEntity<>(service.getProfileList(pageRequest).getDtoList(), HttpStatus.OK);
     }
 
     @PutMapping("/update")
     public ResponseEntity<Long> update(@RequestBody ProfileDTO profileDTO) {
         service.update(profileDTO);
-
         return new ResponseEntity<>(1L, HttpStatus.OK);
     }
 
     @DeleteMapping("/{profileId}")
     public ResponseEntity<Long> delete(@PathVariable Long profileId) {
-
         service.deleteProfile(profileId);
-
         return new ResponseEntity<>(1L, HttpStatus.OK);
     }
 }

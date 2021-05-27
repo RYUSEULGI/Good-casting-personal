@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import shop.ryuseulgi.goodCasting.article.profile.domain.Profile;
 import shop.ryuseulgi.goodCasting.article.profile.domain.ProfileDTO;
 import shop.ryuseulgi.goodCasting.article.profile.repository.ProfileRepository;
+import shop.ryuseulgi.goodCasting.article.profile.repository.SearchProfileRepositoryImpl;
 import shop.ryuseulgi.goodCasting.common.domain.PageRequestDTO;
 import shop.ryuseulgi.goodCasting.common.domain.PageResultDTO;
 import shop.ryuseulgi.goodCasting.file.domain.FileDTO;
@@ -31,6 +32,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
+import javax.transaction.Transactional;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Function;
+
 @Log4j2
 @Service
 @RequiredArgsConstructor
@@ -39,6 +49,7 @@ public class ProfileServiceImpl implements ProfileService {
     private final FileRepository fileRepo;
     private final FileService fileService;
     private final ActorService actorService;
+    private final SearchProfileRepositoryImpl searchProfileRepo;
 
     @Value("${shop.goodcast.upload.path}")
     private String uploadPath;
@@ -78,12 +89,12 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public PageResultDTO<ProfileDTO, Object[]> getProfileList(PageRequestDTO requestDTO) {
-        Page<Object[]> result = profileRepo.getProfileAndFileAndActorByFirst(
-                requestDTO.getPageable(Sort.by("modDate").descending()));
+    public PageResultDTO<ProfileDTO, Object[]> getProfileList(PageRequestDTO pageRequest) {
+        Page<Object[]> result = searchProfileRepo.searchPage(pageRequest,
+                pageRequest.getPageable(Sort.by("confidence").descending()));
 
         Function<Object[], ProfileDTO> fn = (entity -> entity2DtoFiles((Profile) entity[0],
-                (Actor) entity[1], (FileVO) entity[2]));
+                (FileVO) entity[1], (Actor) entity[2]));
 
         return new PageResultDTO<>(result, fn);
     }
@@ -93,7 +104,6 @@ public class ProfileServiceImpl implements ProfileService {
         Long profileId = profileDTO.getProfileId();
 
         profileRepo.save(dto2EntityAll(profileDTO));
-
         fileRepo.deleteByProfileId(profileId);
 
         List<FileDTO> files = profileDTO.getFiles();
@@ -104,7 +114,6 @@ public class ProfileServiceImpl implements ProfileService {
     @Transactional
     public void deleteProfile(Long profileId) {
         fileRepo.deleteByProfileId(profileId);
-
         profileRepo.deleteById(profileId);
     }
 
@@ -117,7 +126,6 @@ public class ProfileServiceImpl implements ProfileService {
         try {
             String paramName = "image"; // 파라미터명은 image로 지정
             String imgFile = uploadPath + "\\" + photoName;
-            System.out.println("##################"+ imgFile +"################################3");
             File uploadFile = new File(imgFile);
             String apiURL = "https://naveropenapi.apigw.ntruss.com/vision/v1/celebrity"; // 유명인 얼굴 인식
             URL url = new URL(apiURL);
@@ -125,6 +133,7 @@ public class ProfileServiceImpl implements ProfileService {
             con.setUseCaches(false);
             con.setDoOutput(true);
             con.setDoInput(true);
+
             // multipart request
             String boundary = "---" + System.currentTimeMillis() + "---";
             con.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
@@ -133,6 +142,7 @@ public class ProfileServiceImpl implements ProfileService {
             OutputStream outputStream = con.getOutputStream();
             PrintWriter writer = new PrintWriter(new OutputStreamWriter(outputStream, "UTF-8"), true);
             String LINE_FEED = "\r\n";
+
             // file 추가
             String fileName = uploadFile.getName();
             writer.append("--" + boundary).append(LINE_FEED);
@@ -170,24 +180,11 @@ public class ProfileServiceImpl implements ProfileService {
 
                 JSONObject jsonObject = new JSONObject(response.toString());
                 JSONArray facesArr = jsonObject.getJSONArray("faces");
-                System.out.println("---------------------facesArr-----------------" + facesArr);
-
                 JSONObject elem = facesArr.getJSONObject(0);
-                System.out.println("---------------------elem-----------------" + elem);
-
                 JSONObject celebObject = elem.getJSONObject("celebrity");
-                System.out.println("---------------------celebObject-----------------" + celebObject);
-
                 String resemble = celebObject.getString("value");
-                System.out.println("---------------------resemble-----------------" + resemble);
-
                 Double confidence = celebObject.getDouble("confidence");
-                System.out.println("---------------------confidence-----------------" + confidence);
-
-                System.out.println("===================================================================");
-
                 profileRepo.updateResembleAndConfidenceByProfileId(profileId, resemble, confidence);
-
             } else {
                 System.out.println("error !!!");
             }

@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@ToString(exclude = {"actor"})
+@ToString(exclude = {"actor", "hires"})
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,8 +24,8 @@ public class Profile extends BaseEntity {
 
     // column
     @Column private boolean privacy;
-    @Column(columnDefinition = "TEXT") private String contents;
-    @Column(columnDefinition = "TEXT") private String career;
+    @Column private String contents;
+    @Column private String career;
     @Column private String resemble;
     @Column private Double confidence;
 
@@ -33,7 +33,6 @@ public class Profile extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "actor_id")
     private Actor actor;
-
 
     public void changePrivacy(boolean privacy) {
         this.privacy = privacy;

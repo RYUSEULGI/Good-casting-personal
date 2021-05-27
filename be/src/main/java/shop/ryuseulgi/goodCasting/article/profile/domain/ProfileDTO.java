@@ -23,13 +23,14 @@ public class ProfileDTO {
     private String career;
     private String resemble;
     private Double confidence;
+    private String actorName;
+    private Integer actorAge;
+    private String fileUuid;
+    private String fileName;
     private Timestamp regDate;
     private Timestamp modDate;
 
-    private String actorName;
-    private String fileUuid;
-    private String fileName;
-
     private ActorDTO actor;
+
     private List<FileDTO> files;
 }

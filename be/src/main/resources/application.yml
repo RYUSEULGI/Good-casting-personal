@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mariadb://192.168.0.17/goodc
+    url: jdbc:mariadb://112.169.196.99/goodc
     driver-class-name: org.mariadb.jdbc.Driver
     username: goodc
     password: Goodc1234
@@ -13,6 +13,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        enable_lazy_load_no_trans: false
   servlet:
     multipart:
       enabled: true

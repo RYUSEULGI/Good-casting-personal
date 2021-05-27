@@ -2,6 +2,11 @@ package shop.ryuseulgi.goodCasting.user.actor.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.orm.hibernate5.SessionFactoryUtils;
+import org.springframework.orm.hibernate5.support.OpenSessionInViewFilter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import shop.ryuseulgi.goodCasting.article.profile.domain.Profile;
@@ -36,8 +41,11 @@ public class ActorServiceImpl implements ActorService {
     }
 
     @Override
-    public Optional<Actor> findById(Long actorId) {
-        return actorRepository.findById(actorId);
+    public ActorDTO findById(Long actorId) {
+
+        Optional<Actor> actor = actorRepository.findById(actorId);
+
+        return actor.isPresent()? entity2DtoAll(actor.get()): null;
     }
 
     @Transactional
@@ -70,7 +78,7 @@ public class ActorServiceImpl implements ActorService {
             profileRepository.delete(profile);
         }
         actorRepository.delete(actor);
-        userRepository.accountUpdate(actor.getUserVO().getUserId(), false);
+        userRepository.accountUpdate(actor.getUser().getUserId(), false);
         actorRepository.delete(actor);
 
         return actorRepository.findById(actor.getActorId()).orElse(null) == null ? 1L : 0L;

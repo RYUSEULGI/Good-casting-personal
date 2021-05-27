@@ -171,7 +171,7 @@ public class HireServiceImpl implements HireService {
                 String resemble = celebObject.getString("value");
                 Double confidence = celebObject.getDouble("confidence");
 
-                hireRepository.updateResembleAndConfidenceByHireId(hireId, resemble, confidence);
+                // hireRepository.updateResembleAndConfidenceByHireId(hireId, resemble, confidence);
 
             } else {
                 System.out.println("error !!!");

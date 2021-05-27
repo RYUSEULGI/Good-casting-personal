@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import shop.ryuseulgi.goodCasting.security.domain.SecurityProvider;
 import shop.ryuseulgi.goodCasting.security.exception.SecurityRuntimeException;
 import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
+import shop.ryuseulgi.goodCasting.user.actor.domain.ActorDTO;
 import shop.ryuseulgi.goodCasting.user.actor.repository.ActorRepository;
 import shop.ryuseulgi.goodCasting.user.login.domain.Role;
 import shop.ryuseulgi.goodCasting.user.login.domain.UserDTO;
@@ -68,28 +69,41 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO signin(UserDTO userDTO) {
+    public List<Object> signin(UserDTO userDTO) {
 
+        List<Object> infoList = new ArrayList<>();
         if(userRepo.checkAccount(userDTO.getUsername())){
             try{
                 UserVO userVO = dto2Entity(userDTO);
-
-                log.info("userVo---------" + userVO.getUserId());
-                log.info("userVo---------" + userVO.getUsername());
 
                 String token = (passwordEncoder.matches(userVO.getPassword(), userRepo.findByUsername(userVO.getUsername()).get().getPassword()))
                         ?provider.createToken(userVO.getUsername(), userRepo.findByUsername(userVO.getUsername()).get().getRoles())
                         : "Wrong password";
 
-                userDTO.setToken(token);
+                userDTO.setUserId(userRepo.findByUsername(userVO.getUsername()).get().getUserId());
+                userDTO.setAccount(userRepo.findByUsername(userVO.getUsername()).get().isAccount());
+                userDTO.setPosition(userRepo.findByUsername(userVO.getUsername()).get().isPosition());
 
-                log.info("userDto-----------" + userDTO);
-                return userDTO;
+                userDTO.setToken(token);
+                log.info("userDto : " + userDTO);
+
+                ActorDTO actorDTO = new ActorDTO();
+
+                Long actorId = actorRepo.getActorIdFromUserId(userDTO.getUserId());
+                log.info("actorId : " + actorId);
+
+                actorDTO.setActorId(actorId);
+
+                infoList.add(userDTO);
+                infoList.add(actorDTO);
+
+                log.info("infoList :" + infoList);
+                return infoList;
             }catch(Exception e){
                 throw new SecurityRuntimeException("유효하지 않은 아이디 / 비밀번호", HttpStatus.UNPROCESSABLE_ENTITY);
             }
         } else{
-            throw new SecurityRuntimeException("회원탈퇴한 회원입니다.", HttpStatus.UNPROCESSABLE_ENTITY);
+            throw new SecurityRuntimeException("탈퇴한 회원입니다.", HttpStatus.UNPROCESSABLE_ENTITY);
         }
     }
 

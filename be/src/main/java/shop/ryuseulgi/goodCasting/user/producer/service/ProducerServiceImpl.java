@@ -11,6 +11,7 @@ import shop.ryuseulgi.goodCasting.article.profile.repository.ProfileRepository;
 import shop.ryuseulgi.goodCasting.file.domain.FileVO;
 import shop.ryuseulgi.goodCasting.file.repository.FileRepository;
 import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
+import shop.ryuseulgi.goodCasting.user.actor.domain.ActorDTO;
 import shop.ryuseulgi.goodCasting.user.actor.repository.ActorRepository;
 import shop.ryuseulgi.goodCasting.user.login.repository.UserRepository;
 import shop.ryuseulgi.goodCasting.user.producer.domain.Producer;
@@ -38,8 +39,10 @@ public class ProducerServiceImpl implements ProducerService {
     }
 
     @Override
-    public Optional<Producer> findById(Long producerId) {
-        return producerRepository.findById(producerId);
+    public ProducerDTO findById(Long producerId) {
+        Optional<Producer> producer = producerRepository.findById(producerId);
+
+        return producer.isPresent()? entity2DtoAll(producer.get()): null;
     }
 
     @Override

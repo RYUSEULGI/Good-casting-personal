@@ -8,9 +8,13 @@ import shop.ryuseulgi.goodCasting.file.domain.FileVO;
 import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
 import shop.ryuseulgi.goodCasting.user.actor.domain.ActorDTO;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public interface ProfileService {
     Long register(ProfileDTO profileDTO);
     ProfileDTO readProfile(Long profileId);
+
     PageResultDTO<ProfileDTO, Object[]> getProfileList(PageRequestDTO requestDTO);
 
     default Profile dto2Entity(ProfileDTO profileDTO) {
@@ -66,7 +70,8 @@ public interface ProfileService {
                         .build())
                 .build();
     }
-    default ProfileDTO entity2DtoFiles(Profile profile,Actor actor, FileVO file) {
+
+    default ProfileDTO entity2DtoFiles(Profile profile, FileVO file, Actor actor) {
         return ProfileDTO.builder()
                 .profileId(profile.getProfileId())
                 .career(profile.getCareer())
@@ -79,6 +84,7 @@ public interface ProfileService {
                 .fileName(file.getFileName())
                 .fileUuid(file.getUuid())
                 .actorName(actor.getName())
+                .actorAge(actor.getAge())
                 .build();
     }
 }

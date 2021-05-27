@@ -1,17 +1,15 @@
 package shop.ryuseulgi.goodCasting.user.actor.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import shop.ryuseulgi.goodCasting.common.domain.BaseEntity;
 
 import javax.persistence.*;
 
-import lombok.Getter;
 import shop.ryuseulgi.goodCasting.user.login.domain.UserVO;
 
+@ToString
 @Builder
 @Getter
 @Entity
@@ -27,16 +25,18 @@ public class Actor extends BaseEntity {
     @Column private String gender;
     @Column private String birthday;
     @Column private String phone;
-    @Column private String height;
-    @Column private String weight;
+    @Column private Integer height;
+    @Column private Integer weight;
     @Column private String agency;
-    @Column private boolean major;
+    @Column private Boolean major;
+    @Column private String email;
+    @Column private Integer age;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private UserVO userVO;
+    private UserVO user;
 
     public void changeUserVO(UserVO userVO) {
-        this.userVO = userVO;
+        this.user = userVO;
     }
 }

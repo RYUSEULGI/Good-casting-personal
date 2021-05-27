@@ -1,7 +1,6 @@
 package shop.ryuseulgi.goodCasting.user.actor.controller;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.java.Log;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
@@ -10,9 +9,8 @@ import shop.ryuseulgi.goodCasting.user.actor.repository.ActorRepository;
 import shop.ryuseulgi.goodCasting.user.actor.service.ActorServiceImpl;
 
 import java.util.List;
-import java.util.Optional;
 
-@Log
+@CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/actors")
@@ -26,9 +24,9 @@ public class ActorController {
         return ResponseEntity.ok(service.findAll());
     }
 
-    @GetMapping("/myPage/{id}")
-    public ResponseEntity<Optional<Actor>> myPage(@PathVariable Long id){
-        return ResponseEntity.ok(service.findById(id));
+    @GetMapping("/myPage/{actorId}")
+    public ResponseEntity<ActorDTO> myPage(@PathVariable Long actorId){
+        return ResponseEntity.ok(service.findById(actorId));
     }
 
     @PostMapping("/info")

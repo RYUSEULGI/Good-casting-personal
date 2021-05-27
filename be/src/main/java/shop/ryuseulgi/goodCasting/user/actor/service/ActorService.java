@@ -1,10 +1,5 @@
 package shop.ryuseulgi.goodCasting.user.actor.service;
 
-
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-import shop.ryuseulgi.goodCasting.article.profile.domain.Profile;
-import shop.ryuseulgi.goodCasting.file.domain.FileVO;
 import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
 import shop.ryuseulgi.goodCasting.user.actor.domain.ActorDTO;
 import shop.ryuseulgi.goodCasting.user.login.domain.UserDTO;
@@ -15,7 +10,7 @@ import java.util.Optional;
 
 public interface ActorService {
     List<Actor> findAll();
-    Optional<Actor> findById(Long actorId);
+    ActorDTO findById(Long actorId);
     Long delete(ActorDTO actorDTO);
 
     ActorDTO moreDetail(ActorDTO actorDTO);
@@ -45,7 +40,7 @@ public interface ActorService {
                 .agency(actorDTO.getAgency())
                 .gender(actorDTO.getGender())
                 .name(actorDTO.getName())
-                .userVO(UserVO.builder()
+                .user(UserVO.builder()
                         .userId(actorDTO.getUser().getUserId())
                         .build())
                 .build();
@@ -59,7 +54,7 @@ public interface ActorService {
                 .phone(actor.getPhone())
                 .weight(actor.getWeight())
                 .birthday(actor.getBirthday())
-                .major(actor.isMajor())
+                .major(actor.getMajor())
                 .gender(actor.getGender())
                 .agency(actor.getAgency())
                 .build();
@@ -73,11 +68,11 @@ public interface ActorService {
                 .phone(actor.getPhone())
                 .weight(actor.getWeight())
                 .birthday(actor.getBirthday())
-                .major(actor.isMajor())
+                .major(actor.getMajor())
                 .gender(actor.getGender())
                 .agency(actor.getAgency())
                 .user(UserDTO.builder()
-                        .userId(actor.getUserVO().getUserId())
+                        .userId(actor.getUser().getUserId())
                         .build())
                 .build();
     }

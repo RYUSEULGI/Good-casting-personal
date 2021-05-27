@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public interface ProducerService {
     List<Producer> findAll();
-    Optional<Producer> findById(Long producerId);
+    ProducerDTO findById(Long producerId);
     Long delete(ProducerDTO producerDTO);
     ProducerDTO moreDetail(ProducerDTO producerDTO);
 

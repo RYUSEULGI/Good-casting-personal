@@ -11,8 +11,8 @@ import shop.ryuseulgi.goodCasting.article.profile.domain.Profile;
 
 import java.util.List;
 
-@Repository
-public interface ProfileRepository extends JpaRepository<Profile, Long> {
+public interface ProfileRepository extends JpaRepository<Profile, Long>,
+        SearchProfileRepository {
 
     @Query("select p, p.actor, f from Profile p left join FileVO f on f.profile = p where p.profileId = :profileId")
     List<Object[]> getProfileAndFileAndActorByProfileId(@Param("profileId") Long profileId);
@@ -32,5 +32,5 @@ public interface ProfileRepository extends JpaRepository<Profile, Long> {
 
     @Modifying
     @Query("update Profile p set p.resemble = :resemble, p.confidence = :confidence where p.profileId = :profileId")
-    void updateResembleAndConfidenceByProfileId(Long profileId, String resemble, double confidence);
+    void updateResembleAndConfidenceByProfileId(Long profileId, String resemble, Double confidence);
 }
