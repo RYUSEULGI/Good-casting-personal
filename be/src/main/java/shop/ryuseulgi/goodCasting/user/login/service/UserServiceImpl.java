@@ -85,15 +85,11 @@ public class UserServiceImpl implements UserService {
                 userDTO.setPosition(userRepo.findByUsername(userVO.getUsername()).get().isPosition());
 
                 userDTO.setToken(token);
-                log.info("userDto : " + userDTO);
 
                 ActorDTO actorDTO = new ActorDTO();
-
                 Long actorId = actorRepo.getActorIdFromUserId(userDTO.getUserId());
-                log.info("actorId : " + actorId);
 
                 actorDTO.setActorId(actorId);
-
                 infoList.add(userDTO);
                 infoList.add(actorDTO);
 

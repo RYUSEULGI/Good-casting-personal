@@ -51,7 +51,7 @@ public class ActorServiceImplTests {
                 .build();
         userRepository.save(user);
 
-        Actor actor = Actor.builder().userVO(user).actorId(252L).build();
+        Actor actor = Actor.builder().user(user).actorId(252L).build();
 
         actorRepository.save(actor);
 

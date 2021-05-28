@@ -2,6 +2,7 @@ package shop.ryuseulgi.goodCasting.article.hire.service;
 
 import shop.ryuseulgi.goodCasting.article.hire.domain.Hire;
 import shop.ryuseulgi.goodCasting.article.hire.domain.HireDTO;
+import shop.ryuseulgi.goodCasting.article.hire.domain.HireListDTO;
 import shop.ryuseulgi.goodCasting.common.domain.PageRequestDTO;
 import shop.ryuseulgi.goodCasting.common.domain.PageResultDTO;
 import shop.ryuseulgi.goodCasting.file.domain.FileDTO;
@@ -15,7 +16,7 @@ import java.util.Optional;
 public interface HireService {
     Long register(HireDTO hireDTO);
     HireDTO readHire(Long hireId);
-    PageResultDTO<HireDTO, Object[]> getHireList(PageRequestDTO requestDTO);
+    PageResultDTO<HireListDTO, Object[]> getHireList(PageRequestDTO pageRequest);
     default Hire dto2Entity(HireDTO dto) {
         return Hire.builder()
                 .hireId(dto.getHireId())
@@ -77,20 +78,18 @@ public interface HireService {
                         .build())
                 .build();
     }
-    default HireDTO entity2DtoFiles(Hire hire,Producer producer, FileVO file) {
-        return HireDTO.builder()
+    default HireListDTO entity2DtoFiles(Hire hire, Producer producer, FileVO file) {
+        return HireListDTO.builder()
                 .hireId(hire.getHireId())
-                .title(hire.getTitle())
-                .project(hire.getProject())
-                .contents(hire.getContents())
                 .cast(hire.getCast())
-                .filming(hire.getFilming())
-                .guarantee(hire.getGuarantee())
-                .personnel(hire.getPersonnel())
                 .deadline(hire.getDeadline())
-                .fileName(file.getFileName())
-                .fileUuid(file.getUuid())
-                .producerName(producer.getName())
+                .project(hire.getProject())
+                .modDate(hire.getModDate())
+                .regDate(hire.getRegDate())
+                .producerAgency(producer.getAgency())
+//                .fileName(file.getFileName())
+//                .fileUuid(file.getUuid())
                 .build();
+
     }
 }

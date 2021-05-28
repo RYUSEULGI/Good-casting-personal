@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@ToString(exclude = {"actor", "hires"})
+@ToString(exclude = {"actor"})
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

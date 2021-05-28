@@ -26,6 +26,8 @@ public interface ActorService {
                 .agency(actorDTO.getAgency())
                 .gender(actorDTO.getGender())
                 .name(actorDTO.getName())
+                .age(actorDTO.getAge())
+                .email(actorDTO.getEmail())
                 .build();
     }
 
@@ -40,6 +42,8 @@ public interface ActorService {
                 .agency(actorDTO.getAgency())
                 .gender(actorDTO.getGender())
                 .name(actorDTO.getName())
+                .age(actorDTO.getAge())
+                .email(actorDTO.getEmail())
                 .user(UserVO.builder()
                         .userId(actorDTO.getUser().getUserId())
                         .build())
@@ -57,6 +61,8 @@ public interface ActorService {
                 .major(actor.getMajor())
                 .gender(actor.getGender())
                 .agency(actor.getAgency())
+                .age(actor.getAge())
+                .email(actor.getEmail())
                 .build();
     }
 
@@ -71,6 +77,8 @@ public interface ActorService {
                 .major(actor.getMajor())
                 .gender(actor.getGender())
                 .agency(actor.getAgency())
+                .age(actor.getAge())
+                .email(actor.getEmail())
                 .user(UserDTO.builder()
                         .userId(actor.getUser().getUserId())
                         .build())

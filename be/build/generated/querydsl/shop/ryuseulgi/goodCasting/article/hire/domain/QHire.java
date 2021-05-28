@@ -28,11 +28,11 @@ public class QHire extends EntityPathBase<Hire> {
 
     public final StringPath contents = createString("contents");
 
-    public final StringPath deadline = createString("deadline");
+    public final DateTimePath<java.time.LocalDateTime> deadline = createDateTime("deadline", java.time.LocalDateTime.class);
 
-    public final StringPath filming = createString("filming");
+    public final DatePath<java.time.LocalDate> filming = createDate("filming", java.time.LocalDate.class);
 
-    public final StringPath guarantee = createString("guarantee");
+    public final NumberPath<Integer> guarantee = createNumber("guarantee", Integer.class);
 
     public final NumberPath<Long> hireId = createNumber("hireId", Long.class);
 

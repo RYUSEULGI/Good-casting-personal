@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import shop.ryuseulgi.goodCasting.common.domain.BaseEntity;
 import shop.ryuseulgi.goodCasting.user.login.domain.UserVO;
 
 import javax.persistence.*;
@@ -15,7 +16,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="producers")
-public class Producer {
+public class Producer extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "producer_id") private Long producerId;
