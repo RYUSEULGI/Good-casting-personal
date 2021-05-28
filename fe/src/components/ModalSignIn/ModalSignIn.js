@@ -33,9 +33,7 @@ const ModalSignIn = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(signin(inputs));
-        localStorage.getItem('token');
         gContext.toggleSignInModal();
-        // 새로고침되게 하기(navigate안됨, 라우터못씀, window.location.reload()안됨)
     };
 
     const onChange = useCallback((e) => {

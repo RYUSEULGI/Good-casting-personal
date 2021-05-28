@@ -4,10 +4,10 @@ import { useSelector } from 'react-redux';
 import PageWrapper from '../components/PageWrapper';
 import ProfileList from '../components/Profile/ProfileList';
 import ProfileSidebar from '../components/ProfileSidebar';
-import { profileSelctor } from '../state/reducer/profile.reducer';
+import { profileSelector } from '../state/reducer/profile.reducer';
 
 const ActorMypage = () => {
-    const state = useSelector(profileSelctor);
+    const state = useSelector(profileSelector);
     return (
         <>
             <PageWrapper>

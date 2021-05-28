@@ -55,7 +55,7 @@ const Sidebar = () => {
                         </h5>
                     </div>
                     <div className="mb-7">
-                        <p className="font-size-4 mb-0">Website Linked</p>
+                        <p className="font-size-4 mb-0">년도</p>
                         <h5 className="font-size-4 font-weight-semibold mb-0">
                             <div className="text-black-2 text-break">
                                 {state.actor.birthday}

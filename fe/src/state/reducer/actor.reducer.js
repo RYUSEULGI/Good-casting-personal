@@ -5,7 +5,7 @@ const { createSlice, createAsyncThunk } = require('@reduxjs/toolkit');
 export const updateActorInfo = createAsyncThunk('ACTOR_UPDATE', async (arg) => {
     console.log(arg);
     const response = await actorService.updateactorInfo(arg);
-    console.log('reducer : ' + JSON.stringify(response.data));
+    console.log('reducer : ' + response.data);
     return response.data;
 });
 
@@ -22,6 +22,9 @@ const actorSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(getActorInfo.fulfilled, (state, { payload }) => {
+            state.actor = payload;
+        });
+        builder.addCase(updateActorInfo.fulfilled, (state, { payload }) => {
             state.actor = payload;
         });
     },

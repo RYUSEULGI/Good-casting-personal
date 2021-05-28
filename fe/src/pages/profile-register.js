@@ -1,7 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import ProfileCareer from '../components/Profile/ProfileCareer';
+import { navigate } from 'gatsby';
+import { useDispatch } from 'react-redux';
+import { profileRegister } from '../state/reducer/profile.reducer';
 import PageWrapper from '../components/PageWrapper';
 
-const profileRegister = () => {
+const ProfileRegister = () => {
+    const dispatch = useDispatch();
+    const [inputs, setInputs] = useState({});
+
+    const handleSubmit = () => {
+        console.log('프로필등록하기');
+        dispatch(profileRegister(inputs));
+        navigate('/actor-mypage');
+    };
+
+    const handleChage = useCallback((e) => {
+        setInputs({
+            ...inputs,
+            [e.target.name]: e.target.value,
+        });
+    });
+
     return (
         <>
             <PageWrapper
@@ -39,7 +59,7 @@ const profileRegister = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <form action="/">
+                                        <form onSubmit={handleSubmit}>
                                             <fieldset>
                                                 <div className="row">
                                                     <div className="col-md-12">
@@ -57,6 +77,12 @@ const profileRegister = () => {
                                                                 rows="7"
                                                                 className="border border-mercury text-gray w-100 pt-4 pl-6"
                                                                 placeholder="유니크한 자기소개 입력 부탁"
+                                                                onChange={
+                                                                    handleChage
+                                                                }
+                                                                value={
+                                                                    inputs.contents
+                                                                }
                                                             ></textarea>
                                                         </div>
                                                         <div className="form-group">
@@ -66,14 +92,21 @@ const profileRegister = () => {
                                                             >
                                                                 경력
                                                             </label>
-                                                            <textarea
+                                                            {/* <textarea
                                                                 name="textarea"
                                                                 id="aboutTextarea"
                                                                 cols="30"
                                                                 rows="7"
                                                                 className="border border-mercury text-gray w-100 pt-4 pl-6"
                                                                 placeholder="경력 입력해줘"
-                                                            ></textarea>
+                                                                onChange={
+                                                                    handleChage
+                                                                }
+                                                                value={
+                                                                    inputs.career
+                                                                }
+                                                            ></textarea> */}
+                                                            <ProfileCareer />
                                                         </div>
                                                     </div>
                                                     <div className="row">
@@ -97,4 +130,4 @@ const profileRegister = () => {
     );
 };
 
-export default profileRegister;
+export default ProfileRegister;

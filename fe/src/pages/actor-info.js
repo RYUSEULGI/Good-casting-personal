@@ -1,48 +1,34 @@
 import React, { useCallback, useState, useEffect } from 'react';
+import { navigate } from 'gatsby';
 import PageWrapper from '../components/PageWrapper';
 import { Select } from '../components/Core';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-    actorSelctor,
-    updateActorInfo,
-    getActorInfo,
-} from '../state/reducer/actor.reducer';
+import { actorSelctor, updateActorInfo } from '../state/reducer/actor.reducer';
 
 const defaultTypes = [
-    { value: 'male', label: '남성' },
-    { value: 'femail', label: '여성' },
+    { value: 'male', label: '남성', name: 'gender' },
+    { value: 'female', label: '여성', name: 'gender' },
 ];
 
 const defaultMajor = [
-    { value: true, label: '전공자' },
-    { value: false, label: '비전공자' },
+    { value: true, label: '전공자', name: 'major' },
+    { value: false, label: '비전공자', name: 'major' },
 ];
 
 const ActorInfo = () => {
     const dispatch = useDispatch();
 
     const state = useSelector(actorSelctor);
-
     const [inputs, setInputs] = useState([]);
-
-    const [showPassFirst, setShowPassFirst] = useState(true);
-    const [showPassSecond, setShowPassSecond] = useState(true);
-    const [checkValidate, setCheckValidate] = useState('');
 
     useEffect(() => {
         setInputs(state.actor);
     }, []);
 
-    useEffect(() => {
-        setCheckValidate(
-            inputs.confirmPassword !== inputs.password ? 'red' : ''
-        );
-    }, [inputs]);
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(inputs);
         dispatch(updateActorInfo(inputs));
+        navigate('/actor-mypage');
     };
 
     const handleChange = useCallback((e) => {
@@ -52,13 +38,12 @@ const ActorInfo = () => {
         });
     });
 
-    const togglePasswordFirst = () => {
-        setShowPassFirst(!showPassFirst);
-    };
-
-    const togglePasswordSecond = () => {
-        setShowPassSecond(!showPassSecond);
-    };
+    const handleSelectChange = useCallback((e) => {
+        setInputs({
+            ...inputs,
+            [e.name]: e.value,
+        });
+    });
 
     return (
         <>
@@ -116,11 +101,14 @@ const ActorInfo = () => {
                                                                 성별
                                                             </label>
                                                             <Select
+                                                                className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center w-100 "
                                                                 options={
                                                                     defaultTypes
                                                                 }
-                                                                className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center w-100 "
                                                                 border={false}
+                                                                onChange={
+                                                                    handleSelectChange
+                                                                }
                                                             />
                                                         </div>
                                                     </div>
@@ -302,11 +290,14 @@ const ActorInfo = () => {
                                                                 전공여부
                                                             </label>
                                                             <Select
+                                                                className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center w-100 "
                                                                 options={
                                                                     defaultMajor
                                                                 }
-                                                                className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center w-100 "
                                                                 border={false}
+                                                                onChange={
+                                                                    handleSelectChange
+                                                                }
                                                             />
                                                             <span className="h-100 w-px-50 pos-abs-tl d-flex align-items-center justify-content-center font-size-6"></span>
                                                         </div>

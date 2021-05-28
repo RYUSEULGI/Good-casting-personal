@@ -350,10 +350,11 @@ const Header = () => {
                                     className={`btn btn-${gContext.header.variant} text-uppercase font-size-3`}
                                     href="/"
                                     onClick={() => {
-                                        alert('정말 로그아웃 하시겠습니까?');
-                                        localStorage.removeItem('USER');
-                                        // 홈으로 이동이 안됨
-                                        // navigate('/');
+                                        window.confirm(
+                                            '정말 로그아웃 하시겠습니까?'
+                                        )
+                                            ? localStorage.clear()
+                                            : window.location.reload();
                                     }}
                                 >
                                     LogOut
