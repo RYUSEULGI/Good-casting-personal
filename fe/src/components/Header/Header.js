@@ -65,8 +65,8 @@ const Header = () => {
     useEffect(() => {
         if (localStorage.getItem('USER') !== null) {
             dispatch(isUserLoggendIn(user.loggedIn));
-            JSON.stringify(userInfo.position);
-            console.log(userInfo.position);
+            JSON.stringify(userInfo[0].position);
+            console.log(userInfo[0].position);
         } else {
             console.log('토큰없음');
         }
@@ -164,7 +164,7 @@ const Header = () => {
                                                   );
                                               }
                                           )
-                                        : user.loggedIn && userInfo.position
+                                        : user.loggedIn && userInfo[0].position
                                         ? actorMenuItems.map(
                                               (
                                                   {

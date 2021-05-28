@@ -2,9 +2,15 @@ import actorService from '../service/actor.service';
 
 const { createSlice, createAsyncThunk } = require('@reduxjs/toolkit');
 
-export const actorList = createAsyncThunk('ACTOR_LIST', async (arg) => {
-    console.log('reducer signup() arg: ' + JSON.stringify(arg));
-    const response = await actorService.actorInfo(arg);
+export const updateActorInfo = createAsyncThunk('ACTOR_UPDATE', async (arg) => {
+    console.log(arg);
+    const response = await actorService.updateactorInfo(arg);
+    console.log('reducer : ' + JSON.stringify(response.data));
+    return response.data;
+});
+
+export const getActorInfo = createAsyncThunk('ACTOR_INFO', async () => {
+    const response = await actorService.getActorInfo();
     return response.data;
 });
 
@@ -15,10 +21,12 @@ const actorSlice = createSlice({
     },
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(actorList.fulfilled, (state, { payload }) => {});
+        builder.addCase(getActorInfo.fulfilled, (state, { payload }) => {
+            state.actor = payload;
+        });
     },
 });
+
 export const actorSelctor = (state) => state.actorReducer;
 
-export const { isUserLoggendIn } = actorSlice.actions;
 export default actorSlice.reducer;

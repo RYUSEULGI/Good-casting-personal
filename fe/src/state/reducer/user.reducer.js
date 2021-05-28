@@ -14,7 +14,8 @@ export const signin = createAsyncThunk('SIGN_IN', async (arg) => {
     if (response.data.token === 'Wrong password') {
         alert('비밀번호를 다시 입력해주세요');
     } else {
-        localStorage.setItem('token', 'Bearer ' + response.data.token);
+        localStorage.setItem('token', 'Bearer ' + response.data[0].token);
+        localStorage.setItem('USER', JSON.stringify(response.data));
         return response.data;
     }
 });
@@ -39,7 +40,6 @@ const userSlice = createSlice({
             })
             .addCase(signin.fulfilled, (state, { payload }) => {
                 console.log('로그인() payload: ' + JSON.stringify(payload));
-                localStorage.setItem('USER', JSON.stringify(payload));
             });
     },
 });
