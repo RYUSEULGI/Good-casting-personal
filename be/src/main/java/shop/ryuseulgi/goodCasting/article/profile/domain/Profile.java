@@ -25,7 +25,6 @@ public class Profile extends BaseEntity {
     // column
     @Column private boolean privacy;
     @Column private String contents;
-    @Column private String career;
     @Column private String resemble;
     @Column private Double confidence;
 
@@ -39,9 +38,6 @@ public class Profile extends BaseEntity {
     }
     public void changeContents(String contents) {
         this.contents = contents;
-    }
-    public void changeCareer(String career) {
-        this.career = career;
     }
     public void changeResemble(String resemble) {
         this.resemble = resemble;

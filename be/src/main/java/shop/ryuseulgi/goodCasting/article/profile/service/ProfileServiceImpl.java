@@ -13,6 +13,10 @@ import shop.ryuseulgi.goodCasting.article.profile.domain.Profile;
 import shop.ryuseulgi.goodCasting.article.profile.domain.ProfileDTO;
 import shop.ryuseulgi.goodCasting.article.profile.repository.ProfileRepository;
 import shop.ryuseulgi.goodCasting.article.profile.repository.SearchProfileRepositoryImpl;
+import shop.ryuseulgi.goodCasting.career.domain.Career;
+import shop.ryuseulgi.goodCasting.career.domain.CareerDTO;
+import shop.ryuseulgi.goodCasting.career.repository.CareerRepository;
+import shop.ryuseulgi.goodCasting.career.service.CareerService;
 import shop.ryuseulgi.goodCasting.common.domain.PageRequestDTO;
 import shop.ryuseulgi.goodCasting.common.domain.PageResultDTO;
 import shop.ryuseulgi.goodCasting.file.domain.FileDTO;
@@ -32,24 +36,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-import javax.transaction.Transactional;
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Function;
-
 @Log4j2
 @Service
 @RequiredArgsConstructor
 public class ProfileServiceImpl implements ProfileService {
     private final ProfileRepository profileRepo;
     private final FileRepository fileRepo;
+    private final CareerRepository careerRepo;
+    private final SearchProfileRepositoryImpl searchProfileRepo;
+
     private final FileService fileService;
     private final ActorService actorService;
-    private final SearchProfileRepositoryImpl searchProfileRepo;
+    private final CareerService careerService;
 
     @Value("${shop.goodcast.upload.path}")
     private String uploadPath;
@@ -60,7 +58,9 @@ public class ProfileServiceImpl implements ProfileService {
         ProfileDTO finalProfileDto = entity2DtoAll(profileRepo.save(dto2EntityAll(profileDTO)));
 
         List<FileDTO> files = profileDTO.getFiles();
+        List<CareerDTO> careers = profileDTO.getCareers();
 
+        saveCareer(finalProfileDto, careers);
         return saveFile(finalProfileDto, files);
     }
 
@@ -203,6 +203,18 @@ public class ProfileServiceImpl implements ProfileService {
                 if (file.isPhotoType() && fileDTO.isFirst()) {
                     extractCelebrity(file.getUuid() + "_" + file.getFileName(), profileDTO.getProfileId());
                 }
+            });
+            return 1L;
+        }
+        return 0L;
+    }
+
+    public Long saveCareer(ProfileDTO profileDTO, List<CareerDTO> careers) {
+        if(careers != null && careers.size() > 0) {
+            careers.forEach(careerDTO -> {
+                careerDTO.setProfile(profileDTO);
+                Career career = careerService.dto2EntityAll(careerDTO);
+                careerRepo.save(career);
             });
             return 1L;
         }

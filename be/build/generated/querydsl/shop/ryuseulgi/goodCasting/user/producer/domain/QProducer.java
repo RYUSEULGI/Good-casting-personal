@@ -22,9 +22,14 @@ public class QProducer extends EntityPathBase<Producer> {
 
     public static final QProducer producer = new QProducer("producer");
 
+    public final shop.ryuseulgi.goodCasting.common.domain.QBaseEntity _super = new shop.ryuseulgi.goodCasting.common.domain.QBaseEntity(this);
+
     public final StringPath agency = createString("agency");
 
     public final StringPath email = createString("email");
+
+    //inherited
+    public final DateTimePath<java.sql.Timestamp> modDate = _super.modDate;
 
     public final StringPath name = createString("name");
 
@@ -33,6 +38,9 @@ public class QProducer extends EntityPathBase<Producer> {
     public final StringPath position = createString("position");
 
     public final NumberPath<Long> producerId = createNumber("producerId", Long.class);
+
+    //inherited
+    public final DateTimePath<java.sql.Timestamp> regDate = _super.regDate;
 
     public final shop.ryuseulgi.goodCasting.user.login.domain.QUserVO userVO;
 
