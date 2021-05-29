@@ -1,5 +1,7 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Select } from '../Core';
+import { setCareer } from '../../state/reducer/profile.reducer';
+import { useDispatch } from 'react-redux';
 
 const defaultYear = [
     { value: '0', label: '연도선택', name: 'year' },
@@ -25,9 +27,19 @@ const defaultGerne = [
 ];
 
 const ProfileCareer = () => {
+    const dispatch = useDispatch();
+
+    const [inputs, setInputs] = useState({});
+
     const handleChagne = useCallback((e) => {
-        console.log('클릭');
+        dispatch(setCareer(inputs));
+        console.log(e.value);
+        setInputs({
+            ...inputs,
+            [e.name]: e.value,
+        });
     }, []);
+
     return (
         <>
             <div class="box_full">
@@ -62,6 +74,51 @@ const ProfileCareer = () => {
                 </div>
             </div>
 
+            <div id="temp_career">
+                <div class="input-group career_item">
+                    <input type="hidden" name="careerTypeArr" value="C" />
+                    <div class="input-group-prepend wp16">
+                        <Select
+                            className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center w-100 "
+                            boarder={false}
+                            options={defaultYear}
+                            onChange={handleChagne}
+                        />
+                    </div>
+
+                    <div class="input-group-prepend wp16">
+                        <Select
+                            className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center w-100 "
+                            boarder={false}
+                            options={defaultGerne}
+                            onChange={handleChagne}
+                        />
+                    </div>
+
+                    <div class="input-group-prepend wp32">
+                        <input
+                            type="text"
+                            maxLength="120"
+                            name="careerNameArr"
+                            class="form-control"
+                            placeholder="작품명 입력"
+                        />
+                    </div>
+                    <input
+                        type="text"
+                        maxLength="200"
+                        name="careerContentArr"
+                        class="form-control careerContent"
+                        placeholder="주/조연, 배역, 배역 설명 등"
+                    />
+                    <button
+                        class="btn_input_delete"
+                        type="button"
+                        // onclick={dispatch(addCareer())}
+                    ></button>
+                </div>
+            </div>
+
             {/* <div class="tit_sub v2">수상내역</div>
             <div class="box_top_area">
                 <div class="input-group tit_group">
@@ -89,60 +146,6 @@ const ProfileCareer = () => {
                     </button>
                 </div>
             </div> */}
-
-            <div id="temp_career">
-                <div class="input-group career_item">
-                    <input type="hidden" name="careerTypeArr" value="C" />
-                    <div class="input-group-prepend wp16">
-                        <Select
-                            className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center w-100 "
-                            boarder={false}
-                            options={defaultYear}
-                            onChange={handleChagne}
-                        />
-                    </div>
-
-                    <div class="input-group-prepend wp16">
-                        <Select
-                            className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center w-100 "
-                            boarder={false}
-                            options={defaultGerne}
-                            onChange={handleChagne}
-                        />
-                    </div>
-
-                    <div class="input-group-prepend wp32">
-                        <input
-                            type="text"
-                            maxLength="20"
-                            name="broadNameArr"
-                            class="form-control  broadName"
-                            placeholder="방송사 입력"
-                        />
-                        <input
-                            type="text"
-                            maxLength="120"
-                            name="careerNameArr"
-                            class="form-control careerName"
-                            placeholder="작품명 입력"
-                            readOnly
-                        />
-                    </div>
-                    <input
-                        type="text"
-                        maxLength="200"
-                        name="careerContentArr"
-                        class="form-control careerContent"
-                        placeholder="주/조연, 배역, 배역 설명 등"
-                        readOnly
-                    />
-                    <button
-                        class="btn_input_delete"
-                        type="button"
-                        onclick="funRemoveElement(this, 'career')"
-                    ></button>
-                </div>
-            </div>
 
             {/* <div id="temp_prizeM">
                 <dl class="rows prize_item prizeM_item">

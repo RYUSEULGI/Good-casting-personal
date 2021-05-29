@@ -15,8 +15,22 @@ const profileSlice = createSlice({
     name: 'profile',
     initialState: {
         profile: [],
+        careerList: [],
     },
-    reducers: {},
+    reducers: {
+        addCareer(state, { payload }) {
+            state.careerList.push({ text: payload });
+        },
+        deleteCareer(state, { payload }) {
+            state.careerList = state.careerList.filter(
+                (career) => career.id !== payload
+            );
+        },
+        setCareer(state, { payload }) {
+            console.log('payload test : ' + JSON.stringify(payload));
+            state.careerList = state.careerList;
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(profileRegister.fulfilled, (state, { payload }) => {
             console.log(JSON.stringify(payload));
@@ -25,5 +39,7 @@ const profileSlice = createSlice({
 });
 
 export const profileSelector = (state) => state.profileReducer;
+
+export const { addCareer, setCareer } = profileSlice.actions;
 
 export default profileSlice.reducer;

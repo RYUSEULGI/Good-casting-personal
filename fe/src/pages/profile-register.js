@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import ProfileCareer from '../components/Profile/ProfileCareer';
-import { navigate } from 'gatsby';
 import { useDispatch } from 'react-redux';
 import { profileRegister } from '../state/reducer/profile.reducer';
 import PageWrapper from '../components/PageWrapper';
@@ -9,10 +8,10 @@ const ProfileRegister = () => {
     const dispatch = useDispatch();
     const [inputs, setInputs] = useState({});
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         console.log('프로필등록하기');
         dispatch(profileRegister(inputs));
-        navigate('/actor-mypage');
     };
 
     const handleChage = useCallback((e) => {
@@ -59,7 +58,10 @@ const ProfileRegister = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <form onSubmit={handleSubmit}>
+                                        <form
+                                            onSubmit={handleSubmit}
+                                            method="post"
+                                        >
                                             <fieldset>
                                                 <div className="row">
                                                     <div className="col-md-12">
@@ -92,29 +94,13 @@ const ProfileRegister = () => {
                                                             >
                                                                 경력
                                                             </label>
-                                                            {/* <textarea
-                                                                name="textarea"
-                                                                id="aboutTextarea"
-                                                                cols="30"
-                                                                rows="7"
-                                                                className="border border-mercury text-gray w-100 pt-4 pl-6"
-                                                                placeholder="경력 입력해줘"
-                                                                onChange={
-                                                                    handleChage
-                                                                }
-                                                                value={
-                                                                    inputs.career
-                                                                }
-                                                            ></textarea> */}
                                                             <ProfileCareer />
                                                         </div>
                                                     </div>
                                                     <div className="row">
-                                                        <input
-                                                            type="button"
-                                                            value="등록하기"
-                                                            className="btn btn-green btn-h-60 text-white min-width-px-210 rounded-5 text-uppercase"
-                                                        />
+                                                        <button className="btn btn-green btn-h-60 text-white min-width-px-210 rounded-5 text-uppercase">
+                                                            등록하기
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </fieldset>
