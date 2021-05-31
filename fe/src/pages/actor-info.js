@@ -1,16 +1,23 @@
 import React, { useCallback, useState, useEffect } from 'react';
-import { navigate } from 'gatsby';
+import { Link, navigate } from 'gatsby';
 import PageWrapper from '../components/PageWrapper';
 import { Select } from '../components/Core';
 import { useDispatch, useSelector } from 'react-redux';
-import { actorSelctor, updateActorInfo } from '../state/reducer/actor.reducer';
+import {
+    actorSelctor,
+    updateActorInfo,
+    unRegister,
+} from '../state/reducer/actor.reducer';
+import '../scss/css/actorInfo.css';
 
 const defaultTypes = [
+    { value: 'default', label: '선택하기', name: 'gender' },
     { value: 'male', label: '남성', name: 'gender' },
     { value: 'female', label: '여성', name: 'gender' },
 ];
 
 const defaultMajor = [
+    { value: true, label: '선택하기', name: 'major' },
     { value: true, label: '전공자', name: 'major' },
     { value: false, label: '비전공자', name: 'major' },
 ];
@@ -44,6 +51,11 @@ const ActorInfo = () => {
             [e.name]: e.value,
         });
     });
+
+    const handelClick = () => {
+        localStorage.clear();
+        dispatch(unRegister(inputs));
+    };
 
     return (
         <>
@@ -177,7 +189,7 @@ const ActorInfo = () => {
                                                                     inputs.birthday
                                                                 }
                                                                 name="birthday"
-                                                                placeholder="숫자만 입력해주세요 예)2021"
+                                                                placeholder="숫자만 입력해주세요"
                                                                 onChange={
                                                                     handleChange
                                                                 }
@@ -201,7 +213,7 @@ const ActorInfo = () => {
                                                                     inputs.age
                                                                 }
                                                                 name="age"
-                                                                placeholder=""
+                                                                placeholder="숫자만 입력해주세요"
                                                                 onChange={
                                                                     handleChange
                                                                 }
@@ -273,7 +285,7 @@ const ActorInfo = () => {
                                                                     inputs.agency
                                                                 }
                                                                 name="agency"
-                                                                placeholder="예) 010-1234-5678"
+                                                                placeholder="소속이 없을 시 소속없음 표기"
                                                                 onChange={
                                                                     handleChange
                                                                 }
@@ -312,6 +324,14 @@ const ActorInfo = () => {
                                                 </div>
                                             </fieldset>
                                         </form>
+                                        <Link to="/actor-out">
+                                            <button
+                                                onClick={handelClick}
+                                                className="user-out"
+                                            >
+                                                회원탈퇴하기
+                                            </button>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>

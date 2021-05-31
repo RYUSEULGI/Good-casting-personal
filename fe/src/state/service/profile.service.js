@@ -8,7 +8,10 @@ const profileRegister = (arg) => {
         url: `${SERVER}/profiles/register`,
         method: 'post',
         data: arg,
-        headers: { Authorization: localStorage.getItem('token') },
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: localStorage.getItem('TOKEN'),
+        },
     });
 };
 

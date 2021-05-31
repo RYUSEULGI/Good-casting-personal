@@ -31,6 +31,7 @@ const ModalSignIn = (props) => {
     };
 
     const handleSubmit = (e) => {
+        console.log('클릭');
         e.preventDefault();
         dispatch(signin(inputs));
         gContext.toggleSignInModal();

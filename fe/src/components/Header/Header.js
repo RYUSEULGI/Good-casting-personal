@@ -66,9 +66,9 @@ const Header = () => {
         if (localStorage.getItem('USER') !== null) {
             dispatch(isUserLoggendIn(user.loggedIn));
             JSON.stringify(userInfo[0].position);
-            console.log(userInfo[0].position);
+            console.log('로그인 되어 있음 : ' + userInfo[0].position);
         } else {
-            console.log('토큰없음');
+            console.log('로그인 되어 있지 않음');
         }
     }, []);
 

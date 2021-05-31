@@ -1,16 +1,20 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import ProfileCareer from '../components/Profile/ProfileCareer';
 import { useDispatch } from 'react-redux';
 import { profileRegister } from '../state/reducer/profile.reducer';
 import PageWrapper from '../components/PageWrapper';
 
+import fileUploadImg from '../assets/image/img_default_pic.png';
+
 const ProfileRegister = () => {
     const dispatch = useDispatch();
+
     const [inputs, setInputs] = useState({});
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('프로필등록하기');
+        console.log(inputs);
         dispatch(profileRegister(inputs));
     };
 
@@ -19,6 +23,15 @@ const ProfileRegister = () => {
             ...inputs,
             [e.target.name]: e.target.value,
         });
+    });
+
+    const handleSelectedImg = useCallback((e) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append('file', e.target.files[0]);
+        console.log(formData);
+        for (const keyValue of formData) console.log(keyValue);
     });
 
     return (
@@ -49,19 +62,26 @@ const ProfileRegister = () => {
                                                     htmlFor="fileUpload"
                                                     className="mb-0 font-size-4 text-smoke"
                                                 >
-                                                    Browse or Drag and Drop
+                                                    d
                                                 </label>
+                                                <img
+                                                    className="file-upload-form"
+                                                    src={fileUploadImg}
+                                                />
                                                 <input
                                                     type="file"
+                                                    accept="image/*"
                                                     id="fileUpload"
                                                     className="sr-only"
+                                                    onChange={handleSelectedImg}
                                                 />
                                             </div>
+                                            <p>
+                                                ※ 프로필사진과 동영상을
+                                                업로드해주세요
+                                            </p>
                                         </div>
-                                        <form
-                                            onSubmit={handleSubmit}
-                                            method="post"
-                                        >
+                                        <form onSubmit={handleSubmit}>
                                             <fieldset>
                                                 <div className="row">
                                                     <div className="col-md-12">

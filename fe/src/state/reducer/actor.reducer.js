@@ -14,6 +14,14 @@ export const getActorInfo = createAsyncThunk('ACTOR_INFO', async () => {
     return response.data;
 });
 
+export const unRegister = createAsyncThunk('UNREGISTER', async (arg) => {
+    console.log('reducer UNREGISTER() arg: ' + JSON.stringify(arg));
+    const response = await actorService.unRegister(arg);
+
+    console.log(response.data);
+    return response.data;
+});
+
 const actorSlice = createSlice({
     name: 'actor',
     initialState: {
@@ -21,12 +29,16 @@ const actorSlice = createSlice({
     },
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(getActorInfo.fulfilled, (state, { payload }) => {
-            state.actor = payload;
-        });
-        builder.addCase(updateActorInfo.fulfilled, (state, { payload }) => {
-            state.actor = payload;
-        });
+        builder
+            .addCase(getActorInfo.fulfilled, (state, { payload }) => {
+                state.actor = payload;
+            })
+            .addCase(updateActorInfo.fulfilled, (state, { payload }) => {
+                state.actor = payload;
+            })
+            .addCase(unRegister.fulfilled, (state, { payload }) => {
+                console.log('addCase' + payload);
+            });
     },
 });
 

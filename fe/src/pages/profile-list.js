@@ -3,7 +3,6 @@ import { Link } from 'gatsby';
 import PageWrapper from '../components/PageWrapper';
 import Sidebar from '../components/Sidebar';
 import ProfileList from '../components/Profile/ProfileList';
-import '../scss/css/fileUpload.css';
 
 const SearchGrid = () => {
     return (
@@ -29,6 +28,7 @@ const SearchGrid = () => {
                                                         사진을 업로드해주세요
                                                         <input
                                                             type="file"
+                                                            img
                                                             className="form-control focus-reset pl-13"
                                                             id="keyword"
                                                         />
@@ -71,10 +71,7 @@ const SearchGrid = () => {
                                     </div>
                                     <div className="pt-6">
                                         <div className="row justify-content-center">
-                                            <div className="col-12 col-lg-6">
-                                                <ProfileList />
-                                            </div>
-                                            <div className="col-12 col-lg-6"></div>
+                                            <ProfileList />
                                         </div>
                                     </div>
                                     <div className="text-center pt-5 pt-lg-13">

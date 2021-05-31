@@ -17,12 +17,23 @@ const getActorInfo = () => {
 
 const updateactorInfo = (arg) => {
     console.log('service actorInfo arg: ' + JSON.stringify(arg));
+    console.log([arg]);
     return axios({
         url: `${SERVER}/actors/info`,
         method: 'post',
         data: arg,
-        headers: { Authorization: localStorage.getItem('token') },
+        headers: { Authorization: localStorage.getItem('TOKEN') },
     });
 };
 
-export default { getActorInfo, updateactorInfo };
+const unRegister = (arg) => {
+    console.log(arg);
+    return axios({
+        url: `${SERVER}/actors/delete/${userInfo[1].actorId}`,
+        method: 'delete',
+        data: arg,
+        headers: { Authorization: localStorage.getItem('TOKEN') },
+    });
+};
+
+export default { getActorInfo, updateactorInfo, unRegister };
