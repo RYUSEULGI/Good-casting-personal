@@ -5,13 +5,9 @@ import shop.ryuseulgi.goodCasting.article.hire.domain.HireDTO;
 import shop.ryuseulgi.goodCasting.article.hire.domain.HireListDTO;
 import shop.ryuseulgi.goodCasting.common.domain.PageRequestDTO;
 import shop.ryuseulgi.goodCasting.common.domain.PageResultDTO;
-import shop.ryuseulgi.goodCasting.file.domain.FileDTO;
 import shop.ryuseulgi.goodCasting.file.domain.FileVO;
 import shop.ryuseulgi.goodCasting.user.producer.domain.Producer;
 import shop.ryuseulgi.goodCasting.user.producer.domain.ProducerDTO;
-
-import java.util.List;
-import java.util.Optional;
 
 public interface HireService {
     Long register(HireDTO hireDTO);

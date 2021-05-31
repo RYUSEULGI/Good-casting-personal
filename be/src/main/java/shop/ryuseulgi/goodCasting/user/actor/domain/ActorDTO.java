@@ -21,7 +21,7 @@ public class ActorDTO {
     private Integer height;
     private Integer weight;
     private String agency;
-    private boolean major;
+    private Boolean major;
     private String email;
     private Integer age;
     private Timestamp regDate;

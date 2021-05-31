@@ -5,7 +5,6 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.java.Log;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -16,7 +15,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import shop.ryuseulgi.goodCasting.user.login.domain.Role;
-import shop.ryuseulgi.goodCasting.user.login.domain.UserVO;
 import shop.ryuseulgi.goodCasting.user.login.service.UserDetailsServiceImpl;
 
 import javax.annotation.PostConstruct;
@@ -91,11 +89,11 @@ public class SecurityProvider implements AuthenticationProvider {
         String bearerToken = request.getHeader("Authorization");
 
 
-        log.info("bearerTOken : " +bearerToken);
+        log.info("bearerToken : " +bearerToken);
         if (bearerToken != null && bearerToken.startsWith("Bearer")) {
             return bearerToken.substring(7);
         } else {
-            return "----------No JWT token found in request headers-----------";
+            return "No JWT token found in request headers";
         }
     }
 
@@ -103,11 +101,11 @@ public class SecurityProvider implements AuthenticationProvider {
         System.out.println("validateToken : 진입");
         try {
             Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
-            System.out.println(Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token));
-            System.out.println("true");
+            log.info(Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token));
+            log.info("validateToken : true");
             return true;
         } catch (JwtException | IllegalArgumentException e) {
-            System.out.println("false");
+            log.info("validateToken : false");
             throw new Exception();
         }
     }

@@ -15,7 +15,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import shop.ryuseulgi.goodCasting.article.hire.domain.Hire;
 import shop.ryuseulgi.goodCasting.article.hire.domain.QHire;
-import shop.ryuseulgi.goodCasting.common.domain.PageRequestDTO;
 import shop.ryuseulgi.goodCasting.file.domain.QFileVO;
 import shop.ryuseulgi.goodCasting.user.producer.domain.QProducer;
 
@@ -32,7 +31,7 @@ public class SearchHireRepositoryImpl extends QuerydslRepositorySupport implemen
 
     @Override
     @Transactional
-    public Page<Object[]> searchPage(PageRequestDTO pageRequest, Pageable pageable) {
+    public Page<Object[]> searchPage(shop.ryuseulgi.goodCasting.common.domain.PageRequestDTO pageRequest, Pageable pageable) {
         log.info("----------------------Search Hire Page Enter------------------------------");
 
         String type = pageRequest.getType();
@@ -40,7 +39,7 @@ public class SearchHireRepositoryImpl extends QuerydslRepositorySupport implemen
         QFileVO file = QFileVO.fileVO;
         QProducer producer = QProducer.producer;
 
-        JPQLQuery<shop.ryuseulgi.goodCasting.article.hire.domain.Hire> jpqlQuery = from(hire);
+        JPQLQuery<Hire> jpqlQuery = from(hire);
         jpqlQuery.leftJoin(producer).on(hire.producer.eq(producer));
         jpqlQuery.leftJoin(file).on(file.hire.eq(hire));
 
@@ -117,8 +116,5 @@ public class SearchHireRepositoryImpl extends QuerydslRepositorySupport implemen
 
         return new PageImpl<>(result.stream()
                 .map(t -> t.toArray()).collect(Collectors.toList()), pageable, count);
-    }
-
-    private class Hire {
     }
 }

@@ -2,12 +2,7 @@ package shop.ryuseulgi.goodCasting.user.actor.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
-import org.hibernate.Hibernate;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.orm.hibernate5.SessionFactoryUtils;
-import org.springframework.orm.hibernate5.support.OpenSessionInViewFilter;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.stereotype.Service;
 import shop.ryuseulgi.goodCasting.article.profile.domain.Profile;
 import shop.ryuseulgi.goodCasting.article.profile.repository.ProfileRepository;
@@ -20,7 +15,6 @@ import shop.ryuseulgi.goodCasting.user.actor.repository.ActorRepository;
 import shop.ryuseulgi.goodCasting.user.login.repository.UserRepository;
 
 import javax.transaction.Transactional;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -29,21 +23,20 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class ActorServiceImpl implements ActorService {
-    private final UserRepository userRepository;
-    private final FileRepository fileRepository;
-    private final ProfileRepository profileRepository;
-    private final ActorRepository actorRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final UserRepository userRepo;
+    private final FileRepository fileRepo;
+    private final ProfileRepository profileRepo;
+    private final ActorRepository actorRepo;
 
     @Override
     public List<Actor> findAll() {
-        return actorRepository.findAll();
+        return actorRepo.findAll();
     }
 
     @Override
     public ActorDTO findById(Long actorId) {
 
-        Optional<Actor> actor = actorRepository.findById(actorId);
+        Optional<Actor> actor = actorRepo.findById(actorId);
 
         return actor.isPresent()? entity2DtoAll(actor.get()): null;
     }
@@ -53,13 +46,13 @@ public class ActorServiceImpl implements ActorService {
     public Long delete(ActorDTO actorDTO) {
         Actor actor = dto2EntityAll(actorDTO);
 
-        Long profileId = actorRepository.getProfileId(actor.getActorId());
+        Long profileId = actorRepo.getProfileId(actor.getActorId());
 
         log.info("profileId : " + profileId);
 
         if(profileId != null){
-            Profile profile = profileRepository.findById(profileId).get();
-            List<FileVO> fileList = fileRepository.findFileListByProfileId(profileId);
+            Profile profile = profileRepo.findById(profileId).get();
+            List<FileVO> fileList = fileRepo.findFileListByProfileId(profileId);
 
             log.info("fileList : " + fileList);
 
@@ -70,25 +63,28 @@ public class ActorServiceImpl implements ActorService {
             log.info("fileId : " + fileId);
 
             fileId.forEach( id -> {
-                FileVO test = fileRepository.findById(id).get();
+                FileVO test = fileRepo.findById(id).get();
                 System.out.println(test);
-                fileRepository.delete(test);
+                fileRepo.delete(test);
             });
 
-            profileRepository.delete(profile);
+            profileRepo.delete(profile);
         }
-        actorRepository.delete(actor);
-        userRepository.accountUpdate(actor.getUser().getUserId(), false);
-        actorRepository.delete(actor);
+        actorRepo.delete(actor);
+        userRepo.accountUpdate(actor.getUser().getUserId(), false);
+        actorRepo.delete(actor);
 
-        return actorRepository.findById(actor.getActorId()).orElse(null) == null ? 1L : 0L;
+        return actorRepo.findById(actor.getActorId()).orElse(null) == null ? 1L : 0L;
     }
 
     @Override
     @Transactional
     public ActorDTO moreDetail(ActorDTO actorDTO) {
         Actor actor = dto2EntityAll(actorDTO);
-        actorRepository.save(actor);
+        log.info("actorDTO : " + actorDTO.getMajor());
+        log.info("actor : " + actor.getMajor());
+        actorRepo.save(actor);
+        log.info("actor : " + actor.getMajor());
         return null;
     }
 }

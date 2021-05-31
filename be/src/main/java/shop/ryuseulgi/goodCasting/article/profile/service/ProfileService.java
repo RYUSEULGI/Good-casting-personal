@@ -8,9 +8,6 @@ import shop.ryuseulgi.goodCasting.file.domain.FileVO;
 import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
 import shop.ryuseulgi.goodCasting.user.actor.domain.ActorDTO;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public interface ProfileService {
     Long register(ProfileDTO profileDTO);
     ProfileDTO readProfile(Long profileId);

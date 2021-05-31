@@ -59,7 +59,6 @@ public class UserServiceImpl implements UserService {
 
                 userRepo.save(userVO);
                 producer.changeUserVO(userVO);
-                log.info("producer.getUserVO() : " + producer.getUserVO());
                 producerRepo.save(producer);
             }
             return provider.createToken(userDTO.getUsername(), userDTO.getRoles());
