@@ -11,7 +11,7 @@ const getActorInfo = () => {
     return axios({
         url: `${SERVER}/actors/myPage/${userInfo[1].actorId}`,
         method: 'get',
-        headers: { Authorization: 'JWT fefege..' },
+        headers: { Authorization: localStorage.getItem('TOKEN') },
     });
 };
 

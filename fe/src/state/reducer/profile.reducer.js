@@ -16,10 +16,24 @@ export const fileRegister = createAsyncThunk('FILE_REGISTER', async (arg) => {
     return response.data;
 });
 
+export const getMyProfileList = createAsyncThunk(
+    'GET_MY_PROFILE',
+    async (pageRequest) => {
+        const response = await profileService.getMyProfileList(pageRequest);
+
+        if (pageRequest.page === 0) {
+            return null;
+        }
+
+        console.log(response.data);
+        return response.data;
+    }
+);
+
 const profileSlice = createSlice({
     name: 'profile',
     initialState: {
-        profile: [],
+        profileList: [],
         careerList: [],
         fileList: [],
     },
@@ -44,17 +58,16 @@ const profileSlice = createSlice({
             .addCase(profileRegister.fulfilled, (state, { payload }) => {
                 console.log(payload);
             })
-            .addCase(fileRegister.fulfilled, (state, {payload}) => {
-                console.log(payload.first);
+            .addCase(fileRegister.fulfilled, (state, { payload }) => {
                 return {
                     ...state,
-                    // fileList: [{
-                    //     ...payload,
-                    //     first: !payload.first,
-                    //     photoType: !payload.photoType,
-                    //     }
-                    // ]
-                    fileList: [...payload],
+                    fileList: [
+                        {
+                            ...payload[0],
+                            first: !payload[0].first,
+                            photoType: !payload[0].photoType,
+                        },
+                    ],
                 };
             });
     },

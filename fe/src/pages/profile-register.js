@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
+import { navigate } from 'gatsby';
 import ProfileCareer from '../components/Profile/ProfileCareer';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -7,7 +8,7 @@ import {
     profileSelector,
 } from '../state/reducer/profile.reducer';
 import PageWrapper from '../components/PageWrapper';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 import cameraIcon from '../assets/image/ico_camera.svg';
 
@@ -20,8 +21,8 @@ const sweetalert = (icon, title, text, footer) => {
         title: title,
         text: text,
         footer: footer,
-    })
-}
+    });
+};
 
 const ProfileRegister = () => {
     const dispatch = useDispatch();
@@ -44,10 +45,12 @@ const ProfileRegister = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(profileRegister(inputs));
+
         Swal.fire({
             icon: 'success',
             title: '프로필이 등록되었습니다.',
-        })
+        });
+        navigate('/actor-mypage');
     };
 
     const handleChange = useCallback(

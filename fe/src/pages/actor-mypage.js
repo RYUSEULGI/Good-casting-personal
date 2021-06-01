@@ -2,12 +2,16 @@ import React from 'react';
 import { Link } from 'gatsby';
 import { useSelector } from 'react-redux';
 import PageWrapper from '../components/PageWrapper';
-import ProfileList from '../components/Profile/ProfileList';
+import MyProfileList from '../components/Profile/MyProfileList';
 import ProfileSidebar from '../components/ProfileSidebar';
 import { profileSelector } from '../state/reducer/profile.reducer';
+import { hireSelector } from '../state/reducer/hire.reducer';
 
 const ActorMypage = () => {
-    const state = useSelector(profileSelector);
+    const profileList = useSelector(profileSelector).profileList;
+    const pageResult = useSelector(hireSelector).pageResult;
+    const pageRequest = useSelector(hireSelector).pageRequest;
+
     return (
         <>
             <PageWrapper>
@@ -25,14 +29,16 @@ const ActorMypage = () => {
                                         </button>
                                     </Link>
                                     <div className="pt-6 row justify-content-center">
-                                        {state.profile !== null ? (
+                                        {profileList !== null ? (
                                             <div className="col-12 col-lg-6">
-                                                <ProfileList />
+                                                <MyProfileList
+                                                    pageResult={pageResult}
+                                                    pageRequest={pageRequest}
+                                                />
                                             </div>
                                         ) : (
                                             <p>프로필없음</p>
                                         )}
-                                        <div className="col-12 col-lg-6"></div>
                                     </div>
                                 </div>
                             </div>

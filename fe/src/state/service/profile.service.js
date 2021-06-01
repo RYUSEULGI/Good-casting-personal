@@ -3,7 +3,6 @@ const { default: axios } = require('axios');
 const SERVER = 'http://localhost:8080';
 
 const profileRegister = (arg) => {
-    console.log('service hireList pageRequest: ' + JSON.stringify(arg));
     return axios({
         url: `${SERVER}/profiles/register`,
         method: 'post',
@@ -27,4 +26,21 @@ const fileRegister = (arg) => {
     });
 };
 
-export default { profileRegister, fileRegister };
+const getMyProfileList = (pageRequest) => {
+    console.log('service hireList pageRequest: ' + JSON.stringify(pageRequest));
+
+    return axios({
+        url: `${SERVER}/profiles/myList`,
+        method: 'post',
+        data: {
+            page: pageRequest.page,
+            size: pageRequest.size,
+            sort: pageRequest.sort,
+        },
+        headers: {
+            Authorization: localStorage.getItem('TOKEN'),
+        },
+    });
+};
+
+export default { profileRegister, fileRegister, getMyProfileList };
