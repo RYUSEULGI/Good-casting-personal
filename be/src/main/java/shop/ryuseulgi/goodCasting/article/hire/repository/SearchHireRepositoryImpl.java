@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import shop.ryuseulgi.goodCasting.article.hire.domain.Hire;
 import shop.ryuseulgi.goodCasting.article.hire.domain.QHire;
+import shop.ryuseulgi.goodCasting.common.domain.PageRequestDTO;
 import shop.ryuseulgi.goodCasting.file.domain.QFileVO;
 import shop.ryuseulgi.goodCasting.user.producer.domain.QProducer;
 
@@ -31,19 +32,19 @@ public class SearchHireRepositoryImpl extends QuerydslRepositorySupport implemen
 
     @Override
     @Transactional
-    public Page<Object[]> searchPage(shop.ryuseulgi.goodCasting.common.domain.PageRequestDTO pageRequest, Pageable pageable) {
+    public Page<Object[]> searchPage(PageRequestDTO pageRequest, Pageable pageable) {
         log.info("----------------------Search Hire Page Enter------------------------------");
 
         String type = pageRequest.getType();
         QHire hire = QHire.hire;
-        QFileVO file = QFileVO.fileVO;
+
         QProducer producer = QProducer.producer;
 
         JPQLQuery<Hire> jpqlQuery = from(hire);
         jpqlQuery.leftJoin(producer).on(hire.producer.eq(producer));
-        jpqlQuery.leftJoin(file).on(file.hire.eq(hire));
 
-        JPQLQuery<Tuple> tuple = jpqlQuery.select(hire, producer, file);
+
+        JPQLQuery<Tuple> tuple = jpqlQuery.select(hire, producer);
 
         BooleanBuilder booleanBuilder = new BooleanBuilder();
         BooleanExpression expression = hire.hireId.gt(0L);
@@ -61,19 +62,19 @@ public class SearchHireRepositoryImpl extends QuerydslRepositorySupport implemen
                 switch (t) {
                     case "g":
                         log.info("search guarantee, type: " + t);
-                        conditionBuilder.and(hire.guarantee.between(pageRequest.getGFrom(), pageRequest.getGto()));
+                        conditionBuilder.and(hire.guarantee.between(pageRequest.getGfrom(), pageRequest.getGto()));
                         break;
                     case "f":
                         log.info("search filming, type: " + t);
-                        conditionBuilder.and(hire.filming.between(pageRequest.getFFrom(), pageRequest.getFto()));
+                        conditionBuilder.and(hire.filming.between(pageRequest.getFfrom(), pageRequest.getFto()));
                         break;
                     case "t":
                         log.info("search title, type: " + t);
-                        conditionBuilder.or(hire.title.contains(pageRequest.getTKeyword()));
+                        conditionBuilder.or(hire.title.contains(pageRequest.getTkeyword()));
                         break;
                     case "p":
                         log.info("search project, type: " + t);
-                        conditionBuilder.or(hire.project.contains(pageRequest.getPKeyword()));
+                        conditionBuilder.or(hire.project.contains(pageRequest.getPkeyword()));
                         break;
                     case "c":
                         log.info("search contents, type: " + t);

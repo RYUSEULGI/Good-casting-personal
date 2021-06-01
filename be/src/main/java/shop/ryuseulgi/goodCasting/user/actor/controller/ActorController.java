@@ -16,26 +16,25 @@ import java.util.List;
 @RequestMapping("/actors")
 public class ActorController {
 
-    private final ActorServiceImpl service;
-    private final ActorRepository repo;
+    private final ActorServiceImpl actorService;
 
     @GetMapping("/list")
     public ResponseEntity<List<Actor>> actorList(){
-        return ResponseEntity.ok(service.findAll());
+        return ResponseEntity.ok(actorService.findAll());
     }
 
     @GetMapping("/myPage/{actorId}")
     public ResponseEntity<ActorDTO> myPage(@PathVariable Long actorId){
-        return ResponseEntity.ok(service.findById(actorId));
+        return ResponseEntity.ok(actorService.findById(actorId));
     }
 
     @PostMapping("/info")
     public ResponseEntity<ActorDTO> moreDetail(@RequestBody ActorDTO actorDTO){
-        return ResponseEntity.ok(service.moreDetail(actorDTO));
+        return ResponseEntity.ok(actorService.moreDetail(actorDTO));
     }
 
-    @DeleteMapping("/delete/{actorId}")
+    @DeleteMapping("/delete")
     public ResponseEntity<Long> delete(@RequestBody ActorDTO actorDTO){
-        return ResponseEntity.ok(service.delete(actorDTO));
+        return ResponseEntity.ok(actorService.delete(actorDTO));
     }
 }

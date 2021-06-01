@@ -98,7 +98,7 @@ public class SecurityProvider implements AuthenticationProvider {
     }
 
     public boolean validateToken(String token) throws Exception {
-        System.out.println("validateToken : 진입");
+        log.info("validateToken : 진입");
         try {
             Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
             log.info(Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token));

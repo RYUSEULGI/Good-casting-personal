@@ -23,7 +23,7 @@ public class HireController {
         return ResponseEntity.ok(1L);
     }
 
-    @GetMapping("/hire-detail/{hireId}")
+    @GetMapping("/detail/{hireId}")
     public ResponseEntity<HireDTO> hireDetail(@PathVariable Long hireId) {
         return ResponseEntity.ok(service.readHire(hireId));
     }
@@ -40,7 +40,7 @@ public class HireController {
         return new ResponseEntity<>(1L, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{hireId}")
+    @DeleteMapping("/delete/{hireId}")
     public ResponseEntity<Long> delete(@PathVariable Long hireId) {
         service.deleteHire(hireId);
         return new ResponseEntity<>(1L, HttpStatus.OK);

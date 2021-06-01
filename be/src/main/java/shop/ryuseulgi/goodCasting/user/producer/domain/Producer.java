@@ -29,10 +29,9 @@ public class Producer extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private UserVO userVO;
+    private UserVO user;
 
     public void changeUserVO(UserVO userVO) {
-        this.userVO = userVO;
+        this.user = userVO;
     }
 }
-

@@ -29,6 +29,8 @@ public class PageResultDTO<D, E> {
     //이전, 다음
     private boolean prev, next;
 
+    private long totalElement;
+
     //페이지 번호  목록
     private List<Integer> pageList;
 
@@ -36,6 +38,7 @@ public class PageResultDTO<D, E> {
         dtoList = result.stream().map(fn).collect(Collectors.toList());
 
         totalPage = result.getTotalPages();
+        totalElement = result.getTotalElements();
 
         makePageList(result.getPageable());
     }
@@ -49,13 +52,9 @@ public class PageResultDTO<D, E> {
         int tempEnd = (int)(Math.ceil(page/10.0)) * 10;
 
         start = tempEnd - 9;
-
         prev = start > 1;
-
         end = totalPage > tempEnd ? tempEnd: totalPage;
-
         next = totalPage > tempEnd;
-
         pageList = IntStream.rangeClosed(start, end).boxed().collect(Collectors.toList());
 
     }

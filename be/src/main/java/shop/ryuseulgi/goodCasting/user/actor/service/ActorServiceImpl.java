@@ -38,7 +38,8 @@ public class ActorServiceImpl implements ActorService {
 
         Optional<Actor> actor = actorRepo.findById(actorId);
 
-        return actor.isPresent()? entity2DtoAll(actor.get()): null;
+        return actor.map(this::entity2DtoAll).orElse(null);
+
     }
 
     @Transactional
@@ -57,9 +58,7 @@ public class ActorServiceImpl implements ActorService {
             log.info("fileList : " + fileList);
 
             List<Long> fileId = new ArrayList<>();
-            fileList.forEach( i -> {
-                fileId.add(i.getFileId());
-            });
+            fileList.forEach( i -> fileId.add(i.getFileId()));
             log.info("fileId : " + fileId);
 
             fileId.forEach( id -> {
@@ -80,11 +79,11 @@ public class ActorServiceImpl implements ActorService {
     @Override
     @Transactional
     public ActorDTO moreDetail(ActorDTO actorDTO) {
+//        String passwordUp =  passwordEncoder.encode(actorDTO.getUser().getPassword());
+//        userRepository.passwordUpdate(actorDTO.getUser().getUserId(), passwordUp);
+
         Actor actor = dto2EntityAll(actorDTO);
-        log.info("actorDTO : " + actorDTO.getMajor());
-        log.info("actor : " + actor.getMajor());
         actorRepo.save(actor);
-        log.info("actor : " + actor.getMajor());
         return null;
     }
 }

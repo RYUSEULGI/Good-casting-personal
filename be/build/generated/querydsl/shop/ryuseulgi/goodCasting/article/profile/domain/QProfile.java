@@ -26,6 +26,8 @@ public class QProfile extends EntityPathBase<Profile> {
 
     public final shop.ryuseulgi.goodCasting.user.actor.domain.QActor actor;
 
+    public final StringPath career = createString("career");
+
     public final NumberPath<Double> confidence = createNumber("confidence", Double.class);
 
     public final StringPath contents = createString("contents");

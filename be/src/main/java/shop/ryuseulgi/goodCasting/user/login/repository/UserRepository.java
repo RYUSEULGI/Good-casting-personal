@@ -22,10 +22,10 @@ public interface UserRepository extends JpaRepository<UserVO, Long> {
     boolean checkAccount(@Param("username") String username);
 
     @Modifying
-    @Query("update UserVO u set u.account = :account where u.id = :user_id")
+    @Query("update UserVO u set u.account = :account where u.userId = :user_id")
     void accountUpdate(@Param("user_id") Long userId, @Param("account") boolean account);
 
     @Modifying
-    @Query("update UserVO u set u.password = :password where u.id = :user_id")
+    @Query("update UserVO u set u.password = :password where u.userId = :user_id")
     void passwordUpdate(@Param("user_id") Long userId, @Param("password") String password);
 }

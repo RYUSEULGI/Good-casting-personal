@@ -13,6 +13,7 @@ public interface HireService {
     Long register(HireDTO hireDTO);
     HireDTO readHire(Long hireId);
     PageResultDTO<HireListDTO, Object[]> getHireList(PageRequestDTO pageRequest);
+
     default Hire dto2Entity(HireDTO dto) {
         return Hire.builder()
                 .hireId(dto.getHireId())
@@ -74,7 +75,7 @@ public interface HireService {
                         .build())
                 .build();
     }
-    default HireListDTO entity2DtoFiles(Hire hire, Producer producer, FileVO file) {
+    default HireListDTO entity2DtoFiles(Hire hire, Producer producer) {
         return HireListDTO.builder()
                 .hireId(hire.getHireId())
                 .cast(hire.getCast())
@@ -83,9 +84,6 @@ public interface HireService {
                 .modDate(hire.getModDate())
                 .regDate(hire.getRegDate())
                 .producerAgency(producer.getAgency())
-//                .fileName(file.getFileName())
-//                .fileUuid(file.getUuid())
                 .build();
-
     }
 }

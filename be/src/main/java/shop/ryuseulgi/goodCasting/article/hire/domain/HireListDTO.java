@@ -21,8 +21,8 @@ public class HireListDTO {
     private Timestamp regDate;
     private Timestamp modDate;
 
-    private String producerAgency;
-
     private String fileName;
     private String fileUuid;
+
+    private String producerAgency;
 }

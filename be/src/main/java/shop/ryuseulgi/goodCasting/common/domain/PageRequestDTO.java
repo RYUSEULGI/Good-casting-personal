@@ -21,27 +21,26 @@ public class PageRequestDTO {
     private String type;
     private String sort;
 
-    private String rKeyword;
-    private Integer hFrom;
+    private String rkeyword;
+    private Integer hfrom;
     private Integer hto;
-    private Integer aFrom;
+    private Integer afrom;
     private Integer ato;
-    private String gKeyword;
-    private Integer wFrom;
+    private String gkeyword;
+    private Integer wfrom;
     private Integer wto;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate fFrom;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate ffrom;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fto;
-
     private String conKeyword;
     private String castKeyword;
-    private Integer gFrom;
+    private Integer gfrom;
     private Integer gto;
-    private String tKeyword;
-    private String pKeyword;
+    private String tkeyword;
+    private String pkeyword;
 
     public PageRequestDTO() {
         this.page = 1;

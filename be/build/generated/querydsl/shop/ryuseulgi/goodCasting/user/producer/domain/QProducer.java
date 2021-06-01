@@ -42,7 +42,7 @@ public class QProducer extends EntityPathBase<Producer> {
     //inherited
     public final DateTimePath<java.sql.Timestamp> regDate = _super.regDate;
 
-    public final shop.ryuseulgi.goodCasting.user.login.domain.QUserVO userVO;
+    public final shop.ryuseulgi.goodCasting.user.login.domain.QUserVO user;
 
     public QProducer(String variable) {
         this(Producer.class, forVariable(variable), INITS);
@@ -62,7 +62,7 @@ public class QProducer extends EntityPathBase<Producer> {
 
     public QProducer(Class<? extends Producer> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.userVO = inits.isInitialized("userVO") ? new shop.ryuseulgi.goodCasting.user.login.domain.QUserVO(forProperty("userVO")) : null;
+        this.user = inits.isInitialized("user") ? new shop.ryuseulgi.goodCasting.user.login.domain.QUserVO(forProperty("user")) : null;
     }
 
 }

@@ -16,7 +16,7 @@ import shop.ryuseulgi.goodCasting.user.producer.service.ProducerServiceImpl;
 import java.util.List;
 import java.util.Optional;
 
-@Log
+@CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/producers")

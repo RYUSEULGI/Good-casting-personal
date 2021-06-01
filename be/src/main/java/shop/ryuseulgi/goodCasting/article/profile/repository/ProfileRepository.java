@@ -11,8 +11,8 @@ import shop.ryuseulgi.goodCasting.article.profile.domain.Profile;
 
 import java.util.List;
 
-public interface ProfileRepository extends JpaRepository<Profile, Long>,
-        SearchProfileRepository {
+public interface ProfileRepository extends JpaRepository<Profile, Long>
+        , SearchProfileRepository {
 
     @Query("select p, p.actor, f from Profile p left join FileVO f on f.profile = p where p.profileId = :profileId")
     List<Object[]> getProfileAndFileAndActorByProfileId(@Param("profileId") Long profileId);

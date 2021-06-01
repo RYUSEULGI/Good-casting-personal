@@ -2,6 +2,7 @@ package shop.ryuseulgi.goodCasting.article.profile.service;
 
 import shop.ryuseulgi.goodCasting.article.profile.domain.Profile;
 import shop.ryuseulgi.goodCasting.article.profile.domain.ProfileDTO;
+import shop.ryuseulgi.goodCasting.article.profile.domain.ProfileListDTO;
 import shop.ryuseulgi.goodCasting.common.domain.PageRequestDTO;
 import shop.ryuseulgi.goodCasting.common.domain.PageResultDTO;
 import shop.ryuseulgi.goodCasting.file.domain.FileVO;
@@ -12,7 +13,7 @@ public interface ProfileService {
     Long register(ProfileDTO profileDTO);
     ProfileDTO readProfile(Long profileId);
 
-    PageResultDTO<ProfileDTO, Object[]> getProfileList(PageRequestDTO requestDTO);
+    PageResultDTO<ProfileListDTO, Object[]> getProfileList(PageRequestDTO requestDTO);
 
     default Profile dto2Entity(ProfileDTO profileDTO) {
         return Profile.builder()
@@ -64,19 +65,17 @@ public interface ProfileService {
                 .build();
     }
 
-    default ProfileDTO entity2DtoFiles(Profile profile, FileVO file, Actor actor) {
-        return ProfileDTO.builder()
+    default ProfileListDTO entity2DtoFiles(Profile profile, Actor actor, FileVO file) {
+        return ProfileListDTO.builder()
                 .profileId(profile.getProfileId())
-                .contents(profile.getContents())
                 .privacy(profile.isPrivacy())
                 .resemble(profile.getResemble())
                 .confidence(profile.getConfidence())
-                .regDate(profile.getRegDate())
                 .modDate(profile.getModDate())
+                .regDate(profile.getRegDate())
+                .actorName(actor.getName())
                 .fileName(file.getFileName())
                 .fileUuid(file.getUuid())
-                .actorName(actor.getName())
-                .actorAge(actor.getAge())
                 .build();
     }
 }

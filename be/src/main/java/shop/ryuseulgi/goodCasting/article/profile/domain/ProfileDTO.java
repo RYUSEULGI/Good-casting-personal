@@ -18,14 +18,14 @@ import java.util.List;
 public class ProfileDTO {
     // pk
     private Long profileId;
+
     private boolean privacy;
     private String contents;
     private String resemble;
     private Double confidence;
     private String actorName;
     private Integer actorAge;
-    private String fileUuid;
-    private String fileName;
+
     private Timestamp regDate;
     private Timestamp modDate;
 

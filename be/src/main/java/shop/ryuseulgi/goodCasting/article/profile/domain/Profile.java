@@ -2,14 +2,11 @@ package shop.ryuseulgi.goodCasting.article.profile.domain;
 
 import lombok.*;
 import shop.ryuseulgi.goodCasting.common.domain.BaseEntity;
-import shop.ryuseulgi.goodCasting.common.domain.HireProfile;
 import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
-@ToString(exclude = {"actor"})
+@ToString(exclude = {"actor", "hires"})
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,7 +21,7 @@ public class Profile extends BaseEntity {
 
     // column
     @Column private boolean privacy;
-    @Column private String contents;
+    @Column(columnDefinition = "TEXT") private String contents;
     @Column private String resemble;
     @Column private Double confidence;
 
@@ -44,5 +41,11 @@ public class Profile extends BaseEntity {
     }
     public void changeConfidence(Double confidence) {
         this.confidence = confidence;
+    }
+
+    //temp
+    @Column(columnDefinition = "TEXT") private String career;
+    public void changeCareer(String career) {
+        this.career = career;
     }
 }

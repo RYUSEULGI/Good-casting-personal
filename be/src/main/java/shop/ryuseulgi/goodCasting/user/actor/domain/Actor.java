@@ -29,7 +29,7 @@ public class Actor extends BaseEntity {
     @Column private Integer height;
     @Column private Integer weight;
     @Column private String agency;
-    @Column private Boolean major;
+    @Column private boolean major;
     @Column private String email;
     @Column private Integer age;
 

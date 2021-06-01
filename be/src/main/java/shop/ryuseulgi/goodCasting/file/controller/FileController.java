@@ -36,8 +36,8 @@ import java.util.UUID;
 
 @Log4j2
 @RestController
-@CrossOrigin("*")
-@RequestMapping("/file")
+@CrossOrigin(origins ="*", allowedHeaders = "*")
+@RequestMapping("/files")
 @RequiredArgsConstructor
 public class FileController {
 
@@ -64,6 +64,8 @@ public class FileController {
 
             String saveName = uploadPath + File.separator + uuid + "_" + fileName;
             Path savePath = Paths.get(saveName);
+
+            log.info("register() - fileName: " + fileName);
 
             try {
                 uploadFile.transferTo(savePath);

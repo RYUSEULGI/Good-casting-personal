@@ -37,7 +37,9 @@ public interface ProducerService {
                 .phone(producerDTO.getPhone())
                 .position(producerDTO.getPosition())
                 .name(producerDTO.getName())
-                .userVO(UserVO.builder().userId(producerDTO.getUser().getUserId()).build())
+                .user(UserVO.builder()
+                        .userId(producerDTO.getUser().getUserId())
+                        .build())
                 .build();
     }
 
@@ -60,7 +62,7 @@ public interface ProducerService {
                 .phone(producer.getPhone())
                 .position(producer.getPosition())
                 .name(producer.getName())
-                .user(UserDTO.builder().userId(producer.getUserVO().getUserId()).build())
+                .user(UserDTO.builder().userId(producer.getUser().getUserId()).build())
                 .build();
     }
 }
