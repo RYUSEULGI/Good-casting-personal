@@ -7,6 +7,7 @@ import {
 
 const CareerList = () => {
     const dispatch = useDispatch();
+
     const state = useSelector(profileSelector);
 
     return (
@@ -23,7 +24,7 @@ const CareerList = () => {
                                 name="careerTypeArr"
                                 value="C"
                             />
-                            <div class="input-group-prepend wp32">
+                            <div className="input-group-prepend wp32">
                                 <input
                                     type="text"
                                     className="form-control"
@@ -60,18 +61,18 @@ const CareerList = () => {
                                 value={career.contents}
                                 readOnly
                             />
+                            <button
+                                onClick={() => {
+                                    dispatch(deleteCareer(career.uuid));
+                                }}
+                                className="btn_input_delete"
+                                type="button"
+                            >
+                                삭제
+                            </button>
                         </div>
                     );
                 })}
-                <button
-                    onClick={() => {
-                        dispatch(deleteCareer(state.careerList.id));
-                    }}
-                    className="btn_input_delete"
-                    type="button"
-                >
-                    삭제
-                </button>
             </div>
         </>
     );

@@ -9,10 +9,22 @@ const profileRegister = (arg) => {
         method: 'post',
         data: arg,
         headers: {
+            // 'Content-Type': 'multipart/form-data',
+            Authorization: localStorage.getItem('TOKEN'),
+        },
+    });
+};
+
+const fileRegister = (arg) => {
+    return axios({
+        url: `${SERVER}/files/register`,
+        method: 'post',
+        data: arg,
+        headers: {
             'Content-Type': 'multipart/form-data',
             Authorization: localStorage.getItem('TOKEN'),
         },
     });
 };
 
-export default { profileRegister };
+export default { profileRegister, fileRegister };

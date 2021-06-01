@@ -4,6 +4,8 @@ import PageWrapper from '../components/PageWrapper';
 import Sidebar from '../components/Sidebar';
 import ProfileList from '../components/Profile/ProfileList';
 
+import '../scss/css/fileUpload.css';
+
 const SearchGrid = () => {
     return (
         <>
@@ -28,7 +30,6 @@ const SearchGrid = () => {
                                                         사진을 업로드해주세요
                                                         <input
                                                             type="file"
-                                                            img
                                                             className="form-control focus-reset pl-13"
                                                             id="keyword"
                                                         />

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { Select } from '../Core';
 import { addCareer } from '../../state/reducer/profile.reducer';
 import { useDispatch } from 'react-redux';
@@ -53,32 +53,32 @@ const ProfileCareer = () => {
     return (
         <>
             <div id="temp_career">
-                <div class="input-group career_item">
+                <div className="input-group career_item">
                     <input type="hidden" name="careerTypeArr" value="C" />
-                    <div class="input-group-prepend wp16">
+                    <div className="select-dropdown">
                         <Select
-                            className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center w-100 "
+                            className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center"
                             boarder={false}
                             options={defaultYear}
                             onChange={handleSelectChagne}
                         />
                     </div>
 
-                    <div class="input-group-prepend wp16">
+                    <div className="select-dropdown">
                         <Select
-                            className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center w-100 "
+                            className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center"
                             boarder={false}
                             options={defaultGerne}
                             onChange={handleSelectChagne}
                         />
                     </div>
 
-                    <div class="input-group-prepend wp32">
+                    <div className="input-group-prepend wp32">
                         <input
                             type="text"
                             maxLength="120"
                             name="title"
-                            class="form-control"
+                            className="form-control"
                             placeholder="작품명 입력"
                             onChange={handleChagne}
                         />
@@ -87,7 +87,7 @@ const ProfileCareer = () => {
                         type="text"
                         maxLength="200"
                         name="contents"
-                        class="form-control careerContent"
+                        className="form-control careerContent"
                         placeholder="주/조연, 배역, 배역 설명 등"
                         onChange={handleChagne}
                     />
@@ -96,7 +96,7 @@ const ProfileCareer = () => {
                         type="button"
                         onClick={() => {
                             dispatch(addCareer(inputs));
-                            setInputs('');
+                            // setInputs('');
                         }}
                     >
                         추가

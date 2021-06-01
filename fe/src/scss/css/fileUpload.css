@@ -1,0 +1,45 @@
+.filebox label {
+    display: inline-block;
+    padding: 0.5em 0.75em;
+    color: #999;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: #fdfdfd;
+    cursor: pointer;
+    border-bottom-color: #e2e2e2;
+    border-radius: 0.25em;
+}
+.filebox input[type='file'] {
+    position: absolute;
+    width: 30px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.pic_basic .btn_custom_file_camera {
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.5) url(../../assets//image/ico_camera.svg)
+        no-repeat 50% 50% / 30px 26px;
+}
+
+.select-dropdown {
+    width: 228px;
+}
+
+.btn-center {
+    margin: 0 auto !important;
+}
+
+.thumnail-size {
+    width: 200px !important;
+    height: 200px !important;
+}

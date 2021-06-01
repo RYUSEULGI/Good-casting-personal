@@ -1,37 +1,76 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import ProfileCareer from '../components/Profile/ProfileCareer';
-import { useDispatch } from 'react-redux';
-import { profileRegister } from '../state/reducer/profile.reducer';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+    fileRegister,
+    profileRegister,
+    profileSelector,
+} from '../state/reducer/profile.reducer';
 import PageWrapper from '../components/PageWrapper';
+import Swal from 'sweetalert2'
 
-import fileUploadImg from '../assets/image/img_default_pic.png';
+import cameraIcon from '../assets/image/ico_camera.svg';
+
+import '../scss/css/fileUpload.css';
+import { actorSelctor } from '../state/reducer/actor.reducer';
+
+const sweetalert = (icon, title, text, footer) => {
+    Swal.fire({
+        icon: icon,
+        title: title,
+        text: text,
+        footer: footer,
+    })
+}
 
 const ProfileRegister = () => {
     const dispatch = useDispatch();
 
+    const profileState = useSelector(profileSelector);
+    const actorState = useSelector(actorSelctor);
+
     const [inputs, setInputs] = useState({});
+    const [image, setImages] = useState(null);
+
+    useEffect(() => {
+        setInputs({
+            ...inputs,
+            actor: actorState.actor,
+            careers: profileState.careerList,
+            files: profileState.fileList,
+        });
+    }, [profileState, actorState]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('프로필등록하기');
-        console.log(inputs);
         dispatch(profileRegister(inputs));
+        Swal.fire({
+            icon: 'success',
+            title: '프로필이 등록되었습니다.',
+        })
     };
 
-    const handleChage = useCallback((e) => {
-        setInputs({
-            ...inputs,
-            [e.target.name]: e.target.value,
-        });
-    });
+    const handleChange = useCallback(
+        (e) => {
+            setInputs({
+                ...inputs,
+                [e.target.name]: e.target.value,
+            });
+        },
+        [inputs]
+    );
 
     const handleSelectedImg = useCallback((e) => {
         e.preventDefault();
 
         const formData = new FormData();
-        formData.append('file', e.target.files[0]);
-        console.log(formData);
-        for (const keyValue of formData) console.log(keyValue);
+
+        const imgFile = e.target.files[0];
+        const imgUrl = URL.createObjectURL(imgFile);
+
+        formData.append('uploadFiles', imgFile);
+        dispatch(fileRegister(formData));
+        setImages(imgUrl);
     });
 
     return (
@@ -62,12 +101,24 @@ const ProfileRegister = () => {
                                                     htmlFor="fileUpload"
                                                     className="mb-0 font-size-4 text-smoke"
                                                 >
-                                                    d
+                                                    {image === null ? (
+                                                        <img
+                                                            className="pic_basic btn_custom_file_camera"
+                                                            src={cameraIcon}
+                                                        />
+                                                    ) : (
+                                                        profileState.fileList.map(
+                                                            (file) => {
+                                                                return (
+                                                                    <img
+                                                                        className="pic_basic btn_custom_file_camera thumnail-size"
+                                                                        src={`http://localhost:8080/files/display?fileName=s_${file.uuid}_${file.fileName}`}
+                                                                    />
+                                                                );
+                                                            }
+                                                        )
+                                                    )}
                                                 </label>
-                                                <img
-                                                    className="file-upload-form"
-                                                    src={fileUploadImg}
-                                                />
                                                 <input
                                                     type="file"
                                                     accept="image/*"
@@ -76,52 +127,68 @@ const ProfileRegister = () => {
                                                     onChange={handleSelectedImg}
                                                 />
                                             </div>
-                                            <p>
-                                                ※ 프로필사진과 동영상을
-                                                업로드해주세요
-                                            </p>
+                                            <p>※ 프로필사진을 등록해주세요</p>
                                         </div>
                                         <form onSubmit={handleSubmit}>
                                             <fieldset>
+                                                <div className="col-md-12">
+                                                    <div className="form-group">
+                                                        <label
+                                                            htmlFor="aboutTextarea"
+                                                            className="d-block text-black-2 font-size-4 font-weight-semibold mb-4"
+                                                        >
+                                                            동영상 등록하기
+                                                        </label>
+                                                        <input
+                                                            type="file"
+                                                            accept="video/mp4, video/x-m4v, video/avi"
+                                                            id="fileUpload"
+                                                            className="sr-only"
+                                                            onChange={
+                                                                handleSelectedImg
+                                                            }
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-12">
+                                                    <div className="form-group">
+                                                        <label
+                                                            htmlFor="aboutTextarea"
+                                                            className="d-block text-black-2 font-size-4 font-weight-semibold mb-4"
+                                                        >
+                                                            경력
+                                                        </label>
+                                                        <ProfileCareer />
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-12">
+                                                    <div className="form-group">
+                                                        <label
+                                                            htmlFor="aboutTextarea"
+                                                            className="d-block text-black-2 font-size-4 font-weight-semibold mb-4"
+                                                        >
+                                                            자기소개
+                                                        </label>
+                                                        <textarea
+                                                            name="contents"
+                                                            id="aboutTextarea"
+                                                            cols="30"
+                                                            rows="7"
+                                                            className="border border-mercury text-gray w-100 pt-4 pl-6"
+                                                            placeholder="간단한 자기소개를 입력해주세요"
+                                                            onChange={
+                                                                handleChange
+                                                            }
+                                                            value={
+                                                                inputs.contents
+                                                            }
+                                                        ></textarea>
+                                                    </div>
+                                                </div>
                                                 <div className="row">
-                                                    <div className="col-md-12">
-                                                        <div className="form-group">
-                                                            <label
-                                                                htmlFor="aboutTextarea"
-                                                                className="d-block text-black-2 font-size-4 font-weight-semibold mb-4"
-                                                            >
-                                                                자기소개
-                                                            </label>
-                                                            <textarea
-                                                                name="textarea"
-                                                                id="aboutTextarea"
-                                                                cols="30"
-                                                                rows="7"
-                                                                className="border border-mercury text-gray w-100 pt-4 pl-6"
-                                                                placeholder="유니크한 자기소개 입력 부탁"
-                                                                onChange={
-                                                                    handleChage
-                                                                }
-                                                                value={
-                                                                    inputs.contents
-                                                                }
-                                                            ></textarea>
-                                                        </div>
-                                                        <div className="form-group">
-                                                            <label
-                                                                htmlFor="aboutTextarea"
-                                                                className="d-block text-black-2 font-size-4 font-weight-semibold mb-4"
-                                                            >
-                                                                경력
-                                                            </label>
-                                                            <ProfileCareer />
-                                                        </div>
-                                                    </div>
-                                                    <div className="row">
-                                                        <button className="btn btn-green btn-h-60 text-white min-width-px-210 rounded-5 text-uppercase">
-                                                            등록하기
-                                                        </button>
-                                                    </div>
+                                                    <button className="btn btn-green btn-h-60 text-white min-width-px-210 rounded-5 text-uppercase btn-center">
+                                                        등록하기
+                                                    </button>
                                                 </div>
                                             </fieldset>
                                         </form>

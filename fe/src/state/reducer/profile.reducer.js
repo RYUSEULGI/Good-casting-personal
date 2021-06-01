@@ -1,26 +1,32 @@
-import { profileService } from '../service/profile.service';
+import profileService from '../service/profile.service';
+import uuid from 'uuid/dist/v4';
 
 const { createSlice, createAsyncThunk } = require('@reduxjs/toolkit');
 
 export const profileRegister = createAsyncThunk(
     'PROFILE_REGISTER',
-    async (arg, state) => {
-        console.log(arg);
-        console.log(state.careerList);
-        const response = await profileService.profileRegister();
+    async (arg) => {
+        const response = await profileService.profileRegister(arg);
         return response.data;
     }
 );
+
+export const fileRegister = createAsyncThunk('FILE_REGISTER', async (arg) => {
+    const response = await profileService.fileRegister(arg);
+    return response.data;
+});
 
 const profileSlice = createSlice({
     name: 'profile',
     initialState: {
         profile: [],
         careerList: [],
+        fileList: [],
     },
     reducers: {
         addCareer(state, { payload }) {
             state.careerList.push({
+                uuid: uuid(),
                 year: payload.year,
                 gerne: payload.gerne,
                 title: payload.title,
@@ -28,23 +34,29 @@ const profileSlice = createSlice({
             });
         },
         deleteCareer(state, { payload }) {
-            console.log('삭제');
-            console.log(payload);
             state.careerList = state.careerList.filter(
-                (career) => career.id !== payload
+                (career) => career.uuid !== payload
             );
-        },
-        setCareer(state, { payload }) {
-            console.log('payload test : ' + JSON.stringify(payload));
-            console.log(payload.title);
-            state.careerList.push();
-            // state.careerList = state.careerList.push({});
         },
     },
     extraReducers: (builder) => {
-        builder.addCase(profileRegister.fulfilled, (state, { payload }) => {
-            console.log(JSON.stringify(payload));
-        });
+        builder
+            .addCase(profileRegister.fulfilled, (state, { payload }) => {
+                console.log(payload);
+            })
+            .addCase(fileRegister.fulfilled, (state, {payload}) => {
+                console.log(payload.first);
+                return {
+                    ...state,
+                    // fileList: [{
+                    //     ...payload,
+                    //     first: !payload.first,
+                    //     photoType: !payload.photoType,
+                    //     }
+                    // ]
+                    fileList: [...payload],
+                };
+            });
     },
 });
 
