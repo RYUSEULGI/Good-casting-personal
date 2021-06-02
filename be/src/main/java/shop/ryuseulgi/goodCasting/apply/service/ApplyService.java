@@ -49,7 +49,6 @@ public interface ApplyService {
                         .build())
                 .profile(ProfileDTO.builder()
                         .profileId(apply.getProfile().getProfileId())
-                        .actorName(apply.getProfile().getActor().getName())
                         .build())
                 .build();
     }

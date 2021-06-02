@@ -12,7 +12,6 @@ public interface ActorService {
     List<Actor> findAll();
     ActorDTO findById(Long actorId);
     Long delete(ActorDTO actorDTO);
-
     ActorDTO moreDetail(ActorDTO actorDTO);
 
     default Actor dto2Entity(ActorDTO actorDTO){
@@ -58,7 +57,7 @@ public interface ActorService {
                 .phone(actor.getPhone())
                 .weight(actor.getWeight())
                 .birthday(actor.getBirthday())
-                .major(actor.isMajor())
+                .major(actor.getMajor())
                 .gender(actor.getGender())
                 .agency(actor.getAgency())
                 .age(actor.getAge())
@@ -74,7 +73,7 @@ public interface ActorService {
                 .phone(actor.getPhone())
                 .weight(actor.getWeight())
                 .birthday(actor.getBirthday())
-                .major(actor.isMajor())
+                .major(actor.getMajor())
                 .gender(actor.getGender())
                 .agency(actor.getAgency())
                 .age(actor.getAge())

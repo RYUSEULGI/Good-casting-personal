@@ -15,34 +15,38 @@ import shop.ryuseulgi.goodCasting.common.domain.PageResultDTO;
 @CrossOrigin("*")
 @RequestMapping("/hires")
 public class HireController {
-    private final HireServiceImpl service;
+    private final HireServiceImpl hireService;
 
     @PostMapping("/register")
     public ResponseEntity<Long> register(@RequestBody HireDTO hireDTO) {
-        service.register(hireDTO);
+        System.out.println("Hire DTO: " + hireDTO);
+        hireService.register(hireDTO);
         return ResponseEntity.ok(1L);
     }
 
     @GetMapping("/detail/{hireId}")
     public ResponseEntity<HireDTO> hireDetail(@PathVariable Long hireId) {
-        return ResponseEntity.ok(service.readHire(hireId));
+        return ResponseEntity.ok(hireService.readHire(hireId));
     }
 
     @PostMapping("/list")
     public ResponseEntity<PageResultDTO<HireListDTO, Object[]>> hireList(@RequestBody PageRequestDTO pageRequest) {
-        return new ResponseEntity<>(service.getHireList(pageRequest), HttpStatus.OK);
+        return new ResponseEntity<>(hireService.getHireList(pageRequest), HttpStatus.OK);
     }
 
     @PutMapping("/update")
     public ResponseEntity<Long> update(@RequestBody HireDTO hireDTO) {
-        service.update(hireDTO);
+        hireService.update(hireDTO);
 
         return new ResponseEntity<>(1L, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{hireId}")
     public ResponseEntity<Long> delete(@PathVariable Long hireId) {
-        service.deleteHire(hireId);
+
+        hireService.deleteHire(hireId);
+
         return new ResponseEntity<>(1L, HttpStatus.OK);
     }
+
 }

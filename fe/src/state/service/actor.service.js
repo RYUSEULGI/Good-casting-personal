@@ -36,4 +36,14 @@ const unRegister = (arg) => {
     });
 };
 
-export default { getActorInfo, updateactorInfo, unRegister };
+const doApply = (arg) => {
+    console.log(arg);
+    return axios({
+        url: `${SERVER}/applies/doApply`,
+        method: 'post',
+        data: arg,
+        headers: { Authorization: localStorage.getItem('TOKEN') },
+    });
+};
+
+export default { getActorInfo, updateactorInfo, unRegister, doApply };

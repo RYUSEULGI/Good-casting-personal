@@ -26,11 +26,11 @@ public class QProfile extends EntityPathBase<Profile> {
 
     public final shop.ryuseulgi.goodCasting.user.actor.domain.QActor actor;
 
-    public final StringPath career = createString("career");
-
     public final NumberPath<Double> confidence = createNumber("confidence", Double.class);
 
     public final StringPath contents = createString("contents");
+
+    public final BooleanPath first = createBoolean("first");
 
     //inherited
     public final DateTimePath<java.sql.Timestamp> modDate = _super.modDate;

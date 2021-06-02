@@ -1,5 +1,6 @@
 package shop.ryuseulgi.goodCasting.article.profile.service;
 
+import shop.ryuseulgi.goodCasting.article.hire.domain.HireListDTO;
 import shop.ryuseulgi.goodCasting.article.profile.domain.Profile;
 import shop.ryuseulgi.goodCasting.article.profile.domain.ProfileDTO;
 import shop.ryuseulgi.goodCasting.article.profile.domain.ProfileListDTO;

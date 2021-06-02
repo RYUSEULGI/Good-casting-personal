@@ -1,19 +1,21 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { navigate } from 'gatsby';
 import ProfileCareer from '../components/Profile/ProfileCareer';
+import FileUpload from '../components/Core/FileUpload';
+import FileUploadMany from '../components/Core/FileUploadMany';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-    fileRegister,
     profileRegister,
     profileSelector,
 } from '../state/reducer/profile.reducer';
+import { actorSelctor } from '../state/reducer/actor.reducer';
+import { fileSelector, setFirstPhotoType } from '../state/reducer/file.reducer';
 import PageWrapper from '../components/PageWrapper';
 import Swal from 'sweetalert2';
-
-import cameraIcon from '../assets/image/ico_camera.svg';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
 
 import '../scss/css/fileUpload.css';
-import { actorSelctor } from '../state/reducer/actor.reducer';
 
 const sweetalert = (icon, title, text, footer) => {
     Swal.fire({
@@ -28,22 +30,31 @@ const ProfileRegister = () => {
     const dispatch = useDispatch();
 
     const profileState = useSelector(profileSelector);
+    const fileState = useSelector(fileSelector);
     const actorState = useSelector(actorSelctor);
 
-    const [inputs, setInputs] = useState({});
     const [image, setImages] = useState(null);
+    const [inputs, setInputs] = useState({
+        privacy: true,
+    });
 
     useEffect(() => {
         setInputs({
             ...inputs,
             actor: actorState.actor,
             careers: profileState.careerList,
-            files: profileState.fileList,
+            files: fileState.fileList,
         });
-    }, [profileState, actorState]);
+
+        if (fileState.fileList.length === 1) {
+            dispatch(setFirstPhotoType(fileState.fileList[0]));
+        }
+    }, [image, profileState, actorState, fileState]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        console.log(inputs);
         dispatch(profileRegister(inputs));
 
         Swal.fire({
@@ -55,26 +66,19 @@ const ProfileRegister = () => {
 
     const handleChange = useCallback(
         (e) => {
+            console.log(e.target.checked);
             setInputs({
                 ...inputs,
+                [e.target.name]: e.target.checked,
                 [e.target.name]: e.target.value,
             });
         },
         [inputs]
     );
 
-    const handleSelectedImg = useCallback((e) => {
-        e.preventDefault();
-
-        const formData = new FormData();
-
-        const imgFile = e.target.files[0];
-        const imgUrl = URL.createObjectURL(imgFile);
-
-        formData.append('uploadFiles', imgFile);
-        dispatch(fileRegister(formData));
-        setImages(imgUrl);
-    });
+    // const handleToggle = () => {
+    //     setInputs({});
+    // };
 
     return (
         <>
@@ -96,62 +100,25 @@ const ProfileRegister = () => {
                                     </h5>
                                     <div className="contact-form bg-white shadow-8 rounded-4 pl-sm-10 pl-4 pr-sm-11 pr-4 pt-15 pb-13">
                                         <div className="upload-file mb-16 text-center">
-                                            <div
-                                                id="userActions"
-                                                className="square-144 m-auto px-6 mb-7"
-                                            >
-                                                <label
-                                                    htmlFor="fileUpload"
-                                                    className="mb-0 font-size-4 text-smoke"
-                                                >
-                                                    {image === null ? (
-                                                        <img
-                                                            className="pic_basic btn_custom_file_camera"
-                                                            src={cameraIcon}
-                                                        />
-                                                    ) : (
-                                                        profileState.fileList.map(
-                                                            (file) => {
-                                                                return (
-                                                                    <img
-                                                                        className="pic_basic btn_custom_file_camera thumnail-size"
-                                                                        src={`http://localhost:8080/files/display?fileName=s_${file.uuid}_${file.fileName}`}
-                                                                    />
-                                                                );
-                                                            }
-                                                        )
-                                                    )}
-                                                </label>
-                                                <input
-                                                    type="file"
-                                                    accept="image/*"
-                                                    id="fileUpload"
-                                                    className="sr-only"
-                                                    onChange={handleSelectedImg}
+                                            <div className="m-auto px-6 mb-7">
+                                                <FileUpload
+                                                    setImages={setImages}
                                                 />
                                             </div>
-                                            <p>※ 프로필사진을 등록해주세요</p>
+                                            <p>※ 프로필 사진을 등록해주세요</p>
                                         </div>
                                         <form onSubmit={handleSubmit}>
                                             <fieldset>
                                                 <div className="col-md-12">
-                                                    <div className="form-group">
-                                                        <label
-                                                            htmlFor="aboutTextarea"
-                                                            className="d-block text-black-2 font-size-4 font-weight-semibold mb-4"
-                                                        >
-                                                            동영상 등록하기
-                                                        </label>
-                                                        <input
-                                                            type="file"
-                                                            accept="video/mp4, video/x-m4v, video/avi"
-                                                            id="fileUpload"
-                                                            className="sr-only"
-                                                            onChange={
-                                                                handleSelectedImg
-                                                            }
-                                                        />
-                                                    </div>
+                                                    <label
+                                                        htmlFor="aboutTextarea"
+                                                        className="d-block text-black-2 font-size-4 font-weight-semibold mb-4"
+                                                    >
+                                                        사진/동영상
+                                                    </label>
+                                                    <FileUploadMany
+                                                        image={image}
+                                                    />
                                                 </div>
                                                 <div className="col-md-12">
                                                     <div className="form-group">
@@ -186,6 +153,30 @@ const ProfileRegister = () => {
                                                                 inputs.contents
                                                             }
                                                         ></textarea>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-12">
+                                                    <div className="form-group">
+                                                        <label
+                                                            htmlFor="aboutTextarea"
+                                                            className="d-block text-black-2 font-size-4 font-weight-semibold mb-4"
+                                                        >
+                                                            공개/비공개 설정
+                                                        </label>
+                                                        <FormControlLabel
+                                                            control={
+                                                                <Switch
+                                                                    checked={
+                                                                        inputs.privacy
+                                                                    }
+                                                                    onChange={
+                                                                        handleChange
+                                                                    }
+                                                                    name="privacy"
+                                                                />
+                                                            }
+                                                            label="공개"
+                                                        />
                                                     </div>
                                                 </div>
                                                 <div className="row">

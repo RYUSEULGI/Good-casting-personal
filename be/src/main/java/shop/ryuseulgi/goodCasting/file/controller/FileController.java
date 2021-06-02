@@ -37,19 +37,20 @@ import java.util.UUID;
 @Log4j2
 @RestController
 @CrossOrigin(origins ="*", allowedHeaders = "*")
-@RequestMapping("/files")
 @RequiredArgsConstructor
+@RequestMapping("/files")
 public class FileController {
-
     private final FileServiceImpl service;
     @Value("${shop.goodcast.upload.path}")
     private String uploadPath;
 
     @PostMapping("/register")
     public ResponseEntity<List<FileDTO>> register(MultipartFile[] uploadFiles) {
+        log.info("----------------------file register()----------------------------------");
         List<FileDTO> resultDTOList = new ArrayList<>();
 
         for (MultipartFile uploadFile : uploadFiles) {
+
             String mimeType = uploadFile.getContentType();
 
             if (!mimeType.startsWith("image") && !mimeType.startsWith("video")) {
@@ -71,11 +72,16 @@ public class FileController {
                 uploadFile.transferTo(savePath);
 
                 if(mimeType.startsWith("image")){
+                    log.info("image thumbnail extract");
+
                     String thumbnailSaveName = uploadPath + File.separator + "s_" + uuid + "_" + fileName;
+
                     File thumbnailFile = new File(thumbnailSaveName);
 
-                    Thumbnailator.createThumbnail(savePath.toFile(), thumbnailFile, 100, 100);
-                }else if(mimeType.startsWith("video")) {
+                    Thumbnailator.createThumbnail(savePath.toFile(), thumbnailFile, 500, 500);
+
+                } else if(mimeType.startsWith("video")) {
+                    log.info("video thumbnail extract");
                     service.extractVideoThumbnail(new File(saveName));
                 }
 
@@ -85,8 +91,7 @@ public class FileController {
                         .build();
 
                 resultDTOList.add(fileDTO);
-            } catch (IOException e) {
-                e.printStackTrace();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -97,16 +102,28 @@ public class FileController {
 
     @GetMapping("/display")
     public ResponseEntity<byte[]> display(String fileName) {
+        System.out.println("fileName: -----------------------------" + fileName);
+
         try {
             String srcFileName =  URLDecoder.decode(fileName,"UTF-8");
+
+            log.info("srcFileName: " + srcFileName);
+
             File file = new File(uploadPath + File.separator + srcFileName);
+
+            log.info("file: " + file);
+
             HttpHeaders header = new HttpHeaders();
 
             //MIME타입 처리
             header.add("Content-Type", Files.probeContentType(file.toPath()));
+
+            System.out.println("header: " + header);
+
             //파일 데이터 처리
             return new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
         } catch(Exception e) {
+            log.error(e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -114,6 +131,7 @@ public class FileController {
     @DeleteMapping("/delete")
     public ResponseEntity<Long> delete(@RequestBody FileDTO fileDTO) {
         service.deleteFile(uploadPath + "\\" + fileDTO.getUuid() + "_" + fileDTO.getFileName());
+
         return ResponseEntity.ok(null);
     }
 }

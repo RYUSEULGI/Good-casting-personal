@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'gatsby';
 import PageWrapper from '../components/PageWrapper';
 
@@ -6,8 +6,18 @@ import imgF1 from '../assets/image/l2/png/featured-job-logo-1.png';
 import iconD from '../assets/image/svg/icon-dolor.svg';
 import iconB from '../assets/image/svg/icon-briefcase.svg';
 import iconL from '../assets/image/svg/icon-location.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { hireDetail, hireSelector } from '../state/reducer/hire.reducer';
 
-const JobDetails = () => {
+const JobDetails = ({ location }) => {
+    const dispatch = useDispatch();
+
+    const hire = useSelector(hireSelector).hireDetail;
+
+    useEffect(() => {
+        dispatch(hireDetail(location.state.id));
+    }, []);
+
     return (
         <>
             <PageWrapper headerConfig={{ button: 'profile' }}>
@@ -48,7 +58,7 @@ const JobDetails = () => {
                                                     {/* <!-- media texts start --> */}
                                                     <div>
                                                         <h3 className="font-size-6 mb-0">
-                                                            Product Designer
+                                                            {hire.project}
                                                         </h3>
                                                         <span className="font-size-3 text-gray line-height-2">
                                                             AirBnb
@@ -62,7 +72,10 @@ const JobDetails = () => {
                                                 {/* <!-- media date start --> */}
                                                 <div className="media justify-content-md-end">
                                                     <p className="font-size-4 text-gray mb-0">
-                                                        19 June 2020
+                                                        {hire.deadline.slice(
+                                                            0,
+                                                            10
+                                                        )}
                                                     </p>
                                                 </div>
                                                 {/* <!-- media date end --> */}
@@ -95,7 +108,8 @@ const JobDetails = () => {
                                                         />
                                                     </div>
                                                     <p className="font-weight-semibold font-size-5 text-black-2 mb-0">
-                                                        80-90K PLN
+                                                        회당 {hire.guarantee}
+                                                        만원
                                                     </p>
                                                 </div>
                                             </div>
@@ -132,77 +146,30 @@ const JobDetails = () => {
                                             <div className="col-md-4 mb-lg-0 mb-10">
                                                 <div className="">
                                                     <span className="font-size-4 d-block mb-4 text-gray">
-                                                        Career Level
+                                                        배역
                                                     </span>
                                                     <h6 className="font-size-5 text-black-2 font-weight-semibold mb-9">
-                                                        Project Manangement
+                                                        {hire.cast}
                                                     </h6>
-                                                </div>
-                                                <div className="tags">
-                                                    <p className="font-size-4 text-gray mb-0">
-                                                        Soft Skill
-                                                    </p>
-                                                    <ul className="list-unstyled mr-n3 mb-0">
-                                                        <li className="d-block font-size-4 text-black-2 mt-2">
-                                                            <span className="d-inline-block mr-2">
-                                                                •
-                                                            </span>
-                                                            Slack
-                                                        </li>
-                                                        <li className="d-block font-size-4 text-black-2 mt-2">
-                                                            <span className="d-inline-block mr-2">
-                                                                •
-                                                            </span>
-                                                            Basic English
-                                                        </li>
-                                                        <li className="d-block font-size-4 text-black-2 mt-2">
-                                                            <span className="d-inline-block mr-2">
-                                                                •
-                                                            </span>
-                                                            Well Organized
-                                                        </li>
-                                                    </ul>
                                                 </div>
                                             </div>
                                             <div className="col-md-4 pr-lg-0 pl-lg-10 mb-lg-0 mb-8">
                                                 <div className="">
                                                     <span className="font-size-4 d-block mb-4 text-gray">
-                                                        Type of corporation
+                                                        촬영일
                                                     </span>
                                                     <h6 className="font-size-5 text-black-2 font-weight-semibold mb-9">
-                                                        B2B &amp; B2C
+                                                        {hire.filming}
                                                     </h6>
-                                                </div>
-                                                <div className="tags">
-                                                    <p className="font-size-4 text-gray mb-3">
-                                                        Technical Skill
-                                                    </p>
-                                                    <ul className="d-flex list-unstyled flex-wrap pr-sm-25 pr-md-0">
-                                                        <li className="bg-regent-opacity-15 mr-3 h-px-33 text-center flex-all-center rounded-3 px-5 font-size-3 text-black-2 mt-2">
-                                                            Editing
-                                                        </li>
-                                                        <li className="bg-regent-opacity-15 mr-3 h-px-33 text-center flex-all-center rounded-3 px-5 font-size-3 text-black-2 mt-2">
-                                                            Wire-framing
-                                                        </li>
-                                                        <li className="bg-regent-opacity-15 mr-md-0 mr-3 h-px-33 text-center flex-all-center rounded-3 px-5 font-size-3 text-black-2 mt-2">
-                                                            XD
-                                                        </li>
-                                                        <li className="bg-regent-opacity-15 mr-3 h-px-33 text-center flex-all-center rounded-3 px-5 font-size-3 text-black-2 mt-2">
-                                                            User Persona
-                                                        </li>
-                                                        <li className="bg-regent-opacity-15 mr-3 h-px-33 text-center flex-all-center rounded-3 px-5 font-size-3 text-black-2 mt-2">
-                                                            Sketch
-                                                        </li>
-                                                    </ul>
                                                 </div>
                                             </div>
                                             <div className="col-md-4 pl-lg-0">
                                                 <div className="">
                                                     <span className="font-size-4 d-block mb-4 text-gray">
-                                                        Company size
+                                                        모집 인원
                                                     </span>
                                                     <h6 className="font-size-5 text-black-2 font-weight-semibold mb-0">
-                                                        11-50 employees
+                                                        {hire.personnel}명
                                                     </h6>
                                                 </div>
                                             </div>
@@ -216,78 +183,26 @@ const JobDetails = () => {
                                                         Job Description
                                                     </p>
                                                     <p className="font-size-4 text-black-2 mb-7">
-                                                        Gubagoo is a fast
-                                                        growing provider of
-                                                        messaging and commerce
-                                                        solutions for automotive
-                                                        dealers changing the
-                                                        future of how people
-                                                        find, buy and service
-                                                        their vehicles.{' '}
+                                                        {hire.contents}
                                                     </p>
                                                 </div>
                                                 <div className="">
                                                     <span className="font-size-4 font-weight-semibold text-black-2 mb-7">
-                                                        Your Role:
+                                                        Producer
                                                     </span>
                                                     <p className="font-size-4 text-black-2 mb-7">
-                                                        We’re looking for a
-                                                        passionate individual to
-                                                        design beautiful and
-                                                        functional products for
-                                                        our customers at
-                                                        Gubagoo. We move very
-                                                        fast and you will be
-                                                        expected to contribute
-                                                        to a cross-functional
-                                                        product development
-                                                        squad, that includes
-                                                        product managers and
-                                                        developers, to deliver
-                                                        the UX and UI for the
-                                                        team to bring to life.{' '}
+                                                        name:{' '}
+                                                        {hire.producer.name}
                                                     </p>
                                                     <p className="font-size-4 text-black-2 mb-7">
-                                                        We are serious about
-                                                        remote work. You can
-                                                        work for from anywhere.{' '}
+                                                        email:{' '}
+                                                        {hire.producer.email}
                                                     </p>
-                                                    <span className="font-size-4 font-weight-semibold text-black-2 mb-7">
-                                                        What you will be doing:
-                                                    </span>
-                                                    <ul className="list-unstyled">
-                                                        <li className="d-block font-size-4 text-black-2 d-flex flex-row mt-2">
-                                                            <span className="d-inline-block mr-7">
-                                                                •
-                                                            </span>
-                                                            Contribute new
-                                                            controls or design
-                                                            improvements to our
-                                                        </li>
-                                                        <li className="d-block font-size-4 text-black-2 d-flex flex-row mt-1">
-                                                            <span className="d-inline-block mr-7">
-                                                                •
-                                                            </span>
-                                                            Take ownership of
-                                                            the successful
-                                                            delivery of features
-                                                        </li>
-                                                        <li className="d-block font-size-4 text-black-2 d-flex flex-row mt-1">
-                                                            <span className="d-inline-block mr-7">
-                                                                •
-                                                            </span>
-                                                            Help set and achieve
-                                                            quarterly goals
-                                                        </li>
-                                                        <li className="d-block font-size-4 text-black-2 d-flex flex-row mt-1">
-                                                            <span className="d-inline-block mr-7">
-                                                                •
-                                                            </span>
-                                                            Ship a TON of
-                                                            product improvements
-                                                            and features
-                                                        </li>
-                                                    </ul>
+                                                    <p className="font-size-4 text-black-2 mb-7">
+                                                        phone:{' '}
+                                                        {hire.producer.phone}
+                                                    </p>
+                                                    <p className="font-size-4 text-black-2 mb-7"></p>
                                                 </div>
                                             </div>
                                         </div>

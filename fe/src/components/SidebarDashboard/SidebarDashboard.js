@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import { Collapse } from 'react-bootstrap';
 import GlobalContext from '../../context/GlobalContext';
 import imgL from '../../assets/image/logo-main-black.png';
-
+import MailOutline from '@material-ui/icons/Eco';
 const Sidebar = () => {
     const gContext = useContext(GlobalContext);
 
@@ -56,6 +56,16 @@ const Sidebar = () => {
                                 <span className="ml-auto px-1 h-1 bg-dodger text-white font-size-3 rounded-5 max-height-px-18 flex-all-center">
                                     14
                                 </span>
+                            </Link>
+                        </li>
+                        <li className="">
+                            <Link
+                                to="/dashboard-contact"
+                                activeClassName="active"
+                                className="px-10 py-1 my-5 font-size-4 font-weight-semibold flex-y-center"
+                            >
+                                <MailOutline />
+                                메시지함
                             </Link>
                         </li>
                         <li className="">

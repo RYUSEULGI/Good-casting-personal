@@ -28,7 +28,7 @@ public class QCareer extends EntityPathBase<Career> {
 
     public final StringPath contents = createString("contents");
 
-    public final StringPath gerne = createString("gerne");
+    public final StringPath genre = createString("genre");
 
     //inherited
     public final DateTimePath<java.sql.Timestamp> modDate = _super.modDate;
