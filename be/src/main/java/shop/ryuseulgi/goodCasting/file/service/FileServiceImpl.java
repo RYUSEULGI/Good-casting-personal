@@ -23,32 +23,37 @@ public class FileServiceImpl implements FileService {
     private final FileRepository fileRepo;
 
     public void extractVideoThumbnail(File file) throws Exception {
-
-        log.info("file : " + file);
-
         SeekableByteChannel byteChannel = NIOUtils.readableFileChannel(file);
-
-        log.info("byteChannel : " + byteChannel);
-
         MP4Demuxer dm = new MP4Demuxer(byteChannel);
         DemuxerTrack vt = dm.getVideoTrack();
 
         String fileName = file.getAbsolutePath();
-        fileName = fileName.substring(0, fileName.lastIndexOf(".")) +".jpg";
+        fileName =fileName.substring(0, fileName.lastIndexOf(".")) +".jpg";
+
+        File imageFile = new File(fileName);
 
         double frameNumber = 0d;
 
         frameNumber = vt.getMeta().getTotalDuration() / 5.0;
+
+        log.info(frameNumber);
+
         Picture frame = FrameGrab.getNativeFrame(file, frameNumber);
+
+        log.info(frame);
+
         BufferedImage img = AWTUtil.toBufferedImage(frame);
 
         File imgFile = new File(fileName);
 
         ImageIO.write(img, "jpg", imgFile);
     }
-    
+
+
+
     public void deleteFile(String fileName) {
         File deleteFile = new File(fileName);
+
         if(deleteFile.exists()) {
             deleteFile.delete();
             System.out.println("파일을 삭제하였습니다.");

@@ -4,15 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import shop.ryuseulgi.goodCasting.article.hire.domain.HireListDTO;
 import shop.ryuseulgi.goodCasting.article.profile.domain.ProfileDTO;
 import shop.ryuseulgi.goodCasting.article.profile.domain.ProfileListDTO;
+import shop.ryuseulgi.goodCasting.article.profile.domain.ProfilePageRequestDTO;
+import shop.ryuseulgi.goodCasting.article.profile.domain.ProfilePageResultDTO;
 import shop.ryuseulgi.goodCasting.article.profile.service.ProfileServiceImpl;
-import shop.ryuseulgi.goodCasting.common.domain.PageRequestDTO;
-import shop.ryuseulgi.goodCasting.common.domain.PageResultDTO;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,6 +16,7 @@ import java.util.List;
 @RequestMapping("/profiles")
 public class ProfileController {
     private final ProfileServiceImpl profileService;
+
 
     @PostMapping("/register")
     public ResponseEntity<Long> register(@RequestBody ProfileDTO profileDTO) {
@@ -35,9 +32,9 @@ public class ProfileController {
         return ResponseEntity.ok(profileService.readProfile(profileId));
     }
 
+
     @PostMapping("/list")
-    public ResponseEntity<PageResultDTO<ProfileListDTO, Object[]>> profileList(@RequestBody PageRequestDTO pageRequest) {
-        System.out.println("--------------------- : "+pageRequest);
+    public ResponseEntity<ProfilePageResultDTO<ProfileListDTO, Object[]>> profileList(@RequestBody ProfilePageRequestDTO pageRequest) {
         return new ResponseEntity<>(profileService.getProfileList(pageRequest), HttpStatus.OK);
     }
 

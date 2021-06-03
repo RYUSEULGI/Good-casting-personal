@@ -1,7 +1,8 @@
-package shop.ryuseulgi.goodCasting.common.domain;
+package shop.ryuseulgi.goodCasting.apply.domain;
 
 import lombok.Data;
 import lombok.ToString;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -12,30 +13,29 @@ import java.util.stream.IntStream;
 
 @ToString
 @Data
-public class PageResultDTO<D, E> {
+public class ApplyPageResultDTO<D, E> {
     private List<D> dtoList;
 
     //총 페이지 번호
     private int totalPage;
-
     //현재 페이지 번호
     private int page;
     //목록 사이즈
     private int size;
-
     //시작 페이지 번호, 끝 페이지 번호
     private int start, end;
-
     //이전, 다음
     private boolean prev, next;
-
     private long totalElement;
+    private ApplyPageRequestDTO pageRequest;
 
     //페이지 번호  목록
     private List<Integer> pageList;
 
-    public PageResultDTO(Page<E> result, Function<E, D> fn) {
+    public ApplyPageResultDTO(Page<E> result, Function<E, D> fn, ApplyPageRequestDTO pageRequest) {
         dtoList = result.stream().map(fn).collect(Collectors.toList());
+
+        this.pageRequest = pageRequest;
 
         totalPage = result.getTotalPages();
         totalElement = result.getTotalElements();
@@ -51,16 +51,10 @@ public class PageResultDTO<D, E> {
         //temp end page
         int tempEnd = (int)(Math.ceil(page/10.0)) * 10;
 
-
         start = tempEnd - 9;
-
         prev = start > 1;
-
         end = totalPage > tempEnd ? tempEnd: totalPage;
-
         next = totalPage > tempEnd;
-
         pageList = IntStream.rangeClosed(start, end).boxed().collect(Collectors.toList());
-
     }
 }

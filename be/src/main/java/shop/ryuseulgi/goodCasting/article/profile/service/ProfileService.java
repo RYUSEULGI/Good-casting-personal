@@ -1,11 +1,6 @@
 package shop.ryuseulgi.goodCasting.article.profile.service;
 
-import shop.ryuseulgi.goodCasting.article.hire.domain.HireListDTO;
-import shop.ryuseulgi.goodCasting.article.profile.domain.Profile;
-import shop.ryuseulgi.goodCasting.article.profile.domain.ProfileDTO;
-import shop.ryuseulgi.goodCasting.article.profile.domain.ProfileListDTO;
-import shop.ryuseulgi.goodCasting.common.domain.PageRequestDTO;
-import shop.ryuseulgi.goodCasting.common.domain.PageResultDTO;
+import shop.ryuseulgi.goodCasting.article.profile.domain.*;
 import shop.ryuseulgi.goodCasting.file.domain.FileVO;
 import shop.ryuseulgi.goodCasting.user.actor.domain.Actor;
 import shop.ryuseulgi.goodCasting.user.actor.domain.ActorDTO;
@@ -14,7 +9,7 @@ public interface ProfileService {
     Long register(ProfileDTO profileDTO);
     ProfileDTO readProfile(Long profileId);
 
-    PageResultDTO<ProfileListDTO, Object[]> getProfileList(PageRequestDTO requestDTO);
+    ProfilePageResultDTO<ProfileListDTO, Object[]> getProfileList(ProfilePageRequestDTO requestDTO);
 
     default Profile dto2Entity(ProfileDTO profileDTO) {
         return Profile.builder()

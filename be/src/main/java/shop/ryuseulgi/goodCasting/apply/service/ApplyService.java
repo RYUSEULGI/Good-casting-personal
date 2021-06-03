@@ -1,7 +1,6 @@
 package shop.ryuseulgi.goodCasting.apply.service;
 
-import shop.ryuseulgi.goodCasting.apply.domain.Apply;
-import shop.ryuseulgi.goodCasting.apply.domain.ApplyDTO;
+import shop.ryuseulgi.goodCasting.apply.domain.*;
 import shop.ryuseulgi.goodCasting.article.hire.domain.Hire;
 import shop.ryuseulgi.goodCasting.article.hire.domain.HireDTO;
 import shop.ryuseulgi.goodCasting.article.profile.domain.Profile;
@@ -12,6 +11,7 @@ import java.util.List;
 public interface ApplyService {
     ApplyDTO apply(ApplyDTO applyDTO);
     List<ApplyDTO> findAllByHireId(Long hireId);
+    ApplyPageResultDTO<ApplyListDTO, Object[]> getApplicantList(ApplyPageRequestDTO pageRequest);
 
     default Apply dto2Entity(ApplyDTO applyDTO){
         return Apply.builder()
@@ -49,6 +49,25 @@ public interface ApplyService {
                         .build())
                 .profile(ProfileDTO.builder()
                         .profileId(apply.getProfile().getProfileId())
+                        .actorName(apply.getProfile().getActor().getName())
+                        .build())
+                .build();
+    }
+
+    default ApplyListDTO entity2DtoAll2(Apply apply) {
+
+        return ApplyListDTO.builder()
+                .applyId(apply.getApplyId())
+                .applyStatus(apply.getApplyStatus())
+                .modDate(apply.getModDate())
+                .hire(HireDTO.builder()
+                        .hireId(apply.getHire().getHireId())
+                        .title(apply.getHire().getTitle())
+                        .build())
+                .profile(ProfileDTO.builder()
+                        .profileId(apply.getProfile().getProfileId())
+                        .confidence(apply.getProfile().getConfidence())
+                        .actorName(apply.getProfile().getActor().getName())
                         .build())
                 .build();
     }

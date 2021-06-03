@@ -4,26 +4,20 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import shop.ryuseulgi.goodCasting.article.hire.domain.Hire;
-import shop.ryuseulgi.goodCasting.article.hire.domain.HireDTO;
-import shop.ryuseulgi.goodCasting.article.hire.domain.HireListDTO;
+import shop.ryuseulgi.goodCasting.article.hire.domain.*;
 import shop.ryuseulgi.goodCasting.article.hire.repository.HireRepository;
-
-import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Function;
-
-import shop.ryuseulgi.goodCasting.common.domain.PageRequestDTO;
-import shop.ryuseulgi.goodCasting.common.domain.PageResultDTO;
-import shop.ryuseulgi.goodCasting.file.domain.FileDTO;
 import shop.ryuseulgi.goodCasting.file.domain.FileVO;
+import shop.ryuseulgi.goodCasting.file.domain.FileDTO;
 import shop.ryuseulgi.goodCasting.file.repository.FileRepository;
 import shop.ryuseulgi.goodCasting.file.service.FileService;
 import shop.ryuseulgi.goodCasting.user.producer.domain.Producer;
 import shop.ryuseulgi.goodCasting.user.producer.domain.ProducerDTO;
 import shop.ryuseulgi.goodCasting.user.producer.service.ProducerService;
+
+import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Function;
 
 @Service
 @RequiredArgsConstructor
@@ -68,14 +62,25 @@ public class HireServiceImpl implements HireService {
     }
 
     @Override
-    public PageResultDTO<HireListDTO, Object[]> getHireList(PageRequestDTO pageRequest) {
-        Page<Object[]> result = hireRepo.searchPage(pageRequest,
-                pageRequest.getPageable(Sort.by(pageRequest.getSort()).descending()));
+    public HirePageResultDTO<HireListDTO, Object[]> getHireList(HirePageRequestDTO pageRequest) {
 
-        Function<Object[], HireListDTO> fn = (entity -> entity2DtoFiles((Hire) entity[0],
-                (Producer) entity[1]));
+        Page<Object[]> result;
+        Function<Object[], HireListDTO> fn;
+        if (pageRequest.getProducerId() == null) {
+            result = hireRepo.searchPage(pageRequest,
+                    pageRequest.getPageable(Sort.by(pageRequest.getSort()).descending()));
 
-        return new PageResultDTO<>(result, fn);
+            fn = (entity -> entity2DtoFiles((Hire) entity[0],
+                    (Producer) entity[1]));
+        } else {
+            result = hireRepo.myHirePage(pageRequest,
+                    pageRequest.getPageable(Sort.by(pageRequest.getSort()).descending()));
+
+            fn = (entity -> entity2DtoMy((Hire) entity[0],
+                    (Producer) entity[1], (FileVO) entity[2]));
+        }
+
+        return new HirePageResultDTO<>(result, fn ,pageRequest);
     }
 
     @Transactional
@@ -93,6 +98,7 @@ public class HireServiceImpl implements HireService {
     @Transactional
     public void deleteHire(Long hireId) {
         fileRepo.deleteByHireId(hireId);
+
         hireRepo.deleteById(hireId);
     }
 

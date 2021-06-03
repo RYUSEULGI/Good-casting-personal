@@ -1,4 +1,4 @@
-package shop.ryuseulgi.goodCasting.common.domain;
+package shop.ryuseulgi.goodCasting.article.profile.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,28 +7,28 @@ import lombok.ToString;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.format.annotation.DateTimeFormat;
 import shop.ryuseulgi.goodCasting.file.domain.FileDTO;
-
-import java.time.LocalDate;
 
 @ToString
 @Builder
 @AllArgsConstructor
 @Data
-public class PageRequestDTO {
+public class ProfilePageRequestDTO {
     private Integer page;
     private Integer size;
-    private String type;
     private String sort;
 
-    private SearchConditionDTO searchCond;
+    private String resembleKey;
+    private Age age;
+    private Height height;
+    private Weight weight;
+    private String genderKey;
 
     private Long actorId;
 
     private FileDTO file;
 
-    public PageRequestDTO() {
+    public ProfilePageRequestDTO() {
         this.page = 1;
         this.size = 10;
     }

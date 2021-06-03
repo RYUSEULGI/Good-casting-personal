@@ -2,26 +2,18 @@ package shop.ryuseulgi.goodCasting.article.profile.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import net.coobird.thumbnailator.Thumbnailator;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import org.springframework.web.multipart.MultipartFile;
-import shop.ryuseulgi.goodCasting.article.profile.domain.Profile;
-import shop.ryuseulgi.goodCasting.article.profile.domain.ProfileDTO;
-import shop.ryuseulgi.goodCasting.article.profile.domain.ProfileListDTO;
+import shop.ryuseulgi.goodCasting.article.profile.domain.*;
 import shop.ryuseulgi.goodCasting.article.profile.repository.ProfileRepository;
-
 import shop.ryuseulgi.goodCasting.career.domain.Career;
 import shop.ryuseulgi.goodCasting.career.domain.CareerDTO;
 import shop.ryuseulgi.goodCasting.career.repository.CareerRepository;
 import shop.ryuseulgi.goodCasting.career.service.CareerService;
-import shop.ryuseulgi.goodCasting.common.domain.PageRequestDTO;
-import shop.ryuseulgi.goodCasting.common.domain.PageResultDTO;
 import shop.ryuseulgi.goodCasting.file.domain.FileDTO;
 import shop.ryuseulgi.goodCasting.file.domain.FileVO;
 import shop.ryuseulgi.goodCasting.file.repository.FileRepository;
@@ -35,12 +27,8 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 import java.util.function.Function;
 
 @Log4j2
@@ -69,18 +57,6 @@ public class ProfileServiceImpl implements ProfileService {
         return saveFile(finalProfileDto, files);
     }
 
-    public Long saveCareer(ProfileDTO profileDTO, List<CareerDTO> careers) {
-        if(careers != null && careers.size() > 0) {
-            careers.forEach(careerDTO -> {
-                careerDTO.setProfile(profileDTO);
-                Career career = careerService.dto2EntityAll(careerDTO);
-                careerRepo.save(career);
-            });
-            return 1L;
-        }
-        return 0L;
-    }
-
     @Transactional
     @Override
     public ProfileDTO readProfile(Long profileId) {
@@ -106,8 +82,8 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public PageResultDTO<ProfileListDTO, Object[]> getProfileList(PageRequestDTO pageRequest) {
-        if (!pageRequest.getFile().getFileName().equals("")) {
+    public ProfilePageResultDTO<ProfileListDTO, Object[]> getProfileList(ProfilePageRequestDTO pageRequest) {
+        if (!(pageRequest.getFile() == null)) {
             log.info("service enter: " + pageRequest);
 
             String fileName = uploadPath + File.separator + "s_"
@@ -116,7 +92,7 @@ public class ProfileServiceImpl implements ProfileService {
 
             String[] arr = extractCelebrity(fileName);
 
-            pageRequest.getSearchCond().setRkeyword(arr[0]);
+            pageRequest.setResembleKey(arr[0]);
 
             log.info("before get page list: " + pageRequest);
         }
@@ -141,7 +117,7 @@ public class ProfileServiceImpl implements ProfileService {
                     (Actor) entity[1], (FileVO) entity[2]));
 
         }
-        return new PageResultDTO<>(result, fn);
+        return new ProfilePageResultDTO<>(result, fn, pageRequest);
     }
 
     @Transactional
@@ -266,6 +242,20 @@ public class ProfileServiceImpl implements ProfileService {
                     profileRepo.updateResembleAndConfidenceByProfileId(
                             profileDTO.getProfileId(), arr[0], Double.parseDouble(arr[1]));
                 }
+            });
+            return 1L;
+        }
+        return 0L;
+    }
+
+
+
+    public Long saveCareer(ProfileDTO profileDTO, List<CareerDTO> careers) {
+        if(careers != null && careers.size() > 0) {
+            careers.forEach(careerDTO -> {
+                careerDTO.setProfile(profileDTO);
+                Career career = careerService.dto2EntityAll(careerDTO);
+                careerRepo.save(career);
             });
             return 1L;
         }

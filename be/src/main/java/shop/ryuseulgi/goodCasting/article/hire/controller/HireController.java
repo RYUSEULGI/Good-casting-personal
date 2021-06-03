@@ -6,20 +6,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import shop.ryuseulgi.goodCasting.article.hire.domain.HireDTO;
 import shop.ryuseulgi.goodCasting.article.hire.domain.HireListDTO;
+import shop.ryuseulgi.goodCasting.article.hire.domain.HirePageRequestDTO;
+import shop.ryuseulgi.goodCasting.article.hire.domain.HirePageResultDTO;
 import shop.ryuseulgi.goodCasting.article.hire.service.HireServiceImpl;
-import shop.ryuseulgi.goodCasting.common.domain.PageRequestDTO;
-import shop.ryuseulgi.goodCasting.common.domain.PageResultDTO;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin("*")
+@CrossOrigin(origins ="*", allowedHeaders = "*")
 @RequestMapping("/hires")
 public class HireController {
     private final HireServiceImpl hireService;
 
     @PostMapping("/register")
     public ResponseEntity<Long> register(@RequestBody HireDTO hireDTO) {
-        System.out.println("Hire DTO: " + hireDTO);
         hireService.register(hireDTO);
         return ResponseEntity.ok(1L);
     }
@@ -30,23 +29,19 @@ public class HireController {
     }
 
     @PostMapping("/list")
-    public ResponseEntity<PageResultDTO<HireListDTO, Object[]>> hireList(@RequestBody PageRequestDTO pageRequest) {
+    public ResponseEntity<HirePageResultDTO<HireListDTO, Object[]>> hireList(@RequestBody HirePageRequestDTO pageRequest) {
         return new ResponseEntity<>(hireService.getHireList(pageRequest), HttpStatus.OK);
     }
 
     @PutMapping("/update")
     public ResponseEntity<Long> update(@RequestBody HireDTO hireDTO) {
         hireService.update(hireDTO);
-
         return new ResponseEntity<>(1L, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{hireId}")
     public ResponseEntity<Long> delete(@PathVariable Long hireId) {
-
         hireService.deleteHire(hireId);
-
         return new ResponseEntity<>(1L, HttpStatus.OK);
     }
-
 }
