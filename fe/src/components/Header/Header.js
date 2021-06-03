@@ -18,6 +18,7 @@ import {
     isUserLoggendIn,
     userSelector,
 } from '../../state/reducer/user.reducer';
+import MessageDropdown from '../Core/MessageDropdown';
 
 const SiteHeader = styled.header`
     .dropdown-toggle::after {
@@ -272,35 +273,39 @@ const Header = () => {
 
                         {userInfo && (
                             <div className="header-btn-devider ml-auto ml-lg-5 pl-2 d-none d-xs-flex align-items-center">
-                                <Dropdown className="show-gr-dropdown py-5">
-                                    <Dropdown.Toggle
-                                        as="a"
-                                        className="proile media ml-7 flex-y-center"
-                                    >
-                                        <Link
-                                            to="/message-box"
-                                            className="px-3 ml-7 font-size-7 notification-block flex-y-center position-relative"
+                                <div>
+                                    <Dropdown className="show-gr-dropdown py-5">
+                                        <Dropdown.Toggle
+                                            as="a"
+                                            className="proile media ml-7 flex-y-center"
                                         >
-                                            <i className="fas fa-bell heading-default-color"></i>
-                                            <span className="font-size-3 count font-weight-semibold text-white bg-primary circle-24 border border-width-3 border border-white">
-                                                3
-                                            </span>
-                                        </Link>
-                                        <i className="fas fa-chevron-down heading-default-color ml-6"></i>
-                                    </Dropdown.Toggle>
-                                    <Dropdown.Menu
-                                        className="gr-menu-dropdown border-0 border-width-2 py-2 w-auto bg-default"
-                                        key="1"
-                                    >
-                                        <Link
-                                            to="/profile-register"
-                                            className="dropdown-item py-2 font-size-3 font-weight-semibold line-height-1p2 text-uppercase"
-                                        >
-                                            프로필 등록
-                                        </Link>
-                                    </Dropdown.Menu>
-                                </Dropdown>
-                                <div></div>
+                                            <div className="px-3 ml-7 font-size-7 notification-block flex-y-center position-relative">
+                                                <Link to="/message-box">
+                                                    <i className="fas fa-bell heading-default-color"></i>
+                                                    <span className="font-size-3 count font-weight-semibold text-white bg-primary circle-24 border border-width-3 border border-white">
+                                                        3
+                                                    </span>
+                                                </Link>
+                                            </div>
+                                            <i className="fas fa-chevron-down heading-default-color ml-6"></i>
+                                        </Dropdown.Toggle>
+                                        {size.width <= 991 ? (
+                                            <Dropdown.Menu
+                                                className="gr-menu-dropdown border-0 border-width-2 py-2 w-auto bg-default"
+                                                key="1"
+                                            >
+                                                <MessageDropdown />
+                                            </Dropdown.Menu>
+                                        ) : (
+                                            <div
+                                                className="dropdown-menu gr-menu-dropdown dropdown-right border-0 border-width-2 py-2 w-auto bg-default"
+                                                key="2"
+                                            >
+                                                <MessageDropdown />
+                                            </div>
+                                        )}
+                                    </Dropdown>
+                                </div>
                                 <div>
                                     <Dropdown className="show-gr-dropdown py-5">
                                         <Dropdown.Toggle

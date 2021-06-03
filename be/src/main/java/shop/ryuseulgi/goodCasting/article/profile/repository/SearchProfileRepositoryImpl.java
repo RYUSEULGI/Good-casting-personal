@@ -49,7 +49,7 @@ public class SearchProfileRepositoryImpl extends QuerydslRepositorySupport imple
 
         BooleanBuilder booleanBuilder = new BooleanBuilder();
         BooleanExpression expression = profile.profileId.gt(0L);
-        BooleanExpression expression1 = profile.first.eq(true);
+        BooleanExpression expression1 = file.first.eq(true);
         BooleanExpression expression2 = profile.privacy.eq(true);
 
         booleanBuilder.and(expression);

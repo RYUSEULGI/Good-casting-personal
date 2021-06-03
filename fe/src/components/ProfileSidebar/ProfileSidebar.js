@@ -11,7 +11,7 @@ const Sidebar = () => {
 
     useEffect(() => {
         dispatch(getActorInfo());
-    }, [dispatch]);
+    }, []);
 
     return (
         <>

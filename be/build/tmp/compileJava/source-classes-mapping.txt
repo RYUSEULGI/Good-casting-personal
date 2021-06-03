@@ -157,8 +157,8 @@ shop/ryuseulgi/goodCasting/user/producer/service/ProducerServiceImpl.java
 shop/ryuseulgi/goodCasting/common/domain/SearchConditionDTO.java
  shop.ryuseulgi.goodCasting.common.domain.SearchConditionDTO
  shop.ryuseulgi.goodCasting.common.domain.SearchConditionDTO$SearchConditionDTOBuilder
-shop/ryuseulgi/goodCasting/article/profile/repository/SearchProfileRepositoryImpl.java
- shop.ryuseulgi.goodCasting.article.profile.repository.SearchProfileRepositoryImpl
+shop/ryuseulgi/goodCasting/article/profile/controller/ProfileController.java
+ shop.ryuseulgi.goodCasting.article.profile.controller.ProfileController
 shop/ryuseulgi/goodCasting/article/profile/repository/ProfileRepository.java
  shop.ryuseulgi.goodCasting.article.profile.repository.ProfileRepository
 shop/ryuseulgi/goodCasting/article/hire/repository/SearchHireRepository.java
@@ -166,12 +166,12 @@ shop/ryuseulgi/goodCasting/article/hire/repository/SearchHireRepository.java
 shop/ryuseulgi/goodCasting/career/domain/CareerDTO.java
  shop.ryuseulgi.goodCasting.career.domain.CareerDTO
  shop.ryuseulgi.goodCasting.career.domain.CareerDTO$CareerDTOBuilder
-shop/ryuseulgi/goodCasting/file/service/FileServiceImpl.java
- shop.ryuseulgi.goodCasting.file.service.FileServiceImpl
+shop/ryuseulgi/goodCasting/apply/service/ApplyService.java
+ shop.ryuseulgi.goodCasting.apply.service.ApplyService
 shop/ryuseulgi/goodCasting/apply/domain/QApply.java
  shop.ryuseulgi.goodCasting.apply.domain.QApply
-shop/ryuseulgi/goodCasting/file/controller/FileController.java
- shop.ryuseulgi.goodCasting.file.controller.FileController
+shop/ryuseulgi/goodCasting/apply/service/ApplyServiceImpl.java
+ shop.ryuseulgi.goodCasting.apply.service.ApplyServiceImpl
 shop/ryuseulgi/goodCasting/article/hire/repository/SearchHireRepositoryImpl.java
  shop.ryuseulgi.goodCasting.article.hire.repository.SearchHireRepositoryImpl
 shop/ryuseulgi/goodCasting/file/domain/QFileVO.java
@@ -198,8 +198,8 @@ shop/ryuseulgi/goodCasting/apply/domain/ApplyDTO.java
 shop/ryuseulgi/goodCasting/file/domain/FileDTO.java
  shop.ryuseulgi.goodCasting.file.domain.FileDTO
  shop.ryuseulgi.goodCasting.file.domain.FileDTO$FileDTOBuilder
-shop/ryuseulgi/goodCasting/article/profile/controller/ProfileController.java
- shop.ryuseulgi.goodCasting.article.profile.controller.ProfileController
+shop/ryuseulgi/goodCasting/file/controller/FileController.java
+ shop.ryuseulgi.goodCasting.file.controller.FileController
 shop/ryuseulgi/goodCasting/career/service/CareerService.java
  shop.ryuseulgi.goodCasting.career.service.CareerService
 shop/ryuseulgi/goodCasting/user/actor/domain/Actor.java
@@ -211,7 +211,7 @@ shop/ryuseulgi/goodCasting/article/profile/service/ProfileServiceImpl.java
  shop.ryuseulgi.goodCasting.article.profile.service.ProfileServiceImpl
 shop/ryuseulgi/goodCasting/apply/controller/ApplyController.java
  shop.ryuseulgi.goodCasting.apply.controller.ApplyController
-shop/ryuseulgi/goodCasting/apply/service/ApplyServiceImpl.java
- shop.ryuseulgi.goodCasting.apply.service.ApplyServiceImpl
-shop/ryuseulgi/goodCasting/apply/service/ApplyService.java
- shop.ryuseulgi.goodCasting.apply.service.ApplyService
+shop/ryuseulgi/goodCasting/file/service/FileServiceImpl.java
+ shop.ryuseulgi.goodCasting.file.service.FileServiceImpl
+shop/ryuseulgi/goodCasting/article/profile/repository/SearchProfileRepositoryImpl.java
+ shop.ryuseulgi.goodCasting.article.profile.repository.SearchProfileRepositoryImpl

@@ -79,9 +79,11 @@ public class FileController {
                     File thumbnailFile = new File(thumbnailSaveName);
 
                     Thumbnailator.createThumbnail(savePath.toFile(), thumbnailFile, 500, 500);
+                    log.info("썸네일 등록완료");
 
                 } else if(mimeType.startsWith("video")) {
                     log.info("video thumbnail extract");
+                    log.info("thumbnailSaveName : " + saveName);
                     service.extractVideoThumbnail(new File(saveName));
                 }
 

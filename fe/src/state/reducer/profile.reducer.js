@@ -1,7 +1,17 @@
 import profileService from '../service/profile.service';
 import uuid from 'uuid/dist/v4';
+import Swal from 'sweetalert2';
 
 const { createSlice, createAsyncThunk } = require('@reduxjs/toolkit');
+
+const sweetalert = (icon, title, text, footer) => {
+    Swal.fire({
+        icon: icon,
+        title: title,
+        text: text,
+        footer: footer,
+    });
+};
 
 export const profileList = createAsyncThunk(
     'PROFILE_LIST',
@@ -10,6 +20,8 @@ export const profileList = createAsyncThunk(
             'reducer profileList() pageRequest: ' + JSON.stringify(pageRequest)
         );
         const response = await profileService.profileList(pageRequest);
+
+        console.log(response.data);
 
         return response.data;
     }
@@ -90,6 +102,17 @@ const profileSlice = createSlice({
             })
             .addCase(profileRegister.fulfilled, (state, { payload }) => {
                 console.log(payload);
+
+                Swal.fire({
+                    icon: 'success',
+                    title: '프로필이 등록되었습니다.',
+                });
+            })
+            .addCase(profileRegister.rejected, (state, { payload }) => {
+                Swal.fire({
+                    icon: 'error',
+                    title: '내용을 모두 입력해주세요',
+                });
             });
     },
 });

@@ -37,7 +37,7 @@ public class ProfileController {
 
     @PostMapping("/list")
     public ResponseEntity<PageResultDTO<ProfileListDTO, Object[]>> profileList(@RequestBody PageRequestDTO pageRequest) {
-
+        System.out.println("--------------------- : "+pageRequest);
         return new ResponseEntity<>(profileService.getProfileList(pageRequest), HttpStatus.OK);
     }
 

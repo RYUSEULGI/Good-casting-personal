@@ -1,6 +1,7 @@
 package shop.ryuseulgi.goodCasting.file.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.jcodec.api.awt.FrameGrab;
 import org.jcodec.common.DemuxerTrack;
 import org.jcodec.common.NIOUtils;
@@ -15,20 +16,25 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+@Log4j2
 @Service
 @RequiredArgsConstructor
 public class FileServiceImpl implements FileService {
     private final FileRepository fileRepo;
 
     public void extractVideoThumbnail(File file) throws Exception {
+
+        log.info("file : " + file);
+
         SeekableByteChannel byteChannel = NIOUtils.readableFileChannel(file);
+
+        log.info("byteChannel : " + byteChannel);
+
         MP4Demuxer dm = new MP4Demuxer(byteChannel);
         DemuxerTrack vt = dm.getVideoTrack();
 
         String fileName = file.getAbsolutePath();
         fileName = fileName.substring(0, fileName.lastIndexOf(".")) +".jpg";
-
-        File imageFile = new File(fileName);
 
         double frameNumber = 0d;
 
@@ -40,9 +46,7 @@ public class FileServiceImpl implements FileService {
 
         ImageIO.write(img, "jpg", imgFile);
     }
-
-
-
+    
     public void deleteFile(String fileName) {
         File deleteFile = new File(fileName);
         if(deleteFile.exists()) {

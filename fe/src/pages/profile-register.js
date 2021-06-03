@@ -11,20 +11,10 @@ import {
 import { actorSelctor } from '../state/reducer/actor.reducer';
 import { fileSelector, setFirst } from '../state/reducer/file.reducer';
 import PageWrapper from '../components/PageWrapper';
-import Swal from 'sweetalert2';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
 import '../scss/css/fileUpload.css';
-
-const sweetalert = (icon, title, text, footer) => {
-    Swal.fire({
-        icon: icon,
-        title: title,
-        text: text,
-        footer: footer,
-    });
-};
 
 const ProfileRegister = () => {
     const dispatch = useDispatch();
@@ -55,10 +45,6 @@ const ProfileRegister = () => {
         e.preventDefault();
         dispatch(profileRegister(inputs));
         setInputs(''); // 초기화
-        Swal.fire({
-            icon: 'success',
-            title: '프로필이 등록되었습니다.',
-        });
         navigate('/actor-mypage');
     };
 
