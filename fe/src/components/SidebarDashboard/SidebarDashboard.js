@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import { Collapse } from 'react-bootstrap';
 import GlobalContext from '../../context/GlobalContext';
 import imgL from '../../assets/image/logo-main-black.png';
-import MailOutline from '@material-ui/icons/Eco';
+import MailOutline from '@material-ui/icons/MailOutline';
 const Sidebar = () => {
     const gContext = useContext(GlobalContext);
 

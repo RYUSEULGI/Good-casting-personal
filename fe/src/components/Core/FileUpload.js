@@ -3,11 +3,12 @@ import { fileRegister, fileSelector } from '../../state/reducer/file.reducer';
 import { useDispatch, useSelector } from 'react-redux';
 
 import cameraIcon from '../../assets/image/ico_camera.svg';
+import AddAPhoto from '@material-ui/icons/AddAPhoto';
 
-const FileUpload = ({ setImages }) => {
+const FileUpload = ({ image, setImages }) => {
     const dispatch = useDispatch();
 
-    const fileState = useSelector(fileSelector);
+    const fileList = useSelector(fileSelector).fileList;
 
     const handleSelectedImg = useCallback((e) => {
         e.preventDefault();
@@ -18,7 +19,6 @@ const FileUpload = ({ setImages }) => {
 
         for (let i = 0; i < imgFile.length; i++) {
             formData.append('uploadFiles', imgFile[i]);
-            console.log(imgFile[i]);
         }
 
         dispatch(fileRegister(formData));
@@ -30,15 +30,15 @@ const FileUpload = ({ setImages }) => {
             <div className="avatar-wrapper">
                 <label
                     htmlFor="fileUpload"
-                    className="mb-0 font-size-4 text-smoke"
+                    // className="mb-0 font-size-4 text-smoke"
                 >
-                    {setImages === null ? (
-                        <img
-                            className="pic_basic btn_custom_file_camera"
-                            src={cameraIcon}
+                    {image === null ? (
+                        <AddAPhoto
+                            className="thumnail-camera-icon"
+                            fontSize="large"
                         />
                     ) : (
-                        fileState.fileList.map((file) => {
+                        fileList.map((file) => {
                             return (
                                 <img
                                     className="pic_basic btn_custom_file_camera thumnail-size"
@@ -47,15 +47,14 @@ const FileUpload = ({ setImages }) => {
                             );
                         })
                     )}
-                    <input
-                        type="file"
-                        accept="image/*"
-                        id="fileUpload"
-                        className="sr-only"
-                        className="file-upload"
-                        onChange={handleSelectedImg}
-                    />
                 </label>
+                <input
+                    type="file"
+                    accept="image/*"
+                    id="fileUpload"
+                    className="sr-only"
+                    onChange={handleSelectedImg}
+                />
             </div>
         </>
     );

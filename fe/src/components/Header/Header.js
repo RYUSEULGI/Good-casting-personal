@@ -270,19 +270,37 @@ const Header = () => {
                             </div>
                         )}
 
-                        {gContext.header.button === 'profile' && (
+                        {userInfo && (
                             <div className="header-btn-devider ml-auto ml-lg-5 pl-2 d-none d-xs-flex align-items-center">
-                                <div>
-                                    <Link
-                                        to="/#"
-                                        className="px-3 ml-7 font-size-7 notification-block flex-y-center position-relative"
+                                <Dropdown className="show-gr-dropdown py-5">
+                                    <Dropdown.Toggle
+                                        as="a"
+                                        className="proile media ml-7 flex-y-center"
                                     >
-                                        <i className="fas fa-bell heading-default-color"></i>
-                                        <span className="font-size-3 count font-weight-semibold text-white bg-primary circle-24 border border-width-3 border border-white">
-                                            3
-                                        </span>
-                                    </Link>
-                                </div>
+                                        <Link
+                                            to="/message-box"
+                                            className="px-3 ml-7 font-size-7 notification-block flex-y-center position-relative"
+                                        >
+                                            <i className="fas fa-bell heading-default-color"></i>
+                                            <span className="font-size-3 count font-weight-semibold text-white bg-primary circle-24 border border-width-3 border border-white">
+                                                3
+                                            </span>
+                                        </Link>
+                                        <i className="fas fa-chevron-down heading-default-color ml-6"></i>
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu
+                                        className="gr-menu-dropdown border-0 border-width-2 py-2 w-auto bg-default"
+                                        key="1"
+                                    >
+                                        <Link
+                                            to="/profile-register"
+                                            className="dropdown-item py-2 font-size-3 font-weight-semibold line-height-1p2 text-uppercase"
+                                        >
+                                            프로필 등록
+                                        </Link>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                                <div></div>
                                 <div>
                                     <Dropdown className="show-gr-dropdown py-5">
                                         <Dropdown.Toggle
@@ -300,22 +318,22 @@ const Header = () => {
                                                 key="1"
                                             >
                                                 <Link
-                                                    to="/#"
+                                                    to="/profile-register"
                                                     className="dropdown-item py-2 font-size-3 font-weight-semibold line-height-1p2 text-uppercase"
                                                 >
-                                                    Settings
+                                                    프로필 등록
                                                 </Link>
                                                 <Link
                                                     to="/#"
                                                     className="dropdown-item py-2 font-size-3 font-weight-semibold line-height-1p2 text-uppercase"
                                                 >
-                                                    Edit Profile
+                                                    지원리스트
                                                 </Link>
                                                 <Link
-                                                    to="/#"
-                                                    className=" dropdown-item py-2 text-red font-size-3 font-weight-semibold line-height-1p2 text-uppercase"
+                                                    to="/actor-mypage"
+                                                    className="dropdown-item py-2 font-size-3 font-weight-semibold line-height-1p2 text-uppercase"
                                                 >
-                                                    Log Out
+                                                    정보수정
                                                 </Link>
                                             </Dropdown.Menu>
                                         ) : (
@@ -324,22 +342,22 @@ const Header = () => {
                                                 key="2"
                                             >
                                                 <Link
-                                                    to="/#"
+                                                    to="/profile-register"
                                                     className="dropdown-item py-2 font-size-3 font-weight-semibold line-height-1p2 text-uppercase"
                                                 >
-                                                    Settings
+                                                    프로필 등록
                                                 </Link>
                                                 <Link
                                                     to="/#"
                                                     className="dropdown-item py-2 font-size-3 font-weight-semibold line-height-1p2 text-uppercase"
                                                 >
-                                                    Edit Profile
+                                                    지원리스트
                                                 </Link>
                                                 <Link
-                                                    to="/#"
-                                                    className=" dropdown-item py-2 text-red font-size-3 font-weight-semibold line-height-1p2 text-uppercase"
+                                                    to="/actor-mypage"
+                                                    className="dropdown-item py-2 font-size-3 font-weight-semibold line-height-1p2 text-uppercase"
                                                 >
-                                                    Log Out
+                                                    정보수정
                                                 </Link>
                                             </div>
                                         )}

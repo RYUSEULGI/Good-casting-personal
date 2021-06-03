@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Select } from '../Core';
 import { addCareer } from '../../state/reducer/profile.reducer';
 import { useDispatch } from 'react-redux';
@@ -21,31 +21,30 @@ const defaultYear = [
     { value: '2011', label: '2011년 이전', name: 'year' },
 ];
 
-const defaultGerne = [
-    { value: '0', label: '작품유형', name: 'gerne' },
-    { value: '드라마', label: '드라마', name: 'gerne' },
-    { value: '영화', label: '영화', name: 'gerne' },
-    { value: '웹드라마', label: '웹드라마', name: 'gerne' },
-    { value: '공연', label: '공연', name: 'gerne' },
+const defaultGenre = [
+    { value: '0', label: '작품유형', name: 'genre' },
+    { value: '드라마', label: '드라마', name: 'genre' },
+    { value: '영화', label: '영화', name: 'genre' },
+    { value: '웹드라마', label: '웹드라마', name: 'genre' },
+    { value: '공연', label: '공연', name: 'genre' },
 ];
 
 const ProfileCareer = () => {
     const dispatch = useDispatch();
 
-    const [inputs, setInputs] = useState({});
+    const [careers, setCareers] = useState({});
 
-    const handleSelectChagne = useCallback((e) => {
-        console.log(e.value);
-        setInputs({
-            ...inputs,
+    const handleSelectChange = useCallback((e) => {
+        setCareers({
+            ...careers,
             [e.name]: e.value,
         });
     });
 
-    const handleChagne = useCallback((e) => {
+    const handleChange = useCallback((e) => {
         e.preventDefault();
-        setInputs({
-            ...inputs,
+        setCareers({
+            ...careers,
             [e.target.name]: e.target.value,
         });
     });
@@ -59,8 +58,9 @@ const ProfileCareer = () => {
                         <Select
                             className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center"
                             boarder={false}
+                            name="year"
                             options={defaultYear}
-                            onChange={handleSelectChagne}
+                            onChange={handleSelectChange}
                         />
                     </div>
 
@@ -68,8 +68,9 @@ const ProfileCareer = () => {
                         <Select
                             className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center"
                             boarder={false}
-                            options={defaultGerne}
-                            onChange={handleSelectChagne}
+                            name="genre"
+                            options={defaultGenre}
+                            onChange={handleSelectChange}
                         />
                     </div>
 
@@ -80,7 +81,8 @@ const ProfileCareer = () => {
                             name="title"
                             className="form-control"
                             placeholder="작품명 입력"
-                            onChange={handleChagne}
+                            value={careers.title}
+                            onChange={handleChange}
                         />
                     </div>
                     <input
@@ -89,14 +91,20 @@ const ProfileCareer = () => {
                         name="contents"
                         className="form-control careerContent"
                         placeholder="주/조연, 배역, 배역 설명 등"
-                        onChange={handleChagne}
+                        value={careers.contents}
+                        onChange={handleChange}
                     />
                     <button
                         className="btn_input_add"
                         type="button"
                         onClick={() => {
-                            dispatch(addCareer(inputs));
-                            // setInputs('');
+                            dispatch(addCareer(careers));
+                            setCareers({
+                                year: '',
+                                genre: '',
+                                title: '',
+                                contents: '',
+                            });
                         }}
                     >
                         추가

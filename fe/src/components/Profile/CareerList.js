@@ -8,12 +8,12 @@ import {
 const CareerList = () => {
     const dispatch = useDispatch();
 
-    const state = useSelector(profileSelector);
+    const careerList = useSelector(profileSelector).careerList;
 
     return (
         <>
             <div id="temp_career career-form">
-                {state.careerList.map((career) => {
+                {careerList.map((career) => {
                     return (
                         <div
                             key={career.id}
@@ -36,7 +36,7 @@ const CareerList = () => {
                                 <input
                                     type="text"
                                     className="form-control"
-                                    value={career.gerne}
+                                    value={career.genre}
                                     readOnly
                                 />
                             </div>

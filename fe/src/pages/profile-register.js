@@ -2,14 +2,14 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { navigate } from 'gatsby';
 import ProfileCareer from '../components/Profile/ProfileCareer';
 import FileUpload from '../components/Core/FileUpload';
-import FileUploadMany from '../components/Core/FileUploadMany';
+import FileUploads from '../components/Core/FileUploads';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     profileRegister,
     profileSelector,
 } from '../state/reducer/profile.reducer';
 import { actorSelctor } from '../state/reducer/actor.reducer';
-import { fileSelector, setFirstPhotoType } from '../state/reducer/file.reducer';
+import { fileSelector, setFirst } from '../state/reducer/file.reducer';
 import PageWrapper from '../components/PageWrapper';
 import Swal from 'sweetalert2';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -30,7 +30,7 @@ const ProfileRegister = () => {
     const dispatch = useDispatch();
 
     const profileState = useSelector(profileSelector);
-    const fileState = useSelector(fileSelector);
+    const fileList = useSelector(fileSelector).fileList;
     const actorState = useSelector(actorSelctor);
 
     const [image, setImages] = useState(null);
@@ -43,20 +43,18 @@ const ProfileRegister = () => {
             ...inputs,
             actor: actorState.actor,
             careers: profileState.careerList,
-            files: fileState.fileList,
+            files: fileList,
         });
 
-        if (fileState.fileList.length === 1) {
-            dispatch(setFirstPhotoType(fileState.fileList[0]));
+        if (fileList.length === 1) {
+            dispatch(setFirst(fileList[0]));
         }
-    }, [image, profileState, actorState, fileState]);
+    }, [image, profileState, actorState, fileList]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        console.log(inputs);
         dispatch(profileRegister(inputs));
-
+        setInputs(''); // 초기화
         Swal.fire({
             icon: 'success',
             title: '프로필이 등록되었습니다.',
@@ -66,19 +64,20 @@ const ProfileRegister = () => {
 
     const handleChange = useCallback(
         (e) => {
-            console.log(e.target.checked);
             setInputs({
                 ...inputs,
-                [e.target.name]: e.target.checked,
                 [e.target.name]: e.target.value,
             });
         },
         [inputs]
     );
 
-    // const handleToggle = () => {
-    //     setInputs({});
-    // };
+    const handleToggle = useCallback((e) => {
+        setInputs({
+            ...inputs,
+            [e.target.name]: e.target.checked,
+        });
+    });
 
     return (
         <>
@@ -103,6 +102,7 @@ const ProfileRegister = () => {
                                             <div className="m-auto px-6 mb-7">
                                                 <FileUpload
                                                     setImages={setImages}
+                                                    image={image}
                                                 />
                                             </div>
                                             <p>※ 프로필 사진을 등록해주세요</p>
@@ -114,9 +114,10 @@ const ProfileRegister = () => {
                                                         htmlFor="aboutTextarea"
                                                         className="d-block text-black-2 font-size-4 font-weight-semibold mb-4"
                                                     >
-                                                        사진/동영상
+                                                        추가 사진 / 연기 동영상
+                                                        업로드
                                                     </label>
-                                                    <FileUploadMany
+                                                    <FileUploads
                                                         image={image}
                                                     />
                                                 </div>
@@ -166,11 +167,12 @@ const ProfileRegister = () => {
                                                         <FormControlLabel
                                                             control={
                                                                 <Switch
+                                                                    color="primary"
                                                                     checked={
                                                                         inputs.privacy
                                                                     }
                                                                     onChange={
-                                                                        handleChange
+                                                                        handleToggle
                                                                     }
                                                                     name="privacy"
                                                                 />

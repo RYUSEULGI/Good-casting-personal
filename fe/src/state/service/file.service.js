@@ -8,7 +8,6 @@ const userInfo =
         : null;
 
 const fileRegister = (formData) => {
-    console.log(formData);
     return axios({
         url: `${SERVER}/files/register`,
         method: 'post',

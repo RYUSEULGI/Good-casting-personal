@@ -67,7 +67,7 @@ const profileSlice = createSlice({
             state.careerList.push({
                 uuid: uuid(),
                 year: payload.year,
-                gerne: payload.gerne,
+                genre: payload.genre,
                 title: payload.title,
                 contents: payload.contents,
             });

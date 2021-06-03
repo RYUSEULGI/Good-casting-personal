@@ -52,12 +52,14 @@
 
 .thumnails-container {
     width: 100%;
+    position: relative;
 }
-.thumnails-delBtn {
+
+.thumnails-container .thumnails-delBtn {
     visibility: hidden;
     position: absolute;
     top: 50%;
-    left: 12%;
+    left: 4%;
 }
 
 .thumnails-size:hover {
@@ -79,7 +81,7 @@
     margin-right: auto;
     padding: 20px;
     box-sizing: border-box;
-    margin-bottom: 20px
+    margin-bottom: 20px;
 }
 
 .avatar-wrapper {
@@ -92,13 +94,32 @@
     box-shadow: 1px 1px 15px -5px black;
     transition: all 0.3s ease;
 }
+
+.thumnail-camera-icon {
+    position: absolute;
+    top: 45%;
+    right: 42%;
+}
+
+.avatar-wrapper .fileUpload-newform {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
 .avatar-wrapper:hover {
     transform: scale(1.05);
     cursor: pointer;
 }
+
 .avatar-wrapper:hover .profile-pic {
     opacity: 0.5;
 }
+
 .avatar-wrapper .profile-pic {
     height: 100%;
     width: 100%;
