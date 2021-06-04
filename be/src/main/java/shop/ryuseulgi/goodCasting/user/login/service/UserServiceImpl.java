@@ -71,33 +71,34 @@ public class UserServiceImpl implements UserService {
     public List<Object> signin(UserDTO userDTO) {
 
         List<Object> infoList = new ArrayList<>();
-        if(userRepo.checkAccount(userDTO.getUsername())){
-            try{
+        if (userRepo.checkAccount(userDTO.getUsername())) {
+            try {
                 UserVO userVO = dto2Entity(userDTO);
 
                 String token = (passwordEncoder.matches(userVO.getPassword(), userRepo.findByUsername(userVO.getUsername()).get().getPassword()))
-                        ?provider.createToken(userVO.getUsername(), userRepo.findByUsername(userVO.getUsername()).get().getRoles())
+                        ? provider.createToken(userVO.getUsername(), userRepo.findByUsername(userVO.getUsername()).get().getRoles())
                         : "Wrong password";
 
                 userDTO.setUserId(userRepo.findByUsername(userVO.getUsername()).get().getUserId());
                 userDTO.setAccount(userRepo.findByUsername(userVO.getUsername()).get().isAccount());
                 userDTO.setPosition(userRepo.findByUsername(userVO.getUsername()).get().isPosition());
-
                 userDTO.setToken(token);
 
                 ActorDTO actorDTO = new ActorDTO();
                 Long actorId = actorRepo.getActorIdFromUserId(userDTO.getUserId());
+                String actorName = actorRepo.getActorNameFromUserId(userDTO.getUserId());
 
                 actorDTO.setActorId(actorId);
+                actorDTO.setName(actorName);
                 infoList.add(userDTO);
                 infoList.add(actorDTO);
 
                 log.info("infoList :" + infoList);
                 return infoList;
-            }catch(Exception e){
+            } catch (Exception e) {
                 throw new SecurityRuntimeException("유효하지 않은 아이디 / 비밀번호", HttpStatus.UNPROCESSABLE_ENTITY);
             }
-        } else{
+        }else{
             throw new SecurityRuntimeException("탈퇴한 회원입니다.", HttpStatus.UNPROCESSABLE_ENTITY);
         }
     }

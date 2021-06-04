@@ -84,6 +84,8 @@ public class ActorServiceImpl implements ActorService {
 
         Actor actor = dto2EntityAll(actorDTO);
         actorRepo.save(actor);
-        return null;
+
+        ActorDTO returnActor = entity2DtoAll(actor);
+        return returnActor;
     }
 }

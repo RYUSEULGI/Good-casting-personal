@@ -1,20 +1,27 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'gatsby';
-import { Collapse } from 'react-bootstrap';
 import GlobalContext from '../../context/GlobalContext';
-import imgL from '../../assets/image/logo-main-black.png';
+import { useDispatch } from 'react-redux';
+import { getProducerInfo } from '../../state/reducer/producer.reducer';
+import { Collapse } from 'react-bootstrap';
 import MailOutline from '@material-ui/icons/MailOutline';
+import Logo from '../Logo';
+
 const Sidebar = () => {
     const gContext = useContext(GlobalContext);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getProducerInfo());
+    }, []);
 
     return (
         <>
             <Collapse in={gContext.showSidebarDashboard}>
                 <div className="dashboard-sidebar-wrapper pt-11" id="sidebar">
-                    <div className="brand-logo px-11">
-                        <Link to="/">
-                            <img src={imgL} alt="" />
-                        </Link>
+                    <div className="brand-logo  px-11">
+                        <Logo white={gContext.header.theme === 'dark'} />
                     </div>
                     <div className="my-15 px-11">
                         <Link

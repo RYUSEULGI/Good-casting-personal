@@ -16,7 +16,6 @@ const getActorInfo = () => {
 };
 
 const updateactorInfo = (arg) => {
-    console.log('service actorInfo arg: ' + JSON.stringify(arg));
     console.log([arg]);
     return axios({
         url: `${SERVER}/actors/info`,

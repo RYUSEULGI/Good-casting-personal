@@ -1,18 +1,17 @@
 import React, { useEffect } from 'react';
 import { Link } from 'gatsby';
 import PageWrapper from '../components/PageWrapper';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { hireDetail, hireSelector } from '../state/reducer/hire.reducer';
 import imgF1 from '../assets/image/l2/png/featured-job-logo-1.png';
 import iconD from '../assets/image/svg/icon-dolor.svg';
 import iconB from '../assets/image/svg/icon-briefcase.svg';
 import iconL from '../assets/image/svg/icon-location.svg';
-import { useDispatch, useSelector } from 'react-redux';
-import { hireDetail, hireSelector } from '../state/reducer/hire.reducer';
 
 const JobDetails = ({ location }) => {
     const dispatch = useDispatch();
 
-    const hire = useSelector(hireSelector).hireDetail;
+    const hire = useSelector(hireSelector).hire;
 
     useEffect(() => {
         dispatch(hireDetail(location.state.id));
@@ -24,7 +23,6 @@ const JobDetails = ({ location }) => {
                 <div className="jobDetails-section bg-default-1 pt-28 pt-lg-27 pb-xl-25 pb-12">
                     <div className="container">
                         <div className="row justify-content-center">
-                            {/* <!-- back Button --> */}
                             <div className="col-xl-10 col-lg-11 mt-4 ml-xxl-32 ml-xl-15 dark-mode-texts">
                                 <div className="mb-9">
                                     <Link
@@ -38,24 +36,18 @@ const JobDetails = ({ location }) => {
                                     </Link>
                                 </div>
                             </div>
-                            {/* <!-- back Button End --> */}
                             <div className="col-xl-9 col-lg-11 mb-8 px-xxl-15 px-xl-0">
                                 <div className="bg-white rounded-4 border border-mercury shadow-9">
-                                    {/* <!-- Single Featured Job --> */}
                                     <div className="pt-9 pl-sm-9 pl-5 pr-sm-9 pr-5 pb-8 border-bottom border-width-1 border-default-color light-mode-texts">
                                         <div className="row">
                                             <div className="col-md-6">
-                                                {/* <!-- media start --> */}
                                                 <div className="media align-items-center">
-                                                    {/* <!-- media logo start --> */}
                                                     <div className="square-72 d-block mr-8">
                                                         <img
                                                             src={imgF1}
                                                             alt=""
                                                         />
                                                     </div>
-                                                    {/* <!-- media logo end --> */}
-                                                    {/* <!-- media texts start --> */}
                                                     <div>
                                                         <h3 className="font-size-6 mb-0">
                                                             {hire.project}
@@ -64,12 +56,9 @@ const JobDetails = ({ location }) => {
                                                             AirBnb
                                                         </span>
                                                     </div>
-                                                    {/* <!-- media texts end --> */}
                                                 </div>
-                                                {/* <!-- media end --> */}
                                             </div>
                                             <div className="col-md-6 text-right pt-7 pt-md-0 mt-md-n1">
-                                                {/* <!-- media date start --> */}
                                                 <div className="media justify-content-md-end">
                                                     <p className="font-size-4 text-gray mb-0">
                                                         {hire.deadline.slice(
@@ -78,12 +67,10 @@ const JobDetails = ({ location }) => {
                                                         )}
                                                     </p>
                                                 </div>
-                                                {/* <!-- media date end --> */}
                                             </div>
                                         </div>
                                         <div className="row pt-9">
                                             <div className="col-12">
-                                                {/* <!-- card-btn-group start --> */}
                                                 <div className="card-btn-group">
                                                     <Link
                                                         to="/#"
@@ -92,11 +79,9 @@ const JobDetails = ({ location }) => {
                                                         Apply to this job
                                                     </Link>
                                                 </div>
-                                                {/* <!-- card-btn-group end --> */}
                                             </div>
                                         </div>
                                     </div>
-                                    {/* <!-- End Single Featured Job --> */}
                                     <div className="job-details-content pt-8 pl-sm-9 pl-6 pr-sm-9 pr-6 pb-10 border-bottom border-width-1 border-default-color light-mode-texts">
                                         <div className="row mb-7">
                                             <div className="col-md-4 mb-md-0 mb-6">

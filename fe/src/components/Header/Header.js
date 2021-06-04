@@ -11,14 +11,18 @@ import NestedMenu from '../NestedMenu';
 import { device } from '../../utils';
 import Logo from '../Logo';
 import { actorMenuItems, menuItems, producerMenuItems } from './menuItems';
+import MessageDropdown from '../Core/MessageDropdown';
 
-import imgP from '../../assets/image/header-profile.png';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     isUserLoggendIn,
     userSelector,
 } from '../../state/reducer/user.reducer';
-import MessageDropdown from '../Core/MessageDropdown';
+import { resetHireSearch } from '../../state/reducer/hire.reducer';
+import { resetProfileSearch } from '../../state/reducer/profile.reducer';
+import { resetFile } from '../../state/reducer/file.reducer';
+
+import imgP from '../../assets/image/header-profile.png';
 
 const SiteHeader = styled.header`
     .dropdown-toggle::after {
@@ -145,25 +149,41 @@ const Header = () => {
                                                               className="nav-item"
                                                               {...rest}
                                                           >
-                                                              {isExternal ? (
-                                                                  <a
-                                                                      className="nav-link"
-                                                                      href={`${name}`}
-                                                                      target="_blank"
-                                                                      rel="noopener noreferrer"
-                                                                  >
-                                                                      {label}
-                                                                  </a>
-                                                              ) : (
-                                                                  <Link
-                                                                      className="nav-link"
-                                                                      to={`/${name}`}
-                                                                      role="button"
-                                                                      aria-expanded="false"
-                                                                  >
-                                                                      {label}
-                                                                  </Link>
-                                                              )}
+                                                              {' '}
+                                                              <Link
+                                                                  onClick={(
+                                                                      e
+                                                                  ) => {
+                                                                      if (
+                                                                          index ===
+                                                                          0
+                                                                      ) {
+                                                                          dispatch(
+                                                                              resetHireSearch()
+                                                                          );
+                                                                      }
+                                                                      if (
+                                                                          index ===
+                                                                          1
+                                                                      ) {
+                                                                          console.log(
+                                                                              'enter?'
+                                                                          );
+                                                                          dispatch(
+                                                                              resetProfileSearch()
+                                                                          );
+                                                                          dispatch(
+                                                                              resetFile()
+                                                                          );
+                                                                      }
+                                                                  }}
+                                                                  className="nav-link"
+                                                                  to={`/${name}`}
+                                                                  role="button"
+                                                                  aria-expanded="false"
+                                                              >
+                                                                  {label}
+                                                              </Link>
                                                           </li>
                                                       </React.Fragment>
                                                   );
@@ -189,25 +209,40 @@ const Header = () => {
                                                               className="nav-item"
                                                               {...rest}
                                                           >
-                                                              {isExternal ? (
-                                                                  <a
-                                                                      className="nav-link"
-                                                                      href={`${name}`}
-                                                                      target="_blank"
-                                                                      rel="noopener noreferrer"
-                                                                  >
-                                                                      {label}
-                                                                  </a>
-                                                              ) : (
-                                                                  <Link
-                                                                      className="nav-link"
-                                                                      to={`/${name}`}
-                                                                      role="button"
-                                                                      aria-expanded="false"
-                                                                  >
-                                                                      {label}
-                                                                  </Link>
-                                                              )}
+                                                              <Link
+                                                                  onClick={(
+                                                                      e
+                                                                  ) => {
+                                                                      if (
+                                                                          index ===
+                                                                          0
+                                                                      ) {
+                                                                          dispatch(
+                                                                              resetHireSearch()
+                                                                          );
+                                                                      }
+                                                                      if (
+                                                                          index ===
+                                                                          1
+                                                                      ) {
+                                                                          console.log(
+                                                                              'enter?'
+                                                                          );
+                                                                          dispatch(
+                                                                              resetProfileSearch()
+                                                                          );
+                                                                          dispatch(
+                                                                              resetFile()
+                                                                          );
+                                                                      }
+                                                                  }}
+                                                                  className="nav-link"
+                                                                  to={`/${name}`}
+                                                                  role="button"
+                                                                  aria-expanded="false"
+                                                              >
+                                                                  {label}
+                                                              </Link>
                                                           </li>
                                                       </React.Fragment>
                                                   );
@@ -232,25 +267,38 @@ const Header = () => {
                                                               className="nav-item"
                                                               {...rest}
                                                           >
-                                                              {isExternal ? (
-                                                                  <a
-                                                                      className="nav-link"
-                                                                      href={`${name}`}
-                                                                      target="_blank"
-                                                                      rel="noopener noreferrer"
-                                                                  >
-                                                                      {label}
-                                                                  </a>
-                                                              ) : (
-                                                                  <Link
-                                                                      className="nav-link"
-                                                                      to={`/${name}`}
-                                                                      role="button"
-                                                                      aria-expanded="false"
-                                                                  >
-                                                                      {label}
-                                                                  </Link>
-                                                              )}
+                                                              <Link
+                                                                  onClick={() => {
+                                                                      if (
+                                                                          index ===
+                                                                          0
+                                                                      ) {
+                                                                          dispatch(
+                                                                              resetHireSearch()
+                                                                          );
+                                                                      }
+                                                                      if (
+                                                                          index ===
+                                                                          1
+                                                                      ) {
+                                                                          console.log(
+                                                                              'enter?'
+                                                                          );
+                                                                          dispatch(
+                                                                              resetProfileSearch()
+                                                                          );
+                                                                          dispatch(
+                                                                              resetFile()
+                                                                          );
+                                                                      }
+                                                                  }}
+                                                                  className="nav-link"
+                                                                  to={`/${name}`}
+                                                                  role="button"
+                                                                  aria-expanded="false"
+                                                              >
+                                                                  {label}
+                                                              </Link>
                                                           </li>
                                                       </React.Fragment>
                                                   );

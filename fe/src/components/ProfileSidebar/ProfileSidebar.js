@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { Link } from 'gatsby';
-
-import imgP from '../../assets/image/l3/png/pro-img.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { actorSelctor, getActorInfo } from '../../state/reducer/actor.reducer';
+import imgP from '../../assets/image/l3/png/pro-img.png';
 
 const Sidebar = () => {
     const dispatch = useDispatch();
+
     const state = useSelector(actorSelctor);
 
     useEffect(() => {

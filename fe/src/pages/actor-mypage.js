@@ -1,16 +1,13 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import { useSelector } from 'react-redux';
 import PageWrapper from '../components/PageWrapper';
-import MyProfileList from '../components/Profile/MyProfileList';
 import ProfileSidebar from '../components/ProfileSidebar';
+import MyProfileList from '../components/Profile/MyprofileList';
+import { useSelector } from 'react-redux';
 import { profileSelector } from '../state/reducer/profile.reducer';
-import { hireSelector } from '../state/reducer/hire.reducer';
 
 const ActorMypage = () => {
-    const profileList = useSelector(profileSelector).profileList;
-    const pageResult = useSelector(hireSelector).pageResult;
-    const pageRequest = useSelector(hireSelector).pageRequest;
+    const state = useSelector(profileSelector);
 
     return (
         <>
@@ -28,14 +25,9 @@ const ActorMypage = () => {
                                             프로필등록하기
                                         </button>
                                     </Link>
-                                    <div className="pt-6 row justify-content-center">
-                                        {profileList !== null ? (
-                                            <div className="col-12 col-lg-6">
-                                                <MyProfileList
-                                                    pageResult={pageResult}
-                                                    pageRequest={pageRequest}
-                                                />
-                                            </div>
+                                    <div className="row justify-content-center">
+                                        {state.profile !== null ? (
+                                            <MyProfileList />
                                         ) : (
                                             <p>프로필없음</p>
                                         )}

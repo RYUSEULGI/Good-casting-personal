@@ -19,17 +19,26 @@ export const fileRegister = createAsyncThunk(
     }
 );
 
-export const fileDelete = createAsyncThunk('FILE_DELETE', async (arg) => {
-    const response = await fileService.fileDelete(arg);
-    return response.data;
-});
+const initialState = {
+    fileList: [
+        {
+            fileName: '',
+            uuid: '',
+        },
+    ],
+    reset: false,
+};
 
 const fileSlice = createSlice({
     name: 'file',
-    initialState: {
-        fileList: [],
-    },
+    initialState: initialState,
     reducers: {
+        resetFile: (state = initialState) => {
+            return {
+                ...initialState,
+                reset: !state.reset,
+            };
+        },
         deleteFile(state, { payload }) {
             state.fileList = state.fileList.filter(
                 (file) => file.uuid !== payload

@@ -1,28 +1,52 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { messageSelector, messageList } from '../state/reducer/message.reducer';
-import MessageActionType from '../utils/MessageActionType';
+import React from 'react';
+import { Select } from '../components/Core';
 import PageWrapper from '../components/PageWrapper';
+import MessageList from '../components/Message/MessageList';
 
 const MessageBox = () => {
-    const dispatch = useDispatch();
-    const msgList = useSelector(messageSelector).messageList;
-
-    useEffect(() => {
-        dispatch(messageList());
-        console.log(msgList);
-
-        console.log(MessageActionType[msgList[0].messageActionType]);
-    }, []);
+    const defaultTypes = [
+        { value: 'all', label: '전체' },
+        { value: 'SUPPORT', label: '지원' },
+        { value: 'PASS', label: '합격' },
+        { value: 'MESSAGE', label: '메시지' },
+        { value: 'CONTACT', label: '연락' },
+    ];
 
     return (
         <>
             <PageWrapper>
-                <ul>
-                    {msgList.map(() => {
-                        return <li>{}</li>;
-                    })}
-                </ul>
+                <div className="bg-default-2 pt-16 pb-12 pt-lg-22 pb-lg-27">
+                    <div className="container">
+                        <div className="row justify-content-center mt-14">
+                            <div className="col-xxl-6 col-xl-7 col-lg-8">
+                                <div className="row mb-11 align-items-center">
+                                    <div className="col-lg-6 mb-lg-0 mb-4">
+                                        <h3 className="font-size-6 mb-0">
+                                            메시지함
+                                        </h3>
+                                    </div>
+                                    <div className="col-lg-6">
+                                        <div className="d-flex flex-wrap align-items-center justify-content-lg-end">
+                                            <p className="font-size-4 mb-0 mr-6 py-2">
+                                                검색 :
+                                            </p>
+                                            <div className="h-px-48">
+                                                <Select
+                                                    options={defaultTypes}
+                                                    className="pl-0 h-100 arrow-3 arrow-3-black min-width-px-273  text-black-2 d-flex align-items-center w-100"
+                                                    border={false}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="bg-white px-9 pt-9 pb-7 shadow-8 rounded-4">
+                                    <MessageList />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </PageWrapper>
         </>
     );

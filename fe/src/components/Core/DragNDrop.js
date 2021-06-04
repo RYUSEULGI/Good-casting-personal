@@ -1,19 +1,11 @@
 import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setType } from '../../state/reducer/hire.reducer';
-import {
-    fileRegister,
-    profileList,
-    profileSelector,
-} from '../../state/reducer/profile.reducer';
+import { fileSelector, fileRegister } from '../../state/reducer/file.reducer';
+import { profileList } from '../../state/reducer/profile.reducer';
 
 const DragNDropComponent = ({ pageRequest }) => {
     const dispatch = useDispatch();
-    const file = useSelector(profileSelector).pageRequest.file;
-
-    console.log(
-        'DragNDropComponent pageRequest: ' + JSON.stringify(pageRequest)
-    );
+    const file = useSelector(fileSelector).fileList;
 
     const uploadAjax = useCallback((e) => {
         console.dir(e.target.files);
@@ -25,29 +17,20 @@ const DragNDropComponent = ({ pageRequest }) => {
             formData.append('uploadFiles', files[i]);
         }
 
-        console.log(formData);
-
         dispatch(fileRegister(formData));
     });
 
     useEffect(() => {
         if (file.fileName) {
-            if (!pageRequest.type.includes('r')) {
-                dispatch(
-                    profileList({
-                        ...pageRequest,
-                        type: pageRequest.type + 'r',
-                    })
-                );
-                dispatch(setType('r'));
-            } else {
-                dispatch(
-                    profileList({
-                        ...pageRequest,
-                        type: pageRequest.type,
-                    })
-                );
-            }
+            dispatch(
+                profileList({
+                    ...pageRequest,
+                    file: {
+                        fileName: file.fileName,
+                        uuid: file.uuid,
+                    },
+                })
+            );
         }
     }, [file]);
 
