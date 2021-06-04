@@ -3,6 +3,8 @@ package shop.ryuseulgi.goodCasting.message.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Service;
+import shop.ryuseulgi.goodCasting.article.profile.domain.ProfileDTO;
+import shop.ryuseulgi.goodCasting.file.domain.FileDTO;
 import shop.ryuseulgi.goodCasting.message.domain.Message;
 import shop.ryuseulgi.goodCasting.message.domain.MessageActionType;
 import shop.ryuseulgi.goodCasting.message.domain.MessageDTO;
@@ -69,5 +71,13 @@ public class MessageServiceImpl implements MessageService{
         });
 
         return messageDTOList;
+    }
+
+    @Transactional
+    public Long update(MessageDTO messageDTO) {
+        Long messageId = messageDTO.getMessageId();
+
+        messageRepo.save(dto2EntityAll(messageDTO));
+        return 1L;
     }
 }

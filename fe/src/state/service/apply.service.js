@@ -7,6 +7,18 @@ const userInfo =
         ? JSON.parse(localStorage.getItem('USER'))
         : null;
 
+const hireApply = (apply) => {
+    console.log('service hireApply : ' + JSON.stringify(apply));
+    return axios({
+        url: `${SERVER}/applies/doApply`,
+        method: 'post',
+        data: apply,
+        headers: {
+            Authorization: localStorage.getItem('TOKEN'),
+        },
+    });
+};
+
 const applicantist = (pageRequest) => {
     console.log(
         'service applicantist pageRequest: ' + JSON.stringify(pageRequest)
@@ -19,4 +31,4 @@ const applicantist = (pageRequest) => {
     });
 };
 
-export default { applicantist };
+export default { applicantist, hireApply };

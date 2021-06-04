@@ -19,11 +19,8 @@ const hireList = (pageRequest) => {
 
 const hireDetail = (id) => {
     return axios({
-        url: `${SERVER}/hires/detail`,
+        url: `${SERVER}/hires/detail/${id}`,
         method: 'get',
-        params: {
-            hireId: id,
-        },
         headers: { Authorization: 'JWT fefege..' },
     });
 };

@@ -3,9 +3,11 @@ package shop.ryuseulgi.goodCasting.message.controller;
 import io.jsonwebtoken.lang.Collections;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
+import shop.ryuseulgi.goodCasting.article.profile.domain.ProfileDTO;
 import shop.ryuseulgi.goodCasting.message.domain.MessageActionType;
 import shop.ryuseulgi.goodCasting.message.domain.MessageDTO;
 import shop.ryuseulgi.goodCasting.message.service.MessageServiceImpl;
@@ -39,6 +41,11 @@ public class MessageController {
     @GetMapping("/list/{actionType}/{receiver}")
     public ResponseEntity<List<MessageDTO>> messageTypeList(@PathVariable MessageActionType actionType, @PathVariable Long receiver){
         return ResponseEntity.ok(service.findByType(actionType));
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<Long> update(@RequestBody MessageDTO messageDTO) {
+        return ResponseEntity.ok(service.update(messageDTO));
     }
 
     @DeleteMapping("/delete/{messageId}")

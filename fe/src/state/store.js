@@ -5,6 +5,7 @@ import profileReducer from './reducer/profile.reducer';
 import producerReducer from './reducer/producer.reducer.js';
 import fileReducer from './reducer/file.reducer.js';
 import messageReducer from './reducer/message.reducer.js';
+import applyReducer from './reducer/apply.reducer.js';
 
 const { configureStore, getDefaultMiddleware } = require('@reduxjs/toolkit');
 const { combineReducers } = require('redux');
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
     producerReducer,
     fileReducer,
     messageReducer,
+    applyReducer,
 });
 const store = configureStore({
     reducer: rootReducer,

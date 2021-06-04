@@ -98,7 +98,6 @@ public class HireServiceImpl implements HireService {
     @Transactional
     public void deleteHire(Long hireId) {
         fileRepo.deleteByHireId(hireId);
-
         hireRepo.deleteById(hireId);
     }
 

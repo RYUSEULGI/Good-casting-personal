@@ -15,6 +15,7 @@ import shop.ryuseulgi.goodCasting.user.login.domain.UserDTO;
 import shop.ryuseulgi.goodCasting.user.login.domain.UserVO;
 import shop.ryuseulgi.goodCasting.user.login.repository.UserRepository;
 import shop.ryuseulgi.goodCasting.user.producer.domain.Producer;
+import shop.ryuseulgi.goodCasting.user.producer.domain.ProducerDTO;
 import shop.ryuseulgi.goodCasting.user.producer.repository.ProducerRepository;
 
 import java.util.ArrayList;
@@ -83,15 +84,24 @@ public class UserServiceImpl implements UserService {
                 userDTO.setAccount(userRepo.findByUsername(userVO.getUsername()).get().isAccount());
                 userDTO.setPosition(userRepo.findByUsername(userVO.getUsername()).get().isPosition());
                 userDTO.setToken(token);
-
-                ActorDTO actorDTO = new ActorDTO();
-                Long actorId = actorRepo.getActorIdFromUserId(userDTO.getUserId());
-                String actorName = actorRepo.getActorNameFromUserId(userDTO.getUserId());
-
-                actorDTO.setActorId(actorId);
-                actorDTO.setName(actorName);
                 infoList.add(userDTO);
-                infoList.add(actorDTO);
+
+                if(userDTO.isPosition()){
+                    ActorDTO actorDTO = new ActorDTO();
+                    Long actorId = actorRepo.getActorIdFromUserId(userDTO.getUserId());
+                    String actorName = actorRepo.getActorNameFromUserId(userDTO.getUserId());
+
+                    actorDTO.setActorId(actorId);
+                    actorDTO.setName(actorName);
+                    infoList.add(actorDTO);
+                } else {
+                    ProducerDTO producerDTO = new ProducerDTO();
+
+                    Long producerId =producerRepo.getProducerIdFromUserId(userDTO.getUserId());
+
+                    producerDTO.setProducerId(producerId);
+                    infoList.add(producerDTO);
+                }
 
                 log.info("infoList :" + infoList);
                 return infoList;

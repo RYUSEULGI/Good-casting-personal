@@ -19,26 +19,19 @@ export const fileRegister = createAsyncThunk(
     }
 );
 
-const initialState = {
-    fileList: [
-        {
-            fileName: '',
-            uuid: '',
-        },
-    ],
-    reset: false,
-};
-
 const fileSlice = createSlice({
     name: 'file',
-    initialState: initialState,
+    initialState: {
+        fileList: [],
+        reset: false,
+    },
     reducers: {
-        resetFile: (state = initialState) => {
-            return {
-                ...initialState,
-                reset: !state.reset,
-            };
-        },
+        // resetFile: (state = initialState) => {
+        //     return {
+        //         ...initialState,
+        //         reset: !state.reset,
+        //     };
+        // },
         deleteFile(state, { payload }) {
             state.fileList = state.fileList.filter(
                 (file) => file.uuid !== payload

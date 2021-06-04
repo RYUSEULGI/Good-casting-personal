@@ -14,6 +14,12 @@ export const applicantList = createAsyncThunk(
     }
 );
 
+export const hireApply = createAsyncThunk('HIRE_APPLY', async (apply) => {
+    console.log('createAsyncThunk enter : ' + JSON.stringify(apply));
+    const response = await applyService.hireApply(apply);
+    return response.data;
+});
+
 const applySlice = createSlice({
     name: 'apply',
     initialState: {
@@ -48,13 +54,17 @@ const applySlice = createSlice({
     },
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(applicantList.fulfilled, (state, { payload }) => {
-            console.log(JSON.stringify(payload));
-            return {
-                ...state,
-                pageResult: { ...payload },
-            };
-        });
+        builder
+            .addCase(hireApply.fulfilled, (state, { payload }) => {
+                console.log('payload : ' + JSON.stringify(payload));
+            })
+            .addCase(applicantList.fulfilled, (state, { payload }) => {
+                console.log(JSON.stringify(payload));
+                return {
+                    ...state,
+                    pageResult: { ...payload },
+                };
+            });
     },
 });
 

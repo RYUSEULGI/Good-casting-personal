@@ -15,4 +15,21 @@ const messageList = () => {
     });
 };
 
-export default { messageList };
+const deleteMessage = (arg) => {
+    return axios({
+        url: `${SERVER}/messages/delete/${arg}`,
+        method: 'delete',
+        headers: { Authorization: localStorage.getItem('TOKEN') },
+    });
+};
+
+const readMessage = (arg) => {
+    return axios({
+        url: `${SERVER}/messages/update`,
+        method: 'put',
+        data: arg,
+        headers: { Authorization: localStorage.getItem('TOKEN') },
+    });
+};
+
+export default { messageList, deleteMessage, readMessage };
