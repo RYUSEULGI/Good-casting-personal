@@ -11,7 +11,7 @@ import {
 } from '../../state/reducer/message.reducer';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
-const MessageList = () => {
+const MessageList = ({ select }) => {
     const dispatch = useDispatch();
 
     const msgList = useSelector(messageSelector).messageList;
@@ -19,28 +19,23 @@ const MessageList = () => {
     const [update, setUpdate] = useState({});
 
     useEffect(() => {
-        dispatch(messageList());
-
-        console.log(msgList);
-
-        console.log(update);
         dispatch(updateMessage(update));
     }, [update]);
+
+    useEffect(() => {
+        dispatch(messageList());
+    }, []);
 
     const handleClick = (e) => {
         e.preventDefault();
 
-        // const message = msgList.find((msg) => msg.messageId);
-
         const message = msgList.find((msg) => msg);
-        console.log(message);
-
         dispatch(readMessage(message.messageId));
-
-        console.log(message.messageId);
-
-        setUpdate(message.messageId);
+        setUpdate(message);
     };
+
+    console.log(msgList);
+    console.log(select);
 
     return (
         <>

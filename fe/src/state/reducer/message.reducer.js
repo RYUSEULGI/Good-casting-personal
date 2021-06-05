@@ -14,7 +14,7 @@ export const deleteMessage = createAsyncThunk('DELETE_MESSAGE', async (arg) => {
 
 export const updateMessage = createAsyncThunk('READ_MESSAGE', async (arg) => {
     console.log(arg);
-    arg.readMessage = !arg.readMessage;
+    
     console.log(arg.readMessage);
 
     const response = await messageService.readMessage(arg);

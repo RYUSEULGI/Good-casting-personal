@@ -12,7 +12,6 @@ import '../scss/css/fileUpload.css';
 const HireRegister = () => {
     const dispatch = useDispatch();
 
-    const producerState = useSelector(producerSelector);
     const fileState = useSelector(fileSelector);
 
     const { producerId } = JSON.parse(localStorage.getItem('USER'))[1];

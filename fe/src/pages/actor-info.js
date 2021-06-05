@@ -8,7 +8,6 @@ import {
     updateActorInfo,
     unRegister,
 } from '../state/reducer/actor.reducer';
-
 import '../scss/css/actorInfo.css';
 
 const defaultTypes = [
@@ -319,7 +318,7 @@ const ActorInfo = () => {
                                                 </div>
                                                 <div className="row">
                                                     <div className="col-md-12">
-                                                        <button className="btn btn-green btn-h-60 text-white min-width-px-210 rounded-5 text-uppercase btn-center">
+                                                        <button className="btn btn-green btn-h-60 text-white min-width-px-210 rounded-5 text-uppercase">
                                                             등록하기
                                                         </button>
                                                     </div>

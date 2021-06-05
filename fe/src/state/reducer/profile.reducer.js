@@ -4,15 +4,6 @@ import Swal from 'sweetalert2';
 
 const { createSlice, createAsyncThunk } = require('@reduxjs/toolkit');
 
-const sweetalert = (icon, title, text, footer) => {
-    Swal.fire({
-        icon: icon,
-        title: title,
-        text: text,
-        footer: footer,
-    });
-};
-
 export const profileList = createAsyncThunk(
     'PROFILE_LIST',
     async (pageRequest) => {
@@ -46,10 +37,16 @@ export const myProfileList = createAsyncThunk(
 export const profileRegister = createAsyncThunk(
     'PROFILE_REGISTER',
     async (arg) => {
+        console.log(arg);
         const response = await profileService.profileRegister(arg);
         return response.data;
     }
 );
+
+export const profileDetail = createAsyncThunk('PROFILE_DETAIL', async (id) => {
+    const response = await profileService.profileDetail(id);
+    return response.data;
+});
 
 const initialState = {
     profileList: [],
@@ -113,8 +110,6 @@ const profileSlice = createSlice({
                 };
             })
             .addCase(profileRegister.fulfilled, (state, { payload }) => {
-                console.log(payload);
-
                 Swal.fire({
                     icon: 'success',
                     title: '프로필이 등록되었습니다.',

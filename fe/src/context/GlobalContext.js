@@ -5,6 +5,7 @@ const GlobalContext = React.createContext();
 const GlobalProvider = ({ children }) => {
     const [themeDark, setThemeDark] = useState(false);
     const [showSidebarDashboard, setShowSidebarDashboard] = useState(true);
+    const [showSidebarActor, setShowSidebarActor] = useState(true);
     const [applicationModalVisible, setApplicationModalVisible] = useState(
         false
     );
@@ -35,6 +36,10 @@ const GlobalProvider = ({ children }) => {
         setShowSidebarDashboard(!showSidebarDashboard);
     };
 
+    const toggleShowSidebarActor = () => {
+        setShowSidebarActor(!showSidebarActor);
+    };
+
     const toggleVideoModal = () => {
         setVideoModalVisible(!videoModalVisible);
     };
@@ -62,6 +67,8 @@ const GlobalProvider = ({ children }) => {
     return (
         <GlobalContext.Provider
             value={{
+                showSidebarActor,
+                toggleShowSidebarActor,
                 themeDark,
                 toggleTheme,
                 showSidebarDashboard,

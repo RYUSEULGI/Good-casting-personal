@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "author": "grayic",
   "dependencies": {
+    "@atlaskit/select": "^14.0.0",
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.58",

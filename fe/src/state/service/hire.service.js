@@ -25,4 +25,12 @@ const hireDetail = (id) => {
     });
 };
 
-export default { hireList, hireDetail };
+const hireRegister = (id) => {
+    return axios({
+        url: `${SERVER}/hires/detail/${id}`,
+        method: 'get',
+        headers: { Authorization: 'JWT fefege..' },
+    });
+};
+
+export default { hireList, hireDetail, hireRegister };

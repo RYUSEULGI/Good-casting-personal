@@ -19,6 +19,11 @@ export const fileRegister = createAsyncThunk(
     }
 );
 
+const initialState = {
+    fileList: [],
+    reset: false,
+};
+
 const fileSlice = createSlice({
     name: 'file',
     initialState: {
@@ -55,6 +60,6 @@ const fileSlice = createSlice({
 });
 
 export const fileSelector = (state) => state.fileReducer;
-export const { deleteFile, setFirst } = fileSlice.actions;
+export const { deleteFile, setFirst, resetFile } = fileSlice.actions;
 
 export default fileSlice.reducer;

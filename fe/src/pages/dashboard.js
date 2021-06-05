@@ -130,7 +130,9 @@ const DashboardMain = () => {
                     </div>
                 </div>
                 <DashboardApplicants />
-                <DashboardHireList />
+                <div className="dashboard-main-container mt-25 mt-lg-31">
+                    <DashboardHireList />
+                </div>
             </PageWrapper>
         </>
     );
