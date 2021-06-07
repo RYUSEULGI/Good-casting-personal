@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react';
-import { Link } from 'gatsby';
+import { Link, navigate } from 'gatsby';
 import { Select } from '../Core';
 import { useSelector, useDispatch } from 'react-redux';
-import { hireSelector, myHireList } from '../../state/reducer/hire.reducer';
+import { hireSelector, myHireList, hireDelete } from '../../state/reducer/hire.reducer';
 import PageListComponent from '../Core/PageList';
 
 const defaultJobs = [
@@ -18,10 +18,7 @@ const DashboardHireList = () => {
     const pageRequest = useSelector(hireSelector).pageRequest;
     const pageResult = useSelector(hireSelector).pageResult;
 
-    const userInfo =
-        typeof window !== `undefined`
-            ? JSON.parse(localStorage.getItem('USER'))
-            : null;
+    const userInfo = typeof window !== `undefined` ? JSON.parse(localStorage.getItem('USER')) : null;
 
     useEffect(() => {
         console.log('myHireList pageRequest: ' + JSON.stringify(pageRequest));
@@ -32,6 +29,7 @@ const DashboardHireList = () => {
             })
         );
     }, []);
+
     return (
         <>
             <div className="container">
@@ -42,15 +40,9 @@ const DashboardHireList = () => {
                         </div>
                         <div className="col-lg-6">
                             <div className="d-flex flex-wrap align-items-center justify-content-lg-end">
-                                <p className="font-size-4 mb-0 mr-6 py-2">
-                                    검색 :
-                                </p>
+                                <p className="font-size-4 mb-0 mr-6 py-2">검색 :</p>
                                 <div className="h-px-48">
-                                    <Select
-                                        options={defaultJobs}
-                                        className="pl-0 h-100 arrow-3 arrow-3-black min-width-px-273  text-black-2 d-flex align-items-center w-100"
-                                        border={false}
-                                    />
+                                    <Select options={defaultJobs} className="pl-0 h-100 arrow-3 arrow-3-black min-width-px-273  text-black-2 d-flex align-items-center w-100" border={false} />
                                 </div>
                             </div>
                         </div>
@@ -60,40 +52,22 @@ const DashboardHireList = () => {
                             <table className="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th
-                                            scope="col"
-                                            className="pl-0 border-0 font-size-4 font-weight-normal"
-                                        >
+                                        <th scope="col" className="pl-0 border-0 font-size-4 font-weight-normal">
                                             프로젝트명
                                         </th>
-                                        <th
-                                            scope="col"
-                                            className="pl-4 border-0 font-size-4 font-weight-normal"
-                                        >
+                                        <th scope="col" className="pl-4 border-0 font-size-4 font-weight-normal">
                                             모집 역할
                                         </th>
-                                        <th
-                                            scope="col"
-                                            className="pl-4 border-0 font-size-4 font-weight-normal"
-                                        >
+                                        <th scope="col" className="pl-4 border-0 font-size-4 font-weight-normal">
                                             업로드일
                                         </th>
-                                        <th
-                                            scope="col"
-                                            className="pl-4 border-0 font-size-4 font-weight-normal"
-                                        >
+                                        <th scope="col" className="pl-4 border-0 font-size-4 font-weight-normal">
                                             마감일
                                         </th>
-                                        <th
-                                            scope="col"
-                                            className="pl-4 border-0 font-size-4 font-weight-normal"
-                                        >
+                                        <th scope="col" className="pl-4 border-0 font-size-4 font-weight-normal">
                                             모집인원
                                         </th>
-                                        <th
-                                            scope="col"
-                                            className="pl-4 border-0 font-size-4 font-weight-normal"
-                                        >
+                                        <th scope="col" className="pl-4 border-0 font-size-4 font-weight-normal">
                                             지원자수
                                         </th>
                                     </tr>
@@ -102,62 +76,31 @@ const DashboardHireList = () => {
                                     {pageResult.dtoList.map((list) => {
                                         return (
                                             <>
-                                                <tr
-                                                    className="border border-color-2"
-                                                    key={list.hireId}
-                                                >
-                                                    <th
-                                                        scope="row"
-                                                        className="pl-6 border-0 py-7 min-width-px-235"
-                                                    >
+                                                <tr className="border border-color-2" key={list.hireId}>
+                                                    <th scope="row" className="pl-6 border-0 py-7 min-width-px-235">
                                                         <div className="">
-                                                            <Link
-                                                                to="/hire-detail"
-                                                                className="font-size-4 mb-0 font-weight-semibold text-black-2"
-                                                            >
+                                                            <Link state={{ id: list.hireId }} to="/hire-detail" className="font-size-4 mb-0 font-weight-semibold text-black-2">
                                                                 {list.project}
                                                             </Link>
                                                         </div>
                                                     </th>
                                                     <td className="table-y-middle py-7 min-width-px-135">
-                                                        <h3 className="font-size-4 font-weight-normal text-black-2 mb-0">
-                                                            {list.cast}
-                                                        </h3>
+                                                        <h3 className="font-size-4 font-weight-normal text-black-2 mb-0">{list.cast}</h3>
                                                     </td>
                                                     <td className="table-y-middle py-7 min-width-px-125">
-                                                        <h3 className="font-size-4 font-weight-normal text-black-2 mb-0">
-                                                            {list.regDate.slice(
-                                                                0,
-                                                                10
-                                                            )}
-                                                        </h3>
+                                                        <h3 className="font-size-4 font-weight-normal text-black-2 mb-0">{list.regDate.slice(0, 10)}</h3>
                                                     </td>
                                                     <td className="table-y-middle py-7 min-width-px-155">
-                                                        <h3 className="font-size-4 font-weight-normal text-black-2 mb-0">
-                                                            {list.deadline.slice(
-                                                                0,
-                                                                10
-                                                            )}
-                                                        </h3>
+                                                        <h3 className="font-size-4 font-weight-normal text-black-2 mb-0">{list.deadline.slice(0, 10)}</h3>
                                                     </td>
                                                     <td className="table-y-middle py-7 min-width-px-125">
-                                                        <h3 className="font-size-4 font-weight-bold text-black-2 mb-0">
-                                                            {list.personnel}
-                                                        </h3>
+                                                        <h3 className="font-size-4 font-weight-bold text-black-2 mb-0">{list.personnel}</h3>
                                                     </td>
                                                     <td className="table-y-middle py-7 min-width-px-205">
-                                                        <h3 className="font-size-4 font-weight-bold text-black-2 mb-0">
-                                                            어찌할꺼야?
-                                                        </h3>
+                                                        <h3 className="font-size-4 font-weight-bold text-black-2 mb-0">어찌할꺼야?</h3>
                                                     </td>
                                                     <td className="table-y-middle py-7 min-width-px-80">
-                                                        <Link
-                                                            to="/hire-modify"
-                                                            className="font-size-3
-                                                        font-weight-bold
-                                                        text-green
-                                                        text-uppercase"
-                                                        >
+                                                        <Link to="/hire-modify" className="font-size-3 font-weight-bold text-green text-uppercase">
                                                             수정하기
                                                         </Link>
                                                     </td>
@@ -165,6 +108,11 @@ const DashboardHireList = () => {
                                                         <a
                                                             href="#"
                                                             className="font-size-3 font-weight-bold text-red-2 text-uppercase"
+                                                            onClick={(e) => {
+                                                                e.preventDefault();
+                                                                console.log(list.hireId);
+                                                                dispatch(hireDelete(list.hireId));
+                                                            }}
                                                         >
                                                             삭제하기
                                                         </a>
@@ -176,11 +124,7 @@ const DashboardHireList = () => {
                                 </tbody>
                             </table>
                         </div>
-                        <PageListComponent
-                            pageRequest={pageRequest}
-                            pageResult={pageResult}
-                            flag={'applicantList'}
-                        />
+                        <PageListComponent pageRequest={pageRequest} pageResult={pageResult} flag={'applicantList'} />
                     </div>
                 </div>
             </div>

@@ -12,6 +12,7 @@ public interface ApplyService {
     ApplyDTO apply(ApplyDTO applyDTO);
     List<ApplyDTO> findAllByHireId(Long hireId);
     ApplyPageResultDTO<ApplyListDTO, Object[]> getApplicantList(ApplyPageRequestDTO pageRequest);
+    Long delete(Long applyId);
 
     default Apply dto2Entity(ApplyDTO applyDTO){
         return Apply.builder()

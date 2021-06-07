@@ -36,4 +36,9 @@ public class ApplyController {
     public ResponseEntity<ApplyPageResultDTO<ApplyListDTO,Object[]>> applicantList(@RequestBody ApplyPageRequestDTO pageRequest){
         return new ResponseEntity<>(applyService.getApplicantList(pageRequest), HttpStatus.OK);
     }
+
+    @DeleteMapping("/delete/{applyId}")
+    public ResponseEntity<Long> rejectApplicant(@PathVariable Long applyId){
+        return ResponseEntity.ok(applyService.delete(applyId));
+    }
 }

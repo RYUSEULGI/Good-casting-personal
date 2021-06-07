@@ -2,7 +2,6 @@ import React from 'react';
 import { withTheme } from 'styled-components';
 
 import Select from 'react-select';
-import MessageTypeOption from '../Message/MessageTypeOption';
 
 const defaultOptions = [
     { value: 'chocolate', label: 'Chocolate' },

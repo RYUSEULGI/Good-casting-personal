@@ -1,8 +1,6 @@
 import React, { useCallback } from 'react';
 import { fileRegister, fileSelector } from '../../state/reducer/file.reducer';
 import { useDispatch, useSelector } from 'react-redux';
-
-import cameraIcon from '../../assets/image/ico_camera.svg';
 import AddAPhoto from '@material-ui/icons/AddAPhoto';
 
 const FileUpload = ({ image, setImages }) => {
@@ -28,10 +26,7 @@ const FileUpload = ({ image, setImages }) => {
     return (
         <>
             <div className="avatar-wrapper">
-                <label
-                    htmlFor="fileUpload"
-                    // className="mb-0 font-size-4 text-smoke"
-                >
+                <label htmlFor="fileUpload">
                     {image === null ? (
                         <AddAPhoto
                             className="thumnail-camera-icon"

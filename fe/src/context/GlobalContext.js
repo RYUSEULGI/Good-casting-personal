@@ -6,9 +6,7 @@ const GlobalProvider = ({ children }) => {
     const [themeDark, setThemeDark] = useState(false);
     const [showSidebarDashboard, setShowSidebarDashboard] = useState(true);
     const [showSidebarActor, setShowSidebarActor] = useState(true);
-    const [applicationModalVisible, setApplicationModalVisible] = useState(
-        false
-    );
+    const [applicationModalVisible, setApplicationModalVisible] = useState(false);
     const [signInModalVisible, setSignInModalVisible] = useState(false);
     const [signUpModalVisible, setSignUpModalVisible] = useState(false);
     const [videoModalVisible, setVideoModalVisible] = useState(false);

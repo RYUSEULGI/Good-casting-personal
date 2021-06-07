@@ -15,9 +15,11 @@ export const signin = createAsyncThunk('SIGN_IN', async (arg) => {
 
     if (response.data[0].token === 'Wrong password') {
         alert('비밀번호를 다시 입력해주세요');
+    } else {
+        localStorage.setItem('TOKEN', 'Bearer ' + response.data[0].token);
+        localStorage.setItem('USER', JSON.stringify(response.data));
+        return response.data;
     }
-
-    return response.data;
 });
 
 const userSlice = createSlice({
@@ -58,7 +60,11 @@ const userSlice = createSlice({
                         footer: '<a href>Why do I have this issue?</a>',
                     });
                 } else {
-                    alert('다른 에러');
+                    Swal.fire({
+                        icon: 'error',
+                        title: '알 수 없는 에러입니다.',
+                        text: '로그인을 다시 시도해주세요.',
+                    });
                 }
             })
             .addCase(signin.fulfilled, (state, { payload }) => {

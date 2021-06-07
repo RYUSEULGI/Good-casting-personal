@@ -27,8 +27,7 @@
     bottom: 0;
     width: 60px;
     height: 60px;
-    background: rgba(0, 0, 0, 0.5) url(../../assets//image/ico_camera.svg)
-        no-repeat 50% 50% / 30px 26px;
+    background: rgba(0, 0, 0, 0.5) url(../../assets//image/ico_camera.svg) no-repeat 50% 50% / 30px 26px;
 }
 
 .select-dropdown {
@@ -156,17 +155,4 @@
 }
 .avatar-wrapper .upload-button:hover .fa-arrow-circle-up {
     opacity: 0.9;
-}
-
-/* select */
-
-.select-style {
-    border-radius: 10;
-    padding: '0.25rem 1rem';
-    width: '100%';
-    height: '45px';
-    outline: 'none';
-    box-shadow: 'none';
-    text-align: 'left';
-    background-color: #fff;
 }

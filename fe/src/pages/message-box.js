@@ -1,18 +1,16 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import { Select } from '../components/Core';
 import PageWrapper from '../components/PageWrapper';
 import MessageList from '../components/Message/MessageList';
 
 const MessageBox = () => {
     const defaultTypes = [
-        { value: 'all', label: '전체', name: 'messageActionType' },
-        { value: 'SUPPORT', label: '지원', name: 'messageActionType' },
-        { value: 'PASS', label: '합격', name: 'messageActionType' },
-        { value: 'MESSAGE', label: '메시지', name: 'messageActionType' },
-        { value: 'CONTACT', label: '연락 ', name: 'messageActionType' },
+        { value: 'all', label: '전체' },
+        { value: 'SUPPORT', label: '지원' },
+        { value: 'PASS', label: '합격' },
+        { value: 'MESSAGE', label: '메시지' },
+        { value: 'CONTACT', label: '연락' },
     ];
-
-    const [select, setSelect] = useState('');
 
     return (
         <>
@@ -37,17 +35,13 @@ const MessageBox = () => {
                                                     options={defaultTypes}
                                                     className="pl-0 h-100 arrow-3 arrow-3-black min-width-px-273  text-black-2 d-flex align-items-center w-100"
                                                     border={false}
-                                                    name="messageActionType"
-                                                    onChange={(e) => {
-                                                        setSelect(e.value);
-                                                    }}
                                                 />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="bg-white px-9 pt-9 pb-7 shadow-8 rounded-4">
-                                    <MessageList select={select} />
+                                    <MessageList />
                                 </div>
                             </div>
                         </div>

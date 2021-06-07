@@ -7,6 +7,18 @@ const userInfo =
         ? JSON.parse(localStorage.getItem('USER'))
         : null;
 
+const hireRegister = (arg) => {
+    console.log('service hireRegister :' + JSON.stringify(arg));
+    return axios({
+        url: `${SERVER}/hires/register`,
+        method: 'post',
+        data: arg,
+        headers: {
+            Authorization: localStorage.getItem('TOKEN'),
+        },
+    });
+};
+
 const hireList = (pageRequest) => {
     console.log('service hireList pageRequest: ' + JSON.stringify(pageRequest));
     return axios({
@@ -25,12 +37,12 @@ const hireDetail = (id) => {
     });
 };
 
-const hireRegister = (id) => {
+const hireDelete = (id) => {
     return axios({
-        url: `${SERVER}/hires/detail/${id}`,
-        method: 'get',
+        url: `${SERVER}/hires/delete/${id}`,
+        method: 'delete',
         headers: { Authorization: 'JWT fefege..' },
     });
 };
 
-export default { hireList, hireDetail, hireRegister };
+export default { hireRegister, hireList, hireDetail, hireDelete };

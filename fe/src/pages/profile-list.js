@@ -1,17 +1,17 @@
 import React from 'react';
+import { Link } from 'gatsby';
 import PageWrapper from '../components/PageWrapper';
 import Sidebar from '../components/Profile/Sidebar';
 import ProfileList from '../components/Profile/ProfileList';
-import DragNDropComponent from '../components/Core/DragNDrop';
-import PageListComponent from '../components/Core/PageList';
 import { profileSelector } from '../state/reducer/profile.reducer';
 import { useSelector } from 'react-redux';
 import '../scss/css/fileUpload.css';
+import DragNDropComponent from '../components/Core/DragNDrop';
+import PageListComponent from '../components/Core/PageList';
 
 const SearchGrid = () => {
-    const pageResult = useSelector(profileSelector).pageResult;
     const pageRequest = useSelector(profileSelector).pageRequest;
-
+    const pageResult = useSelector(profileSelector).pageResult;
     return (
         <>
             <PageWrapper>
@@ -22,33 +22,27 @@ const SearchGrid = () => {
                                 <Sidebar />
                             </div>
                             <div className="col-12 col-md-8 col-xs-12 ">
+                                {/* <!-- form --> */}
+
                                 <DragNDropComponent pageRequest={pageRequest} />
+
                                 <div className="pt-12 ml-lg-0 ml-md-15">
                                     <div className="d-flex align-items-center justify-content-between">
                                         <h5 className="font-size-4 font-weight-normal text-default-color">
-                                            <span className="heading-default-color">
-                                                120
-                                            </span>
-                                            results for{' '}
-                                            <span className="heading-default-color">
-                                                UI Designer
-                                            </span>
+                                            <span className="heading-default-color">120</span>
+                                            results for <span className="heading-default-color">UI Designer</span>
                                         </h5>
                                     </div>
                                     <div className="pt-6">
                                         <div className="row justify-content-center">
-                                            <ProfileList
-                                                pageResult={pageResult}
-                                                pageRequest={pageRequest}
-                                            />
+                                            <ProfileList />
                                         </div>
                                     </div>
                                     <div className="text-center pt-5 pt-lg-13">
-                                        <PageListComponent
-                                            flag={'profileList'}
-                                        />
+                                        <PageListComponent flag={'profileList'} pageRequest={pageRequest} pageResult={pageResult} />
                                     </div>
                                 </div>
+                                {/* <!-- form end --> */}
                             </div>
                         </div>
                     </div>

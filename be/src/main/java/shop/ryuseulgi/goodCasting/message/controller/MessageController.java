@@ -39,7 +39,7 @@ public class MessageController {
     }
 
     @GetMapping("/list/{actionType}/{receiver}")
-    public ResponseEntity<List<MessageDTO>> messageTypeList(@PathVariable MessageActionType actionType, @PathVariable Long receiver){
+    public ResponseEntity<List<MessageDTO>> messageTypeList(@PathVariable MessageActionType actionType){
         return ResponseEntity.ok(service.findByType(actionType));
     }
 

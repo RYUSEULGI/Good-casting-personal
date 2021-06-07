@@ -8,7 +8,6 @@ import {
     profileRegister,
     profileSelector,
 } from '../state/reducer/profile.reducer';
-import { actorSelctor } from '../state/reducer/actor.reducer';
 import { fileSelector, setFirst } from '../state/reducer/file.reducer';
 import PageWrapper from '../components/PageWrapper';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -21,7 +20,7 @@ const ProfileRegister = () => {
 
     const profileState = useSelector(profileSelector);
     const fileList = useSelector(fileSelector).fileList;
-    const actorState = useSelector(actorSelctor);
+    const actorState = JSON.parse(localStorage.getItem('USER'));
 
     const [image, setImages] = useState(null);
     const [inputs, setInputs] = useState({
@@ -31,7 +30,9 @@ const ProfileRegister = () => {
     useEffect(() => {
         setInputs({
             ...inputs,
-            actor: actorState.actor,
+            actor: {
+                actorId: actorState[1].actorId,
+            },
             careers: profileState.careerList,
             files: fileList,
         });
@@ -39,12 +40,11 @@ const ProfileRegister = () => {
         if (fileList.length === 1) {
             dispatch(setFirst(fileList[0]));
         }
-    }, [image, profileState, actorState, fileList]);
+    }, [image, profileState, fileList]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(profileRegister(inputs));
-        setInputs(''); // 초기화
         navigate('/actor-mypage');
     };
 
@@ -168,7 +168,10 @@ const ProfileRegister = () => {
                                                     </div>
                                                 </div>
                                                 <div className="row">
-                                                    <button className="btn btn-green btn-h-60 text-white min-width-px-210 rounded-5 text-uppercase btn-center">
+                                                    <button
+                                                        type="submit"
+                                                        className="btn btn-green btn-h-60 text-white min-width-px-210 rounded-5 text-uppercase btn-center"
+                                                    >
                                                         등록하기
                                                     </button>
                                                 </div>

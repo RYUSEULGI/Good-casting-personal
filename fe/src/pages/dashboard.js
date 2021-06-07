@@ -1,12 +1,41 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CountUp from 'react-countup';
 import LazyLoad from 'react-lazyload';
 import PageWrapper from '../components/PageWrapper';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { hireSelector, myHireList } from '../state/reducer/hire.reducer';
 import DashboardHireList from '../components/Dashboard/DashboardHireList';
 import DashboardApplicants from './dashboard-applicants';
+import { applicantList } from '../state/reducer/apply.reducer';
 
 const DashboardMain = () => {
+    const dispatch = useDispatch();
+
+    const pageRequest = useSelector(hireSelector).pageRequest;
+    const pageResult = useSelector(hireSelector).pageResult;
+
+    const userInfo =
+        typeof window !== `undefined`
+            ? JSON.parse(localStorage.getItem('USER'))
+            : null;
+
+    useEffect(() => {
+        dispatch(
+            myHireList({
+                ...pageRequest,
+                producerId: userInfo[1].producerId,
+            })
+        );
+        dispatch(
+            applicantList({
+                ...pageRequest,
+                producerId: userInfo[1].producerId,
+            })
+        );
+    }, [pageResult]);
+
+    console.log(pageResult.dtoList);
+
     return (
         <>
             <PageWrapper

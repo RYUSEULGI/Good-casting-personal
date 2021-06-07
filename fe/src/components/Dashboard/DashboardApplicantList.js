@@ -1,26 +1,26 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'gatsby';
 import { Select } from '../Core';
-import GlobalContext from '../../context/GlobalContext';
+import PageListComponent from '../Core/PageList';
 import imgP1 from '../../assets/image/table-one-profile-image-1.png';
 import { useSelector, useDispatch } from 'react-redux';
 import {
     applicantList,
     applySelector,
+    changeFlag,
+    rejectApplicant,
 } from '../../state/reducer/apply.reducer';
-import PageListComponent from '../Core/PageList';
-React.useLayoutEffect = React.useEffect;
 
 const defaultJobs = [
-    { value: 'pd', label: 'Product Designer' },
     { value: 'all', label: '전체' },
+    { value: 'pd', label: 'Product Designer' },
 ];
 
 const DashboardApplicantList = () => {
-    const gContext = useContext(GlobalContext);
     const dispatch = useDispatch();
 
     const pageRequest = useSelector(applySelector).pageRequest;
+    const stateFlag = useSelector(applySelector);
     const pageResult = useSelector(applySelector).pageResult;
 
     const userInfo =
@@ -38,7 +38,7 @@ const DashboardApplicantList = () => {
                 producerId: userInfo[1].producerId,
             })
         );
-    }, []);
+    }, [stateFlag.flag]);
 
     return (
         <div className="container">
@@ -101,75 +101,104 @@ const DashboardApplicantList = () => {
                                 {pageResult.dtoList.map((apply) => {
                                     return (
                                         <>
-                                            <tr className="border border-color-2">
-                                                <th
-                                                    scope="row"
-                                                    className="pl-6 border-0 py-7 pr-0"
-                                                >
-                                                    <div className="media min-width-px-235 align-items-center">
-                                                        <div className="circle-36 mr-6">
-                                                            <img
-                                                                src={imgP1}
-                                                                alt=""
-                                                                className="w-100"
-                                                            />
+                                            {apply.id !== undefined ? (
+                                                <tr className="border border-color-2">
+                                                    <th
+                                                        scope="row"
+                                                        className="pl-6 border-0 py-7 pr-0"
+                                                    >
+                                                        <div className="media min-width-px-235 align-items-center">
+                                                            <h4 className="font-size-4 mb-0 font-weight-semibold text-black-2">
+                                                                지원자가
+                                                                없습니다.
+                                                            </h4>
                                                         </div>
-                                                        <h4 className="font-size-4 mb-0 font-weight-semibold text-black-2">
-                                                            {
-                                                                apply.profile
-                                                                    .actorName
-                                                            }
-                                                        </h4>
-                                                    </div>
-                                                </th>
-                                                <td className="table-y-middle py-7 min-width-px-235 pr-0">
-                                                    <h3 className="font-size-4 font-weight-normal text-black-2 mb-0">
-                                                        {apply.hire.title}
-                                                    </h3>
-                                                </td>
-                                                <td className="table-y-middle py-7 min-width-px-170 pr-0">
-                                                    <h3 className="font-size-4 font-weight-normal text-black-2 mb-0">
-                                                        {apply.modDate.slice(
-                                                            0,
-                                                            10
-                                                        )}
-                                                    </h3>
-                                                </td>
-                                                <td className="table-y-middle py-7 min-width-px-170 pr-0">
-                                                    <div className="">
-                                                        <a
-                                                            href="/"
-                                                            className="font-size-3 font-weight-bold text-black-2 text-uppercase"
-                                                            onClick={(e) => {
-                                                                e.preventDefault();
-                                                                gContext.toggleApplicationModal();
-                                                            }}
-                                                        >
-                                                            프로필 보기
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                                <td className="table-y-middle py-7 min-width-px-110 pr-0">
-                                                    <div className="">
-                                                        <Link
-                                                            to="/contact"
-                                                            className="font-size-3 font-weight-bold text-green text-uppercase"
-                                                        >
-                                                            합격
-                                                        </Link>
-                                                    </div>
-                                                </td>
-                                                <td className="table-y-middle py-7 min-width-px-100 pr-0">
-                                                    <div className="">
-                                                        <Link
-                                                            to="#"
-                                                            className="font-size-3 font-weight-bold text-red-2 text-uppercase"
-                                                        >
-                                                            불합격
-                                                        </Link>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                    </th>
+                                                </tr>
+                                            ) : (
+                                                <tr className="border border-color-2">
+                                                    <th
+                                                        scope="row"
+                                                        className="pl-6 border-0 py-7 pr-0"
+                                                    >
+                                                        <div className="media min-width-px-235 align-items-center">
+                                                            <div className="circle-36 mr-6">
+                                                                <img
+                                                                    src={imgP1}
+                                                                    alt=""
+                                                                    className="w-100"
+                                                                />
+                                                            </div>
+                                                            <h4 className="font-size-4 mb-0 font-weight-semibold text-black-2">
+                                                                {
+                                                                    apply
+                                                                        .profile
+                                                                        .actorName
+                                                                }
+                                                            </h4>
+                                                        </div>
+                                                    </th>
+                                                    <td className="table-y-middle py-7 min-width-px-235 pr-0">
+                                                        <h3 className="font-size-4 font-weight-normal text-black-2 mb-0">
+                                                            {apply.hire.title}
+                                                        </h3>
+                                                    </td>
+                                                    <td className="table-y-middle py-7 min-width-px-170 pr-0">
+                                                        <h3 className="font-size-4 font-weight-normal text-black-2 mb-0">
+                                                            {apply.modDate.slice(
+                                                                0,
+                                                                10
+                                                            )}
+                                                        </h3>
+                                                    </td>
+                                                    <td className="table-y-middle py-7 min-width-px-170 pr-0">
+                                                        <div className="">
+                                                            <Link
+                                                                state={{
+                                                                    id:
+                                                                        apply
+                                                                            .profile
+                                                                            .profileId,
+                                                                }}
+                                                                to="/profile-detail"
+                                                                className="font-size-3 font-weight-bold text-black-2 text-uppercase"
+                                                            >
+                                                                프로필보기
+                                                            </Link>
+                                                        </div>
+                                                    </td>
+                                                    <td className="table-y-middle py-7 min-width-px-110 pr-0">
+                                                        <div className="">
+                                                            <Link
+                                                                to="/contact"
+                                                                className="font-size-3 font-weight-bold text-green text-uppercase"
+                                                            >
+                                                                합격
+                                                            </Link>
+                                                        </div>
+                                                    </td>
+                                                    <td className="table-y-middle py-7 min-width-px-100 pr-0">
+                                                        <div className="">
+                                                            <Link
+                                                                to="#"
+                                                                className="font-size-3 font-weight-bold text-red-2 text-uppercase"
+                                                                onClick={async () => {
+                                                                    await dispatch(
+                                                                        rejectApplicant(
+                                                                            apply.applyId
+                                                                        )
+                                                                    );
+                                                                    await dispatch(
+                                                                        changeFlag()
+                                                                    );
+                                                                }}
+                                                            >
+                                                                불합격
+                                                            </Link>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            )}
                                         </>
                                     );
                                 })}

@@ -2,17 +2,18 @@ import React, { useContext, useEffect } from 'react';
 import { Link } from 'gatsby';
 import { Collapse } from 'react-bootstrap';
 import GlobalContext from '../../context/GlobalContext';
-import imgL from '../../assets/image/logo-main-black.png';
 import Logo from '../Logo';
 import { useDispatch } from 'react-redux';
-import { getProducerInfo } from '../../state/reducer/producer.reducer';
+import { getActorInfo } from '../../state/reducer/actor.reducer';
 
 const ActorSidebar = () => {
     const gContext = useContext(GlobalContext);
+
     const dispatch = useDispatch();
+
     useEffect(() => {
-        dispatch(getProducerInfo());
-    }, [dispatch]);
+        dispatch(getActorInfo());
+    }, []);
 
     return (
         <>
@@ -44,7 +45,7 @@ const ActorSidebar = () => {
 
                         <li className="">
                             <Link
-                                to="/dashboard-settings"
+                                to="/actor-mypage-info"
                                 activeClassName="active"
                                 className="px-10 py-1 my-5 font-size-4 font-weight-semibold flex-y-center"
                             >

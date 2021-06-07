@@ -27,6 +27,8 @@ const actorSlice = createSlice({
         builder
             .addCase(getActorInfo.fulfilled, (state, { payload }) => {
                 state.actor = payload;
+
+                console.log(state.actor);
             })
             .addCase(updateActorInfo.fulfilled, (state, { payload }) => {
                 state.actor = payload;

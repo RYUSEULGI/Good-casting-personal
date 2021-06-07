@@ -31,4 +31,12 @@ const applicantist = (pageRequest) => {
     });
 };
 
-export default { applicantist, hireApply };
+const rejectApplicant = (id) => {
+    return axios({
+        url: `${SERVER}/applies/delete/${id}`,
+        method: 'delete',
+        headers: { Authorization: localStorage.getItem('TOKEN') },
+    });
+};
+
+export default { applicantist, hireApply, rejectApplicant };

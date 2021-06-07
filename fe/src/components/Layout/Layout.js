@@ -1,10 +1,4 @@
-import React, {
-    useState,
-    useEffect,
-    useLayoutEffect,
-    useContext,
-    useRef,
-} from 'react';
+import React, { useState, useEffect, useLayoutEffect, useContext, useRef } from 'react';
 
 import styled, { ThemeProvider } from 'styled-components';
 import { Helmet } from 'react-helmet';
@@ -109,23 +103,14 @@ const Layout = ({ children, pageContext }) => {
 
     if (pageContext.layout === 'bare') {
         return (
-            <ThemeProvider
-                theme={
-                    gContext.themeDark
-                        ? getTheme(modes.dark)
-                        : getTheme(modes.light)
-                }
-            >
+            <ThemeProvider theme={gContext.themeDark ? getTheme(modes.dark) : getTheme(modes.light)}>
                 <div data-theme-mode-panel-active data-theme="light">
                     <GlobalStyle />
                     <Helmet>
                         <title>JustCamp</title>
                         <link rel="icon" type="image/png" href={imgFavicon} />
                     </Helmet>
-                    <Loader
-                        id="loading"
-                        className={visibleLoader ? '' : 'inActive'}
-                    >
+                    <Loader id="loading" className={visibleLoader ? '' : 'inActive'}>
                         <div className="load-circle">
                             <span className="one"></span>
                         </div>
@@ -145,31 +130,19 @@ const Layout = ({ children, pageContext }) => {
 
     if (pageContext.layout === 'dashboard') {
         return (
-            <ThemeProvider
-                theme={
-                    gContext.themeDark
-                        ? getTheme(modes.dark)
-                        : getTheme(modes.light)
-                }
-            >
+            <ThemeProvider theme={gContext.themeDark ? getTheme(modes.dark) : getTheme(modes.light)}>
                 <div data-theme-mode-panel-active data-theme="light">
                     <GlobalStyle />
                     <Helmet>
                         <title>JustCamp</title>
                         <link rel="icon" type="image/png" href={imgFavicon} />
                     </Helmet>
-                    <Loader
-                        id="loading"
-                        className={visibleLoader ? '' : 'inActive'}
-                    >
+                    <Loader id="loading" className={visibleLoader ? '' : 'inActive'}>
                         <div className="load-circle">
                             <span className="one"></span>
                         </div>
                     </Loader>
-                    <div
-                        className="site-wrapper overflow-hidden bg-default-2"
-                        ref={eleRef}
-                    >
+                    <div className="site-wrapper overflow-hidden bg-default-2" ref={eleRef}>
                         <Header isDark={gContext.headerDark} />
                         <SidebarDashboard />
 
@@ -187,31 +160,19 @@ const Layout = ({ children, pageContext }) => {
 
     if (pageContext.layout === 'actor-mypage') {
         return (
-            <ThemeProvider
-                theme={
-                    gContext.themeDark
-                        ? getTheme(modes.dark)
-                        : getTheme(modes.light)
-                }
-            >
+            <ThemeProvider theme={gContext.themeDark ? getTheme(modes.dark) : getTheme(modes.light)}>
                 <div data-theme-mode-panel-active data-theme="light">
                     <GlobalStyle />
                     <Helmet>
                         <title>JustCamp</title>
                         <link rel="icon" type="image/png" href={imgFavicon} />
                     </Helmet>
-                    <Loader
-                        id="loading"
-                        className={visibleLoader ? '' : 'inActive'}
-                    >
+                    <Loader id="loading" className={visibleLoader ? '' : 'inActive'}>
                         <div className="load-circle">
                             <span className="one"></span>
                         </div>
                     </Loader>
-                    <div
-                        className="site-wrapper overflow-hidden bg-default-2"
-                        ref={eleRef}
-                    >
+                    <div className="site-wrapper overflow-hidden bg-default-2" ref={eleRef}>
                         <Header isDark={gContext.headerDark} />
                         <ActorSidebar />
 
@@ -229,23 +190,14 @@ const Layout = ({ children, pageContext }) => {
 
     return (
         <>
-            <ThemeProvider
-                theme={
-                    gContext.themeDark
-                        ? getTheme(modes.dark)
-                        : getTheme(modes.light)
-                }
-            >
+            <ThemeProvider theme={gContext.themeDark ? getTheme(modes.dark) : getTheme(modes.light)}>
                 <div data-theme-mode-panel-active data-theme="light">
                     <GlobalStyle />
                     <Helmet>
                         <title>JustCamp</title>
                         <link rel="icon" type="image/png" href={imgFavicon} />
                     </Helmet>
-                    <Loader
-                        id="loading"
-                        className={visibleLoader ? '' : 'inActive'}
-                    />
+                    <Loader id="loading" className={visibleLoader ? '' : 'inActive'} />
                     <div className="site-wrapper overflow-hidden" ref={eleRef}>
                         <Header isDark={gContext.headerDark} />
                         {children}

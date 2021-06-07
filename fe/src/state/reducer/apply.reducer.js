@@ -1,24 +1,29 @@
 import applyService from '../service/apply.service';
+import Swal from 'sweetalert2';
+
 const { createSlice, createAsyncThunk } = require('@reduxjs/toolkit');
 
 export const applicantList = createAsyncThunk(
     'APPLICANTLIST',
     async (pageRequest) => {
-        console.log(
-            'reducer applicantList() pageRequest: ' +
-                JSON.stringify(pageRequest)
-        );
         const response = await applyService.applicantist(pageRequest);
-
         return response.data;
     }
 );
 
 export const hireApply = createAsyncThunk('HIRE_APPLY', async (apply) => {
-    console.log('createAsyncThunk enter : ' + JSON.stringify(apply));
+    console.log(apply);
     const response = await applyService.hireApply(apply);
     return response.data;
 });
+
+export const rejectApplicant = createAsyncThunk(
+    'REJECT_APPLICANT',
+    async (id) => {
+        const response = await applyService.rejectApplicant(id);
+        return response.data;
+    }
+);
 
 const applySlice = createSlice({
     name: 'apply',
@@ -51,12 +56,26 @@ const applySlice = createSlice({
             next: false,
             totalElement: 0,
         },
+        flag: true,
     },
-    reducers: {},
+    reducers: {
+        changeFlag: (state, { payload }) => {
+            state.flag = !state.flag;
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(hireApply.fulfilled, (state, { payload }) => {
                 console.log('payload : ' + JSON.stringify(payload));
+            })
+            .addCase(hireApply.rejected, (state, { payload }) => {
+                console.log(payload);
+                if (payload.message.includes('duplicate') || null) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '이미 지원된 공고입니다.',
+                    });
+                }
             })
             .addCase(applicantList.fulfilled, (state, { payload }) => {
                 console.log(JSON.stringify(payload));
@@ -64,12 +83,18 @@ const applySlice = createSlice({
                     ...state,
                     pageResult: { ...payload },
                 };
+            })
+            .addCase(rejectApplicant.fulfilled, (state, { payload }) => {
+                Swal.fire({
+                    icon: 'success',
+                    title: '불합격 처리되었습니다.',
+                });
             });
     },
 });
 
 export const applySelector = (state) => state.applyReducer;
 
-export const {} = applySlice.actions;
+export const { changeFlag } = applySlice.actions;
 
 export default applySlice.reducer;

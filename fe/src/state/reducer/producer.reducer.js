@@ -1,4 +1,5 @@
 import producerService from '../service/producer.service';
+import Swal from 'sweetalert2';
 
 const { createSlice, createAsyncThunk } = require('@reduxjs/toolkit');
 
@@ -25,9 +26,18 @@ const producerSlice = createSlice({
     },
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(getProducerInfo.fulfilled, (state, { payload }) => {
-            state.producer = payload;
-        });
+        builder
+            .addCase(getProducerInfo.fulfilled, (state, { payload }) => {
+                state.producer = payload;
+            })
+            .addCase(updateProducerInfo.fulfilled, (state, { payload }) => {
+                state.producer = payload;
+                localStorage.setItem('USER', JSON.stringify(payload));
+                Swal.fire({
+                    icon: 'success',
+                    title: '프로필 수정이 완료되었습니다.',
+                });
+            });
     },
 });
 

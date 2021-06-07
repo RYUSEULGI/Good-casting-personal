@@ -12,30 +12,32 @@ export const hireList = createAsyncThunk('HIRE_LIST', async (pageRequest) => {
     return response.data;
 });
 
-export const myHireList = createAsyncThunk(
-    'MYHIRE_LIST',
-    async (pageRequest) => {
-        console.log(
-            'reducer myHireList() pageRequest: ' + JSON.stringify(pageRequest)
-        );
-        const response = await hireService.hireList(pageRequest);
-        return response.data;
-    }
-);
+export const myHireList = createAsyncThunk('MYHIRE_LIST', async (pageRequest) => {
+    console.log('reducer myHireList() pageRequest: ' + JSON.stringify(pageRequest));
+    const response = await hireService.hireList(pageRequest);
+    return response.data;
+});
 
 export const hireDetail = createAsyncThunk('HIRE_DETAIL', async (id) => {
+    console.log('createAsyncThunk enter: ' + JSON.stringify(id));
+
     const response = await hireService.hireDetail(id);
+
+    console.log('hireDetail: ' + response.data);
+
     return response.data;
 });
 
 export const hireRegister = createAsyncThunk('HIRE_REGISTER', async (arg) => {
+    console.log('createAsyncThunk hireRegister enter: ' + JSON.stringify(arg));
     const response = await hireService.hireRegister(arg);
-    console.log(response.data);
     return response.data;
 });
 
 export const hireDelete = createAsyncThunk('HIRE_DELETE', async (id) => {
+    console.log('HIRE_DELETE: ' + JSON.stringify(id));
     const response = await hireService.hireDelete(id);
+    console.log('hireDelete: ' + response.data);
     return response.data;
 });
 
@@ -47,7 +49,7 @@ const initialState = {
     },
     pageResult: {
         pageList: [],
-        dtoList: [],
+        dtoList: [{ regDate: '', deadline: '', modDate: '' }],
         page: 1,
         size: 10,
         totalPage: 0,
@@ -57,7 +59,6 @@ const initialState = {
         next: false,
         totalElement: 0,
     },
-    hireDetail: {},
     reset: false,
     hire: {
         deadline: '',
@@ -95,6 +96,14 @@ const hireSlice = createSlice({
                     pageRequest: payload.pageRequest,
                 };
             })
+            .addCase(hireRegister.fulfilled, (state, { payload }) => {
+                console.log(payload);
+
+                Swal.fire({
+                    icon: 'success',
+                    title: '공고문이 등록되었습니다.',
+                });
+            })
             .addCase(hireDetail.fulfilled, (state, { payload }) => {
                 console.log('hireDetail payload: ' + JSON.stringify(payload));
                 return {
@@ -102,18 +111,11 @@ const hireSlice = createSlice({
                     hire: payload,
                 };
             })
-            .addCase(hireRegister.fulfilled, (state, { payload }) => {
-                console.log('payload : ' + JSON.stringify(payload));
-                Swal.fire({
-                    icon: 'success',
-                    title: '공고가 등록되었습니다.',
-                });
-            })
             .addCase(myHireList.fulfilled, (state, { payload }) => {
                 console.log('payload :' + JSON.stringify(payload));
                 return {
                     ...state,
-                    pageResult: { ...payload },
+                    pageResult: payload,
                 };
             });
     },

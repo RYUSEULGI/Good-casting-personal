@@ -1,54 +1,48 @@
 import React from 'react';
 import { Nav, Tab } from 'react-bootstrap';
-import { Link } from 'gatsby';
+import { navigate } from 'gatsby';
 import PageWrapper from '../components/PageWrapper';
 import ProfileSidebar from '../components/ProfileSidebar';
 
-import imgB1 from '../assets/image/l2/png/featured-job-logo-1.png';
-import imgB2 from '../assets/image/l1/png/feature-brand-1.png';
-import imgB3 from '../assets/image/svg/harvard.svg';
-import imgB4 from '../assets/image/svg/mit.svg';
-
-import imgL from '../assets/image/svg/icon-loaction-pin-black.svg';
-
-const CandidateProfile = () => {
+const CandidateProfile = ({ location }) => {
     return (
         <>
             <PageWrapper headerConfig={{ button: 'profile' }}>
                 <div className="bg-default-2 pt-22 pt-lg-25 pb-13 pb-xxl-32">
                     <div className="container">
-                        {/* <!-- back Button --> */}
-                        {/* <div className="row justify-content-center">
-                            <div className="col-12 dark-mode-texts">
-                                <div className="mb-9">
-                                    <Link
-                                        to="/#"
-                                        className="d-flex align-items-center ml-4"
-                                    >
-                                        {' '}
-                                        <i className="icon icon-small-left bg-white circle-40 mr-5 font-size-7 text-black font-weight-bold shadow-8"></i>
-                                        <span className="text-uppercase font-size-3 font-weight-bold text-gray">
-                                            Back
-                                        </span>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div> */}
-                        {/* <!-- back Button End --> */}
                         <div className="row">
-                            {/* <!-- Left Sidebar Start --> */}
-                            <div className="col-12 col-xxl-3 col-lg-4 col-md-5 mb-11 mb-lg-0">
-                                <ProfileSidebar />
-                            </div>
-                            {/* <!-- Left Sidebar End --> */}
-                            {/* <!-- Middle Content --> */}
+                            <div className="col-12 col-xxl-3 col-lg-4 col-md-5 mb-11 mb-lg-0"></div>
                             <div className="col-12 col-xxl-6 col-lg-8 col-md-7 order-2 order-xl-1">
+                                <div className="row justify-content-center">
+                                    <div className="col-12 dark-mode-texts">
+                                        <div className="mb-9">
+                                            <button
+                                                style={{
+                                                    background: 'transparent',
+                                                    boxShadow:
+                                                        '0px 0px 0px transparent',
+                                                    border:
+                                                        '0px solid transparent',
+                                                    outline: 'none',
+                                                }}
+                                                onClick={() => {
+                                                    navigate(-1);
+                                                }}
+                                                className="d-flex align-items-center ml-4"
+                                            >
+                                                <i className="icon icon-small-left bg-white circle-40 mr-5 font-size-7 text-black font-weight-bold shadow-8"></i>
+                                                <span className="text-uppercase font-size-3 font-weight-bold text-gray">
+                                                    Back
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                                 <Tab.Container
                                     id="left-tabs-example"
                                     defaultActiveKey="one"
                                 >
                                     <div className="bg-white rounded-4 shadow-9">
-                                        {/* <!-- Tab Section Start --> */}
                                         <Nav
                                             className="nav border-bottom border-mercury pl-12"
                                             role="tablist"
@@ -70,371 +64,13 @@ const CandidateProfile = () => {
                                                 </Nav.Link>
                                             </li>
                                         </Nav>
-                                        {/* <!-- Tab Content --> */}
                                         <Tab.Content>
                                             <Tab.Pane eventKey="one">
-                                                {/* <!-- Excerpt Start --> */}
-                                                <div className="pr-xl-0 pr-xxl-14 p-5 px-xs-12 pt-7 pb-5">
-                                                    <h4 className="font-size-6 mb-7 mt-5 text-black-2 font-weight-semibold">
-                                                        About
-                                                    </h4>
-                                                    <p className="font-size-4 mb-8">
-                                                        A talented professional
-                                                        with an academic
-                                                        background in IT and
-                                                        proven commercial
-                                                        development experience
-                                                        as C++ developer since
-                                                        1999. Has a sound
-                                                        knowledge of the
-                                                        software development
-                                                        life cycle. Was involved
-                                                        in more than 140
-                                                        software development
-                                                        outsourcing projects.
-                                                    </p>
-                                                    <p className="font-size-4 mb-8">
-                                                        Programming Languages:
-                                                        C/C++, .NET C++, Python,
-                                                        Bash, Shell, PERL,
-                                                        Regular expressions,
-                                                        Python, Active-script.
-                                                    </p>
-                                                </div>
-                                                {/* <!-- Excerpt End --> */}
-                                                {/* <!-- Skills --> */}
-                                                <div className="border-top pr-xl-0 pr-xxl-14 p-5 pl-xs-12 pt-7 pb-5">
-                                                    <h4 className="font-size-6 mb-7 mt-5 text-black-2 font-weight-semibold">
-                                                        Skills
-                                                    </h4>
-                                                    <ul className="list-unstyled d-flex align-items-center flex-wrap">
-                                                        <li>
-                                                            <Link
-                                                                to="/#"
-                                                                className="bg-polar text-black-2  mr-6 px-7 mt-2 mb-2 font-size-3 rounded-3 min-height-32 d-flex align-items-center"
-                                                            >
-                                                                Agile
-                                                            </Link>
-                                                        </li>
-                                                        <li>
-                                                            <Link
-                                                                to="/#"
-                                                                className="bg-polar text-black-2  mr-6 px-7 mt-2 mb-2 font-size-3 rounded-3 min-height-32 d-flex align-items-center"
-                                                            >
-                                                                Wireframing
-                                                            </Link>
-                                                        </li>
-                                                        <li>
-                                                            <Link
-                                                                to="/#"
-                                                                className="bg-polar text-black-2  mr-6 px-7 mt-2 mb-2 font-size-3 rounded-3 min-height-32 d-flex align-items-center"
-                                                            >
-                                                                Prototyping
-                                                            </Link>
-                                                        </li>
-                                                        <li>
-                                                            <Link
-                                                                to="/#"
-                                                                className="bg-polar text-black-2  mr-6 px-7 mt-2 mb-2 font-size-3 rounded-3 min-height-32 d-flex align-items-center"
-                                                            >
-                                                                Information
-                                                            </Link>
-                                                        </li>
-                                                        <li>
-                                                            <Link
-                                                                to="/#"
-                                                                className="bg-polar text-black-2  mr-6 px-7 mt-2 mb-2 font-size-3 rounded-3 min-height-32 d-flex align-items-center"
-                                                            >
-                                                                Waterfall Model
-                                                            </Link>
-                                                        </li>
-                                                        <li>
-                                                            <Link
-                                                                to="/#"
-                                                                className="bg-polar text-black-2  mr-6 px-7 mt-2 mb-2 font-size-3 rounded-3 min-height-32 d-flex align-items-center"
-                                                            >
-                                                                New Layout
-                                                            </Link>
-                                                        </li>
-                                                        <li>
-                                                            <Link
-                                                                to="/#"
-                                                                className="bg-polar text-black-2  mr-6 px-7 mt-2 mb-2 font-size-3 rounded-3 min-height-32 d-flex align-items-center"
-                                                            >
-                                                                Browsing
-                                                            </Link>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                {/* <!-- Skills End --> */}
-                                                {/* <!-- Card Section Start --> */}
-                                                <div className="border-top p-5 pl-xs-12 pt-7 pb-5">
-                                                    <h4 className="font-size-6 mb-7 mt-5 text-black-2 font-weight-semibold">
-                                                        Work Exprerience
-                                                    </h4>
-                                                    {/* <!-- Single Card --> */}
-                                                    <div className="w-100">
-                                                        <div className="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
-                                                            <div className="square-72 d-block mr-8 mb-7 mb-sm-0">
-                                                                <img
-                                                                    src={imgB1}
-                                                                    alt=""
-                                                                />
-                                                            </div>
-                                                            <div className="w-100 mt-n2">
-                                                                <h3 className="mb-0">
-                                                                    <Link
-                                                                        to="/#"
-                                                                        className="font-size-6 text-black-2 font-weight-semibold"
-                                                                    >
-                                                                        Lead
-                                                                        Product
-                                                                        Designer
-                                                                    </Link>
-                                                                </h3>
-                                                                <Link
-                                                                    to="/#"
-                                                                    className="font-size-4 text-default-color line-height-2"
-                                                                >
-                                                                    Airabnb
-                                                                </Link>
-                                                                <div className="d-flex align-items-center justify-content-md-between flex-wrap">
-                                                                    <Link
-                                                                        to="/#"
-                                                                        className="font-size-4 text-gray mr-5"
-                                                                    >
-                                                                        Jun 2017
-                                                                        - April
-                                                                        2020- 3
-                                                                        years
-                                                                    </Link>
-                                                                    <Link
-                                                                        to="/#"
-                                                                        className="font-size-3 text-gray"
-                                                                    >
-                                                                        <span
-                                                                            className="mr-4"
-                                                                            css={`
-                                                                                margin-top: -2px;
-                                                                            `}
-                                                                        >
-                                                                            <img
-                                                                                src={
-                                                                                    imgL
-                                                                                }
-                                                                                alt=""
-                                                                            />
-                                                                        </span>
-                                                                        New
-                                                                        York,
-                                                                        USA
-                                                                    </Link>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    {/* <!-- Single Card End --> */}
-                                                    {/* <!-- Single Card --> */}
-                                                    <div className="w-100">
-                                                        <div className="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
-                                                            <div className="square-72 d-block mr-8 mb-7 mb-sm-0">
-                                                                <img
-                                                                    src={imgB2}
-                                                                    alt=""
-                                                                />
-                                                            </div>
-                                                            <div className="w-100 mt-n2">
-                                                                <h3 className="mb-0">
-                                                                    <Link
-                                                                        to="/#"
-                                                                        className="font-size-6 text-black-2 font-weight-semibold"
-                                                                    >
-                                                                        Senior
-                                                                        UI/UX
-                                                                        Designer
-                                                                    </Link>
-                                                                </h3>
-                                                                <Link
-                                                                    to="/#"
-                                                                    className="font-size-4 text-default-color line-height-2"
-                                                                >
-                                                                    Google Inc
-                                                                </Link>
-                                                                <div className="d-flex align-items-center justify-content-md-between flex-wrap">
-                                                                    <Link
-                                                                        to="/#"
-                                                                        className="font-size-3 text-gray mr-5"
-                                                                    >
-                                                                        Jun 2017
-                                                                        - April
-                                                                        2020- 3
-                                                                        years
-                                                                    </Link>
-                                                                    <Link
-                                                                        to="/#"
-                                                                        className="font-size-3 text-gray"
-                                                                    >
-                                                                        <span
-                                                                            className="mr-4"
-                                                                            css={`
-                                                                                margin-top: -2px;
-                                                                            `}
-                                                                        >
-                                                                            <img
-                                                                                src={
-                                                                                    imgL
-                                                                                }
-                                                                                alt=""
-                                                                            />
-                                                                        </span>
-                                                                        New
-                                                                        York,
-                                                                        USA
-                                                                    </Link>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    {/* <!-- Single Card End --> */}
-                                                </div>
-                                                {/* <!-- Card Section End --> */}
-                                                {/* <!-- Card Section Start --> */}
-                                                <div className="border-top p-5 pl-xs-12 pt-7 pb-5">
-                                                    <h4 className="font-size-6 mb-7 mt-5 text-black-2 font-weight-semibold">
-                                                        Education
-                                                    </h4>
-                                                    {/* <!-- Single Card --> */}
-                                                    <div className="w-100">
-                                                        <div className="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
-                                                            <div className="square-72 d-block mr-8 mb-7 mb-sm-0">
-                                                                <img
-                                                                    src={imgB3}
-                                                                    alt=""
-                                                                />
-                                                            </div>
-                                                            <div className="w-100 mt-n2">
-                                                                <h3 className="mb-0">
-                                                                    <Link
-                                                                        to="/#"
-                                                                        className="font-size-6 text-black-2"
-                                                                    >
-                                                                        Masters
-                                                                        in Art
-                                                                        Design
-                                                                    </Link>
-                                                                </h3>
-                                                                <Link
-                                                                    to="/#"
-                                                                    className="font-size-4 text-default-color line-height-2"
-                                                                >
-                                                                    Harvard
-                                                                    University
-                                                                </Link>
-                                                                <div className="d-flex align-items-center justify-content-md-between flex-wrap">
-                                                                    <Link
-                                                                        to="/#"
-                                                                        className="font-size-3 text-gray mr-5"
-                                                                    >
-                                                                        Jun 2017
-                                                                        - April
-                                                                        2020- 3
-                                                                        years
-                                                                    </Link>
-                                                                    <Link
-                                                                        to="/#"
-                                                                        className="font-size-3 text-gray"
-                                                                    >
-                                                                        <span
-                                                                            className="mr-4"
-                                                                            css={`
-                                                                                margin-top: -2px;
-                                                                            `}
-                                                                        >
-                                                                            <img
-                                                                                src={
-                                                                                    imgL
-                                                                                }
-                                                                                alt=""
-                                                                            />
-                                                                        </span>
-                                                                        Brylin,
-                                                                        USA
-                                                                    </Link>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    {/* <!-- Single Card End --> */}
-                                                    {/* <!-- Single Card --> */}
-                                                    <div className="w-100">
-                                                        <div className="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
-                                                            <div className="square-72 d-block mr-8 mb-7 mb-sm-0">
-                                                                <img
-                                                                    src={imgB4}
-                                                                    alt=""
-                                                                />
-                                                            </div>
-                                                            <div className="w-100 mt-n2">
-                                                                <h3 className="mb-0">
-                                                                    <Link
-                                                                        to="/#"
-                                                                        className="font-size-6 text-black-2"
-                                                                    >
-                                                                        Bachelor
-                                                                        in
-                                                                        Software
-                                                                        Engineering{' '}
-                                                                    </Link>
-                                                                </h3>
-                                                                <Link
-                                                                    to="/#"
-                                                                    className="font-size-4 text-default-color line-height-2"
-                                                                >
-                                                                    Manipal
-                                                                    Institute of
-                                                                    Technology
-                                                                </Link>
-                                                                <div className="d-flex align-items-center justify-content-md-between flex-wrap">
-                                                                    <Link
-                                                                        to="/#"
-                                                                        className="font-size-3 text-gray mr-5"
-                                                                    >
-                                                                        Fed 2012
-                                                                        - April
-                                                                        2016 - 4
-                                                                        years
-                                                                    </Link>
-                                                                    <Link
-                                                                        to="/#"
-                                                                        className="font-size-3 text-gray"
-                                                                    >
-                                                                        <span
-                                                                            className="mr-4"
-                                                                            css={`
-                                                                                margin-top: -2px;
-                                                                            `}
-                                                                        >
-                                                                            <img
-                                                                                src={
-                                                                                    imgL
-                                                                                }
-                                                                                alt=""
-                                                                            />
-                                                                        </span>
-                                                                        New
-                                                                        York,
-                                                                        USA
-                                                                    </Link>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    {/* <!-- Single Card End --> */}
-                                                </div>
-                                                {/* <!-- Card Section End --> */}
+                                                <ProfileSidebar
+                                                    id={location.state.id}
+                                                />
                                             </Tab.Pane>
                                             <Tab.Pane eventKey="two">
-                                                {/* <!-- Excerpt Start --> */}
                                                 <div className="pr-xl-11 p-5 pl-xs-12 pt-9 pb-11">
                                                     <form action="/">
                                                         <div className="row">
@@ -502,15 +138,11 @@ const CandidateProfile = () => {
                                                         </div>
                                                     </form>
                                                 </div>
-                                                {/* <!-- Excerpt End --> */}
                                             </Tab.Pane>
                                         </Tab.Content>
-                                        {/* <!-- Tab Content End --> */}
-                                        {/* <!-- Tab Section End --> */}
                                     </div>
                                 </Tab.Container>
                             </div>
-                            {/* <!-- Middle Content --> */}
                         </div>
                     </div>
                 </div>
