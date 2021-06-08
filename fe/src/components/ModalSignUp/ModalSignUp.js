@@ -4,6 +4,7 @@ import { Modal } from 'react-bootstrap';
 import GlobalContext from '../../context/GlobalContext';
 import { useDispatch } from 'react-redux';
 import { signup } from '../../state/reducer/user.reducer';
+import Swal from 'sweetalert2';
 
 const ModalStyled = styled(Modal)`
     /* &.modal {
@@ -23,14 +24,14 @@ const ModalSignUp = (props) => {
         username: '',
         password: '',
         confirmPassword: '',
-        account: true,
+        account: null,
     });
 
     useEffect(() => {
         setCheckValidate(
             inputs.confirmPassword !== inputs.password ? 'red' : ''
         );
-    }, [inputs]);
+    }, []);
 
     const togglePasswordFirst = () => {
         setShowPassFirst(!showPassFirst);
@@ -52,11 +53,10 @@ const ModalSignUp = (props) => {
             username: '',
             password: '',
             confirmPassword: '',
-            account: true,
         });
         gContext.toggleSignUpModal();
     };
-
+    //handleClose
     return (
         <>
             <ModalStyled
@@ -246,8 +246,20 @@ const ModalSignUp = (props) => {
                                             <button
                                                 className="btn btn-primary btn-medium w-100 rounded-5 text-uppercase"
                                                 onClick={() => {
-                                                    dispatch(signup(inputs));
-                                                    gContext.toggleSignUpModal();
+                                                    if (
+                                                        inputs.account !== null
+                                                    ) {
+                                                        dispatch(
+                                                            signup(inputs)
+                                                        );
+                                                        gContext.toggleSignUpModal();
+                                                    } else {
+                                                        Swal.fire({
+                                                            icon: 'error',
+                                                            title:
+                                                                '배우 / 제작자를 선택해주세요!',
+                                                        });
+                                                    }
                                                 }}
                                             >
                                                 회원가입

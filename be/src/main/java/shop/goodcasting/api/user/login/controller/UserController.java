@@ -39,6 +39,11 @@ public class UserController {
         return ResponseEntity.ok(userService.signin(userDTO));
     }
 
+    @PostMapping("/update")
+    public ResponseEntity<Long> changePwd(@RequestBody UserDTO userDTO) {
+        return ResponseEntity.ok(userService.update(userDTO));
+    }
+
     @GetMapping("/list")
     public ResponseEntity<List<UserVO>> userList(){
         return ResponseEntity.ok(userService.findAll());

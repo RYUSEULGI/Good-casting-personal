@@ -92,7 +92,8 @@ const hireSlice = createSlice({
                     pageRequest: payload.pageRequest,
                 };
             })
-            .addCase(hireRegister.fulfilled, (state) => {
+            .addCase(hireRegister.fulfilled, (state, { payload }) => {
+                state.hire = payload;
                 state.status = 'success';
                 Swal.fire({
                     icon: 'success',
@@ -113,8 +114,6 @@ const hireSlice = createSlice({
                 });
             })
             .addCase(hireUpdate.fulfilled, (state, { payload }) => {
-                console.log(payload);
-                state.status = 'success';
                 Swal.fire({
                     icon: 'success',
                     title: '공고문이 수정되었습니다.',

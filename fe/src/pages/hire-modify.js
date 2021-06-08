@@ -1,38 +1,54 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Tab } from 'react-bootstrap';
 import { navigate } from 'gatsby';
+import Swal from 'sweetalert2';
+
 import PageWrapper from '../components/PageWrapper';
-import FileUpload from '../components/Core/FileUpload';
 import DatePickerComponent from '../components/DatePicker/DatePicker';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { hireSelector, hireUpdate } from '../state/reducer/hire.reducer';
+import {
+    hireDetail,
+    hireSelector,
+    hireUpdate,
+    resetStatus,
+} from '../state/reducer/hire.reducer';
 import '../scss/css/fileUpload.css';
 
-const HireModify = ({ state }) => {
+const HireModify = ({ location }) => {
     const dispatch = useDispatch();
 
-    const hire = useSelector(hireSelector).hire;
+    const hireList = useSelector(hireSelector).hire;
 
     const [inputs, setInputs] = useState([]);
+    const [filming, setFilming] = useState(new Date());
+    const [deadline, setDeadline] = useState(new Date());
 
-    useEffect(() => {}, []);
+    useEffect(() => {
+        dispatch(hireDetail(location.state.hireId));
+        setInputs(hireList);
+    }, [hireList.title]);
 
-    const handleChange = (e) => {
+    useEffect(() => {
+        setInputs({
+            ...inputs,
+            filming,
+            deadline,
+        });
+    }, [filming, deadline]);
+
+    const handleChange = useCallback((e) => {
         e.preventDefault();
         setInputs({
             ...inputs,
             [e.target.name]: e.target.value,
         });
-    };
+    });
 
     const handleSubmit = () => {
-        console.log('수정하기');
-        console.log(inputs);
         dispatch(hireUpdate(inputs));
+        navigate('/dashboard-hires');
     };
-
-    console.log(state);
 
     return (
         <>
@@ -77,9 +93,13 @@ const HireModify = ({ state }) => {
                                                 onChange={handleChange}
                                                 value={inputs.title}
                                             />
-                                            <FileUpload
-                                            // setImages={setImages}
-                                            // image={image}
+                                            <img
+                                                className="pic_basic btn_custom_file_camera thumnail-size"
+                                                src={
+                                                    hireList.files.length > 0
+                                                        ? `http://localhost:8080/files/display?fileName=s_${hireList.files[0].uuid}_${hireList.files[0].fileName}`
+                                                        : ''
+                                                }
                                             />
                                         </div>
                                         <hr />
@@ -101,9 +121,9 @@ const HireModify = ({ state }) => {
                                                                         날짜
                                                                     </label>
                                                                     <DatePickerComponent
-                                                                    // setDate={
-                                                                    //     setFilming
-                                                                    // }
+                                                                        setDate={
+                                                                            setFilming
+                                                                        }
                                                                     />
                                                                 </div>
                                                             </div>
@@ -116,9 +136,9 @@ const HireModify = ({ state }) => {
                                                                         마감날짜
                                                                     </label>
                                                                     <DatePickerComponent
-                                                                    // setDate={
-                                                                    //     setDeadline
-                                                                    // }
+                                                                        setDate={
+                                                                            setDeadline
+                                                                        }
                                                                     />
                                                                 </div>
                                                             </div>

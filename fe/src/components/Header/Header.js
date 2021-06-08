@@ -12,22 +12,18 @@ import { device } from '../../utils';
 import Logo from '../Logo';
 import { actorMenuItems, menuItems, producerMenuItems } from './menuItems';
 
-import imgP from '../../assets/image/header-profile.png';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     isUserLoggendIn,
     userSelector,
 } from '../../state/reducer/user.reducer';
-import { resetHireSearch } from '../../state/reducer/hire.reducer';
-import { resetProfileSearch } from '../../state/reducer/profile.reducer';
-import { resetFile } from '../../state/reducer/file.reducer';
-import MessageDropdown from '../Core/MessageDropdown';
+
+import imgP from '../../assets/image/header-profile.png';
 
 const SiteHeader = styled.header`
     .dropdown-toggle::after {
         opacity: 0;
     }
-
     padding: 10px 0 10px 0;
     position: absolute !important;
     top: 0;
@@ -303,19 +299,19 @@ const Header = () => {
                                                 key="2"
                                             >
                                                 <Link
-                                                    to="/actor-register"
+                                                    to="/dashboard-hires"
                                                     className="dropdown-item py-2 font-size-3 font-weight-semibold line-height-1p2 text-uppercase"
                                                 >
-                                                    프로필 등록
+                                                    공고문 리스트
                                                 </Link>
                                                 <Link
-                                                    to="/actor-applylist"
+                                                    to="/dashboard-applicants"
                                                     className="dropdown-item py-2 font-size-3 font-weight-semibold line-height-1p2 text-uppercase"
                                                 >
-                                                    지원리스트
+                                                    지원자 리스트
                                                 </Link>
                                                 <Link
-                                                    to="/actor-mypage"
+                                                    to="/dashboard-settings"
                                                     className="dropdown-item py-2 font-size-3 font-weight-semibold line-height-1p2 text-uppercase"
                                                 >
                                                     정보수정
