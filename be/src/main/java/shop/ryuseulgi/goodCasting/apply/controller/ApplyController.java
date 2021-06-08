@@ -13,7 +13,6 @@ import shop.ryuseulgi.goodCasting.apply.service.ApplyServiceImpl;
 
 import java.util.List;
 
-@Log
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins ="*", allowedHeaders = "*")
@@ -27,18 +26,19 @@ public class ApplyController {
         return ResponseEntity.ok(applyService.apply(applyDTO));
     }
 
-    @GetMapping("/{hireId}")
-    public ResponseEntity<List<ApplyDTO>> applyList(@PathVariable Long hireId){
-        return ResponseEntity.ok(applyService.findAllByHireId(hireId));
-    }
-
     @PostMapping("/list")
     public ResponseEntity<ApplyPageResultDTO<ApplyListDTO,Object[]>> applicantList(@RequestBody ApplyPageRequestDTO pageRequest){
         return new ResponseEntity<>(applyService.getApplicantList(pageRequest), HttpStatus.OK);
     }
 
+    @PostMapping("/applylist")
+    public ResponseEntity<ApplyPageResultDTO<ApplyListDTO,Object[]>> applyList(@RequestBody ApplyPageRequestDTO pageRequest){
+        return new ResponseEntity<>(applyService.getApplyList(pageRequest), HttpStatus.OK);
+    }
+
     @DeleteMapping("/delete/{applyId}")
-    public ResponseEntity<Long> rejectApplicant(@PathVariable Long applyId){
-        return ResponseEntity.ok(applyService.delete(applyId));
+    public ResponseEntity<Long> delete(@PathVariable Long applyId) {
+        applyService.deleteApply(applyId);
+        return new ResponseEntity<>(1L, HttpStatus.OK);
     }
 }

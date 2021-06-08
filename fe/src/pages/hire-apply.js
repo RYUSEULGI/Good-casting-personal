@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'gatsby';
+import { Link, navigate } from 'gatsby';
 import PageWrapper from '../components/PageWrapper';
 import { useDispatch, useSelector } from 'react-redux';
 import { hireSelector } from '../state/reducer/hire.reducer';
 import { profileList, profileSelector } from '../state/reducer/profile.reducer';
-import { hireApply } from '../state/reducer/apply.reducer';
+import { applySelector, hireApply, resetStatus } from '../state/reducer/apply.reducer';
 
 const HireApply = ({ location }) => {
-    const userInfo =
-        typeof window !== `undefined`
-            ? JSON.parse(localStorage.getItem('USER'))
-            : null;
+    const userInfo = typeof window !== `undefined` ? JSON.parse(localStorage.getItem('USER')) : null;
+
     const dispatch = useDispatch();
-    const hire = useSelector(hireSelector).hire;
+
     const pageResult = useSelector(profileSelector).pageResult;
     const pageRequest = useSelector(profileSelector).pageRequest;
+    const status = useSelector(applySelector).status;
+
     const [inputs, setInputs] = useState({});
 
     useEffect(() => {
@@ -30,21 +30,25 @@ const HireApply = ({ location }) => {
         applyStatus: 1,
         hire: { hireId: location.state.id },
     });
-
     const handleChange = (e) => {
         const profileId = e.target.getAttribute('data-profileid');
         console.log('checked before profileId : ' + profileId);
+
         if (e.target.checked) {
             setApply({ ...apply, profile: { profileId } });
         }
     };
+
+    if (status === 'success') {
+        navigate('/hire-list');
+        dispatch(resetStatus());
+    }
 
     const handleApply = (e) => {
         e.preventDefault();
         console.log('handleApply : ' + JSON.stringify(apply));
         dispatch(hireApply(apply));
     };
-
     return (
         <>
             <PageWrapper>
@@ -59,8 +63,7 @@ const HireApply = ({ location }) => {
                                                 <>
                                                     <ul
                                                         style={{
-                                                            listStyleType:
-                                                                'none',
+                                                            listStyleType: 'none',
                                                         }}
                                                         key={profile.profileId}
                                                     >
@@ -70,10 +73,8 @@ const HireApply = ({ location }) => {
                                                                     <Link to="/profile-detail">
                                                                         <img
                                                                             style={{
-                                                                                width:
-                                                                                    '150px',
-                                                                                height:
-                                                                                    '200px',
+                                                                                width: '150px',
+                                                                                height: '200px',
                                                                             }}
                                                                             src={
                                                                                 'http://localhost:8080/files/display?fileName=s_' +
@@ -87,28 +88,16 @@ const HireApply = ({ location }) => {
                                                                 </div>
                                                                 <h2 className="mt-n4">
                                                                     <p className="font-size-7 text-black-2 font-weight-bold mb-4">
-                                                                        {
-                                                                            profile.actorName
-                                                                        }
+                                                                        {profile.actorName}
                                                                     </p>
                                                                 </h2>
                                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                 <input
                                                                     type="radio"
-                                                                    data-profileid={
-                                                                        profile.profileId
-                                                                    }
+                                                                    data-profileid={profile.profileId}
                                                                     name="select"
-                                                                    checked={
-                                                                        inputs.select
-                                                                    }
-                                                                    onChange={(
-                                                                        e
-                                                                    ) =>
-                                                                        handleChange(
-                                                                            e
-                                                                        )
-                                                                    }
+                                                                    checked={inputs.select}
+                                                                    onChange={(e) => handleChange(e)}
                                                                 />
                                                             </div>
                                                         </div>
@@ -119,10 +108,7 @@ const HireApply = ({ location }) => {
                                     </div>
                                 </div>
                                 <div className="card-btn-group">
-                                    <div
-                                        className="btn btn-green text-uppercase btn-medium rounded-3 center"
-                                        onClick={handleApply}
-                                    >
+                                    <div className="btn btn-green text-uppercase btn-medium rounded-3 center" onClick={handleApply}>
                                         APPLY
                                     </div>
                                 </div>
@@ -134,4 +120,5 @@ const HireApply = ({ location }) => {
         </>
     );
 };
+
 export default HireApply;

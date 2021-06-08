@@ -1,10 +1,7 @@
 package shop.ryuseulgi.goodCasting.message.service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.java.Log;
 import org.springframework.stereotype.Service;
-import shop.ryuseulgi.goodCasting.article.profile.domain.ProfileDTO;
-import shop.ryuseulgi.goodCasting.file.domain.FileDTO;
 import shop.ryuseulgi.goodCasting.message.domain.Message;
 import shop.ryuseulgi.goodCasting.message.domain.MessageActionType;
 import shop.ryuseulgi.goodCasting.message.domain.MessageDTO;
@@ -12,13 +9,10 @@ import shop.ryuseulgi.goodCasting.message.repository.MessageRepository;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-
-@Log
 @Service
 @RequiredArgsConstructor
 public class MessageServiceImpl implements MessageService{
@@ -74,11 +68,8 @@ public class MessageServiceImpl implements MessageService{
     }
 
     @Transactional
-    public Long update(MessageDTO messageDTO) {
-        Long messageId = messageDTO.getMessageId();
-
+    public List<MessageDTO> update(MessageDTO messageDTO) {
         messageRepo.save(dto2EntityAll(messageDTO));
-        return 1L;
+        return messageRepo.findAllByReceiverId(messageDTO.getReceiver().getUserId()).stream().map(entity -> entity2DtoAll(entity)).collect(Collectors.toList());
     }
-
 }

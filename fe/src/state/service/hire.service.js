@@ -2,25 +2,7 @@ const { default: axios } = require('axios');
 
 const SERVER = 'http://localhost:8080';
 
-const userInfo =
-    typeof window !== `undefined`
-        ? JSON.parse(localStorage.getItem('USER'))
-        : null;
-
-const hireRegister = (arg) => {
-    console.log('service hireRegister :' + JSON.stringify(arg));
-    return axios({
-        url: `${SERVER}/hires/register`,
-        method: 'post',
-        data: arg,
-        headers: {
-            Authorization: localStorage.getItem('TOKEN'),
-        },
-    });
-};
-
 const hireList = (pageRequest) => {
-    console.log('service hireList pageRequest: ' + JSON.stringify(pageRequest));
     return axios({
         url: `${SERVER}/hires/list`,
         method: 'post',
@@ -45,4 +27,15 @@ const hireDelete = (id) => {
     });
 };
 
-export default { hireRegister, hireList, hireDetail, hireDelete };
+const hireRegister = (arg) => {
+    return axios({
+        url: `${SERVER}/hires/register`,
+        method: 'post',
+        data: arg,
+        headers: {
+            // "Content-Type": "multipart/form-data",
+            Authorization: localStorage.getItem('TOKEN'),
+        },
+    });
+};
+export default { hireList, hireDetail, hireDelete, hireRegister };

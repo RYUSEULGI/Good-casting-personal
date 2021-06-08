@@ -5,10 +5,7 @@ import { Modal } from 'react-bootstrap';
 import GlobalContext from '../../context/GlobalContext';
 import ProfileSidebar from '../ProfileSidebar';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-    profileDetail,
-    profileSelector,
-} from '../../state/reducer/profile.reducer';
+import { profileDetail, profileSelector } from '../../state/reducer/profile.reducer';
 
 import imgF1 from '../../assets/image/l2/png/featured-job-logo-1.png';
 import imgF2 from '../../assets/image/l1/png/feature-brand-1.png';
@@ -49,13 +46,7 @@ const ModalSignIn = (props) => {
     };
 
     return (
-        <ModalStyled
-            {...props}
-            size="lg"
-            centered
-            show={gContext.applicationModalVisible}
-            onHide={gContext.toggleApplicationModal}
-        >
+        <ModalStyled {...props} size="lg" centered show={gContext.applicationModalVisible} onHide={gContext.toggleApplicationModal}>
             <Modal.Body className="p-0">
                 <div className="container position-relative">
                     <button
@@ -77,32 +68,21 @@ const ModalSignIn = (props) => {
                                 <div className="bg-white rounded-4 overflow-auto h-1173">
                                     {/* <!-- Excerpt Start --> */}
                                     <div className="pr-xl-0 pr-xxl-14 p-5 px-xs-12 pt-7 pb-5">
-                                        <h4 className="font-size-6 font-weight-semibold mb-7 mt-5 text-black-2">
-                                            About
-                                        </h4>
+                                        <h4 className="font-size-6 font-weight-semibold mb-7 mt-5 text-black-2">About</h4>
                                         <p className="font-size-4 mb-8">
-                                            A talented professional with an
-                                            academic background in IT and proven
-                                            commercial development experience as
-                                            C++ developer since 1999. Has a
-                                            sound knowledge of the software
-                                            development life cycle. Was involved
-                                            in more than 140 software
-                                            development outsourcing projects.
+                                            A talented professional with an academic background in IT and proven commercial development
+                                            experience as C++ developer since 1999. Has a sound knowledge of the software development life
+                                            cycle. Was involved in more than 140 software development outsourcing projects.
                                         </p>
                                         <p className="font-size-4 mb-8">
-                                            Programming Languages: C/C++, .NET
-                                            C++, Python, Bash, Shell, PERL,
-                                            Regular expressions, Python,
+                                            Programming Languages: C/C++, .NET C++, Python, Bash, Shell, PERL, Regular expressions, Python,
                                             Active-script.
                                         </p>
                                     </div>
                                     {/* <!-- Excerpt End --> */}
                                     {/* <!-- Skills --> */}
                                     <div className="border-top border-mercury pr-xl-0 pr-xxl-14 p-5 pl-xs-12 pt-7 pb-5">
-                                        <h4 className="font-size-6 font-weight-semibold mb-7 mt-5 text-black-2">
-                                            Skills
-                                        </h4>
+                                        <h4 className="font-size-6 font-weight-semibold mb-7 mt-5 text-black-2">Skills</h4>
                                         <ul className="list-unstyled d-flex align-items-center flex-wrap">
                                             <li>
                                                 <Link
@@ -165,9 +145,7 @@ const ModalSignIn = (props) => {
                                     {/* <!-- Skills End --> */}
                                     {/* <!-- Card Section Start --> */}
                                     <div className="border-top border-mercury p-5 pl-xs-12 pt-7 pb-5">
-                                        <h4 className="font-size-6 font-weight-semibold mb-7 mt-5 text-black-2">
-                                            Work Exprerience
-                                        </h4>
+                                        <h4 className="font-size-6 font-weight-semibold mb-7 mt-5 text-black-2">Work Exprerience</h4>
                                         {/* <!-- Single Card --> */}
                                         <div className="w-100">
                                             <div className="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
@@ -176,44 +154,25 @@ const ModalSignIn = (props) => {
                                                 </div>
                                                 <div className="w-100 mt-n2">
                                                     <h3 className="mb-0">
-                                                        <Link
-                                                            to="/#"
-                                                            className="font-size-5 font-weight-semibold text-black-2"
-                                                        >
-                                                            Lead Product
-                                                            Designer
+                                                        <Link to="/#" className="font-size-5 font-weight-semibold text-black-2">
+                                                            Lead Product Designer
                                                         </Link>
                                                     </h3>
-                                                    <Link
-                                                        to="/#"
-                                                        className="font-size-4 text-default-color line-height-2"
-                                                    >
+                                                    <Link to="/#" className="font-size-4 text-default-color line-height-2">
                                                         Airabnb
                                                     </Link>
                                                     <div className="d-flex align-items-center justify-content-md-between flex-wrap">
-                                                        <Link
-                                                            to="/#"
-                                                            href=""
-                                                            className="font-size-3 text-gray"
-                                                        >
-                                                            Jun 2017 - April
-                                                            2020- 3 years
+                                                        <Link to="/#" href="" className="font-size-3 text-gray">
+                                                            Jun 2017 - April 2020- 3 years
                                                         </Link>
-                                                        <Link
-                                                            to="/#"
-                                                            href=""
-                                                            className="font-size-3 text-gray"
-                                                        >
+                                                        <Link to="/#" href="" className="font-size-3 text-gray">
                                                             <span
                                                                 className="mr-4"
                                                                 css={`
                                                                     margin-top: -2px;
                                                                 `}
                                                             >
-                                                                <img
-                                                                    src={imgL}
-                                                                    alt=""
-                                                                />
+                                                                <img src={imgL} alt="" />
                                                             </span>
                                                             New York, USA
                                                         </Link>
@@ -230,44 +189,25 @@ const ModalSignIn = (props) => {
                                                 </div>
                                                 <div className="w-100 mt-n2">
                                                     <h3 className="mb-0">
-                                                        <Link
-                                                            to="/#"
-                                                            className="font-size-5 font-weight-semibold text-black-2"
-                                                        >
-                                                            Senior UI/UX
-                                                            Designer
+                                                        <Link to="/#" className="font-size-5 font-weight-semibold text-black-2">
+                                                            Senior UI/UX Designer
                                                         </Link>
                                                     </h3>
-                                                    <Link
-                                                        to="/#"
-                                                        className="font-size-4 text-default-color line-height-2"
-                                                    >
+                                                    <Link to="/#" className="font-size-4 text-default-color line-height-2">
                                                         Google Inc
                                                     </Link>
                                                     <div className="d-flex align-items-center justify-content-md-between flex-wrap">
-                                                        <Link
-                                                            to="/#"
-                                                            href=""
-                                                            className="font-size-3 text-gray"
-                                                        >
-                                                            Jun 2017 - April
-                                                            2020- 3 years
+                                                        <Link to="/#" href="" className="font-size-3 text-gray">
+                                                            Jun 2017 - April 2020- 3 years
                                                         </Link>
-                                                        <Link
-                                                            to="/#"
-                                                            href=""
-                                                            className="font-size-3 text-gray"
-                                                        >
+                                                        <Link to="/#" href="" className="font-size-3 text-gray">
                                                             <span
                                                                 className="mr-4"
                                                                 css={`
                                                                     margin-top: -2px;
                                                                 `}
                                                             >
-                                                                <img
-                                                                    src={imgL}
-                                                                    alt=""
-                                                                />
+                                                                <img src={imgL} alt="" />
                                                             </span>
                                                             New York, USA
                                                         </Link>
@@ -280,9 +220,7 @@ const ModalSignIn = (props) => {
                                     {/* <!-- Card Section End --> */}
                                     {/* <!-- Card Section Start --> */}
                                     <div className="border-top border-mercury p-5 pl-xs-12 pt-7 pb-5">
-                                        <h4 className="font-size-6 font-weight-semibold mb-7 mt-5 text-black-2">
-                                            Education
-                                        </h4>
+                                        <h4 className="font-size-6 font-weight-semibold mb-7 mt-5 text-black-2">Education</h4>
                                         {/* <!-- Single Card --> */}
                                         <div className="w-100">
                                             <div className="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
@@ -291,44 +229,25 @@ const ModalSignIn = (props) => {
                                                 </div>
                                                 <div className="w-100 mt-n2">
                                                     <h3 className="mb-0">
-                                                        <Link
-                                                            to="/#"
-                                                            className="font-size-5 font-weight-semibold text-black-2"
-                                                        >
-                                                            Masters in Art
-                                                            Design
+                                                        <Link to="/#" className="font-size-5 font-weight-semibold text-black-2">
+                                                            Masters in Art Design
                                                         </Link>
                                                     </h3>
-                                                    <Link
-                                                        to="/#"
-                                                        className="font-size-4 text-default-color line-height-2"
-                                                    >
+                                                    <Link to="/#" className="font-size-4 text-default-color line-height-2">
                                                         Harvard University
                                                     </Link>
                                                     <div className="d-flex align-items-center justify-content-md-between flex-wrap">
-                                                        <Link
-                                                            to="/#"
-                                                            href=""
-                                                            className="font-size-3 text-gray"
-                                                        >
-                                                            Jun 2017 - April
-                                                            2020- 3 years
+                                                        <Link to="/#" href="" className="font-size-3 text-gray">
+                                                            Jun 2017 - April 2020- 3 years
                                                         </Link>
-                                                        <Link
-                                                            to="/#"
-                                                            href=""
-                                                            className="font-size-3 text-gray"
-                                                        >
+                                                        <Link to="/#" href="" className="font-size-3 text-gray">
                                                             <span
                                                                 className="mr-4"
                                                                 css={`
                                                                     margin-top: -2px;
                                                                 `}
                                                             >
-                                                                <img
-                                                                    src={imgL}
-                                                                    alt=""
-                                                                />
+                                                                <img src={imgL} alt="" />
                                                             </span>
                                                             Brylin, USA
                                                         </Link>
@@ -341,53 +260,29 @@ const ModalSignIn = (props) => {
                                         <div className="w-100">
                                             <div className="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
                                                 <div className="square-72 d-block mr-8 mb-7 mb-sm-0">
-                                                    <img
-                                                        className="circle-72"
-                                                        src={imgF4}
-                                                        alt=""
-                                                    />
+                                                    <img className="circle-72" src={imgF4} alt="" />
                                                 </div>
                                                 <div className="w-100 mt-n2">
                                                     <h3 className="mb-0">
-                                                        <Link
-                                                            to="/#"
-                                                            className="font-size-5 font-weight-semibold text-black-2"
-                                                        >
-                                                            Bachelor in Software
-                                                            Engineering{' '}
+                                                        <Link to="/#" className="font-size-5 font-weight-semibold text-black-2">
+                                                            Bachelor in Software Engineering{' '}
                                                         </Link>
                                                     </h3>
-                                                    <Link
-                                                        to="/#"
-                                                        className="font-size-4 text-default-color line-height-2"
-                                                    >
-                                                        Manipal Institute of
-                                                        Technology
+                                                    <Link to="/#" className="font-size-4 text-default-color line-height-2">
+                                                        Manipal Institute of Technology
                                                     </Link>
                                                     <div className="d-flex align-items-center justify-content-md-between flex-wrap">
-                                                        <Link
-                                                            to="/#"
-                                                            href=""
-                                                            className="font-size-3 text-gray"
-                                                        >
-                                                            Fed 2012 - April
-                                                            2016 - 4 years
+                                                        <Link to="/#" href="" className="font-size-3 text-gray">
+                                                            Fed 2012 - April 2016 - 4 years
                                                         </Link>
-                                                        <Link
-                                                            to="/#"
-                                                            href=""
-                                                            className="font-size-3 text-gray"
-                                                        >
+                                                        <Link to="/#" href="" className="font-size-3 text-gray">
                                                             <span
                                                                 className="mr-4"
                                                                 css={`
                                                                     margin-top: -2px;
                                                                 `}
                                                             >
-                                                                <img
-                                                                    src={imgL}
-                                                                    alt=""
-                                                                />
+                                                                <img src={imgL} alt="" />
                                                             </span>
                                                             New York, USA
                                                         </Link>
@@ -400,53 +295,29 @@ const ModalSignIn = (props) => {
                                         <div className="w-100">
                                             <div className="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
                                                 <div className="square-72 d-block mr-8 mb-7 mb-sm-0">
-                                                    <img
-                                                        className="circle-72"
-                                                        src={imgF4}
-                                                        alt=""
-                                                    />
+                                                    <img className="circle-72" src={imgF4} alt="" />
                                                 </div>
                                                 <div className="w-100 mt-n2">
                                                     <h3 className="mb-0">
-                                                        <Link
-                                                            to="/#"
-                                                            className="font-size-5 font-weight-semibold text-black-2"
-                                                        >
-                                                            Bachelor in Software
-                                                            Engineering{' '}
+                                                        <Link to="/#" className="font-size-5 font-weight-semibold text-black-2">
+                                                            Bachelor in Software Engineering{' '}
                                                         </Link>
                                                     </h3>
-                                                    <Link
-                                                        to="/#"
-                                                        className="font-size-4 text-default-color line-height-2"
-                                                    >
-                                                        Manipal Institute of
-                                                        Technology
+                                                    <Link to="/#" className="font-size-4 text-default-color line-height-2">
+                                                        Manipal Institute of Technology
                                                     </Link>
                                                     <div className="d-flex align-items-center justify-content-md-between flex-wrap">
-                                                        <Link
-                                                            to="/#"
-                                                            href=""
-                                                            className="font-size-3 text-gray"
-                                                        >
-                                                            Fed 2012 - April
-                                                            2016 - 4 years
+                                                        <Link to="/#" href="" className="font-size-3 text-gray">
+                                                            Fed 2012 - April 2016 - 4 years
                                                         </Link>
-                                                        <Link
-                                                            to="/#"
-                                                            href=""
-                                                            className="font-size-3 text-gray"
-                                                        >
+                                                        <Link to="/#" href="" className="font-size-3 text-gray">
                                                             <span
                                                                 className="mr-4"
                                                                 css={`
                                                                     margin-top: -2px;
                                                                 `}
                                                             >
-                                                                <img
-                                                                    src={imgL}
-                                                                    alt=""
-                                                                />
+                                                                <img src={imgL} alt="" />
                                                             </span>
                                                             New York, USA
                                                         </Link>
@@ -463,12 +334,8 @@ const ModalSignIn = (props) => {
                             {/* <!-- Right Sidebar Start --> */}
                             <div className="col-12 col-xl-3 order-3 order-lg-2 bg-default-2">
                                 <div className="text-center mb-13 mb-lg-0 mt-12">
-                                    <button className="btn btn-primary btn-xl mb-7 d-block mx-auto text-uppercase">
-                                        Contact
-                                    </button>
-                                    <button className="btn btn-outline-gray btn-xl mb-7 d-block mx-auto text-uppercase">
-                                        Reject
-                                    </button>
+                                    <button className="btn btn-primary btn-xl mb-7 d-block mx-auto text-uppercase">Contact</button>
+                                    <button className="btn btn-outline-gray btn-xl mb-7 d-block mx-auto text-uppercase">Reject</button>
                                 </div>
                             </div>
                             {/* <!-- Right Sidebar End --> */}

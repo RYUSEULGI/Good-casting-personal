@@ -1,36 +1,38 @@
+import Swal from 'sweetalert2';
 import profileService from '../service/profile.service';
 import uuid from 'uuid/dist/v4';
-import Swal from 'sweetalert2';
 
 const { createSlice, createAsyncThunk } = require('@reduxjs/toolkit');
 
 export const profileList = createAsyncThunk(
     'PROFILE_LIST',
     async (pageRequest) => {
-        console.log(
-            'reducer profileList() pageRequest: ' + JSON.stringify(pageRequest)
-        );
         const response = await profileService.profileList(pageRequest);
-
         return response.data;
     }
 );
 
 export const profileDetail = createAsyncThunk('PROFILE_DETAIL', async (id) => {
-    console.log('profileDetail() id: ' + id);
-
     const response = await profileService.profileDetail(id);
-
     return response.data;
 });
 
 export const profileRegister = createAsyncThunk(
     'PROFILE_REGISTER',
-    async (arg) => {
-        const response = await profileService.profileRegister(arg);
-        return response.data;
+    async (arg, { rejectWithValue }) => {
+        try {
+            const response = await profileService.profileRegister(arg);
+            return response.data;
+        } catch (e) {
+            return rejectWithValue(e.response.data);
+        }
     }
 );
+
+export const profileDelete = createAsyncThunk('PROFILE_DELETE', async (id) => {
+    const response = await profileService.profileDelete(id);
+    return response.data;
+});
 
 const initialState = {
     profileList: [],
@@ -60,13 +62,14 @@ const initialState = {
         careers: [],
     },
     reset: false,
+    status: '',
 };
 
 const profileSlice = createSlice({
     name: 'profile',
     initialState: initialState,
     reducers: {
-        resetProfileSearch: (state = initialState) => {
+        resetProfileSelector: (state = initialState) => {
             return {
                 ...initialState,
                 reset: !state.reset,
@@ -86,6 +89,9 @@ const profileSlice = createSlice({
                 (career) => career.uuid !== payload
             );
         },
+        resetStatus(state) {
+            state.status = '';
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -98,18 +104,18 @@ const profileSlice = createSlice({
                     pageRequest: payload.pageRequest,
                 };
             })
-            .addCase(profileRegister.fulfilled, (state, { payload }) => {
-                console.log(payload);
-
+            .addCase(profileRegister.fulfilled, (state) => {
+                state.status = 'success';
                 Swal.fire({
                     icon: 'success',
                     title: '프로필이 등록되었습니다.',
                 });
             })
-            .addCase(profileRegister.rejected, (state, { payload }) => {
+            .addCase(profileRegister.rejected, (state) => {
+                state.status = 'reject';
                 Swal.fire({
                     icon: 'error',
-                    title: '내용을 모두 입력해주세요',
+                    title: '내용을 모두 입력해주세요.',
                 });
             })
             .addCase(profileDetail.fulfilled, (state, { payload }) => {
@@ -117,15 +123,22 @@ const profileSlice = createSlice({
                     ...state,
                     profile: payload,
                 };
+            })
+            .addCase(profileDelete.fulfilled, (state, { payload }) => {
+                state.status = 'success';
+                Swal.fire({
+                    icon: 'success',
+                    title: '프로필이 삭제되었습니다.',
+                });
             });
     },
 });
-
 export const profileSelector = (state) => state.profileReducer;
 
 export const {
-    resetProfileSearch,
+    resetProfileSelector,
     addCareer,
     deleteCareer,
+    resetStatus,
 } = profileSlice.actions;
 export default profileSlice.reducer;

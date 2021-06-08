@@ -1,6 +1,5 @@
 package shop.ryuseulgi.goodCasting.career.service;
 
-import org.springframework.stereotype.Service;
 import shop.ryuseulgi.goodCasting.article.profile.domain.Profile;
 import shop.ryuseulgi.goodCasting.article.profile.domain.ProfileDTO;
 import shop.ryuseulgi.goodCasting.career.domain.Career;
@@ -55,3 +54,4 @@ public interface CareerService {
                 .build();
     }
 }
+

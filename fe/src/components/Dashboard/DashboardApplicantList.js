@@ -4,41 +4,31 @@ import { Select } from '../Core';
 import PageListComponent from '../Core/PageList';
 import imgP1 from '../../assets/image/table-one-profile-image-1.png';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-    applicantList,
-    applySelector,
-    changeFlag,
-    rejectApplicant,
-} from '../../state/reducer/apply.reducer';
+import { applicantList, applySelector, resetStatus, rejectApplicant } from '../../state/reducer/apply.reducer';
 
 const defaultJobs = [
-    { value: 'all', label: '전체' },
     { value: 'pd', label: 'Product Designer' },
+    { value: 'all', label: '전체' },
 ];
 
 const DashboardApplicantList = () => {
     const dispatch = useDispatch();
 
     const pageRequest = useSelector(applySelector).pageRequest;
-    const stateFlag = useSelector(applySelector);
     const pageResult = useSelector(applySelector).pageResult;
+    const { status } = useSelector(applySelector);
 
-    const userInfo =
-        typeof window !== `undefined`
-            ? JSON.parse(localStorage.getItem('USER'))
-            : null;
+    const userInfo = typeof window !== `undefined` ? JSON.parse(localStorage.getItem('USER')) : null;
 
     useEffect(() => {
-        console.log(
-            'ApplicantList pageRequest: ' + JSON.stringify(pageRequest)
-        );
         dispatch(
             applicantList({
                 ...pageRequest,
                 producerId: userInfo[1].producerId,
             })
         );
-    }, [stateFlag.flag]);
+        dispatch(resetStatus());
+    }, [status]);
 
     return (
         <div className="container">
@@ -65,76 +55,33 @@ const DashboardApplicantList = () => {
                         <table className="table table-striped">
                             <thead>
                                 <tr>
-                                    <th
-                                        scope="col"
-                                        className="pl-0  border-0 font-size-4 font-weight-normal"
-                                    >
+                                    <th scope="col" className="pl-0  border-0 font-size-4 font-weight-normal">
                                         이름
                                     </th>
-                                    <th
-                                        scope="col"
-                                        className="border-0 font-size-4 font-weight-normal"
-                                    >
+                                    <th scope="col" className="border-0 font-size-4 font-weight-normal">
                                         지원한 작품
                                     </th>
-                                    <th
-                                        scope="col"
-                                        className="border-0 font-size-4 font-weight-normal"
-                                    >
+                                    <th scope="col" className="border-0 font-size-4 font-weight-normal">
                                         지원 날짜
                                     </th>
-                                    <th
-                                        scope="col"
-                                        className="border-0 font-size-4 font-weight-normal"
-                                    ></th>
-                                    <th
-                                        scope="col"
-                                        className="border-0 font-size-4 font-weight-normal"
-                                    ></th>
-                                    <th
-                                        scope="col"
-                                        className="border-0 font-size-4 font-weight-normal"
-                                    ></th>
+                                    <th scope="col" className="border-0 font-size-4 font-weight-normal"></th>
+                                    <th scope="col" className="border-0 font-size-4 font-weight-normal"></th>
+                                    <th scope="col" className="border-0 font-size-4 font-weight-normal"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {pageResult.dtoList.map((apply) => {
-                                    return (
-                                        <>
-                                            {apply.id !== undefined ? (
+                                {pageResult.dtoList.length ? (
+                                    pageResult.dtoList.map((apply) => {
+                                        return (
+                                            <>
                                                 <tr className="border border-color-2">
-                                                    <th
-                                                        scope="row"
-                                                        className="pl-6 border-0 py-7 pr-0"
-                                                    >
-                                                        <div className="media min-width-px-235 align-items-center">
-                                                            <h4 className="font-size-4 mb-0 font-weight-semibold text-black-2">
-                                                                지원자가
-                                                                없습니다.
-                                                            </h4>
-                                                        </div>
-                                                    </th>
-                                                </tr>
-                                            ) : (
-                                                <tr className="border border-color-2">
-                                                    <th
-                                                        scope="row"
-                                                        className="pl-6 border-0 py-7 pr-0"
-                                                    >
+                                                    <th scope="row" className="pl-6 border-0 py-7 pr-0">
                                                         <div className="media min-width-px-235 align-items-center">
                                                             <div className="circle-36 mr-6">
-                                                                <img
-                                                                    src={imgP1}
-                                                                    alt=""
-                                                                    className="w-100"
-                                                                />
+                                                                <img src={imgP1} alt="" className="w-100" />
                                                             </div>
                                                             <h4 className="font-size-4 mb-0 font-weight-semibold text-black-2">
-                                                                {
-                                                                    apply
-                                                                        .profile
-                                                                        .actorName
-                                                                }
+                                                                {apply.profile.actorName}
                                                             </h4>
                                                         </div>
                                                     </th>
@@ -145,28 +92,10 @@ const DashboardApplicantList = () => {
                                                     </td>
                                                     <td className="table-y-middle py-7 min-width-px-170 pr-0">
                                                         <h3 className="font-size-4 font-weight-normal text-black-2 mb-0">
-                                                            {apply.modDate.slice(
-                                                                0,
-                                                                10
-                                                            )}
+                                                            {apply.modDate.slice(0, 10)}
                                                         </h3>
                                                     </td>
-                                                    <td className="table-y-middle py-7 min-width-px-170 pr-0">
-                                                        <div className="">
-                                                            <Link
-                                                                state={{
-                                                                    id:
-                                                                        apply
-                                                                            .profile
-                                                                            .profileId,
-                                                                }}
-                                                                to="/profile-detail"
-                                                                className="font-size-3 font-weight-bold text-black-2 text-uppercase"
-                                                            >
-                                                                프로필보기
-                                                            </Link>
-                                                        </div>
-                                                    </td>
+
                                                     <td className="table-y-middle py-7 min-width-px-110 pr-0">
                                                         <div className="">
                                                             <Link
@@ -182,15 +111,8 @@ const DashboardApplicantList = () => {
                                                             <Link
                                                                 to="#"
                                                                 className="font-size-3 font-weight-bold text-red-2 text-uppercase"
-                                                                onClick={async () => {
-                                                                    await dispatch(
-                                                                        rejectApplicant(
-                                                                            apply.applyId
-                                                                        )
-                                                                    );
-                                                                    await dispatch(
-                                                                        changeFlag()
-                                                                    );
+                                                                onClick={() => {
+                                                                    dispatch(rejectApplicant(apply.applyId));
                                                                 }}
                                                             >
                                                                 불합격
@@ -198,18 +120,16 @@ const DashboardApplicantList = () => {
                                                         </div>
                                                     </td>
                                                 </tr>
-                                            )}
-                                        </>
-                                    );
-                                })}
+                                            </>
+                                        );
+                                    })
+                                ) : (
+                                    <>지원자가 없습니다.</>
+                                )}
                             </tbody>
                         </table>
                     </div>
-                    <PageListComponent
-                        pageRequest={pageRequest}
-                        pageResult={pageResult}
-                        flag={'applicantList'}
-                    />
+                    <PageListComponent pageRequest={pageRequest} pageResult={pageResult} flag={'applicantList'} />
                 </div>
             </div>
         </div>

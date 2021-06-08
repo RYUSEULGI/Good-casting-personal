@@ -1,19 +1,14 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import PageWrapper from '../components/PageWrapper';
-import FileUpload from '../components/Core/FileUpload';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-    producerSelctor,
-    updateProducerInfo,
-} from '../state/reducer/producer.reducer';
+import { producerSelctor, updateProducerInfo, getProducerInfo } from '../state/reducer/producer.reducer';
 
 const DashboardSettings = () => {
     const dispatch = useDispatch();
 
     const state = useSelector(producerSelctor);
 
-    const [image, setImages] = useState(null);
-    const [inputs, setInputs] = useState([]);
+    const [inputs, setInputs] = useState({});
 
     useEffect(() => {
         setInputs(state.producer);
@@ -41,28 +36,22 @@ const DashboardSettings = () => {
                     reveal: false,
                 }}
             >
-                <div
-                    className="dashboard-main-container mt-24 mt-lg-31"
-                    id="dashboard-body"
-                >
+                <div className="dashboard-main-container mt-24 mt-lg-31" id="dashboard-body">
                     <div className="container">
                         <div className="mb-15 mb-lg-23">
                             <div className="row">
                                 <div className="col-xxxl-9 px-lg-13 px-6">
-                                    <h5 className="font-size-6 font-weight-semibold mb-11">
-                                        Update Company Profile
-                                    </h5>
+                                    <h5 className="font-size-6 font-weight-semibold mb-11">Update Company Profile</h5>
                                     <div className="contact-form bg-white shadow-8 rounded-4 pl-sm-10 pl-4 pr-sm-11 pr-4 pt-15 pb-13">
                                         <div className="upload-file mb-16 text-center">
-                                            <FileUpload
-                                                setImages={setImages}
-                                                image={image}
-                                            />
+                                            <div id="userActions" className="square-144 m-auto px-6 mb-7">
+                                                <label htmlFor="fileUpload" className="mb-0 font-size-4 text-smoke">
+                                                    Browse or Drag and Drop
+                                                </label>
+                                                <input type="file" id="fileUpload" className="sr-only" />
+                                            </div>
                                         </div>
-                                        <form
-                                            onSubmit={handleSubmit}
-                                            method="post"
-                                        >
+                                        <form onSubmit={handleSubmit} method="post">
                                             <fieldset>
                                                 <div className="row mb-xl-1 mb-9">
                                                     <div className="col-lg-6">
@@ -77,13 +66,9 @@ const DashboardSettings = () => {
                                                                 type="text"
                                                                 className="form-control h-px-48"
                                                                 id="namedash"
-                                                                value={
-                                                                    inputs.agency
-                                                                }
+                                                                value={inputs.agency}
                                                                 name="agency"
-                                                                onChange={
-                                                                    handleChange
-                                                                }
+                                                                onChange={handleChange}
                                                                 placeholder="소속사를 입력해주세요"
                                                             />
                                                         </div>
@@ -101,13 +86,9 @@ const DashboardSettings = () => {
                                                                 className="form-control h-px-48"
                                                                 id="namedash"
                                                                 placeholder="이름을 입력해주세요."
-                                                                value={
-                                                                    inputs.name
-                                                                }
+                                                                value={inputs.name}
                                                                 name="name"
-                                                                onChange={
-                                                                    handleChange
-                                                                }
+                                                                onChange={handleChange}
                                                             />
                                                         </div>
                                                     </div>
@@ -126,13 +107,9 @@ const DashboardSettings = () => {
                                                                 className="form-control h-px-48"
                                                                 id="namedash"
                                                                 placeholder="예) 010-1234-5678"
-                                                                value={
-                                                                    inputs.phone
-                                                                }
+                                                                value={inputs.phone}
                                                                 name="phone"
-                                                                onChange={
-                                                                    handleChange
-                                                                }
+                                                                onChange={handleChange}
                                                             />
                                                         </div>
                                                     </div>
@@ -149,13 +126,9 @@ const DashboardSettings = () => {
                                                                 className="form-control h-px-48"
                                                                 id="namedash"
                                                                 placeholder="직책을 입력해주세요."
-                                                                value={
-                                                                    inputs.position
-                                                                }
+                                                                value={inputs.position}
                                                                 name="position"
-                                                                onChange={
-                                                                    handleChange
-                                                                }
+                                                                onChange={handleChange}
                                                             />
                                                         </div>
                                                     </div>
@@ -174,13 +147,9 @@ const DashboardSettings = () => {
                                                                 className="form-control h-px-48"
                                                                 id="namedash"
                                                                 placeholder="예)goodCasting@gmail.com"
-                                                                value={
-                                                                    inputs.email
-                                                                }
+                                                                value={inputs.email}
                                                                 name="email"
-                                                                onChange={
-                                                                    handleChange
-                                                                }
+                                                                onChange={handleChange}
                                                             />
                                                         </div>
                                                     </div>

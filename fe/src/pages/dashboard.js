@@ -2,39 +2,21 @@ import React, { useEffect } from 'react';
 import CountUp from 'react-countup';
 import LazyLoad from 'react-lazyload';
 import PageWrapper from '../components/PageWrapper';
-import { useSelector, useDispatch } from 'react-redux';
-import { hireSelector, myHireList } from '../state/reducer/hire.reducer';
+
 import DashboardHireList from '../components/Dashboard/DashboardHireList';
 import DashboardApplicants from './dashboard-applicants';
-import { applicantList } from '../state/reducer/apply.reducer';
+import { useDispatch } from 'react-redux';
+import { resetHireSelector } from '../state/reducer/hire.reducer';
 
 const DashboardMain = () => {
     const dispatch = useDispatch();
 
-    const pageRequest = useSelector(hireSelector).pageRequest;
-    const pageResult = useSelector(hireSelector).pageResult;
-
-    const userInfo =
-        typeof window !== `undefined`
-            ? JSON.parse(localStorage.getItem('USER'))
-            : null;
-
     useEffect(() => {
-        dispatch(
-            myHireList({
-                ...pageRequest,
-                producerId: userInfo[1].producerId,
-            })
-        );
-        dispatch(
-            applicantList({
-                ...pageRequest,
-                producerId: userInfo[1].producerId,
-            })
-        );
-    }, [pageResult]);
-
-    console.log(pageResult.dtoList);
+        return () => {
+            console.log('hire-list unmount');
+            dispatch(resetHireSelector());
+        };
+    }, []);
 
     return (
         <>
@@ -50,10 +32,7 @@ const DashboardMain = () => {
                     <div className="container">
                         <div className="row mb-7">
                             <div className="col-xxl-3 col-xl-4 col-lg-6 col-sm-6">
-                                <a
-                                    href="/hire-list"
-                                    className="media bg-white rounded-4 pl-8 pt-9 pb-9 pr-7 hover-shadow-1 mb-9 shadow-8"
-                                >
+                                <a href="/hire-list" className="media bg-white rounded-4 pl-8 pt-9 pb-9 pr-7 hover-shadow-1 mb-9 shadow-8">
                                     <div className="text-blue bg-blue-opacity-1 circle-56 font-size-6 mr-7">
                                         <i className="fas fa-briefcase"></i>
                                     </div>
@@ -61,16 +40,11 @@ const DashboardMain = () => {
                                         <h5 className="font-size-8 font-weight-semibold text-black-2 line-height-reset font-weight-bold mb-1">
                                             <LazyLoad>
                                                 <span className="counter">
-                                                    <CountUp
-                                                        duration={6}
-                                                        end={5}
-                                                    />
+                                                    <CountUp duration={6} end={5} />
                                                 </span>
                                             </LazyLoad>
                                         </h5>
-                                        <p className="font-size-4 font-weight-normal text-gray mb-0">
-                                            업로드 리스트
-                                        </p>
+                                        <p className="font-size-4 font-weight-normal text-gray mb-0">업로드 리스트</p>
                                     </div>
                                 </a>
                             </div>
@@ -86,24 +60,16 @@ const DashboardMain = () => {
                                         <h5 className="font-size-8 font-weight-semibold text-black-2 line-height-reset font-weight-bold mb-1">
                                             <LazyLoad>
                                                 <span className="counter">
-                                                    <CountUp
-                                                        duration={4}
-                                                        end={256}
-                                                    />
+                                                    <CountUp duration={4} end={256} />
                                                 </span>
                                             </LazyLoad>
                                         </h5>
-                                        <p className="font-size-4 font-weight-normal text-gray mb-0">
-                                            지원자 수
-                                        </p>
+                                        <p className="font-size-4 font-weight-normal text-gray mb-0">지원자 수</p>
                                     </div>
                                 </a>
                             </div>
                             <div className="col-xxl-3 col-xl-4 col-lg-6 col-sm-6">
-                                <a
-                                    href="/#"
-                                    className="media bg-white rounded-4 pl-8 pt-9 pb-9 pr-7 hover-shadow-1 mb-9 shadow-8"
-                                >
+                                <a href="/#" className="media bg-white rounded-4 pl-8 pt-9 pb-9 pr-7 hover-shadow-1 mb-9 shadow-8">
                                     <div className="text-orange bg-orange-opacity-1 circle-56 font-size-6 mr-7">
                                         <i className="fas fa-eye"></i>
                                     </div>
@@ -111,27 +77,17 @@ const DashboardMain = () => {
                                         <h5 className="font-size-8 font-weight-semibold text-black-2 line-height-reset font-weight-bold mb-1">
                                             <LazyLoad>
                                                 <span className="counter">
-                                                    <CountUp
-                                                        duration={4}
-                                                        decimal="."
-                                                        decimals={1}
-                                                        end={16.5}
-                                                    />
+                                                    <CountUp duration={4} decimal="." decimals={1} end={16.5} />
                                                 </span>
                                                 K
                                             </LazyLoad>
                                         </h5>
-                                        <p className="font-size-4 font-weight-normal text-gray mb-0">
-                                            공고 조회수
-                                        </p>
+                                        <p className="font-size-4 font-weight-normal text-gray mb-0">공고 조회수</p>
                                     </div>
                                 </a>
                             </div>
                             <div className="col-xxl-3 col-xl-4 col-lg-6 col-sm-6">
-                                <a
-                                    href="/#"
-                                    className="media bg-white rounded-4 pl-8 pt-9 pb-9 pr-7 hover-shadow-1 mb-9 shadow-8"
-                                >
+                                <a href="/#" className="media bg-white rounded-4 pl-8 pt-9 pb-9 pr-7 hover-shadow-1 mb-9 shadow-8">
                                     <div className="text-egg-blue bg-egg-blue-opacity-1 circle-56 font-size-6 mr-7">
                                         <i className="fas fa-mouse-pointer"></i>
                                     </div>
@@ -139,19 +95,12 @@ const DashboardMain = () => {
                                         <h5 className="font-size-8 font-weight-semibold text-black-2 line-height-reset font-weight-bold mb-1">
                                             <LazyLoad>
                                                 <span className="counter">
-                                                    <CountUp
-                                                        duration={4}
-                                                        decimal="."
-                                                        decimals={1}
-                                                        end={18.6}
-                                                    />
+                                                    <CountUp duration={4} decimal="." decimals={1} end={18.6} />
                                                 </span>
                                                 %
                                             </LazyLoad>
                                         </h5>
-                                        <p className="font-size-4 font-weight-normal text-gray mb-0">
-                                            지원 비율
-                                        </p>
+                                        <p className="font-size-4 font-weight-normal text-gray mb-0">지원 비율</p>
                                     </div>
                                 </a>
                             </div>

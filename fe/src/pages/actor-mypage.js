@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import PageWrapper from '../components/PageWrapper';
+
 import MyProfileList from '../components/Profile/MyprofileList';
+import { resetProfileSelector } from '../state/reducer/profile.reducer';
 
 const DashboardMain = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        return () => {
+            dispatch(resetProfileSelector());
+        };
+    }, []);
     return (
         <>
             <PageWrapper
@@ -14,7 +25,7 @@ const DashboardMain = () => {
                 }}
             >
                 <div className="dashboard-main-container mt-25 mt-lg-31">
-                    <div style={{ height: '2000px' }} className="container">
+                    <div style={{ height: '1500px' }} className="container">
                         <div className="row mb-7">
                             <MyProfileList />
                         </div>

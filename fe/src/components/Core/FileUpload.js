@@ -1,6 +1,8 @@
 import React, { useCallback } from 'react';
 import { fileRegister, fileSelector } from '../../state/reducer/file.reducer';
 import { useDispatch, useSelector } from 'react-redux';
+
+import cameraIcon from '../../assets/image/ico_camera.svg';
 import AddAPhoto from '@material-ui/icons/AddAPhoto';
 
 const FileUpload = ({ image, setImages }) => {
@@ -26,12 +28,12 @@ const FileUpload = ({ image, setImages }) => {
     return (
         <>
             <div className="avatar-wrapper">
-                <label htmlFor="fileUpload">
+                <label
+                    htmlFor="fileUpload"
+                    // className="mb-0 font-size-4 text-smoke"
+                >
                     {image === null ? (
-                        <AddAPhoto
-                            className="thumnail-camera-icon"
-                            fontSize="large"
-                        />
+                        <AddAPhoto className="thumnail-camera-icon" fontSize="large" />
                     ) : (
                         fileList.map((file) => {
                             return (
@@ -43,13 +45,7 @@ const FileUpload = ({ image, setImages }) => {
                         })
                     )}
                 </label>
-                <input
-                    type="file"
-                    accept="image/*"
-                    id="fileUpload"
-                    className="sr-only"
-                    onChange={handleSelectedImg}
-                />
+                <input type="file" accept="image/*" id="fileUpload" className="sr-only" onChange={handleSelectedImg} />
             </div>
         </>
     );

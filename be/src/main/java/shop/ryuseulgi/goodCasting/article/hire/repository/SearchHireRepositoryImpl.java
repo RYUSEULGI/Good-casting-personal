@@ -7,7 +7,6 @@ import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.PathBuilder;
 import com.querydsl.jpa.JPQLQuery;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +15,6 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 import shop.ryuseulgi.goodCasting.article.hire.domain.Hire;
 import shop.ryuseulgi.goodCasting.article.hire.domain.HirePageRequestDTO;
 import shop.ryuseulgi.goodCasting.article.hire.domain.QHire;
-import shop.ryuseulgi.goodCasting.file.domain.QFileVO;
 import shop.ryuseulgi.goodCasting.user.producer.domain.QProducer;
 
 import javax.transaction.Transactional;
@@ -24,7 +22,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Log4j2
 public class SearchHireRepositoryImpl extends QuerydslRepositorySupport implements SearchHireRepository {
 
     public SearchHireRepositoryImpl() {
@@ -34,36 +31,34 @@ public class SearchHireRepositoryImpl extends QuerydslRepositorySupport implemen
     @Override
     @Transactional
     public Page<Object[]> searchPage(HirePageRequestDTO pageRequest, Pageable pageable) {
+
         QHire hire = QHire.hire;
-        QFileVO file = QFileVO.fileVO;
         QProducer producer = QProducer.producer;
 
         JPQLQuery<Hire> jpqlQuery = from(hire);
         jpqlQuery.leftJoin(producer).on(hire.producer.eq(producer));
-        jpqlQuery.leftJoin(file).on(file.hire.eq(hire));
 
-        JPQLQuery<Tuple> tuple = jpqlQuery.select(hire, producer, file);
+        JPQLQuery<Tuple> tuple = jpqlQuery.select(hire, producer);
 
         //hireId >0
         BooleanBuilder totalBuilder = new BooleanBuilder();
         BooleanExpression expression = hire.hireId.gt(0L);
         totalBuilder.and(expression);
 
-        BooleanBuilder keywordBuilder = makeKeyword(hire, pageRequest.getSearchKey().getKeyword());
-
-        if(keywordBuilder != null) {
+        if (pageRequest.getSearchKey() != null && pageRequest.getSearchKey().trim().length() != 0) {
+            BooleanBuilder keywordBuilder = makeKeyword(hire, pageRequest.getSearchKey());
             totalBuilder.and(keywordBuilder);
         }
 
-        BooleanBuilder periodBuilder = makePeriodRange(hire, pageRequest.getPeriod().getFrom(), pageRequest.getPeriod().getTo());
 
-        if(periodBuilder != null) {
+        if (pageRequest.getPeriod() != null) {
+            BooleanBuilder periodBuilder = makePeriodRange(hire, pageRequest.getPeriod().getFrom(), pageRequest.getPeriod().getTo());
             totalBuilder.and(periodBuilder);
         }
 
-        BooleanBuilder payBuilder = makePayRange(hire, pageRequest.getPay().getStart(), pageRequest.getPay().getEnd());
 
-        if(payBuilder != null) {
+        if (pageRequest.getPay() != null) {
+            BooleanBuilder payBuilder = makePayRange(hire, pageRequest.getPay().getStart(), pageRequest.getPay().getEnd());
             totalBuilder.and(payBuilder);
         }
 
@@ -84,24 +79,13 @@ public class SearchHireRepositoryImpl extends QuerydslRepositorySupport implemen
 
         List<Tuple> result = tuple.fetch();
 
-        result.forEach(t -> {
-            log.info("search hire page tuple: " + t);
-        });
-
         long count = tuple.fetchCount();
-
-        log.info("COUNT: " + count);
 
         return new PageImpl<>(result.stream()
                 .map(t -> t.toArray()).collect(Collectors.toList()), pageable, count);
     }
 
     private BooleanBuilder makePayRange(QHire hire, Integer start, Integer end) {
-
-        if (start == null || end == null) {
-            return null;
-        }
-
         BooleanBuilder conditions = new BooleanBuilder();
         conditions.and(hire.guarantee.between(start, end));
 
@@ -109,11 +93,6 @@ public class SearchHireRepositoryImpl extends QuerydslRepositorySupport implemen
     }
 
     private BooleanBuilder makePeriodRange(QHire hire, LocalDate from, LocalDate to) {
-
-        if (from == null || to == null) {
-            return null;
-        }
-
         BooleanBuilder conditions = new BooleanBuilder();
         conditions.and(hire.filming.between(from, to));
 
@@ -121,11 +100,6 @@ public class SearchHireRepositoryImpl extends QuerydslRepositorySupport implemen
     }
 
     private BooleanBuilder makeKeyword(QHire hire, String keyword) {
-
-        if (keyword == null || keyword.trim().length() == 0) {
-            return null;
-        }
-
         BooleanBuilder conditions = new BooleanBuilder();
         conditions.or(hire.title.contains(keyword));
         conditions.or(hire.project.contains(keyword));
@@ -137,20 +111,20 @@ public class SearchHireRepositoryImpl extends QuerydslRepositorySupport implemen
 
     @Override
     public Page<Object[]> myHirePage(HirePageRequestDTO pageRequest, Pageable pageable) {
+
         QHire hire = QHire.hire;
-        QFileVO file = QFileVO.fileVO;
         QProducer producer = QProducer.producer;
 
         JPQLQuery<Hire> jpqlQuery = from(hire);
         jpqlQuery.leftJoin(producer).on(hire.producer.eq(producer));
-        jpqlQuery.leftJoin(file).on(file.hire.eq(hire));
 
-        JPQLQuery<Tuple> tuple = jpqlQuery.select(hire,producer,file);
+        JPQLQuery<Tuple> tuple = jpqlQuery.select(hire, producer);
 
         BooleanBuilder booleanBuilder = new BooleanBuilder();
         BooleanExpression expression = hire.producer.producerId.eq(pageRequest.getProducerId());
 
         booleanBuilder.and(expression);
+
         tuple.where(booleanBuilder);
 
         Sort sort = pageable.getSort();
@@ -170,13 +144,8 @@ public class SearchHireRepositoryImpl extends QuerydslRepositorySupport implemen
 
         List<Tuple> result = tuple.fetch();
 
-        result.forEach(tuple1 -> {
-            log.info("searchPage() tuple: " + tuple1);
-        });
 
         long count = tuple.fetchCount();
-
-        log.info("COUNT: " + count);
 
         return new PageImpl<>(result.stream()
                 .map(t -> t.toArray()).collect(Collectors.toList()),

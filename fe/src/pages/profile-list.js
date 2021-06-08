@@ -1,17 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'gatsby';
 import PageWrapper from '../components/PageWrapper';
 import Sidebar from '../components/Profile/Sidebar';
 import ProfileList from '../components/Profile/ProfileList';
-import { profileSelector } from '../state/reducer/profile.reducer';
-import { useSelector } from 'react-redux';
+import { profileSelector, resetProfileSelector } from '../state/reducer/profile.reducer';
+import { useDispatch, useSelector } from 'react-redux';
 import '../scss/css/fileUpload.css';
 import DragNDropComponent from '../components/Core/DragNDrop';
 import PageListComponent from '../components/Core/PageList';
+import { resetFile } from '../state/reducer/file.reducer';
 
 const SearchGrid = () => {
     const pageRequest = useSelector(profileSelector).pageRequest;
     const pageResult = useSelector(profileSelector).pageResult;
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        return () => {
+            dispatch(resetProfileSelector());
+            dispatch(resetFile());
+        };
+    }, []);
+
     return (
         <>
             <PageWrapper>

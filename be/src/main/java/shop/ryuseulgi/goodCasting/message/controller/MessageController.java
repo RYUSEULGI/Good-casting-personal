@@ -39,12 +39,12 @@ public class MessageController {
     }
 
     @GetMapping("/list/{actionType}/{receiver}")
-    public ResponseEntity<List<MessageDTO>> messageTypeList(@PathVariable MessageActionType actionType){
+    public ResponseEntity<List<MessageDTO>> messageTypeList(@PathVariable MessageActionType actionType, @PathVariable Long receiver){
         return ResponseEntity.ok(service.findByType(actionType));
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Long> update(@RequestBody MessageDTO messageDTO) {
+    public ResponseEntity<List<MessageDTO>> update(@RequestBody MessageDTO messageDTO) {
         return ResponseEntity.ok(service.update(messageDTO));
     }
 
