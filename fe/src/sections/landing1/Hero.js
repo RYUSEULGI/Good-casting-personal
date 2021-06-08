@@ -10,7 +10,7 @@ const Hero = () => {
             : null;
     return (
         <>
-            <div className="pt-26 pt-md-32 pt-lg-33 pt-xl-35 position-relative z-index-1 overflow-hidden">
+            <div className="pt-26 pt-md-20 pt-lg-20 pt-xl-20 position-relative z-index-1 overflow-hidden">
                 <img src={main} width="100%" />
             </div>
         </>

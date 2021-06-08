@@ -9,7 +9,6 @@ import {
 } from '../../state/reducer/apply.reducer';
 import PageListComponent from '../Core/PageList';
 import { hireSelector, resetStatus } from '../../state/reducer/hire.reducer';
-React.useLayoutEffect = React.useEffect;
 
 const defaultJobs = [
     { value: 'all', label: '전체' },
@@ -42,8 +41,6 @@ const MyApplyList = () => {
         );
         dispatch(resetStatus());
     }, [status]);
-
-    console.log(status);
 
     return (
         <div style={{ height: '1500px' }} className="container">

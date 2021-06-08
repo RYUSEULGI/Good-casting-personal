@@ -167,8 +167,13 @@ const DashboardHireList = () => {
                                                             <Link
                                                                 to="/hire-modify"
                                                                 className="font-size-3 font-weight-bold text-green text-uppercase"
+                                                                state={{
+                                                                    id:
+                                                                        hire.hireId,
+                                                                }}
                                                             >
-                                                                수정하기
+                                                                수정하기{' '}
+                                                                {hire.hireId}
                                                             </Link>
                                                         </td>
                                                         <td className="table-y-middle py-7 min-width-px-100">

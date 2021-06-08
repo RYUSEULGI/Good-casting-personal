@@ -6,7 +6,21 @@ const { createSlice, createAsyncThunk } = require('@reduxjs/toolkit');
 export const signup = createAsyncThunk(
     'SIGN_UP',
     async (arg, { rejectWithValue }) => {
-        console.log('reducer signup() arg: ' + JSON.stringify(arg));
+        if (arg.password.trim().length === 0) {
+            Swal.fire({
+                icon: 'error',
+                title: '유효하지 않은 비밀번호입니다.',
+                text: '다른 비밀번호를 입력해주세요',
+            });
+        }
+
+        if (arg.username.trim().length === 0) {
+            Swal.fire({
+                icon: 'error',
+                title: '유효하지 않은 아이디입니다.',
+                text: '다른 아이디를 입력해주세요',
+            });
+        }
 
         try {
             const response = await userService.signup(arg);

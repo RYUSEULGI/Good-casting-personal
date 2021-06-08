@@ -115,8 +115,8 @@ shop/goodcasting/api/user/login/domain/Role.java
  shop.goodcasting.api.user.login.domain.Role
 shop/goodcasting/api/apply/controller/ApplyController.java
  shop.goodcasting.api.apply.controller.ApplyController
-shop/goodcasting/api/user/login/controller/UserController.java
- shop.goodcasting.api.user.login.controller.UserController
+shop/goodcasting/api/apply/domain/ApplyPageResultDTO.java
+ shop.goodcasting.api.apply.domain.ApplyPageResultDTO
 shop/goodcasting/api/article/hire/domain/Pay.java
  shop.goodcasting.api.article.hire.domain.Pay
  shop.goodcasting.api.article.hire.domain.Pay$PayBuilder
@@ -245,5 +245,5 @@ shop/goodcasting/api/ServletInitializer.java
  shop.goodcasting.api.ServletInitializer
 shop/goodcasting/api/mail/service/MailService.java
  shop.goodcasting.api.mail.service.MailService
-shop/goodcasting/api/apply/domain/ApplyPageResultDTO.java
- shop.goodcasting.api.apply.domain.ApplyPageResultDTO
+shop/goodcasting/api/user/login/controller/UserController.java
+ shop.goodcasting.api.user.login.controller.UserController
