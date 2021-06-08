@@ -39,8 +39,13 @@ const profileDelete = (id) => {
     return axios({
         url: `${SERVER}/profiles/delete/${id}`,
         method: 'delete',
-        headers: { Authorization: 'JWT fefege..' },
+        headers: { Authorization: localStorage.getItem('TOKEN') },
     });
 };
 
-export default { profileList, profileDetail, profileRegister, profileDelete };
+export default {
+    profileList,
+    profileDetail,
+    profileRegister,
+    profileDelete,
+};

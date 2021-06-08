@@ -37,7 +37,7 @@ export const hireDelete = createAsyncThunk('HIRE_DELETE', async (id) => {
 const initialState = {
     pageRequest: {
         page: 1,
-        size: 10,
+        size: 15,
         sort: 'hireId',
     },
     pageResult: {
@@ -56,6 +56,7 @@ const initialState = {
     hire: {
         deadline: '',
         producer: {},
+        files: [],
     },
     status: '',
 };
@@ -63,7 +64,6 @@ const initialState = {
 const hireSlice = createSlice({
     name: 'hire',
     initialState: initialState,
-
     reducers: {
         pageListChange: (state, { payload }) => {
             state.pageResult.page = payload;
@@ -81,10 +81,6 @@ const hireSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(hireList.fulfilled, (state, { payload }) => {
-                console.log('-------------------------------');
-                console.log(payload);
-                console.log('-------------------------------');
-
                 if (!payload) {
                     state.page = 1;
                     return state;
@@ -121,5 +117,9 @@ const hireSlice = createSlice({
 
 export const hireSelector = (state) => state.hireReducer;
 
-export const { pageListChange, resetHireSelector, resetStatus } = hireSlice.actions;
+export const {
+    pageListChange,
+    resetHireSelector,
+    resetStatus,
+} = hireSlice.actions;
 export default hireSlice.reducer;

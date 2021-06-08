@@ -4,15 +4,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import shop.ryuseulgi.goodCasting.user.login.domain.Role;
-import shop.ryuseulgi.goodCasting.user.login.domain.UserVO;
-import shop.ryuseulgi.goodCasting.user.login.repository.UserRepository;
-import shop.ryuseulgi.goodCasting.user.producer.domain.Producer;
-import shop.ryuseulgi.goodCasting.user.producer.repository.ProducerRepository;
+import shop.goodcasting.api.user.login.domain.Role;
+import shop.goodcasting.api.user.login.domain.UserVO;
+import shop.goodcasting.api.user.login.repository.UserRepository;
+import shop.goodcasting.api.user.producer.domain.Producer;
+import shop.goodcasting.api.user.producer.repository.ProducerRepository;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 import java.util.stream.IntStream;
 
 @SpringBootTest

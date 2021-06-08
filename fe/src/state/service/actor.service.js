@@ -28,7 +28,7 @@ const updateactorInfo = (arg) => {
 const unRegister = (arg) => {
     console.log(arg);
     return axios({
-        url: `${SERVER}/actors/delete/${userInfo[1].actorId}`,
+        url: `${SERVER}/actors/delete`,
         method: 'delete',
         data: arg,
         headers: { Authorization: localStorage.getItem('TOKEN') },

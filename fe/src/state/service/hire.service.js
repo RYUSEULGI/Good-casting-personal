@@ -23,7 +23,7 @@ const hireDelete = (id) => {
     return axios({
         url: `${SERVER}/hires/delete/${id}`,
         method: 'delete',
-        headers: { Authorization: 'JWT fefege..' },
+        Authorization: localStorage.getItem('TOKEN'),
     });
 };
 
