@@ -31,7 +31,7 @@ public class UserVO extends BaseEntity {
         this.password = password;
     }
 
-    public void changeRoles(List<Role> roles) {
-        this.roles = roles;
+    public void addRoles(Role role) {
+        roles.add(role);
     }
 }

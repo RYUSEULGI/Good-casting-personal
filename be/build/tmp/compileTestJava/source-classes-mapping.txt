@@ -1,4 +1,28 @@
-shop/ryuseulgi/goodCasting/GoodCastingApplicationTests.java
- shop.ryuseulgi.goodCasting.GoodCastingApplicationTests
-shop/ryuseulgi/goodCasting/user/producer/ProducerTest.java
- shop.ryuseulgi.goodCasting.user.producer.ProducerTest
+shop/goodcasting/api/user/actor/ActorTests.java
+ shop.goodcasting.api.user.actor.ActorTests
+shop/goodcasting/api/ApplicationTests.java
+ shop.goodcasting.api.ApplicationTests
+shop/goodcasting/api/profile/ProfileServiceTests.java
+ shop.goodcasting.api.profile.ProfileServiceTests
+shop/goodcasting/api/jocodec/JocodecTest.java
+ shop.goodcasting.api.jocodec.JocodecTest
+shop/goodcasting/api/actor/actordel.java
+ shop.goodcasting.api.actor.actordel
+shop/goodcasting/api/actor/ActorCrawling2.java
+ shop.goodcasting.api.actor.ActorCrawling2
+shop/goodcasting/api/actor/ActorTests.java
+ shop.goodcasting.api.actor.ActorTests
+shop/goodcasting/api/user/producer/ProducerTest.java
+ shop.goodcasting.api.user.producer.ProducerTest
+shop/goodcasting/api/actor/ActorServiceImplTests.java
+ shop.goodcasting.api.actor.ActorServiceImplTests
+shop/goodcasting/api/article/hire/HireTests.java
+ shop.goodcasting.api.article.hire.HireTests
+shop/goodcasting/api/file/FileTest.java
+ shop.goodcasting.api.file.FileTest
+shop/goodcasting/api/serch/ImageSerch.java
+ shop.goodcasting.api.serch.ImageSerch
+shop/goodcasting/api/hire/hireTest.java
+ shop.goodcasting.api.hire.hireTest
+shop/goodcasting/api/profile/ProfileTest.java
+ shop.goodcasting.api.profile.ProfileTest

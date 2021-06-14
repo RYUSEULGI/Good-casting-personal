@@ -1,0 +1,1714 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="shop.goodcasting.api.hire.hireTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-06-14T08:15:12" hostname="seulgiui-MacBookPro.local" time="26.519">
+  <properties/>
+  <testcase name="creatHire()" classname="shop.goodcasting.api.hire.hireTest" time="26.519"/>
+  <system-out><![CDATA[17:15:00.687 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+17:15:00.696 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+17:15:00.742 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [shop.goodcasting.api.hire.hireTest] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+17:15:00.754 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [shop.goodcasting.api.hire.hireTest], using SpringBootContextLoader
+17:15:00.759 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [shop.goodcasting.api.hire.hireTest]: class path resource [shop/goodcasting/api/hire/hireTest-context.xml] does not exist
+17:15:00.759 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [shop.goodcasting.api.hire.hireTest]: class path resource [shop/goodcasting/api/hire/hireTestContext.groovy] does not exist
+17:15:00.759 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [shop.goodcasting.api.hire.hireTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+17:15:00.761 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [shop.goodcasting.api.hire.hireTest]: hireTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:15:00.841 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [shop.goodcasting.api.hire.hireTest]
+17:15:00.939 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/Users/seulgi/Desktop/build/Good-casting-personal/be/build/classes/java/main/shop/goodcasting/api/GoodCastingApplication.class]
+17:15:00.943 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration shop.goodcasting.api.GoodCastingApplication for test class shop.goodcasting.api.hire.hireTest
+17:15:01.129 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [shop.goodcasting.api.hire.hireTest]: using defaults.
+17:15:01.130 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+17:15:01.220 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@5634648c, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@283b603b, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@62234b7c, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@50c5eb2e, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@25a0e5be, org.springframework.test.context.support.DirtiesContextTestExecutionListener@56e97389, org.springframework.test.context.transaction.TransactionalTestExecutionListener@2ee9ba83, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@518aa8eb, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@73a53a71, org.springframework.test.context.event.EventPublishingTestExecutionListener@6e4d6ab7, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@d93f85f, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@95ad4f6, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@53f6011e, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@56ebc105, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@44a89a87, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@1b0a0b80, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@7817070e]
+17:15:01.228 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@6d3227ee testClass = hireTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2ca2e7ed testClass = hireTest, locations = '{}', classes = '{class shop.goodcasting.api.GoodCastingApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@7d8684ec, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@6b87f52c, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@66bd5cce, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@59e6dfa8, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2984a0b9, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5d9aeddf, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@70bce225], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
+17:15:01.308 [Test worker] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.4.5)
+
+2021-06-14 17:15:02.001  WARN 44653 --- [    Test worker] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/Users/seulgi/.gradle/caches/modules-2/files-2.1/org.json/json/20210307/528c8df3757e8bcf151817b1d7b9b434f6aa08d5/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/Users/seulgi/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2021-06-14 17:15:02.025  INFO 44653 --- [    Test worker] shop.goodcasting.api.hire.hireTest       : Starting hireTest using Java 11.0.10 on seulgiui-MacBookPro.local with PID 44653 (started by seulgi in /Users/seulgi/Desktop/build/Good-casting-personal/be)
+2021-06-14 17:15:02.032  INFO 44653 --- [    Test worker] shop.goodcasting.api.hire.hireTest       : No active profile set, falling back to default profiles: default
+2021-06-14 17:15:04.227  INFO 44653 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-06-14 17:15:04.547  INFO 44653 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 313 ms. Found 10 JPA repository interfaces.
+2021-06-14 17:15:05.775  INFO 44653 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-06-14 17:15:05.830  INFO 44653 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.30.Final
+2021-06-14 17:15:05.992  INFO 44653 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-06-14 17:15:06.093  INFO 44653 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-06-14 17:15:06.213  INFO 44653 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-06-14 17:15:06.251  INFO 44653 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MariaDB103Dialect
+2021-06-14 17:15:07.461  INFO 44653 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-06-14 17:15:07.473  INFO 44653 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-06-14 17:15:09.999  INFO 44653 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='*/**', OPTIONS] with []
+2021-06-14 17:15:09.999  INFO 44653 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='*/*'] with []
+2021-06-14 17:15:09.999  INFO 44653 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='*/h2-console/**'] with []
+2021-06-14 17:15:10.068  INFO 44653 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@cde0f06, org.springframework.security.web.context.SecurityContextPersistenceFilter@7505b437, org.springframework.security.web.header.HeaderWriterFilter@62fc9295, org.springframework.security.web.authentication.logout.LogoutFilter@6b046aa3, shop.goodcasting.api.security.aop.SecurityFilter@734c68e0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3036e7cd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@797f3674, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@45d34bbe, org.springframework.security.web.session.SessionManagementFilter@5ba0a89d, org.springframework.security.web.access.ExceptionTranslationFilter@173e1d89, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@203ae7bb]
+2021-06-14 17:15:10.503  INFO 44653 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-06-14 17:15:12.065  INFO 44653 --- [    Test worker] shop.goodcasting.api.hire.hireTest       : Started hireTest in 10.747 seconds (JVM running for 12.997)
+2021-06-14 17:15:12.141  INFO 44653 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@6d3227ee testClass = hireTest, testInstance = shop.goodcasting.api.hire.hireTest@30bd1cfe, testMethod = creatHire@hireTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2ca2e7ed testClass = hireTest, locations = '{}', classes = '{class shop.goodcasting.api.GoodCastingApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@7d8684ec, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@6b87f52c, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@66bd5cce, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@59e6dfa8, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2984a0b9, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5d9aeddf, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@70bce225], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@2111bcbb]; rollback [false]
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=[푸드모델] 모델 구합니다, project=제품홍보영상, contents=안녕하세요. 몽타미디어입니다. 떡볶이, 김, 크래커 먹는 영상입니다. 푸드 촬영 포폴이 있다면, 프로필 보내주실 때 사진 첨부해주세요. 촬영 날짜 : 6월 15일 화요일 촬영 시간 : 4시~6시(2시간) 촬영 장소 : 연남로 13길 9 지하 1층으로 와주시면 됩니다 페이는 10만원입니다. 스케줄이 가능하신 분들은 eloon87@naver.com 으로 프로필 파일과 함께 출연한 영상 링크, 인스타그램 아이디 함께 보내주시면 참고하도록 하겠습니다.  메일 전송시 지원하는 컨텐츠명 [푸드] 라고 기재하여 전송해주세요., cast=모델, filming=null, guarantee=null, personnel=1명, deadline=2021-06-13T00:00, producer=ProducerDTO(producerId=1, email=pro@2.com, agency=agency2, phone=0102, position=manager, name=producer2, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=6월 29일 / 운동용 스마트 밴드 & 앱 바이럴영상 / 필라테스, 요가 하는 여성 모델 모집합니다, project=필더세임 스마트밴드, contents=안녕하세요 저는 사비필름 조연출 입니다. (4bfilm.com) 운동용 스마트 밴드 영상에 출연할 여성 모델을 찾고 있습니다. 필라테스, 요가 등 운동 동작에 능숙하셔야 합니다. -촬영일자 : 2021년 6월 29일 오전, 1회차 -촬영장소 : 서울 인근 스튜디오 -촬영내용 : 운동용 스마트 밴드를 사용하며 운동 시연하는 여성, 앱 사용하는 연기 -페이 : 일일 페이 70만원 (협의)  연기자시면서 운동 경력자셔야 합니다. 인스타그램이나 유튜브 링크, 포트폴리오를 jayoung@4bfilm.com 으로 보내주시면 됩니다. 메일 보내실 때 제목에 [필더세임 지원] 머리말 달고 보내주시면 감사하겠습니다!  감사합니다., cast=필라테스, 요가 가능한 2-30대 여성, filming=null, guarantee=null, personnel=1인, deadline=2021-06-18T00:00, producer=ProducerDTO(producerId=2, email=pro@13.com, agency=agency13, phone=01013, position=manager, name=producer13, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=[바이럴] 라이스패드 제품 광고에 출연해주실 남성모델 찾습니다., project=토너패드, contents=분별한 지원은 업무에 지장이 생기므로 공고를 자세히 읽으신 후 해당하는 경우 지원 부탁드립니다.    ★모델 희망스펙★ - 여동생캐릭터와 티키타카 중요함 - 캐릭터 잘 살릴 수 있는 ]]>&#x1f380;<![CDATA[연기력 좋은]]>&#x1f380;<![CDATA[ 남성 모델 - 표정연기 잘하시는 분   회사명: (주)제이펀 주소: 서울특별시 금천구 가산티지털1로 128, STXV타워 1001호 제품: 라비템_라이스패드 출연료: 200,000 (사업소득세 3.3% 포함) 촬영형식: 외부스튜디오 촬영 촬영날짜: 6월예정 (3시간) 지원양식 이메일 지원 부탁드립니다. irinn@jfun.co.kr 제목형식: [라비템_라이스패드]나이/이름 프로필 연락처 얼굴이 나온 영상링크 또는 파일***** 영상 혹은 인스타 주소를 반드시 첨부바람*****   기타 모델비는 차주 화요일날 계좌로 지급 헤어/메이크업/의상은 개인 준비 스튜디오에 간단한 메이크업 도구가 있습니다. 하지만 위생적인 문제로 간단한 메이크업 도구는 지참하시는것을 권장합니다! 업무중이기 때문에 메일 지원부탁드립니다.  감사합니다 :), cast=오빠역 (20대), filming=null, guarantee=null, personnel=1, deadline=2021-06-16T00:00, producer=ProducerDTO(producerId=3, email=pro@14.com, agency=agency14, phone=01014, position=manager, name=producer14, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=[2,30대 남성 출연자 모집] 유튜브 콘텐츠에 출연하실 목소리 미남을 찾습니다, project=pixid, contents=세미콜론 스튜디오 제작팀입니다. 유튜브 채널 pixid 콘텐츠에 출연하실 분을 찾습니다. 저희가 찾는 출연자분들은 아래와 같습니다. - 목소리에 자신있는 분(중저음, 혹은 미성의 목소리) - 평소 발라드를 즐겨 듣고, 노래방에서 즐겨 부르는 분 - 뻔뻔하게 컨셉질할 수 있고, 노래 시키면 잘 못해도 어디서든 부를 수 있는 분 촬영 일정은 6월 22일 (화) 예정이고, 신사역 인근 스튜디오에서 오후 1시 또는 2시부터 약 4시간 정도 진행될 예정입니다. 출연료는 10만원입니다. 촬영 레퍼런스 :https://youtu.be/-Q5rnW-dhtw   *지원시 필수 포함 질문 * 아래 질문에 대한 답이 없는 메일은 확인 불가합니다 ㅠㅠ 맞춰서 지원 부탁드립니다! 답은 짧게 해주셔도 됩니다.  Q. 나의 노래 실력은 어느 정도? (e.g.음치는 아니나 굳이 듣고 싶진 않은...) Q. 좋아하는 노래나 가수가 있나요? 왜 좋아하는지? Q. 초절정 목소리 미남인 당신의 별명을 감성, 오글 컨셉으로 지어본다면? Q. 헤어진 그 사람에게 하고 싶은 말 (감성충 컨셉으로) 많은 지원 부탁드립니다 ~~ *^^*, cast=2,30대 목소리 미남, filming=null, guarantee=null, personnel=3명, deadline=2021-06-18T00:00, producer=ProducerDTO(producerId=4, email=pro@16.com, agency=agency16, phone=01016, position=manager, name=producer16, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=[바이럴광고] 스킨케어 바이럴 영상 촬영을 도와주실 여배우 1분을 모십니다., project=스킨케어 바이럴 영상, contents=스킨케어 루틴 바이럴 영상에 출연하실 여자 배우 1분을 모집합니다   [체크사항] * 의상은 직접 준비해주셔야 합니다. * 나이 20대 초반 - 30대 초반의 여성     [촬영일자] * 날짜 : 6월 21일 월요일 * 시간: 11시~17시 (예정) *해당 일정에 촬영이 어려우신 분께서는 지원 메일을 삼가주세요.   [촬영 장소] * 마포구,서대문구 일대 스튜디오   [페이] *30만원 / 촬영 다음 달 5일 입금    [지원방법] * 제목 : [바이럴영상] 스킨케어 바이럴 영상 여배우 000지원합니다.  ⓐ 이름, 나이, 연락처, 최근 사진 첨부 ⓑ 포트폴리오 + 출연 영상 링크 첨부    [필수사항] * 뿌리염색, 단정한 손톱, 깨끗한 피부이신 분 * 바이럴 영상 촬영 경험이 있으신 분 * 자연스러운 표정 연기가 가능하신 분      [ 메일 주소 : socialring@daum.net ] 참여하시게 되는 분께는 개별적으로 연락드리겠습니다. 감사합니다., cast=20대 초반 - 30대 초반 모델, filming=null, guarantee=null, personnel=1, deadline=2021-06-18T00:00, producer=ProducerDTO(producerId=5, email=pro@17.com, agency=agency17, phone=01017, position=manager, name=producer17, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=[바이럴] 마스크팩 유튜브 바이럴 광고에 출연해주실 여성모델을 찾습니다!!, project=마스크팩, contents=바이럴 광고 영상 전문제작 제이펀 기획에서 마스크팩 유튜브 바이럴 광고에 참여해주실 여성모델을 찾습니다! !    모델 희망스펙  지원양식  기타, cast=20대 여성, filming=null, guarantee=null, personnel=1, deadline=2021-06-18T00:00, producer=ProducerDTO(producerId=6, email=pro@34.com, agency=agency34, phone=01034, position=manager, name=producer34, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=바디스크럽 바이럴 광고영상에 출연해주실 연기력 좋고 끼많은 여성모델을 찾습니다!!, project=바디스크럽, contents=바이럴 광고 영상 전문제작 제이펀 기획에서 바디스크럽 SNS 바이럴 광고에 출연해주실 여성모델을 찾습니다! 끼 많고 연기력 좋은 배우분들 많은 지원 부탁드립니다! :)     모델 희망스펙  지원양식  기타, cast=20대 여성, filming=null, guarantee=null, personnel=1, deadline=2021-06-18T00:00, producer=ProducerDTO(producerId=7, email=pro@36.com, agency=agency36, phone=01036, position=manager, name=producer36, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=[메디큐브] 뷰티 디바이스 유튜브 컨셉 바이럴 촬영할 피부 좋은 2030 여성 모델 구합니다, project=피부 유튜버 컨셉의 바이럴 영상, contents=안녕하세요 피부를 연구하는 브랜드 메디큐브입니다.  메디큐브의 바이럴 영상을 함께할 피부 좋으신 30대 여성 모델분(1명)을 모집합니다.  상세 내용은 아래를 참고하시고 많은 참여 부탁드립니다 :)  촬영제품: 메디큐브 제로 클렌징 워터 촬영날짜: 6월 15일-16일 사이 1회차 (시간 협의 가능) 촬영장소: 메디큐브 본사 스튜디오 (서울 2호선 잠실역 롯데월드타워 ) 촬영모델: 피부 좋으신 2030 여성 모델분(1명) 촬영페이: 20만원 / 2시간 촬영 예정  지원 이메일 : 9bee@apr-in.com 지원시 "에이지알 모델지원" 제목으로 프로필, 민낯 영상, 최근이미지, SNS주소 등 보내주시길 바랍니다~  *셀카 사진과 짧은 영상을 첨부해주시면 참고하겠습니다. *최근 이미지로 지원 부탁드립니다.  많은 지원 부탁드립니다.  감사합니다., cast=20-30 피부좋은 여자 모델, filming=null, guarantee=null, personnel=1, deadline=2021-06-16T00:00, producer=ProducerDTO(producerId=8, email=pro@39.com, agency=agency39, phone=01039, position=manager, name=producer39, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=배우의 '연기를 광고하다' 6월 촬영 하실 2분 모집합니다!, project=연기 광고, contents=안녕하세요 :) 저는 현재 광고 영상 감독으로 활동하고 있습니다^^ , 최근 1년동안 바빠서 상업적인 광고들을 계속 해 오다가, 갈증이 느껴져서, 계속해서 기획해서 진행하고 싶었던 배우님들 연기 영상을 담고 싶다는 생각을 했습니다, 배우님이 잘 하실 수있는 독백 or 장면 연기를 토대로, 조금 각색해서, 플랫한 조명과 함께 배우님의 타이트 샷 (감정) 그리고 배우님의 목소리 (사운드) 적인 부분을 강조해서, 연기 영상을 제작하고 싶다는 생각이 들었습니다, 요즘은, 배우님들 프로필 사진만으로는 부족한 시대가 된 것 같습니다, 배우님들의 영상이 필수가 되가고 있는 현재, 배우님들에게 꼭 필요한 도움이 될 만한 영상을 서로 함께 윈윈 할 수 있게 작업 해보고 싶다는 생각에 글을 남깁니다 연기 영상을 함께 만들어보고 싶으신 배우님들의 연락 기다리겠습니다!! 지원은 아래 양식대로 보내주시면 감사하겠습니다  메일 제목은 [ 배우 000/ 연락처] 이름: 나이: 경력: 사진 첨부하여 보내주시면 이미지에 맞는 분들을 토대로 선정해 연락드리도록 하겠습니다 감사합니다!, cast=배우, filming=null, guarantee=null, personnel=2명, deadline=2021-06-30T00:00, producer=ProducerDTO(producerId=9, email=pro@41.com, agency=agency41, phone=01041, position=manager, name=producer41, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=홍보영상 배우 구합니다(10대-20대 초반 남자배우), project=홍보촬영, contents=홍보촬영모델 구합니다 10대 혹은 20대 초반의 남자학생역할 배우 구합니다 지원하실때 메일제목에 지원하시는 배역 꼭 기입해서 지원부탁드리겠습니다~, cast=10대-20대 초반 남자학생역, filming=null, guarantee=null, personnel=1, deadline=2021-06-14T00:00, producer=ProducerDTO(producerId=10, email=pro@45.com, agency=agency45, phone=01045, position=manager, name=producer45, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=[라이브커머스 - 쇼호스트] 여성 쇼호스트 모델, project=라이브쇼핑, contents=안녕하세요. 라이브커머스 (네이버,그립,카카오 등)쇼호스트 방송하실 모델 모집합니다. 현재 방송국이랑 협업해서 라이브커머스를 준비중에 있는 업체입니다. 라이브쇼핑 외주업무 진행으로 정기적인 쇼호스트 진행하실 여자 모델분 구하고 있습니다. * 지원자 안내사항 - 나이:20대~30대 여성 - 성별: 여 - 이목구비 시원하고, 신뢰도 있는 얼굴에 여성상 - 촬영일자 : 정기적으로 건바이건 진행 (협의 후 일정조율 가능) - 촬영시간: 1시간~2시간 내외 (변경될 수 있음) - 모델료: 회당 20~30만원  * 모델 우대사항 - 아나운서 같은 목소리를 가지고 계신분(신뢰도 있는 톤) - 라이브커머스에 관심 있으신 분 - 제품에 대한 이해도가 상당히 좋으신 분 - 말하는 것에 센스가 있으신 분  * 이메일 지원시 필요사항 1. 인스타 ID / 연락처 2. 모델 활동 포트폴리오와 셀프캠 첨부 3. 프로필과 모델이 현저히 다를경우 진행 불가 합니다. 참고 부탁드립니다.  [아이비홀딩스 라이브커머스] 나이/성함 지원은 메일로 지원 바랍니다. dicson00@naver.com, cast=20~30대 말 재치있게 하시는 여성, filming=null, guarantee=null, personnel=여자, deadline=2021-06-30T00:00, producer=ProducerDTO(producerId=11, email=pro@47.com, agency=agency47, phone=01047, position=manager, name=producer47, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=[SNS바이럴] 살집있고 통통한 몸매의 2030여성을 모집합니다, project=바디용품, contents=안녕하세요. 주식회사 메디테라피입니다. 바디용품광고에 출연할 2030 여성모델을 구합니다.  조건 매우 통통한 분(얼굴은 공개되지 않습니다/대사 없습니다)  날짜 6월 22일 화요일 오전  페이 세후 15만원  전신사진 혹은 간단한 프로필 첨부하여 메일로 지원바랍니다. 감사합니다.  , cast=바디용품을 사용하는 여성, filming=null, guarantee=null, personnel=1, deadline=2021-06-16T00:00, producer=ProducerDTO(producerId=12, email=pro@48.com, agency=agency48, phone=01048, position=manager, name=producer48, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=[유진투자증권/바이럴영상] 힙한 20대 남자 모델 / 배우 모십니다., project=유진투자증권, contents=안녕하세요 :) 유진투자증권 바이럴영상제작 관련 모델/배우 모집합니다. -모델/배우 레퍼런스 : https://youtu.be/NcQihA_GIbs -평소 스트릿즐기시는 키 180cm이상 마른 모델/배우님 -스트릿 댄서 또는 그런 느낌 분위기가 가능한 모델 - 6월21~25사이 1회차 - 시간 올데이 / 협의 - 페이 50~80 협의 - 개인 프로필 (현재 이미지 / 인스타가능) - 연기,춤 관련 영상/ 레퍼런스 분위기의 영상 등 꼭 '링크'로 부탁드립니다 - 본인 소개영상 (선택) 메일로 전달 부탁드립니다! 감사합니다., cast=힙한 20대 남자 모델/배우, filming=null, guarantee=null, personnel=1, deadline=2021-06-15T00:00, producer=ProducerDTO(producerId=13, email=pro@49.com, agency=agency49, phone=01049, position=manager, name=producer49, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=제품 홍보 영상 여성 모델 모집합니다., project=제품홍보영상, contents=안녕하세요. 203호 시청각실입니다.  제품 홍보 영상에 출연하실 이미지 모델 모집합니다. 촬영하실 컷은 쉐딩 화장품, 바디 탄력 디바이스, 한방차 섭취 1컷입니다.  대사나 연기가 필요하지 않고 간단한 포즈, 표정 정도의 촬영만 이루어지므로 관련 촬영 경험이 없으신 분들도 편하게 지원해주세요.  1. 모집 내용 - 20-30대 여자 1명 - 코디 2벌이상 준비 가능하신 분 - 메이크업은 실장님 오시므로 기초 화장만 하고 오세요  2. 촬영 내용 - 쉐딩 화장품 : 쉐딩 제품 시연 - 바디 탄력 디바이스 : 기기 시연이므로 다리, 팔, 쇄골 등 노출 있습니다 - 한방차 섭취 (1컷) : 한방 제품 섭취 가능한 분 지원 바랍니다 3. 우대 사항 - 시간 약속을 잘 지키시는 분 - 촬영에 열정적으로 임하시는 분  4. 출연료 - 15만원  5. 촬영 일자 및 시간 - 2021년 6월 17일 목요일 15:00 ~ (3시간 이내)  6. 촬영 장소 - 경기도 부천시 예정 (상세 주소는 개별 연락드립니다.)  6. 지원 방법 - 이메일(203ho.model@gmail.com) 지원 - 프로필과 함께 ★실물 느낌에 가까운 영상★을 꼭 첨부해주세요(파일, 링크 등) - 제목에 [여성제품]를 붙여주세요. 예시) [여성제품] OOO 지원합니다.  당분간 제품 촬영을 많이 진행 할 예정입니다. 앞으로 꾸준히 함께 작업할 수 있는 좋은 인연이 되었으면 합니다.  감사합니다., cast=20~30대 여성, filming=null, guarantee=null, personnel=1, deadline=2021-06-17T00:00, producer=ProducerDTO(producerId=14, email=pro@51.com, agency=agency51, phone=01051, position=manager, name=producer51, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=[SNS바이럴 광고 외국인 모델 모집] 캠핑키트 식품 / 일본인 여성 모델 한 분 모집합니다. (페이 30만원), project=캠핑식품키트, contents=안녕하세요 캠핑키트 식품관련 토크쇼 형식의 SNS바이럴영상 일본인 여성 배우(모델) 한분 모집합니다. 다양한 인종의 외국인 모델분들과 토크쇼 형식으로 진행됩니다. 한국어 어느정도 할줄 아시는 분이어야 합니다. (한국어로 토크쇼 형식이라 어느정도 가능하셔야 합니다.)  메일 주실때 <캠핑식품_외국인모델 _이름> 형식으로 전달 부탁드리겠습니다! 일시 : 6월 넷째주 예상 내용 : SNS바이럴 영상 촬영 (토크쇼 리뷰 형식) 아래 레퍼런스 참조 레퍼런스 :https://www.youtube.com/watch?v=dHusJWveEwI&t=338s (해당 레퍼런스는 유튜브 영상으로 참고만 부탁드립니다. 런닝타임 2분이내 예상) 페이 : 시간당 10만원 / 최소 2시간 이상 촬영 (3시간정도 예상되긴 합니다.) 인원 : 외국인 여성 1명 (헤어,메이크업 본인이 하고오셔야합니다!) 장소 : 서울 컨셉 : 리뷰형식 토크쇼 이미지가 맞다면 꾸준히 함께하면 좋을 것 같습니다. 많은 지원 부탁드립니다. 프로필, 출연영상 링크 필히 첨부 부탁드리겠습니다 :) 하기 메일로 전달주세요 ! (인스타 주소 있으시다면 같이 부탁드려요) suep0208@gmail.com, cast=20대 후반~30대 초반 여성, filming=null, guarantee=null, personnel=2명, deadline=2021-06-25T00:00, producer=ProducerDTO(producerId=15, email=pro@52.com, agency=agency52, phone=01052, position=manager, name=producer52, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=여성 유튜브 진행자님을 구하고있습니다!, project=미팅시 공개, contents=현재 기획중인 단계이며, 유튜브에서 저희 자사 상품으로 리뷰를 진행하려합니다. 단순 리뷰가 아닌 19금 컨셉으로 갈 예정입니다. 예민한 문제일수 있어 메일로 질문 남겨주시면 하나하나 답변드리겠습니다!(노출 가능여부와 가능 하다면 어디까지 가능한지 심한 노출은 없지만 예민할 수 있는 문제라 적습니다.) 촬영 전에 사전 대본을 드려 수위에 대해 얘기를 해보고 협의 후에 진행 될 예정입니다! 페이는 추후 미팅후에 협의할 예정입니다. 1회성 촬영이 될 수도 있고 추후 여러 횟차 진행 될 수도 있을 것 같습니다.   현재 여자 진행자 프로필만 받고 있습니다.  긴 글 읽어주셔서 감사합니다. 감사합니다. 좋은 하루되세요 :), cast=20~30대 여성, filming=null, guarantee=null, personnel=1~3, deadline=2021-06-30T00:00, producer=ProducerDTO(producerId=16, email=pro@54.com, agency=agency54, phone=01054, position=manager, name=producer54, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=샴푸/고데기 제품 홍보 영상 남자 모델 모집합니다., project=제품 홍보 영상, contents=안녕하세요. 203호 시청각실입니다.  샴푸, 고데기 제품 홍보 영상에 출연하실 남자 모델 모집합니다. 실제 머리 감는 모습 촬영 예정으로 상반신 노출이 가능하신 분만 지원 바랍니다. (편집 시에는 쇄골 위쪽으로만 사용합니다.)  고데기 역시 직접 시연하는 모습이 필요하므로 사용 경험이 있으신 분들을 우대합니다. 완성된 스타일은 헤어 실장님이 한 번 더 손봐주실 예정입니다.  대사없이 표정, 행동만 취해주시면 되므로 촬영 경험이 없으신 분들도 편하게 지원해주세요.  1. 모집 내용 - 20-30대 남성 - 실제 머리 감는 컷 촬영 가능하신 분(상반신 노출 될 수 있습니다) - 고데기 사용 가능하신 분  2. 우대 사항 - 시간 약속을 잘 지키시는 분 - 촬영에 열정적으로 임하시는 분  3. 출연료 - 20만원  4. 촬영 일자 및 시간 - 2021년 6월 17일 목요일 11:00 ~(4시간 이내)  5. 촬영 장소 - 경기도 부천시 예정 (상세 주소는 개별 연락드립니다.)  6. 지원 방법 - 이메일(203ho.model@gmail.com) 지원 - 프로필과 함께 ★실물 느낌에 가까운 영상★을 꼭 첨부해주세요(파일, 링크 등) - 제목에 [샴푸/고데기]를 붙여주세요. 예시) [샴푸/고데기] OOO 지원합니다.  꾸준히 함께 작업할 수 있는 좋은 인연이 되었으면 합니다.  감사합니다., cast=20~30대 남성, filming=null, guarantee=null, personnel=1명, deadline=2021-06-17T00:00, producer=ProducerDTO(producerId=17, email=pro@55.com, agency=agency55, phone=01055, position=manager, name=producer55, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=[침대 바이럴 광고] 발음 정확한 아나운서 컨셉의 모델 모집합니다!, project=SNS 뉴스 형식의 바이럴 광고, contents=●촬영 컨셉 설명 - 침대 브랜드 광고 영상입니다. - 가볍게 볼 수 있는 SNS 뉴스 형식의 촬영입니다. - 아나운서 컨셉이며 뉴스 전달, 인터뷰 진행, 쇼핑라이브 등 관련 촬영 유경험자 및 발음이 정확하신 분들 지원 부탁드립니다 :)  ●사전 미팅 진행 예정 - 사전 미팅 후 캐스팅 진행할 예정입니다. - 미팅 일시 : 6월 15일 - 18일 중 협의하여 진행 - 미팅 장소 : 선릉역 인근의 사무실 - 미팅 감사 비용 : 50,000원 (3.3% 소득세 공제 후 지급)  ●촬영 일정 -촬영 일시: 6월 25일 금요일 예정 -촬영 장소 : 서울 인근 스튜디오(상세 주소 추후 공지) -출연료 : 300,000원 (3.3% 소득세 공제 후 지급)  *촬영 진행 사항에 따라 일정 변동 될 수 있습니다.  지원방법: hyeon@boostlab.co.kr [정찰제] 말머리 달고 지원해주시기 바랍니다. 보정 되지 않은 얼굴과 말하는 모습을 볼 수 있는 영상 포트폴리오 꼭 첨부 부탁드립니다. , cast=20-30대 초반의 발음 정확한 아나운서, filming=null, guarantee=null, personnel=1명, deadline=2021-06-18T00:00, producer=ProducerDTO(producerId=18, email=pro@61.com, agency=agency61, phone=01061, position=manager, name=producer61, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=강아지 사료 SNS 바이럴 영상에 '동안 외모'의 반려견과 동반출연하실 분들을 모십니다, project=강아지 사료 바이럴 영상, contents=안녕하세요 존니조아 스튜디오입니다  강아지 사료 바이럴 영상에 출연하실 연기자분들을 모십니다.  **반려견과 함께 출연**하고 강아지의 귀여운 모습을 담은 영상과 견주님의 인터뷰가 있는 바이럴입니다. (강아지가 해당사료를 먹는 장면이 포함되어 있습니다)  동안 외모를 가진 강아지가 주인공이므로, -10살이지만 아기 강아지처럼 보이는 외모를 가졌다거나 -눈물자국이 거의 없어 동안으로 보인다거나 하는 강아지들의 많은 지원 부탁드립니다! (나이를 말하기 전까진 어린 강아지로 보이는)  * 촬영장소 : 미정 (서울) * 촬영일시 : 2021. 06. 18 금요일 * 촬영시간 : 약 3시간 *페이 : 20   <지원 양식> 이름 : 나이 : 연락처 : ★영상 링크 (포트폴리오 필수) : ★반려견 사진 필수    profile@jonnijoa.com 메일에 [강아지 사료 바이럴 영상 B 지원] 이라 적어주세요.  감사합니다 :)   *존니조아 스튜디오 http://www.jonnijoa.com/  위에 사이트에서 영상 확인하실 수 있습니다.  많은 지원부탁드립니다. 감사합니다 :), cast=견주, 반려견, filming=null, guarantee=null, personnel=1 (+반려견), deadline=2021-06-17T00:00, producer=ProducerDTO(producerId=19, email=pro@64.com, agency=agency64, phone=01064, position=manager, name=producer64, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=[스튜디오 레드우드] 어린이들을 위한 "그림자 놀이 컨텐츠"에서 주인공으로 연기해주실 배우님 모집합니다., project=그림자 놀이는 못 참지, contents=캐릭터 탈을 쓰고 촬영하거나 탈을 쓰지 않고 촬영하더라도 후반작업으로 탈을 씌울 계획이므로 얼굴 노출은 없는 촬영입니다.  캐릭터는 중성적인 느낌(따로 남자 or 여자 구분하지 않는 캐릭터)으로 마른체형의 남성 분 혹은 피지컬이 있는 여성 분이 지원해주시면 되겠습니다. 목소리 성우 연기 경험이 있으신 분이시면 좋겠습니다.  - 주로 벽에 그림자를 만들어, 배우분이 벽의 그림자와 싸우는 내용의 영상을 제작할 계획입니다. - 초등학교 3~4학년의 어린이들을 주 타겟으로 하며 2030연령도 볼 수 있는 영상 - 대사는 길지 않은 편이고, 벽에 보이는 그림자를 보고 가벼운 리액션을 표현해주는 촬영 - 캐릭터의 성격은 밝아 리액션이 크고 호기심 많은 중성적인 캐릭터   레퍼런스로 연기력을 볼 수 있는 자료, 보이스 샘플 등의 자료를 포트폴리오에 첨부하여 메일로 지원해주시면 감사하겠습니다.  - 일정 : 6월 15일 (화) 오전9시 ~ 오후2시 (5시간) - 장소 : 서울 서초구 방배동 839-4 지하1층 - 출연료 : 20만원 * 페이는 원천징수 3.3% 후 익월 말에 지급됩니다., cast=20대 중성적인 느낌의 캐릭터, filming=null, guarantee=null, personnel=1, deadline=2021-06-14T00:00, producer=ProducerDTO(producerId=20, email=pro@67.com, agency=agency67, phone=01067, position=manager, name=producer67, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=써큘레이터 광고 촬영 외국인 모델 지원 받습니다 (한국인X), project=써큘레이터 광고 촬영, contents=써큘레이터 촬영으로 백인 남성 1분과 백인 여성 1분, 그리고 흑인은 1분이지만 아직 성별은 무관입니다. 그리고 한분은 유색인종으로 찾습니다 ( 동남아,남미,인도,아랍 등). 파주 스튜디오 내에서 하는 촬영으로 풀데이 예상하며 시간과 페이는 협의진행 가능하오나 경력위주인 분들로 많은 지원 부탁드리겠습니다. 본인 프로필이나 활동했던 영상을 이메일로 첨부하여 많은 연락 부탁드리며 캐스팅이 확정 다 될경우 조기마감 될수 있는 점 양해 바랍니다., cast=외국인 남녀, filming=null, guarantee=null, personnel=남자2,여자2, deadline=2021-06-27T00:00, producer=ProducerDTO(producerId=21, email=pro@68.com, agency=agency68, phone=01068, position=manager, name=producer68, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=(주)제이에스벤처스에서 "바디용품" 바이럴 영상 모델 섭외합니다., project=바이럴 영상, contents=기재 된 메일로 프로필 보내주시면 확인 후 연락드리겠습니다.  이메일: sjsmstjdghks@naver.com  담당자연락처: 010-8701-3975  * 실물미팅 우선적으로 진행합니다.  페이수준: 4시간 기준 15만원  *촬영 시간에 따라 변동될수 있습니다.  페이지급일: 둘째 주/ 넷째 주 금요일  촬영지역: 강남역 1번 출구 도보 5분   *촬영 지원시 메일 제목에 바디용품 기입, cast=바이럴 영상 모델, filming=null, guarantee=null, personnel=여자, deadline=2021-06-26T00:00, producer=ProducerDTO(producerId=22, email=pro@71.com, agency=agency71, phone=01071, position=manager, name=producer71, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=[바이럴광고] 영상 촬영을 도와주실 시니어 여배우 1분을 모십니다., project=피아노 바이럴 영상, contents=바이럴 영상에 출연하실 시니어 여배우 1분을 모집합니다 **피아노 치는 역할 **    [체크사항] * 헤어 메이크업과 의상은 직접 준비해주셔야 합니다 (1-2벌) * 나이 50대 후반 - 60대 초반    [촬영일자] * 날짜 : 6월 22일 화요일 * 시간: 오전 (미정) *해당 일정에 촬영이 어려우신 분께서는 지원 메일을 삼가주세요   [촬영 장소] 서울 (미정)   [페이] * 20만원 / 촬영 다음 달 5일 입금    [지원방법] * 제목 : [바이럴영상] 피아노 시니어 여배우000지원합니다.  ⓐ 이름, 나이, 연락처, 최근 사진 첨부 ⓑ 포트폴리오 + 출연 영상 링크 첨부    [필수사항] * 능청스러운 연기 경험이 있으신 분 * 바이럴 영상 촬영 경험이 있으신 분 * 자연스러운 표정 연기가 가능하신 분 * 뿌리염색, 단정한 손톱, 깨끗한 피부이신 분 *나레이션 녹음 가능하신분     [ 메일 주소 : socialring@daum.net ] 참여하시게 되는 분께는 개별적으로 연락드리겠습니다. 감사합니다., cast=60대 할머니역, filming=null, guarantee=null, personnel=1, deadline=2021-06-16T00:00, producer=ProducerDTO(producerId=23, email=pro@72.com, agency=agency72, phone=01072, position=manager, name=producer72, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=유튜브 채널에서 20대 이상 여성 출연자를 모집합니다., project=유튜브 채널, contents=안녕하세요. 저희 채널은 19금 토크를 솔직 과감하게 해주실 수 있는 미성년자 제외 여성 출연자를 모집하고 있는데요, Q&A 방식으로 보다 재밌고 과감하게 토크를 나누는 유튜브를 촬영하고자 합니다. 성에 대해 열려 있는 분, 주변에서 들은 이야기가 많은 분들, 자신의 생각을 솔직하게 이야기해주실 수 있는 분들이라면 누구나 부담 없이 지원해주세요!  ▶모집방법 : E-Mail 모집 /// 메일명에 꼭[유튜브 지원 / 이름] 표기바람 (pji2025@naver.com) ※ 연령때는 제한없이 받고있습니다. (미성년자 제외)  ▶ 촬영일 : 1일(1회차) 6월말~7월초 생각 中  ▶촬영시간: 약 1시간~2시간  ▶페이 : 15만 원  많은 지원 부탁드립니다. 감사합니다., cast=미성년자 제외 모든 연령대 여MC, filming=null, guarantee=null, personnel=4명, deadline=2021-06-18T00:00, producer=ProducerDTO(producerId=24, email=pro@73.com, agency=agency73, phone=01073, position=manager, name=producer73, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=6월18일 금요일 sns바이럴 여자 모델 1명 모집하니다.(헤어제품, 피쥬얼 우선 구인), project=정희수PD, contents=, cast=여자모델, filming=null, guarantee=null, personnel=여자모델 1명, deadline=2021-06-17T00:00, producer=ProducerDTO(producerId=25, email=pro@75.com, agency=agency75, phone=01075, position=manager, name=producer75, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=[기초케어 제품] SNS 바이럴 영상 여성 모델 찾습니다, project=비타7 3종 미니키트, contents=안녕하세요 자연주의 화장품 글로벌 브랜드 더연(www.theyeon.kr)에서 sns바이럴영상 모델을 모집합니다  [컨셉] 활기찬 뷰티 유튜버가 화장품 시연을 하며 특장점을 설명  [모집 배우 조건] • 모집 인원 (명): 1 • 모집 연령: 20~30세 • 모집 성별: 여성 • 역할 설명: • 브이로그 형식의 화장품 특장점을 설명하면서 시연을 할 약간의 연기가 필요합니다 • 영상 촬영 후 제품과 함께 이미지 촬영 (상큼한 느낌의 컨셉) • 화장품 비포애프터 촬영이 있어 얼굴에 약간의 울긋불긋 트러블을 재현하는 연출에 거부감이 없으셨으면 좋겠습니다 • 비포애프터 촬영이 있어 화장품을 들고 여러포즈로 예쁜 척하는 연출이 가능하셔야 합니다 • 촬영일 이후 홈케어 영상으로 간단한 화장품 시연영상 핸드폰으로 찍어 보내주셔야 합니다 • 촬영 시간은 변동될 수 있습니다 • 필수조건: • 화장품 시연을 해야해서 민낯공개가 필요하여 피부 트러블이 있으신 분은 죄송합니다 • 우대 사항: • 경험 또는 경력이 있는 유경험자 • 제품 컨셉의 특성상 상큼하고 발랄한 느낌을 잘 표현하실 수 있는 분 • 급여: 20만원 (원천징수세전) • 근무 장소: 서울 내에 위치한 스튜디오(더연 본사), cast=20대 여성, filming=null, guarantee=null, personnel=여자, deadline=2021-06-18T00:00, producer=ProducerDTO(producerId=26, email=pro@76.com, agency=agency76, phone=01076, position=manager, name=producer76, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=(주)제이에스벤처스에서 "셀프뷰티 제품" 바이럴 영상 모델분을 섭외합니다., project=뷰티 바이럴 영상, contents=기재 된 메일로 프로필 보내주시면 확인 후 연락드리겠습니다.  (주)제이에스벤처스에서 "셀프뷰티 제품" 바이럴 영상 모델 섭외합니다. 이메일: videoteam01@naver.com 담당자연락처: 010-7709-9834 "제이에스벤처스"에서 "셀프뷰티 제품" 바이럴 영상 모델분을 섭외합니다.  * 실물미팅 우선적으로 진행합니다. 페이수준: 4시간 기준 15만원  *촬영 시간에 따라 변동될수 있습니다. 페이지급일: 둘째 주/ 넷째 주 금요일  촬영지역: 강남역 1번 출구 도보 5분 촬영일정: 7월 예정 *촬영 지원시 메일 제목에 제품명 기입, cast=20대 바이럴 모델, filming=null, guarantee=null, personnel=여자, deadline=2021-06-21T00:00, producer=ProducerDTO(producerId=27, email=pro@77.com, agency=agency77, phone=01077, position=manager, name=producer77, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=외국인과 대화하기, project=외국인과 대화하기, contents=외국인, 한국인 아역 모델을 선발합니다  한국인과 외국인(한국어를 잘 못하는)의 대화를 통해 친해지는 과정을 촬영하게 됩니다 촬영된 영상은 유튜브 채널을 통해 공개됩니다  장소: 서울 마포(아직 미정입니다) 시간: 16:00-19:00(3시간) 페이: 30만원  많은 지원 부탁드립니다, cast=초등학교 10세 정도의 외국인(여), 한국인(남), filming=null, guarantee=null, personnel=2명, deadline=2021-06-15T00:00, producer=ProducerDTO(producerId=28, email=pro@79.com, agency=agency79, phone=01079, position=manager, name=producer79, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=유튜브 일미터에서 자녀(초,중,고등학생)와 동반 출연이 가능한 부모님, 부모님과 동반 출연 가능한 배우(초,중,고등학생)를 모십니다., project=일미터, contents=안녕하세요 유튜브 채널 일미터에서 출연자를 모집합니다. 채널 : https://www.youtube.com/channel/UCGMHKjietlOUD1B1a1jAgkw/videos  ◆촬영 주제 및 내용 연락 후 설명  ◆촬영 안내 촬영 날짜 : 6월 30일 까지 개별 촬영 촬영 장소 : 수원 스튜디오 모집인원 : 아들 딸과 동반 출연 가능한 부모님, 부모님과 출연 가능한 분들  ◆ 지원 dlfalxj315@gmail.com 위 메일 주소로 프로필을 보내주시면 확인 후 연락드리겠습니다., cast=일미터, filming=null, guarantee=null, personnel=상시 모집, deadline=2021-06-30T00:00, producer=ProducerDTO(producerId=29, email=pro@81.com, agency=agency81, phone=01081, position=manager, name=producer81, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=자신의 학교를 소개하는 콘텐츠에서 고등학생 여러분을 모십니다 (재지원 환영), project=학.생.부, contents=지원링크 : https://docs.google.com/forms/d/1o7WnyPM-EcFl9INABC24_50iS0kHX8xqok9JeGLei2I/edit  안녕하세요 :) 10대 여러분의 이야기를 들려주는 틴케이스입니다! https://url.kr/g6mhou (학.생.부 1화 참고)  예술고등학교, 특성화고등학교 등 다양한 대한민국의 고등학교를 자연스럽고 재밌게 소개하는 콘텐츠를 제작하려고합니다 :) 자신의 학교를 자랑하고 싶은 고등학생 여러분의 많은 지원 부탁드립니다! (현재 "코너스톤 국제학교"편 촬영 예정입니다)  학교 친구와 함께 지원 우대합니다! 이 경우 두분 모두 지원서를 작성해주셔야 합니다 :) 일시: 6월 19일 토요일 11시~12시 1시간 장소: 서울 관악구 양녕로 19 2층 인원: 2명 페이: 1회 1시간 25,000원 준비물: 교복, 높은 텐션 발표: 6월 14일 월요일 감사합니다 :), cast=고등학생, filming=null, guarantee=null, personnel=2, deadline=2021-06-14T00:00, producer=ProducerDTO(producerId=30, email=pro@92.com, agency=agency92, phone=01092, position=manager, name=producer92, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=(주)제이에스벤처스에서 "뷰티(화장품) 바이럴 영상 모델 섭외합니다., project=뷰티 바이럴 영상, contents=기재 된 메일로 프로필 보내주시면 확인 후 연락드리겠습니다.  이메일: sjsmstjdghks@naver.com  담당자연락처: 010-8701-3975  * 실물미팅 우선적으로 진행합니다.  페이수준: 4시간 기준 15만원  *촬영 시간에 따라 변동될수 있습니다.  페이지급일: 둘째 주/ 넷째 주 금요일  촬영지역: 강남역 1번 출구 도보 5분   *촬영 지원시 메일 제목에 뷰티(기초 화장품) 기입 , cast=바이럴 모델, filming=null, guarantee=null, personnel=여자, deadline=2021-06-14T00:00, producer=ProducerDTO(producerId=31, email=pro@93.com, agency=agency93, phone=01093, position=manager, name=producer93, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=종로구 공공건축물 홍보영상_ 40대 청소부역 남., project=구름이머무는담, contents=종로구 공공건축물 관련 프로젝트 홍보영상_ 40대 청소부역 남자 배우님 모십니다. 17일 새벽에서 아침 정도의 시각에 촬영 예정이며, 종로구 환경미화원 역할입니다. 촬영시간은 2시간입니다. 페이는 10만원입니다. 감사합니다., cast=청소부1, filming=null, guarantee=null, personnel=1, deadline=2021-06-13T00:00, producer=ProducerDTO(producerId=32, email=pro@112.com, agency=agency112, phone=010112, position=manager, name=producer112, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=화장품 바이럴 광고 20대 초반 모집합니다(스틸 촬영후 베트남 광고 영상 촬영 진행 예정), project=화장품 바이럴, contents=화장품 바이럴 모델 찾고 있습니다  20대초 상큼한 이미지 엣된 이미지 청순한 이미지 급하게 찾고 있는중입니다  메일로 프로필 보내주시면 검토 후 연락 드리겠습니다  에이젼시 프로필은 받지 않겠습니다.  일반인 모델 같은 네츄럴 모델 찾고 있습니다.  촬영 기간은 하루이며 추후 동일한 모델로  베트남 매체 광고 영상 촬영 계획 있습니다. , cast=20대 초 모델, filming=null, guarantee=null, personnel=1, deadline=2021-06-19T00:00, producer=ProducerDTO(producerId=33, email=pro@116.com, agency=agency116, phone=010116, position=manager, name=producer116, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=(주) 아르고 코퍼레이션 /뷰티인어스_마스크팩 비쥬얼 뷰티 모델 (생얼 촬영 가능자), project=마스크팩 뷰티 촬영, contents=안녕하세요.  아르고코퍼레이션입니다.  아르고 브랜드 제품 바이럴 광고 촬영에 함께할 모델 모집합니다.  상세 내용은 아래를 참고하시고 많은 참여 부탁드립니다  촬영제품: 뷰티 인 어스 _ 마스크팩  촬영날짜: 6월16일  촬영장소: 서을 스튜디오  촬영모델: 20대 뷰티 촬영 가능 모델 /생얼 촬영 가능자/ 생얼사진 첨부/하얀피부 (보정X)  촬영페이: 8시간 50만원 (3.3%포함)  지원 이메일: kim_eunsuk91@argo.kr  지원시 프로필, 최근이미지, 보정안된 생얼사진, SNS 주소 등 보내주시기 바랍니다., cast=20대 여성 모델 /생얼촬영 가능한분/ 깨끗한 피부, filming=null, guarantee=null, personnel=여자, deadline=2021-06-15T00:00, producer=ProducerDTO(producerId=34, email=pro@121.com, agency=agency121, phone=010121, position=manager, name=producer121, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=리액션 영상에 출연하실 10대 예고 재학생/밴드부 섭외합니다:), project=어썸엔터테인먼트, contents=안녕하세요, 유튜브 채널 '헤이데이'에 출연하실 10대 예고 재학생/밴드부을 찾습니다! 자세한 사항은 아래와 같습니다.   헤이데이 유튜브 채널 : https://www.youtube.com/channel/UCff5yzhaE5liFwrEXFESSQg  저희 채널은 국내외 스타들의 리즈시절을 보며 회상하는 채널입니다. 따라서 표현력이 좋고, 활발한 친구라면 주저 없이 지원해주시기 바랍니다!  단, 일관된 반응 대신 자신의 경험을 바탕으로 얘기하거나 다양하게 표현해주실 수 있는 분을 원합니다. 은지원편 : https://youtu.be/SL5Ukeii2Hw 민경훈편 : https://youtu.be/YKYxYfxmBbI  위의 레퍼런스를 참고해주시기 바랍니다.  [대상] 10대 예고 재학생/밴드부  [일정] 예정 촬영일은 6월 마지막주 주중 중 하루 2시간이며, 지원해주신 분들 가운데 몇 분과 미팅을 거친 후 진행할 예정입니다.  [위치] 2호선 성수역 3번 출구에서 도보 3분 거리에 있는 SKV1 건물, 10층 스튜디오에서 촬영이 진행됩니다.  [출연료] 시간당 25000원입니다.  [지원 방법] lih@awesomeent.kr로 다음의 서류를 보내주세요! 1. 본인의 사진/이름/나이가 포함된 프로필 or 포트폴리오 2. 활동하시는 인스타 계정 or 유튜브 계정   많이 지원해주세요! 재밌게 촬영 임할 수 있으면 좋겠습니다. 감사합니다:), cast=10대 예고/밴드부, filming=null, guarantee=null, personnel=2, deadline=2021-06-15T00:00, producer=ProducerDTO(producerId=35, email=pro@127.com, agency=agency127, phone=010127, position=manager, name=producer127, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=쿠키 스튜디오에서 짧은 먹방 컨텐츠<< 출연진 모집 >> (~ 6.15), project=짧은 먹방(가제), contents=다채로운 영상 제작소 쿠키 스튜디오에서 짧은 먹방 영상 (가제) 출연진을 찾습니다 촬영 20-30분간 다양한 음식을 드시며 매력을 뽐내주세요!  아래 지원서를 통해 지원 및 문의 부탁드립니다! https://forms.gle/yRQgnj8f3CSVpSJ16, cast=출연진, filming=null, guarantee=null, personnel=남자,여자, deadline=2021-06-15T00:00, producer=ProducerDTO(producerId=36, email=pro@132.com, agency=agency132, phone=010132, position=manager, name=producer132, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=제품 피팅모델 & 쇼핑몰 업무보조 [ 정규직 or 알바 ] 채용 (무경험자 가능), project=sns틱톡 광고모델, contents=제품 피팅모델 & 쇼핑몰 업무보조 [ 정규직 or 알바 ] 채용 (무경험자 가능) ★ 공지사항 ★ < 이전 공고에서 압박스타킹 피팅분야에 많은 관심과 지원에 다시 한번 감사드립니다. 감사에 힘 입어 더 다양한 제품의 피팅 지원자도 함께 모집 하기로 하였으니 자세한 사항은 피팅 모집분야를 참고 바랍니다. > └ 이번에도 쉽고, 재밌게 촬영하고 페이 받아가세요 ~ :3   ■ [ 근무형태 ] ■  -------------------------------------------------------- ✔ 정규직 (월~금) : AM 09:00 ~ PM 6:00 - 급여 / 월 180만원 이상 ~ 협의 가능  선택1 ▶ 제품 피팅 모델 겸 쇼핑몰 업무 보조 정규직 선택2 ▶ 쇼핑몰 업무 보조 정규직( 제품 피팅 제외)  ※ 두가지 항목중 택1  --------------------------------------------------------  ✔ 파트타임 (근무 형태, 시간, 요일 자유롭게 협의 가능)  선택1 ▶ [ 제품 피팅 모델 ] : 시급 20,000원 선택2 ▶ [ 쇼핑몰 업무보조 ] : 시급협의  ※ 두가지 항목중 원하는 분야 선택  --------------------------------------------------------   ■ [ 지원분야 ] ■  --------------------------------------------------------  ✔ [ 제품 피팅 분야 ]  ※ 피팅 희망하는 제품 선택 (복수선택 가능)  선택1 ▶ 복부보정웨어 : 뱃살 노출이 가능하며 물렁살이신분 대환영 선택2 ▶ 압박스타킹 : 다리에 탄력이없고, 물렁살이신분 선택3 ▶ 힙업팬티 : 빈약한 힙을 가지고 계신분 대환영  ▷ 카메라 앞에 서는걸 좋아하시는분 환영 (모든 촬영 얼굴 노출X) ▷ 보정웨어, 압박스타킹 피팅에 거리낌 없으신 분 ▷ 피팅 시 효과가 잘 보여야되므로 착용 부위가 물렁살이신 분★ ▷ 재밌게 틱톡, 유튜브, 페이스북 영상을 함께 만들어보실 분 ▷ 명랑, 쾌활, 활발하며 긍정적인 마인드를 소유하신 분  --------------------------------------------------------  ✔ [ 쇼핑몰 업무보조 ]  - SNS 블로그 관리 & 후기관리 등 쇼핑몰 업무보조 (무경험자 가능) - 틱톡, 인스타 릴스 등 SNS 영상 제작 보조 (틱톡 챌린지 영상 아이디어 기획)  ▷ 온라인 쇼핑, E커머스, 마케팅 분야를 배워보고 싶으신 분 ▷ 평소 SNS 광고 영상에 관심이 많으신 분 ▷ 컴퓨터 활용 가능자  --------------------------------------------------------   ■ [ 지원자격 ] ■  - 20~30세 (여성) / 정규직 or 파트타임 자유롭게 선택가능 - 학력, 경력 무관  --------------------------------------------------------  ■ [ 지원 방법 ] ■  ※ 아래 항목을 이메일로 보내주세요. [ vmryseav@flaseek.com ]  ✔ 근무형태, 지원분야 선택 : 예시) → 정규직 / 제품 피팅 겸 쇼핑몰 업무보조 예시) → 파트타임 / 제품 피팅 모델  ✔ 이력서  ✔ 포트폴리오(없어도 무관)  ※ 제품 피팅 모델 지원자 필수 요청사항 ✔ 무보정 전신사진 2장 ✔ 인스타 or 틱톡 아이디 첨부 , cast=20~30세 여성, filming=null, guarantee=null, personnel=여자, deadline=2021-06-30T00:00, producer=ProducerDTO(producerId=37, email=pro@136.com, agency=agency136, phone=010136, position=manager, name=producer136, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=정수기 광고 배우 구인, project=정수기 7000원, contents=정수기 sns 15~30초 짜리 단순 광고 구인합니다.  남,여 두분 구하고 신혼부부컨셉으로 진행합니다.  2편 촬영하며 예상촬영 시간은 6시간 이내입니다.  페이는 인당 15만원이며  메일양식에 맞춰서 보내주세요.  [정수기]이름/성별/나이  내용 : 프로필 영상,사진  촬영은 북서울,일산 근처에서 진행됩니다. 참고바랍니다., cast=30대 초중반 남,여, filming=null, guarantee=null, personnel=2명, deadline=2021-06-13T00:00, producer=ProducerDTO(producerId=38, email=pro@137.com, agency=agency137, phone=010137, position=manager, name=producer137, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=[모집완료]제품 홍보 영상 남녀 이미지 모델 모집합니다., project=제품 홍보 영상, contents=모집완료되었습니다. 감사합니다.  안녕하세요. 203호 시청각실입니다.  제품 홍보 영상에 출연하실 이미지 모델 모집합니다. 촬영하실 컷은 반팔티 착용 모습과 건강기능 식품 섭취 모습입니다. ※ 건강기능 식품의 경우 알러지 등 문제가 생길 수 있으니 꼭 아래 내용을 확인해주세요.  반팔티의 경우 기본적인 무지(블랙, 네이비, 화이트) 제품으로 그에 맞는 코디를 2가지 이상 준비해주실 수 있는 분을 모집합니다.  대사나 연기가 필요하지 않고 간단한 포즈, 표정 정도의 촬영만 이루어지므로 관련 촬영 경험이 없으신 분들도 편하게 지원해주세요.  1. 모집 내용 - 20-30대 남녀 각 1명, 총 2명 - 반팔티에 맞는 코디 2벌이상 준비 가능하신 분 - 헤어&메이크업 셀프 - 남자 모델 섭취 제품 : 아르기닌, 곡물 에너지바(현미, 호두, 잣 등) - 여자 모델 섭취 제품 : 인삼포, 굼벵이환, 달팽이진액(세가지 다 건강기능 식품입니다)  2. 우대 사항 - 시간 약속을 잘 지키시는 분 - 촬영에 열정적으로 임하시는 분  3. 출연료 - 15만원  4. 촬영 일자 및 시간 - 2021년 6월 15일 화요일 13:00 ~(3시간 이내)  5. 촬영 장소 - 경기도 부천시 예정 (상세 주소는 개별 연락드립니다.)  6. 지원 방법 - 이메일(203ho.master@gmail.com) 지원 - 프로필과 함께 ★실물 느낌에 가까운 영상★을 꼭 첨부해주세요(파일, 링크 등) - 제목에 [제품홍보]를 붙여주세요. 예시) [제품홍보] OOO 지원합니다.  당분간 제품 촬영을 많이 진행 할 예정입니다. 앞으로 꾸준히 함께 작업할 수 있는 좋은 인연이 되었으면 합니다.  감사합니다., cast=20~30대, filming=null, guarantee=null, personnel=남녀 각 1명, 총 2명, deadline=2021-06-15T00:00, producer=ProducerDTO(producerId=39, email=pro@139.com, agency=agency139, phone=010139, position=manager, name=producer139, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=[토마토] 20대 여성배우 3분을 모집합니다, project=유튜브 업로드 영상, contents=몽타미디어에서 20대 여성배우 3분을 모집합니다. 영상 컨셉은 토마토 함유되어있는 모공앰플 제품의 모공을 관리해주는 토마토 역할입니다 간단한 분장있습니다 촬영 날짜 : 6월 16일 촬영 장소 : 정확한 위치는 따로 추후에 말씀 드리겠습니다 촬영 시간 : 오후 1시~5시 메이크업 1시간 받고 실 촬영시간은 3시간입니다 페이는 10만원 입니다. 프로필 보내주실 때, 사진+영상도 함께 보내주시면 참고하겠습니다. 연락은 개별 연락 드리며, 많이 지원해주세요. eloon87@naver.com *메일에 [토마토] 라고 제목 달아서 지원해주시면 감사하겠습니다., cast=배우, filming=null, guarantee=null, personnel=3명, deadline=2021-06-13T00:00, producer=ProducerDTO(producerId=40, email=pro@140.com, agency=agency140, phone=010140, position=manager, name=producer140, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=[바이럴광고] 책상 영상 촬영을 도와주실 여배우 1분을 모십니다., project=책상, contents=안녕하세요. (주)소셜링 입니다. 현재 바이럴 영상 책상 제품촬영을 도와주실 여자 모델 분을 모집하고 있습니다.  [공통 준비사항] 소규모로 이루어진 촬영이다 보니, 헤어 메이크업과 의상은 직접 준비해 주시면 감사하겠습니다.  1) 촬영일자 날짜 : 6월 18일 금요일 (하루) 장소 및 시간 : 미정 (정해지는 대로 전달드리겠습니다) ★ 해당 일자에 촬영이 가능하신 분 지원 부탁드립니다★  2) 페이 20만원(vat 3.3% 포함) / 촬영 다음 달 5일 입금 (7월)  3) 지원 방법 제목 : 책상촬영_지원자 OOO 1. 이름, 나이, 연락처, 최근 사진 첨부 2. 포트폴리오 or 링크 첨부 ☆★ 위 지원 양식을 꼭 지켜주세요 ★☆  4) 필수 사항 [여성 역] - 20대 중후반 ~ 30대 초반 - 표정 및 행동 연기 가능하신 분 - 시간 약속을 잘 지키시는 분 - 긍정적으로 임해주실 분   [ 메일 주소 : socialring@daum.net ] 참여하시게 되는 분께는 개별적으로 연락드리겠습니다. 감사합니다., cast=여배우, filming=null, guarantee=null, personnel=1, deadline=2021-06-15T00:00, producer=ProducerDTO(producerId=41, email=pro@142.com, agency=agency142, phone=010142, position=manager, name=producer142, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=케이블분양광고 여자캐스터 공고, project=칸타빌9차/헤센스마트센트럴, contents=안녕하세요 이펙트원의 황옥현PD 입니다 케이블 분양광고에 출연가능하신 여성 캐스터분을 모집합니다 촬영은 모델하우스와 크로마키에서 캐스터식과 인터뷰진행식으로 촬영이 진행될 예정입니다. 멘트가 자유로우신 분들이 지원해주시면 감사하겠습니다. 멘트가 우선시되다보니 프로필과 영상[멘트를 구사하시는영상] 요청드리겠습니다  케이블 분양 광고 촬영 * 촬영 일정 - 6월 21일~ 24일 중 2회 촬영 * 촬영 장소 - 서울 * 촬영 시간 - 5~6시간 예정 * 촬영 페이 - 1회당 40만원 * 촬영 내용 - 오피스텔 분양광고 촬영 * 촬영 기타 - 멘트구사 필수  프로필과 영상을 risen_1004@hanmail.net 메일로 전달주시면 감사하겠습니다 많은 지원 부탁드립니다 , cast=20~30대 여성 분양광고 캐스터, filming=null, guarantee=null, personnel=각 건당 1명[총 2건], deadline=2021-06-14T00:00, producer=ProducerDTO(producerId=42, email=pro@145.com, agency=agency145, phone=010145, position=manager, name=producer145, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=(주)제이에스벤처스에서 "뷰티(기초 화장품) 바이럴 20대 여성 모델 섭외합니다., project=뷰티 바이럴 영상, contents=기재 된 메일로 프로필 보내주시면 확인 후 연락드리겠습니다.  이메일: sjsmstjdghks@naver.com  담당자연락처: 010-8701-3975  * 실물미팅 우선적으로 진행합니다.  페이수준: 4시간 기준 15만원  *촬영 시간에 따라 변동될수 있습니다.  페이지급일: 둘째 주/ 넷째 주 금요일  촬영지역: 강남역 1번 출구 도보 5분   *촬영 지원시 메일 제목에 화장품(기초 화장품) 기입, cast=바이럴 영상 모델, filming=null, guarantee=null, personnel=여자, deadline=2021-06-13T00:00, producer=ProducerDTO(producerId=43, email=pro@148.com, agency=agency148, phone=010148, position=manager, name=producer148, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=여성진행자님을 모집합니다!, project=미정, contents=현재 기획중인 단계이며, 유튜브에서 저희 자사 상품으로 리뷰를 진행하려합니다. 단순 리뷰가 아닌 19금 컨셉으로 갈 예정입니다. 예민한 문제일수 있어 메일로 질문 남겨주시면 하나하나 답변드리겠습니다!(노출 가능여부와 가능 하다면 어디까지 가능한지 심한 노출은 없지만 예민할 수 있는 문제라 적습니다.) 촬영 전에 사전 대본을 드려 수위에 대해 얘기를 해보고 협의 후에 진행 될 예정입니다! 페이는 추후 미팅후에 협의할 예정입니다.   현재 여자 진행자 프로필만 받고 있습니다.  긴 글 읽어주셔서 감사합니다. 감사합니다. 좋은 하루되세요 :), cast=미정, filming=null, guarantee=null, personnel=1~4, deadline=2021-06-30T00:00, producer=ProducerDTO(producerId=44, email=pro@156.com, agency=agency156, phone=010156, position=manager, name=producer156, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=[20대 후반 남,여] 춤 연기가 가능한 남녀 주인공 구합니다, project=CJ 더마켓 바이럴, contents=촬영일 : 6월 24일(목)  촬영 장소 : 서울, 경기 근교  모집 내용 : CJ더마켓 바이럴 영상에 출연한 배우 2분 구합니다 춤 연기가 가능한 20대 후반 남녀 주인공 구합니다 몸 잘 쓰시는 배우분들 환영해요!  지원 방법 : 꼭 연기 영상이 포함된 포트폴리오 메일로 부탁드립니다.  bdbdstudio.kr@gmail.com  , cast=20대 후반 남,녀, filming=null, guarantee=null, personnel=2명, deadline=2021-06-18T00:00, producer=ProducerDTO(producerId=45, email=pro@159.com, agency=agency159, phone=010159, position=manager, name=producer159, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=속눈썹 영양제 광고영상 긴_속눈썹 모델님 구인합니다., project=뷰티브랜드 속눈썹 영양제 광고영상촬영, contents=안녕하세요. (주)순녹입니다.  헤어뷰티브랜드 바이브랩 제품 sns 컨텐츠 영상 모델모집합 니다. 속눈썹 영양제 제품 모델분을 모집하고 있습니다. 많은 지원 부탁드립니다.   필수조건) ※※ 속눈썹이 정말 길고 숱이 많으신 분 ※※ 깨끗한 피부 소유자 맑고 긍정적인 이미지 소유자  지원불가) 아이라인 문신 / 속눈썹 연장 하신 분 은 정중히 사양합니다  지원방법) 이메일지원 메일제목) '긴 속눈썹 모델 지원합니다' 속눈썹 길이감이 잘보이는 이미지 (한쪽눈 , 양쪽눈 / 눈감은, 눈 뜬 이미지 / 마스카라X ) 프로필/인스타그램 아이디 첨부  [※위 사항 누락없이 지원부탁드립니다.]  • 장 소/일시 : 서울 (강남/광진구) 스튜디오/ 4시간정도 촬영(+/- 1시간) * 촬영날짜는 모델분과 협의후 결정 * 정확한 장소/시간 추후 전달  • 촬 영 내 용 : 속눈썹 영양제 제품 SNS 컨텐츠 영상 및 이미지 촬영  • 모델료 : 50만 원 협의 (원천징수 3.3%공제후 지급), cast=긴 속눈썹 모델, filming=null, guarantee=null, personnel=n명, deadline=2021-06-18T00:00, producer=ProducerDTO(producerId=46, email=pro@160.com, agency=agency160, phone=010160, position=manager, name=producer160, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=[살균 탈취제] 손 예쁜 여성 모델 구합니다., project=제품홍보영상, contents=안녕하세요 페이스북/인스타그램 광고에 올라갈 살균탈취제 배우 모집합니다  스프레이 형식의 살균탈취제 제품이여서 뿌리고, 제품 드는 액팅이 있습니다  - 네일없이 깨끗한 손 - 머리카락이 어깨기장 이상이신 분 (검정색 또는 갈색)  - 손 연기 잘하시는 분 (손 클로즈업이 많습니다) - 브이로그 형식의 영상이여서 몸이나 실루엣 정도는 나올 수 있습니다  지원시 현재 손 사진, 전신 사진 함께 첨부 부탁드립니다. (촬영 포폴이 있다면, 프로필 보내주실 때 사진 첨부해주세요.)  촬영은 2021년 6월 15일 촬영 장소, 촬영 시간과 정확한 위치는 따로 추후에 말씀 드리겠습니다.   페이는 15만원입니다.   많이 지원해주세요. 감사합니다. eloon87@naver.com *메일에 [살균 탈취제] 라고 제목 달아서 지원해주시면 감사하겠습니다., cast=손 모델, filming=null, guarantee=null, personnel=1명, deadline=2021-06-13T00:00, producer=ProducerDTO(producerId=47, email=pro@163.com, agency=agency163, phone=010163, position=manager, name=producer163, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=[광고] 광고 외국인 모델을 구합니다. / looking for a commercial video model/actress, project=추후 공개, contents=Hello,  We are looking for a commericial video model/actress who will be playing a career woman. Detailed information will be open during interview process. If you like to be considered, please send your profile and portfolio to yejin@performars.com Will look forward to speaking with you soon. Thank you., cast=2~30대 직장인 여성, filming=null, guarantee=null, personnel=1, deadline=2021-06-16T00:00, producer=ProducerDTO(producerId=48, email=pro@164.com, agency=agency164, phone=010164, position=manager, name=producer164, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=홈인테리어 브랜드 주방 신상 홍보 유튜브 콘텐츠 촬영 배우(쇼호스트) 모집 건, project=유튜브 콘텐츠, contents=홈인테리어 브랜드 주방 신상 홍보 유튜브 콘텐츠 촬영 배우(쇼호스트) 모집 건  홈쇼핑 포맷 유튜브 영상 촬영 예정이며, 컨셉상 쇼호스트 분들도 지원하셔도 좋습니다.  콘텐츠 레퍼런스는 다음과 같습니다. https://www.youtube.com/watch?v=yz_-O55KjWQ https://www.youtube.com/watch?v=uPzrdNnFC8w  촬영은 6/23(수) 오전 10시반~3시 촬영 예정이며, 일정은 변동 있을 수 있습니다.  기본페이는 35~50만원으로 결정될 예정이며, 입금시 소득세 3.3% 제외 후 입금됩니다. 리허설 및 촬영 난이도에 따라 페이는 변동 가능합니다.  하기 메일로 지원주시면 연락드리겠습니다^^  >>chl0908@inobean.com ** 메일 바디에 출연하셨던 영상 및 레퍼런스 url 남겨주시면 더욱 빠른 확인 가능합니다.  이번 촬영 뿐 아니라 추후 콘텐츠 진행 시에도 연락 드릴 수 있으니 많은 지원 부탁드립니다 ^^ , cast=2030 쇼호스트, filming=null, guarantee=null, personnel=1, deadline=2021-06-16T00:00, producer=ProducerDTO(producerId=49, email=pro@165.com, agency=agency165, phone=010165, position=manager, name=producer165, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=sns 바이럴 광고 (건강기능식품), 노골적인 멘트 자신있으신 25세이상 남,녀 모델분들(부부모집)(념녀 각자 모집), project=제품 소개 영상, contents=안녕하세요. SNS바이럴 광고에 출연하실 모델분 모집합니다.(노골적 멘트 가능하신 분)  ▶촬영제품: 건강기능식품  ▶ 촬영장소 : 판교, 서울(협의 가능)  ▶ 촬영날짜 : 협의 후 진행  ▶ 촬영페이 : 20만원  ▶ 예상 소요시간 : 3시간 내외 소요  ▶ 지원방법 : 이메일 지원 hw2night@gmail.com 1) 메일 제목 :[노골 가능]나이,성함 2) 연락처 포함된 프로필 및 연기 영상 샘플(영상 파일 또는 유튜브 등 링크)  많은 지원 부탁드립니다. 감사합니다., cast=25세 이상 남,녀, filming=null, guarantee=null, personnel=2, deadline=2021-06-18T00:00, producer=ProducerDTO(producerId=50, email=pro@170.com, agency=agency170, phone=010170, position=manager, name=producer170, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=신인 힙합 뮤지션 MV 여주인공 모집, project=신인 힙합 뮤지션 뮤직비디오, contents=안녕하세요 호기스터 프로덕션입니다. www.hogyster.com  이번 프로젝트는 신인 남성 힙합 뮤지션의 뮤직비디오입니다.  남자 주인공(뮤지션 본인)이 이별한 여자 주인공을 그리워 하는 멜로 장르의 내용입니다. (커플씬이 있으나, 손 잡거나 포옹 정도의 연출만 들어갈 예정)  따라서, 해당 뮤직비디오에 여자주인공으로 출연할 배우를 모집하게 되었습니다. 남자 신인 뮤지션이 20대 초반인 관계로 실제 나이는 상관 없으나 20대 초반 이미지에 잘 맞는 분이면 좋겠습니다.  * 역할: 힙합 음악에 어울리는 힙하고 스타일리쉬한 20대 초반 이미지 여성 * 촬영일 : 6월 21일 월요일 (예정) * 촬영장소 : 서울 또는 수도권 실내스튜디오 + 야외로케이션 * 페이 : 10~20만원 협의   * 지원 :이메일 접수 selectchu.kevin@gmail.com 제목 : [MV여주지원] OOO (성함) / OO세 (나이) 영상 + 사진 이 포함된 프로필 자료를 필히 첨부하여 보내주시기 바랍니다.  스토리보드 및 해당 음악 등은 사전유출 방지 등을 위해 적합한 지원자분께만 전달드리도록 하겠습니다 :)  촬영일정이 얼마 남지 않은 관계로 적합한 지원자가 있으시면 마감일 전이라도 조기 마감 될 수 있습니다 :)  감사합니다. , cast=힙하고 스타일리쉬한 20대 여성, filming=null, guarantee=null, personnel=1, deadline=2021-06-15T00:00, producer=ProducerDTO(producerId=51, email=pro@174.com, agency=agency174, phone=010174, position=manager, name=producer174, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=코인유튜브 출연하실 여성모델분 2분 구인합니다, project=코인, contents=안녕하세요 코인 유튜브 출연하실 여성 모델분 2분 모집합니다 한분은 라이브 스트리밍 한분은 5분에서 10분내외 영상 출현 하시면 되겠습니다 10개월이상 채널을 운영할 생각이고 기획자 편집자 촬영 업자분들 전부 고용한 상태입니다 주3회이상 촬영을 할것입니다 월 12회 10개월 120회입니다 말재간이 어느정도 있어야합니다 나이대는 20대~30대까지 입니다 성실하고 꾸준히 하실분들을 모집하고 있습니다 영상 컨텐츠로는 플렉스영상, 브이로그, 코인관련 교육, 홍보, 안내 등이 있습니다 긍정적이고 밝으신 분 거리낌없이 실행할수있는 추진력있는 모델분 원합니다 , cast=20대에서30대까지 말을 잘해야합니다, filming=null, guarantee=null, personnel=2명, deadline=2021-07-22T00:00, producer=ProducerDTO(producerId=52, email=pro@175.com, agency=agency175, phone=010175, position=manager, name=producer175, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=[유튜브형 예능] 10대 중고생 남학생 성격 밝고 활기찬 출연자 모집, project=플레이TV (가제), contents=안녕하세요. 유튜브 형태의 청소년 예능 채널입니다. 현재 레귤러로 촬영 중이며 건전하고 밝은 청소년 예능입니다.  ■ 나이 : 실제 [중학생~고등학생] 재학 중인 남학생 (여학생X)  ■ 성격 : 밝고 적극적이고 말 잘하는 쾌활한 학생 (배우지망생 및 일반 청소년도 지원 가능)  ■ 장소 : 2호선 삼성역 부근 스튜디오 or 서울권 내에서 주로 촬영 ■ 지원방법 (이메일 지원 또는 아래 '지원하기' 클릭)   (1) 자기소개 동영상 : 말하는 영상 1분 30초 이상 휴대폰 촬영하여 첨부 (연기/취미/특기가 있을 경우, 영상에 함께 찍을 것)  (2) 사진 : 반드시!! 프로필 사진이 아닌 일상 사진을 여러장 첨부  (3) 경력사항 : 타 유튜브나 방송 출연 경력이 있다면 링크 첨부 (없어도 무방함)   ▼ 지원하기 클릭 ▼ https://docs.google.com/forms/d/1c3lqqC6NDpIW6uicEa7qQpAxst84ppaKuw-P4TIpcIM/edit , cast=청소년 고정 출연자, filming=null, guarantee=null, personnel=1명, deadline=2021-07-04T00:00, producer=ProducerDTO(producerId=53, email=pro@178.com, agency=agency178, phone=010178, position=manager, name=producer178, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=현대자동차그룹 사내방송에서 출연모델 구합니다, project=슬기로운 엠바이브 생활, contents=안녕하세요. 현대자동차그룹 사내방송제작팀에서 '슬기로운 엠바이브 생활' 의 주제로 모델분을 모집하고 있습니다.  ㅁ촬영날짜 - 2021년 06월 15일 (수) 10:00~20:00  ㅁ촬영장소 - 서초구일대, 한강, 레스케이프 호텔  ㅁ촬영내용 -반려동물 모빌리티 서비스인 '엠바이브' 를 이용하는 견주의 하루 (반려견에 대해 불편함이 없으신분 지원해주세요)  ㅁ모집배우 - 30대초반 여성  ㅁ출연료 -30만원  ㅁ접수방법 - 이메일 접수 hmgteam@daum.net  ** 제목에 반드시 엠바이브/모델/ 나이 / 이름 /연락처 순으로 기재해주세요 (제목이 다르면 볼수가 없습니다.)  개별 연락 드리겠습니다. 많은 지원 부탁드립니다. 감사합니다., cast=30대 초반 여성, filming=null, guarantee=null, personnel=1, deadline=2021-06-14T00:00, producer=ProducerDTO(producerId=54, email=pro@183.com, agency=agency183, phone=010183, position=manager, name=producer183, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=[파스퇴르] 유튜브 테이블 토크 콘텐츠 배우를 모집합니다!!, project=위드맘, contents=유튜브 테이블 토크 콘텐츠에 출연하실 출산한 경험이있는 친언니, 출산 경험이 없는 친동생 친자매 이신 20~30대 여배우님 모집 모집합니다.  -유튜브 테이블 토크 -육아 컨텐츠 -촬영 일자: 미정 -출연료: 20만원(협의) -육아 콘텐츠다 보니 출산한 경험 친언니, 출산 경험이 없는 친동생 /20~30대 여배우님 구합니다! - ohyeonmi972@gmail.com 으로 포트폴리오와 저희가 참고할 수 있는 영상(꼭 링크로) 보내주시면 감사하겠습니다.  많은 지원 부탁드립니다:), cast=출산한 경험이 있는 친언니, 출산 경험이 없는 친동생 친자매 이신 20~30대 여배우님, filming=null, guarantee=null, personnel=2, deadline=2021-06-15T00:00, producer=ProducerDTO(producerId=55, email=pro@184.com, agency=agency184, phone=010184, position=manager, name=producer184, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=[제품촬영]인형 제품 사용하는 모델_여_20대, project=인형 제품 모델, contents=인형 제품 사용(가지고 노는) 20대 여성 모델 모집  구독자 28만 유튜브 채널의 인형 제품  인형 제품 사진이 메인 촬영 이며 동영상은 3컷 정도 있습니다.  *** 촬영일정 확인 후 지원 부탁드립니다.  촬영 날짜 : 2021년 6월 14일 (월) 예상 촬영 시간 : 오후 1시 ~ 오후 6시 (5시간) 촬영 장소 : 서울 출연료 : 20만원(세전/교통비 포함) 촬영 일 기준 익월 말일 지급예정  모집 마감일 : 2021년 6월 13일 오후 2시까지 출연자 발표 : 2021년 6월 13일 오후 6시 이후 개별연락 지원 방법 : 메일로 간단한 프로필 or 인스타그램 주소+연락처 기입 필수 메일 주소 : thanks@ironing.kr  * 함께 하지 못하는 분들께 따로 연락 드리지 못하는 점 양해부탁드립니다. 감사합니다., cast=인형을 가지고 노는 역할, filming=null, guarantee=null, personnel=1, deadline=2021-06-13T00:00, producer=ProducerDTO(producerId=56, email=pro@186.com, agency=agency186, phone=010186, position=manager, name=producer186, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (mod_date, reg_date, account, password, position, username) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        producers
+        (mod_date, reg_date, agency, email, name, phone, position, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+hire 다 가져오니?HireDTO(hireId=null, title=[제품촬영]인형 제품 사용하는 모델_여_20대, project=인형 제품 모델, contents=인형 제품 사용(가지고 노는) 20대 여성 모델 모집  구독자 28만 유튜브 채널의 인형 제품  인형 제품 사진이 메인 촬영 이며 동영상은 3컷 정도 있습니다.  *** 촬영일정 확인 후 지원 부탁드립니다.  촬영 날짜 : 2021년 6월 14일 (월) 예상 촬영 시간 : 오후 1시 ~ 오후 6시 (5시간) 촬영 장소 : 서울 출연료 : 20만원(세전/교통비 포함) 촬영 일 기준 익월 말일 지급예정 모집 마감일 : 2021년 6월 13일 오후 시까지 출연자 발표 : 2021년 6월 13일 오후 6시 이후 개별연락 지원 방법 : 메일로 간단한 프로필 or 인스타그램 주소+연락처 기입 필수 메일 주소 : thanks@ironing.kr  * 함께 하지 못하는 분들께 따로 연락 드리지 못하는 점 양해부탁드립니다. 감사합니다., cast=인형을 가지고 노는 역할, filming=null, guarantee=null, personnel=1, deadline=2021-06-13T00:00, producer=ProducerDTO(producerId=57, email=pro@187.com, agency=agency187, phone=010187, position=manager, name=producer187, regDate=null, modDate=null, user=null), files=null)
+Hibernate: 
+    insert 
+    into
+        hires
+        (mod_date, reg_date, cast, contents, deadline, filming, guarantee, personnel, producer_id, project, title) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        uservo_roles
+        (uservo_user_id, roles) 
+    values
+        (?, ?)
+2021-06-14 17:15:38.578  INFO 44653 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Committed transaction for test: [DefaultTestContext@6d3227ee testClass = hireTest, testInstance = shop.goodcasting.api.hire.hireTest@30bd1cfe, testMethod = creatHire@hireTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2ca2e7ed testClass = hireTest, locations = '{}', classes = '{class shop.goodcasting.api.GoodCastingApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@7d8684ec, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@6b87f52c, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@66bd5cce, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@59e6dfa8, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2984a0b9, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@5d9aeddf, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@70bce225], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
